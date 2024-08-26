@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "420175985637",
+    "firebase_url": "https://city-car-park-data-default-rtdb.firebaseio.com",
+    "project_id": "city-car-park-data",
+    "storage_bucket": "city-car-park-data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420175985637:android:b91a10980e65ca1e658d0c",
+        "android_client_info": {
+          "package_name": "com.example.ccp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420175985637-tok3e0qqkh4gjersu20rcpm94o79pvrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkunFtnH6LuYBNfV6SLlUpDA71N5qZimU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420175985637-tok3e0qqkh4gjersu20rcpm94o79pvrt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
