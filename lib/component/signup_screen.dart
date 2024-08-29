@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/component/login_screen.dart';
 import 'package:project/constant.dart';
+import 'package:project/routes/route_manager.dart';
 import 'package:project/widget/UserProvider.dart';
 //import 'package:project/component/encrypt.dart';
 import 'package:project/widget/background_image_signup.dart';
@@ -132,11 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (e) => const LoginScreen()),
-                            );
+                            Navigator.pop(context);
                           },
                           child: Text(
                             "Login Here",

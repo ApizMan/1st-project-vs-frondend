@@ -2,7 +2,7 @@ name: project
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.2 <4.0.0'
+  sdk: ">=3.2.2 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,19 +30,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: 2.2.3
-  path_provider: any
-  http: ^0.13.5 
-  fluttertoast: ^8.2.4
+  flutter_localizations:
+    sdk: flutter
   intl: ^0.19.0
-  provider: ^6.1.1 
-  flutter_svg: ^2.0.9 
+  shared_preferences: ^2.3.2
+  path_provider: any
+  http: ^0.13.5
+  fluttertoast: ^8.2.4
+
+  provider: ^6.1.1
+  flutter_svg: ^2.0.9
   flutter_facebook_auth: ^6.0.3
   font_awesome_flutter: ^10.6.0
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.1.0
-  toggle_switch: ^2.1.0  
-  syncfusion_flutter_sliders: ^24.2.3  
+  toggle_switch: ^2.1.0
+  syncfusion_flutter_sliders: ^26.2.11
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.4
   google_sign_in: ^6.2.1
@@ -52,13 +55,13 @@ dependencies:
   validation_textformfield: ^2.2.5
   google_maps_flutter: ^2.5.3
   flutter_launcher_icons: ^0.13.1
-  geolocator: ^10.1.0
+  geolocator: ^12.0.0
   excel: ^4.0.2
   material_floating_search_bar_2: ^0.5.0
   search_map_location: ^0.0.6
   url_launcher: ^6.0.12
-  location: ^5.0.3
-  table_calendar: ^3.1.1  
+  location: ^6.0.2
+  table_calendar: ^3.1.1
   crypto: ^3.0.1
   file_picker: ^8.0.3
   geocoding: ^3.0.0
@@ -66,21 +69,25 @@ dependencies:
   riverpod: ^2.5.1
   flutter_riverpod: ^2.5.1
   qr_flutter: ^4.1.0
-  share_plus: ^9.0.0
+  share_plus: ^10.0.2
   webview_flutter: ^4.8.0
-  
- 
+  get: ^4.6.6
+  flutter_form_bloc:
+    git:
+      url: https://github.com/Cavin6080/form_bloc.git
+      path: packages/flutter_form_bloc
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-  flutter_lints: ^3.0.1
+
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets_images/

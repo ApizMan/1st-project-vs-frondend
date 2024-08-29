@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/component/home_screen.dart';
-import 'package:project/component/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/constant.dart';
 import 'package:project/resources/profile/profile_resources.dart';
+import 'package:project/routes/route_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/component/transacHistory.dart';
 import 'package:share_plus/share_plus.dart';
@@ -236,9 +236,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('token');
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+    await prefs.remove(keyToken);
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoute.loginScreen, (context) => false);
   }
 
   @override
@@ -480,9 +480,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 50),
                 Center(
                     child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
+                  onTap: () async {
+                    await logout();
                   },
                   child: Text(
                     'LOG OUT',
