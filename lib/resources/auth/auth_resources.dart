@@ -19,6 +19,19 @@ class AuthResources {
     return json.decode(response.body);
   }
 
+  static Future signUp({
+    required String prefix,
+    required Object body,
+  }) async {
+    var response = await http.post(
+      Uri.parse('$baseUrl$prefix'),
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+    return json.decode(response.body);
+  }
 
   // Share Preferences
   static Future<String?> getToken() async {

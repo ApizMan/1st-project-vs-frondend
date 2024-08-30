@@ -15,7 +15,7 @@ class BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: appBar,
       backgroundColor: kBlack,
@@ -27,7 +27,7 @@ class BackgroundImage extends StatelessWidget {
               ? backgroundSignIn
               : backgroundSignUp),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
+          colorFilter: const ColorFilter.mode(Colors.black12, BlendMode.darken),
         )),
         child: body,
       ),

@@ -1,21 +1,14 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project/component/home_screen.dart';
-import 'package:project/component/signup_screen.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
-import 'package:project/resources/auth/auth_resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
-import 'package:project/widget/primary_button.dart';
 import 'package:project/widget/widgets.dart';
 import 'package:project/widget/background-image.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -1,6 +1,6 @@
 class SignUpModel {
   String? firstName;
-  String? secondName;
+  String? lastName;
   String? idNumber;
   String? phoneNumber;
   String? email;
@@ -14,7 +14,7 @@ class SignUpModel {
 
   SignUpModel(
       {this.firstName,
-      this.secondName,
+      this.lastName,
       this.idNumber,
       this.phoneNumber,
       this.email,
@@ -28,7 +28,7 @@ class SignUpModel {
 
   SignUpModel.fromJson(Map<String, dynamic> json) {
     firstName = json['firstName'];
-    secondName = json['secondName'];
+    lastName = json['secondName'];
     idNumber = json['idNumber'];
     phoneNumber = json['phoneNumber'];
     email = json['email'];
@@ -44,7 +44,7 @@ class SignUpModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['firstName'] = firstName;
-    data['secondName'] = secondName;
+    data['secondName'] = lastName;
     data['idNumber'] = idNumber;
     data['phoneNumber'] = phoneNumber;
     data['email'] = email;
