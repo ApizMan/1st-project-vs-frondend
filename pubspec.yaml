@@ -76,6 +76,8 @@ dependencies:
     git:
       url: https://github.com/Cavin6080/form_bloc.git
       path: packages/flutter_form_bloc
+  custom_refresh_indicator: ^4.0.1
+  flutter_scale_tap: ^1.0.5
 
 dev_dependencies:
   flutter_test:

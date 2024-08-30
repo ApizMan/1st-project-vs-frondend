@@ -1,18 +1,21 @@
 class PlateNumberModel {
-  bool? isMain;
+  String? id;
   String? plateNumber;
+  bool? isMain;
 
-  PlateNumberModel({this.isMain, this.plateNumber});
+  PlateNumberModel({this.id, this.plateNumber, this.isMain});
 
   PlateNumberModel.fromJson(Map<String, dynamic> json) {
-    isMain = json['isMain'];
+    id = json['id'];
     plateNumber = json['plateNumber'];
+    isMain = json['isMain'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['isMain'] = isMain;
+    data['id'] = id;
     data['plateNumber'] = plateNumber;
+    data['isMain'] = isMain;
     return data;
   }
 }

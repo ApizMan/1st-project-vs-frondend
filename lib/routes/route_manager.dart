@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:project/component/home_screen.dart';
 import 'package:project/screens/screens.dart';
 
 class AppRoute {

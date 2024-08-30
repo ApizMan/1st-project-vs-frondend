@@ -52,6 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onSuccess: (context, state) {
               LoadingDialog.hide(context);
               if (state.stepCompleted == state.lastStep) {
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.successResponse!),
@@ -74,9 +75,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   top: MediaQuery.of(context).size.height * 0.1,
                   left: 20.0,
                   right: 20.0,
-                  bottom: MediaQuery.of(context).size.height * 0.05,
+                  bottom: MediaQuery.of(context).size.height * 0.02,
                 ),
                 child: Container(
+                  padding: const EdgeInsets.only(top: 20.0),
                   decoration: const BoxDecoration(
                     color: kWhite,
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -102,6 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Visibility(
                                 visible: step != 0,
                                 child: PrimaryButton(
+                                  color: kGrey,
                                   onPressed: onStepCancel,
                                   borderRadius: 10.0,
                                   buttonWidth: 0.35,
@@ -112,6 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
+                            spaceHorizontal(width: step != 0 ? 20.0 : 0),
                             Expanded(
                               flex: step != 0 ? 1 : 100,
                               child: PrimaryButton(

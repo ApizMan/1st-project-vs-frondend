@@ -15,5 +15,9 @@ const String logo = 'assets_images/Logo ccp.png';
 const String backgroundSignIn = 'assets_images/login_screen.png';
 const String backgroundSignUp = 'assets_images/signup_wall.png';
 
+const String kuantanLogo = 'assets_images/pbtlogo_kuantan-removebg-preview.png';
+const String terengganuLogo = 'assets_images/pbkk_kt-removebg-preview.png';
+const String machangLogo = 'assets_images/PBT_machang-removebg-preview.png';
+
 // Save Local Storage Keys
 const String keyToken = 'token';
