@@ -3,7 +3,8 @@ import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
-import 'package:project/resources/auth/auth_resources.dart';
+import 'package:project/resources/resources.dart';
+import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _getUserDetails() async {
     final data =
-        await AuthResources.getUserDetail(prefix: '/auth/user-profile');
+        await ProfileResources.getProfile(prefix: '/auth/user-profile');
 
     if (data != null && mounted) {
       setState(() {
@@ -84,18 +85,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else {
-          return Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: _appBarBuilder(context),
-            body: RefreshIndicator(
-              key: _refreshIndicatorKey,
-              onRefresh: _getUserDetails,
-              child: SingleChildScrollView(
+          return RefreshIndicator(
+            key: _refreshIndicatorKey,
+            onRefresh: _getUserDetails,
+            child: Scaffold(
+              backgroundColor: kBackgroundColor,
+              extendBodyBehindAppBar: true,
+              appBar: _appBarBuilder(context),
+              body: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _topWidget(context, userModel),
-                    // Add more widgets as needed
+                    Stack(
+                      children: [
+                        _clockingCountdown(context),
+                        _topWidget(context, userModel),
+                      ],
+                    ),
+                    spaceVertical(height: 20.0),
+                    const SliderScreen(),
+                    spaceVertical(height: 20.0),
+                    ServiceScreen(
+                      userModel: userModel,
+                      plateNumbers: userModel.plateNumbers,
+                    ),
+                    spaceVertical(height: 20.0),
+                    const NewsUpdateScreen(),
+                    spaceVertical(height: 20.0),
                   ],
                 ),
               ),
@@ -106,62 +123,71 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  AppBar _appBarBuilder(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      toolbarHeight: 100,
-      leadingWidth: 200,
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CircleAvatar(
-            radius: 30,
-            child: Icon(
-              Icons.person,
-              size: 40,
-            ),
-          ),
-          spaceHorizontal(width: 20.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+  PreferredSize _appBarBuilder(BuildContext context) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(100.0),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(40),
+          bottomRight: Radius.circular(40),
+        ),
+        child: AppBar(
+          backgroundColor: kPrimaryColor,
+          toolbarHeight: 100,
+          leadingWidth: 200,
+          leading: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Welcome',
-                style: textStyleNormal(
-                  color: kWhite,
-                  fontWeight: FontWeight.bold,
+              const CircleAvatar(
+                radius: 30,
+                child: Icon(
+                  Icons.person,
+                  size: 40,
                 ),
               ),
-              Text(
-                '${userModel.firstName} ${userModel.secondName}',
-                style: textStyleNormal(
-                  color: kWhite,
-                ),
+              spaceHorizontal(width: 20.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Welcome',
+                    style: textStyleNormal(
+                      color: kWhite,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${userModel.firstName} ${userModel.secondName}',
+                    style: textStyleNormal(
+                      color: kWhite,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_outlined,
-              color: kWhite,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.notifications_outlined,
+                  color: kWhite,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   Widget _topWidget(BuildContext context, UserModel userModel) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.32,
       decoration: const BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.only(
@@ -260,6 +286,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _clockingCountdown(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.37,
+      padding: const EdgeInsets.only(bottom: 10.0),
+      decoration: const BoxDecoration(
+        color: kSecondaryColor,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(40.0),
+          bottomRight: Radius.circular(40.0),
+        ),
+      ),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          'Parking Time Remaining: ',
+          style: textStyleNormal(
+            color: kBlack,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

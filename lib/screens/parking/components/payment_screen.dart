@@ -5,35 +5,25 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/component/receipt_screen.dart';
+import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
-import 'package:project/routes/route_manager.dart';
+import 'package:project/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 
-String globalDuration = '';
-double globalAmount = 0.0;
-
-class PaymentpkScreen extends StatefulWidget {
-  final UserModel userModel;
-  final List<CarPlateNumberModel> carPlates;
-  final String selectedCarPlate;
-  final double amount;
-  const PaymentpkScreen(
-      {super.key,
-      required this.userModel,
-      required this.carPlates,
-      required this.selectedCarPlate,
-      required this.amount});
+class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({
+    super.key,
+  });
 
   @override
-  State<PaymentpkScreen> createState() => _PaymentsppkScreenState();
+  State<PaymentScreen> createState() => _PaymentsppkScreenState();
 }
 
-class _PaymentsppkScreenState extends State<PaymentpkScreen> {
+class _PaymentsppkScreenState extends State<PaymentScreen> {
   //final double _value = 40.0;
   String _currentDate = '';
   String _currentTime = '';
-  late double _amount;
 
   Future<void> paymentParking() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -48,7 +38,7 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
         'Authorization': 'Bearer $token',
       },
       body: jsonEncode({
-        "amount": globalAmount.toString(),
+        "amount": GlobalDeclaration.globalAmount.toString(),
       }),
     );
 
@@ -70,7 +60,6 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
   void initState() {
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
-    _amount = widget.amount;
   }
 
   void updateDateTime() {
@@ -83,53 +72,28 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    UserModel? userModel = arguments['userModel'] as UserModel?;
+    List<PlateNumberModel>? plateNumbers =
+        arguments['plateNumbers'] as List<PlateNumberModel>?;
+    String? parkingCar = arguments['selectedCarPlate'] as String?;
+    double amount = arguments['amount'] as double;
+
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 55, 26, 200),
-          leading: SizedBox(
-            child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRoute.parkingScreen,
-                    arguments: {
-                      'userModel': widget.userModel,
-                      'plateNumbers': widget.carPlates,
-                    },
-                  );
-                },
-                icon: const Icon(
-                  Icons.arrow_back_sharp,
-                  color: Colors.white,
-                )),
-          ),
+          toolbarHeight: 100,
+          foregroundColor: kWhite,
+          backgroundColor: kPrimaryColor,
+          centerTitle: true,
           title: Text(
-            'Back',
-            style: GoogleFonts.dmSans(
-              color: Colors.white,
-              fontSize: 15,
+            'Payment',
+            style: textStyleNormal(
+              fontSize: 26,
+              color: kWhite,
               fontWeight: FontWeight.bold,
             ),
           ),
-          bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(90.0),
-              child: Container(
-                padding: const EdgeInsets.all(10.0),
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Payment',
-                      style: GoogleFonts.openSans(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              )),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -198,7 +162,7 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        widget.selectedCarPlate,
+                        parkingCar!.split('-')[0],
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -215,7 +179,7 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        globalDuration,
+                        GlobalDeclaration.globalDuration,
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -249,7 +213,7 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        'RM ${_amount.toString()}',
+                        'RM ${amount.toString()}',
                         style:
                             GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
@@ -279,7 +243,7 @@ class _PaymentsppkScreenState extends State<PaymentpkScreen> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) =>
-                                ReceiptScreen(userProfile: widget.userModel),
+                                ReceiptScreen(userProfile: userModel),
                           ),
                         );
                       },

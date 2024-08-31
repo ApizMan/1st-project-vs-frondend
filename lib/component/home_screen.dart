@@ -9,10 +9,10 @@ import 'package:project/component/Pass.dart';
 import 'package:project/component/ReserveBay_screen.dart';
 import 'package:project/component/compound.dart';
 import 'package:project/component/map_page.dart';
-import 'package:project/component/parking.dart';
 import 'package:project/component/profile_screen.dart';
 import 'package:project/component/reload_screen.dart';
 import 'package:project/constant.dart';
+import 'package:project/screens/screens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geocoding/geocoding.dart';
@@ -66,7 +66,8 @@ class UserProfile {
 
   factory UserProfile.fromJson(Map<String, dynamic> json) {
     var carPlatesJson = json['plateNumbers'] as List? ?? [];
-    List<CarPlate> carPlatesList = carPlatesJson.map((plateJson) => CarPlate.fromJson(plateJson)).toList();
+    List<CarPlate> carPlatesList =
+        carPlatesJson.map((plateJson) => CarPlate.fromJson(plateJson)).toList();
 
     return UserProfile(
       userID: json['id'] ?? '',
@@ -86,7 +87,6 @@ class UserProfile {
     );
   }
 }
-
 
 class Wallet {
   String id;
@@ -126,8 +126,6 @@ class CarPlate {
       carPlateNumber: json['plateNumber'] ?? '',
     );
   }
-
- 
 }
 
 class HomeScreenState extends State<HomeScreen> {
@@ -154,43 +152,40 @@ class HomeScreenState extends State<HomeScreen> {
     super.initState();
     _checkLocationAndFetch();
     fetchUserProfile();
-    
+
     paymentParking();
   }
 
-
-
   Future<void> fetchUserProfile() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? token = prefs.getString('token');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
 
-  if (token == null) return;
+    if (token == null) return;
 
-  final response = await http.get(
-    Uri.parse("$baseUrl/auth/user-profile"),
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token',
-    },
-  );
+    final response = await http.get(
+      Uri.parse("$baseUrl/auth/user-profile"),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
 
-  if (kDebugMode) {
-    print('response.body : ${response.body}');
+    if (kDebugMode) {
+      print('response.body : ${response.body}');
+    }
+    print('response.body : ${response.statusCode}');
+    if (response.statusCode == 200) {
+      setState(() {
+        Map<String, dynamic> jsonList = jsonDecode(response.body);
+        userProfile = UserProfile.fromJson(jsonList);
+        carPlates = userProfile!.carPlates;
+        if (kDebugMode) {
+          print('user profile nk : $userProfile');
+        }
+        loading = false;
+      });
+    }
   }
-  print('response.body : ${response.statusCode}');
-  if (response.statusCode == 200) {
-    setState(() {
-      Map<String, dynamic> jsonList = jsonDecode(response.body);
-      userProfile = UserProfile.fromJson(jsonList);
-      carPlates = userProfile!.carPlates;
-      if (kDebugMode) {
-        print('user profile nk : $userProfile');
-      }
-      loading = false;
-    }); 
-  }
-}
-
 
   Future<void> paymentParking() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -343,7 +338,9 @@ class HomeScreenState extends State<HomeScreen> {
             GestureDetector(
               onTap: () {
                 if (userProfile != null) {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(userProfile: userProfile!)));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          ProfileScreen(userProfile: userProfile!)));
                 }
               },
               child: const CircleAvatar(
@@ -352,7 +349,9 @@ class HomeScreenState extends State<HomeScreen> {
                 radius: 15, // Sesuaikan ukuran radius sesuai kebutuhan
               ),
             ),
-            const SizedBox(width:10), // Menambahkan jarak antara gambar dan teks 'Welcome'
+            const SizedBox(
+                width:
+                    10), // Menambahkan jarak antara gambar dan teks 'Welcome'
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -566,7 +565,10 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => ParkingScreen(userProfile: userProfile!,carPlates: userProfile!.carPlates,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ParkingScreen()));
                           },
                           child: Image.asset(
                             'assets_images/ss_1.png',
@@ -694,7 +696,7 @@ class HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(right: 20, left: 30),
               child: Column(children: [
                 const SizedBox(height: 10),
-                Row(                  
+                Row(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,

@@ -33,19 +33,7 @@ class AuthResources {
     return json.decode(response.body);
   }
 
-  static Future getUserDetail({
-    required String prefix,
-  }) async {
-    final token = await AuthResources.getToken();
-    var response = await http.get(
-      Uri.parse('$baseUrl$prefix'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-    );
-    return json.decode(response.body);
-  }
+  
 
   // Share Preferences
   static Future<String?> getToken() async {

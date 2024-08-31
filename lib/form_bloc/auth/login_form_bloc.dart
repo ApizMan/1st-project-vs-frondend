@@ -6,7 +6,6 @@ import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/auth/auth_resources.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginFormBloc extends FormBloc<String, String> {
   final LoginModel model = LoginModel();
