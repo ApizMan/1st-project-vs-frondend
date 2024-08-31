@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
+import 'package:project/resources/pbt_resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/service_card.dart';
@@ -8,10 +9,12 @@ import 'package:project/widget/service_card.dart';
 class ServiceScreen extends StatefulWidget {
   final UserModel? userModel;
   final List<PlateNumberModel>? plateNumbers;
+  final Map<String, dynamic> details;
   const ServiceScreen({
     super.key,
     this.userModel,
     this.plateNumbers,
+    required this.details,
   });
 
   @override
@@ -19,6 +22,34 @@ class ServiceScreen extends StatefulWidget {
 }
 
 class _ServiceScreenState extends State<ServiceScreen> {
+  late final List<PBTModel> pbtModel;
+  late Future<void> _initDataPBT;
+
+  @override
+  void initState() {
+    _initDataPBT = _getPBT();
+    pbtModel = [];
+    super.initState();
+  }
+
+  Future<void> _getPBT() async {
+    final data = await PbtResources.getPBT(prefix: '/pbt/');
+
+    if (data != null && mounted) {
+      setState(() {
+        pbtModel.addAll(
+          data
+              .map<PBTModel>((item) => PBTModel(
+                    id: item['id'],
+                    name: item['name'],
+                    description: item['description'],
+                  ))
+              .toList(),
+        ); // Add new data
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,20 +72,26 @@ class _ServiceScreenState extends State<ServiceScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ServiceCard(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        AppRoute.parkingScreen,
-                        arguments: {
-                          'userModel': widget.userModel,
-                          'plateNumbers': widget.plateNumbers,
-                        },
-                      );
-                    },
-                    image: parkingImage,
-                    title: 'Parking',
-                  ),
+                  FutureBuilder(
+                      future: _initDataPBT,
+                      builder: (context, snapshot) {
+                        return ServiceCard(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              AppRoute.parkingScreen,
+                              arguments: {
+                                'locationDetail': widget.details,
+                                'userModel': widget.userModel,
+                                'plateNumbers': widget.plateNumbers,
+                                'pbtModel': pbtModel,
+                              },
+                            );
+                          },
+                          image: parkingImage,
+                          title: 'Parking',
+                        );
+                      }),
                   ServiceCard(
                     onPressed: () {},
                     image: summonImage,

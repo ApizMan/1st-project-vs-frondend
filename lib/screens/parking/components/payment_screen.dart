@@ -75,8 +75,6 @@ class _PaymentsppkScreenState extends State<PaymentScreen> {
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     UserModel? userModel = arguments['userModel'] as UserModel?;
-    List<PlateNumberModel>? plateNumbers =
-        arguments['plateNumbers'] as List<PlateNumberModel>?;
     String? parkingCar = arguments['selectedCarPlate'] as String?;
     double amount = arguments['amount'] as double;
 

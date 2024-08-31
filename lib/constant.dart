@@ -13,6 +13,8 @@ const Color kPrimaryColor = Color.fromRGBO(34, 74, 151, 1);
 const Color kSecondaryColor = Color.fromRGBO(134, 156, 255, 1);
 const Color kBackgroundColor = Color.fromRGBO(244, 246, 255, 1);
 const Color kGrey = Colors.grey;
+const Color kOrange = Colors.orange;
+const Color kYellow = Colors.yellow;
 
 // image
 const String logo = 'assets_images/Logo ccp.png';
@@ -37,6 +39,11 @@ const String machangLogo = 'assets_images/PBT_machang-removebg-preview.png';
 
 // Save Local Storage Keys
 const String keyToken = 'token';
+const String keyLocation = 'location';
+const String keyState = 'state';
+const String keyLogo = 'logo';
+const String keyColor = 'color';
+
 class GlobalDeclaration {
   static String globalDuration = '';
   static double globalAmount = 0.0;

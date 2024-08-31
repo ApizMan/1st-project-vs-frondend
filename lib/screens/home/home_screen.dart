@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:intl/intl.dart'; // For date formatting
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
@@ -21,12 +22,18 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
   late Future<void> _initData;
+  late Map<String, dynamic> details;
 
   @override
   void initState() {
     super.initState();
+    analyzeLocation();
     userModel = UserModel();
     _initData = _getUserDetails();
+  }
+
+  Future<void> analyzeLocation() async {
+    details = await SharedPreferencesHelper.getLocationDetails();
   }
 
   Future<void> _getUserDetails() async {
@@ -107,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SliderScreen(),
                     spaceVertical(height: 20.0),
                     ServiceScreen(
+                      details: details,
                       userModel: userModel,
                       plateNumbers: userModel.plateNumbers,
                     ),
@@ -132,7 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(40),
         ),
         child: AppBar(
-          backgroundColor: kPrimaryColor,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: Color(details['color']),
           toolbarHeight: 100,
           leadingWidth: 200,
           leading: Row(
@@ -154,14 +164,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Welcome',
                     style: textStyleNormal(
-                      color: kWhite,
+                      color: details['color'] == 4294961979 ? kBlack : kWhite,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     '${userModel.firstName} ${userModel.secondName}',
                     style: textStyleNormal(
-                      color: kWhite,
+                      color: details['color'] == 4294961979 ? kBlack : kWhite,
                     ),
                   ),
                 ],
@@ -173,9 +183,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(right: 20.0),
               child: IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications_outlined,
-                  color: kWhite,
+                  color: details['color'] == 4294961979 ? kBlack : kWhite,
                 ),
               ),
             ),
@@ -188,9 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _topWidget(BuildContext context, UserModel userModel) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.32,
-      decoration: const BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Color(details['color']),
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(40.0),
           bottomRight: Radius.circular(40.0),
         ),
@@ -216,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Available Balance',
                     style: textStyleNormal(
-                      color: kWhite,
+                      color: details['color'] == 4294961979 ? kBlack : kWhite,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -225,7 +235,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'RM ${userModel.wallet?.amount?.toDouble().toStringAsFixed(2) ?? '0.00'}',
                         style: textStyleNormal(
-                          color: kWhite,
+                          color:
+                              details['color'] == 4294961979 ? kBlack : kWhite,
                           fontWeight: FontWeight.bold,
                           fontSize: 42,
                         ),
@@ -233,12 +244,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       spaceHorizontal(width: 10.0),
                       ScaleTap(
                         onPressed: () {},
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: kWhite,
+                          backgroundColor:
+                              details['color'] == 4294961979 ? kBlack : kWhite,
                           child: Icon(
                             Icons.add,
-                            color: kPrimaryColor,
+                            color: Color(details['color']),
                           ),
                         ),
                       ),
@@ -247,13 +259,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Updated on $lastUpdated',
                     style: textStyleNormal(
-                      color: kWhite,
+                      color: details['color'] == 4294961979 ? kBlack : kWhite,
                       fontSize: 13,
                     ),
                   ),
                 ],
               ),
-              const Column(
+              Column(
                 mainAxisSize:
                     MainAxisSize.min, // Shrink wrap the column vertically
                 mainAxisAlignment:
@@ -262,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Stack(
                     alignment: Alignment.topRight,
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundColor: kWhite,
                         radius: 50,
                         child: Padding(
@@ -275,10 +287,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 212, 212, 212),
+                        backgroundColor:
+                            const Color.fromARGB(255, 212, 212, 212),
                         child: Icon(
                           Icons.change_circle,
-                          color: kPrimaryColor,
+                          color: Color(details['color']),
                         ),
                       )
                     ],
@@ -296,9 +309,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.37,
       padding: const EdgeInsets.only(bottom: 10.0),
-      decoration: const BoxDecoration(
-        color: kSecondaryColor,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Color(details['color']).withOpacity(0.5),
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(40.0),
           bottomRight: Radius.circular(40.0),
         ),
