@@ -8,3 +8,4 @@ export 'home/components/news_update_screen.dart';
 export 'parking/parking_screen.dart';
 export 'parking/components/parking_body_screen.dart';
 export 'parking/components/payment_screen.dart';
+export 'parking/components/receipt_screen.dart';

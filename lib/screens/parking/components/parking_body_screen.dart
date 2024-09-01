@@ -60,14 +60,22 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
 
     _focusedDay = DateTime.now();
 
-    // Find the car plate where isMain is true and set it as selected
-    if (widget.carPlates.isNotEmpty) {
-      PlateNumberModel mainCarPlate = widget.carPlates.firstWhere(
-        (plate) => plate.isMain == true,
-        orElse: () => widget.carPlates.first,
-      );
-      // Set the selectedCarPlate with both plateNumber and id to match the Dropdown value
-      selectedCarPlate = '${mainCarPlate.plateNumber}-${mainCarPlate.id}';
+    // Check if carPlates list is not empty
+    try {
+      // Check if carPlates list is not empty
+      if (widget.carPlates.isNotEmpty) {
+        PlateNumberModel mainCarPlate = widget.carPlates.firstWhere(
+          (plate) => plate.isMain == true,
+          orElse: () => widget.carPlates.first,
+        );
+        // Set the selectedCarPlate with both plateNumber and id to match the Dropdown value
+        selectedCarPlate = '${mainCarPlate.plateNumber}-${mainCarPlate.id}';
+      } else {
+        // Handle case where no car plates are available
+        selectedCarPlate = null;
+      }
+    } catch (e) {
+      print('Error selecting car plate: $e');
     }
   }
 
@@ -76,7 +84,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     return SingleChildScrollView(
       child: BlocProvider(
         create: (context) => StoreParkingFormBloc(
-          platModel: widget.carPlates,
+          platModel: widget.carPlates.isNotEmpty ? widget.carPlates : [],
           pbtModel: widget.pbtModel,
           details: widget.details,
         ),
@@ -89,10 +97,12 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
             onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
             onSuccess: (context, state) {
               LoadingDialog.hide(context);
-              Navigator.popAndPushNamed(
-                context,
-                AppRoute.homeScreen,
-              );
+
+              Navigator.popAndPushNamed(context, AppRoute.parkingReceiptScreen,
+                  arguments: {
+                    'userModel': widget.userModel,
+                  });
+
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.successResponse!),
@@ -186,37 +196,43 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                         fillColor: Colors.white.withOpacity(0.8),
                       ),
                       itemBuilder: (context, value) {
-                        // Find the matching car plate from widget.carPlates
-                        final carPlate = widget.carPlates.firstWhere(
-                          (plate) => plate.plateNumber == value,
-                        );
+                        // Ensure value is non-null before using it
+                        if (value != null) {
+                          final carPlate = widget.carPlates.firstWhere(
+                            (plate) => plate.plateNumber == value,
+                            orElse: () => widget.carPlates.first,
+                          );
 
-                        return FieldItem(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(value!), // Display the car plate number
-                                if (carPlate.isMain == true)
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    decoration: BoxDecoration(
-                                      color: kGrey,
-                                      borderRadius: BorderRadius.circular(10),
+                          return FieldItem(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(value), // Display the car plate number
+                                  if (carPlate.isMain == true)
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      decoration: BoxDecoration(
+                                        color: kGrey,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Text(
+                                        'Default',
+                                        style: textStyleNormal(),
+                                      ),
                                     ),
-                                    child: Text(
-                                      'Default',
-                                      style:
-                                          textStyleNormal(), // Apply your desired style here
-                                    ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        } else {
+                          return const FieldItem(
+                              child: const Text("No car plate selected"));
+                        }
                       },
                     ),
                   ),
@@ -402,7 +418,9 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       arguments: {
                         'userModel': widget.userModel,
                         'selectedCarPlate': selectedCarPlate!,
-                        'amount': _value,
+                        'amount': _value.toStringAsFixed(2),
+                        'locationDetail': widget.details,
+                        'formBloc': formBloc,
                       },
                     );
                     GlobalState.amount = _value;
@@ -450,7 +468,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );

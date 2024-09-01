@@ -8,12 +8,15 @@ class SharedPreferencesHelper {
   }
 
   static Future<void> saveLocationDetail(
-      String location, String state,String logo, int color) async {
+      {String location = 'Majlis Bandaraya Kuantan',
+      String state = 'Pahang',
+      String logo = '',
+      int? color}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(keyLocation, location);
     prefs.setString(keyState, state);
     prefs.setString(keyLogo, logo);
-    prefs.setInt(keyColor, color);
+    prefs.setInt(keyColor, color ?? kPrimaryColor.value);
   }
 
   static Future<Map<String, dynamic>> getLocationDetails() async {
@@ -32,5 +35,17 @@ class SharedPreferencesHelper {
       'logo': logo,
       'color': color,
     };
+  }
+
+  static Future<void> setDefaultSetting(bool isFirstRun) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(isFirstRunKey, isFirstRun);
+  }
+
+  static Future<bool> getDefaultSetting() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstRun = prefs.getBool(isFirstRunKey) ?? true;
+
+    return isFirstRun;
   }
 }

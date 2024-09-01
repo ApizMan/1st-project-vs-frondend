@@ -58,10 +58,10 @@ class _SliderScreenState extends State<SliderScreen> {
         onPressed: () async {
 // Only handle the tapped item
           await SharedPreferencesHelper.saveLocationDetail(
-            imgName[index],
-            imgState[index],
-            imgList[index],
-            _getColorForIndex(index),
+            location: imgName[index],
+            state: imgState[index],
+            logo: imgList[index],
+            color: _getColorForIndex(index),
           );
 
           final details = await SharedPreferencesHelper.getLocationDetails();

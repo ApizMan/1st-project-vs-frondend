@@ -43,6 +43,7 @@ const String keyLocation = 'location';
 const String keyState = 'state';
 const String keyLogo = 'logo';
 const String keyColor = 'color';
+const String isFirstRunKey = 'isFirstRun';
 
 class GlobalDeclaration {
   static String globalDuration = '';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
-import 'package:project/resources/pbt_resources.dart';
+import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/service_card.dart';
@@ -83,7 +83,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                               arguments: {
                                 'locationDetail': widget.details,
                                 'userModel': widget.userModel,
-                                'plateNumbers': widget.plateNumbers,
+                                'plateNumbers': widget.plateNumbers ?? [],
                                 'pbtModel': pbtModel,
                               },
                             );

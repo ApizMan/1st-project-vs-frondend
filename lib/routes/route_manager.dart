@@ -8,6 +8,7 @@ class AppRoute {
   static const homeScreen = '/homeScreen';
   static const parkingScreen = '/parkingScreen';
   static const parkingPaymentScreen = '/parkingPaymentScreen';
+  static const parkingReceiptScreen = '/parkingReceiptScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -16,5 +17,6 @@ class AppRoute {
     GetPage(name: homeScreen, page: () => const HomeScreen()),
     GetPage(name: parkingScreen, page: () => const ParkingScreen()),
     GetPage(name: parkingPaymentScreen, page: () => const PaymentScreen()),
+    GetPage(name: parkingReceiptScreen, page: () => const ReceiptScreen()),
   ];
 }

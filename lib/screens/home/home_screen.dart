@@ -59,13 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
           userModel.wallet = WalletModel.fromJson(data['wallet']);
         }
 
-        if (data['plateNumbers'] != null) {
+        if (data['plateNumbers'].isNotEmpty) {
           userModel.plateNumbers = (data['plateNumbers'] as List)
               .map((e) => PlateNumberModel.fromJson(e))
               .toList();
         }
 
-        if (data['reserveBays'] != null) {
+        if (data['reserveBays'].isNotEmpty) {
           userModel.reserveBays = (data['reserveBays'] as List)
               .map((e) => ReserveBayModel.fromJson(e))
               .toList();
