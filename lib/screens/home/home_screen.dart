@@ -5,6 +5,7 @@ import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
+import 'package:project/routes/route_manager.dart';
 import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
@@ -151,11 +152,23 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircleAvatar(
-                  radius: 30,
-                  child: Icon(
-                    Icons.person,
-                    size: 40,
+                ScaleTap(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoute.profileScreen,
+                      arguments: {
+                        'userModel': userModel,
+                        'locationDetail': details,
+                      }
+                    );
+                  },
+                  child: const CircleAvatar(
+                    radius: 30,
+                    child: Icon(
+                      Icons.person,
+                      size: 40,
+                    ),
                   ),
                 ),
                 spaceHorizontal(width: 20.0),

@@ -12,7 +12,7 @@ import 'package:project/component/map_page.dart';
 import 'package:project/component/profile_screen.dart';
 import 'package:project/component/reload_screen.dart';
 import 'package:project/constant.dart';
-import 'package:project/screens/screens.dart';
+// import 'package:project/screens/screens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geocoding/geocoding.dart';
@@ -565,10 +565,10 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ParkingScreen()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => ParkingScreen()));
                           },
                           child: Image.asset(
                             'assets_images/ss_1.png',

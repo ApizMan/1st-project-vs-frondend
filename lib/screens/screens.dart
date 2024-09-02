@@ -2,6 +2,7 @@ export 'auth/login_screen.dart';
 export 'auth/splash_screen.dart';
 export 'auth/signup_screen.dart';
 export 'home/home_screen.dart';
+export 'home/profile_screen.dart';
 export 'home/components/slider_screen.dart';
 export 'home/components/service_screen.dart';
 export 'home/components/news_update_screen.dart';
