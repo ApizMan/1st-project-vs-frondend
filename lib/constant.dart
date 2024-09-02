@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 // const String baseUrl = 'http://192.168.0.128:3000';  /* IP Address on Company Laptop */
 const String baseUrl =
-    'http://192.168.100.113:3000'; /* IP Address on Won Laptop */
+    'http://192.168.0.128:3000'; /* IP Address on Won Laptop */
 
 // Colors
 const Color kBlack = Colors.black;

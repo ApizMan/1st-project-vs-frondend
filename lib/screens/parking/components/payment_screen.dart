@@ -111,7 +111,7 @@ class _PaymentsppkScreenState extends State<PaymentScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        'Majlis Bandaraya Kuantan',
+                        formBloc.pbt.value!,
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -206,13 +206,6 @@ class _PaymentsppkScreenState extends State<PaymentScreen> {
                         formBloc.amount.updateValue(amount.toStringAsFixed(2));
                         formBloc.submit();
                       });
-
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) =>
-                      //         ReceiptScreen(userProfile: userModel),
-                      //   ),
-                      // );
                     },
                     label: Text(
                       'PAY',

@@ -144,39 +144,46 @@ class _HomeScreenState extends State<HomeScreen> {
           scrolledUnderElevation: 0,
           backgroundColor: Color(details['color']),
           toolbarHeight: 100,
-          leadingWidth: 200,
-          leading: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CircleAvatar(
-                radius: 30,
-                child: Icon(
-                  Icons.person,
-                  size: 40,
+          leadingWidth: 250,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CircleAvatar(
+                  radius: 30,
+                  child: Icon(
+                    Icons.person,
+                    size: 40,
+                  ),
                 ),
-              ),
-              spaceHorizontal(width: 20.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Welcome',
-                    style: textStyleNormal(
-                      color: details['color'] == 4294961979 ? kBlack : kWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
+                spaceHorizontal(width: 20.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome',
+                        style: textStyleNormal(
+                          color:
+                              details['color'] == 4294961979 ? kBlack : kWhite,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '${userModel.firstName} ${userModel.secondName}',
+                        style: textStyleNormal(
+                          color:
+                              details['color'] == 4294961979 ? kBlack : kWhite,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    '${userModel.firstName} ${userModel.secondName}',
-                    style: textStyleNormal(
-                      color: details['color'] == 4294961979 ? kBlack : kWhite,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
           actions: [
             Padding(
@@ -197,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _topWidget(BuildContext context, UserModel userModel) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.32,
+      height: MediaQuery.of(context).size.height * 0.35,
       decoration: BoxDecoration(
         color: Color(details['color']),
         borderRadius: const BorderRadius.only(
@@ -238,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color:
                               details['color'] == 4294961979 ? kBlack : kWhite,
                           fontWeight: FontWeight.bold,
-                          fontSize: 42,
+                          fontSize: 34,
                         ),
                       ),
                       spaceHorizontal(width: 10.0),
@@ -274,14 +281,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Stack(
                     alignment: Alignment.topRight,
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         backgroundColor: kWhite,
                         radius: 50,
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Image(
                             image: AssetImage(
-                              kuantanLogo,
+                              details['logo'],
                             ),
                           ),
                         ),
@@ -307,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _clockingCountdown(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.37,
+      height: MediaQuery.of(context).size.height * 0.4,
       padding: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
         color: Color(details['color']).withOpacity(0.5),

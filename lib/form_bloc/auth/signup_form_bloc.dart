@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/auth/auth_resources.dart';
 
 class SignUpFormBloc extends FormBloc<String, String> {
   final SignUpModel model = SignUpModel();
+  final PlateNumberModel plateNumberModel = PlateNumberModel();
 
   final firstName = TextFieldBloc(
     validators: [
@@ -82,6 +84,12 @@ class SignUpFormBloc extends FormBloc<String, String> {
     ],
   );
 
+  final carPlateNumber = TextFieldBloc(
+    validators: [
+      InputValidator.required,
+    ],
+  );
+
   final states = TextFieldBloc(
     validators: [
       InputValidator.required,
@@ -111,6 +119,7 @@ class SignUpFormBloc extends FormBloc<String, String> {
         postcode,
         city,
         states,
+        carPlateNumber,
       ],
     );
   }
@@ -136,7 +145,10 @@ class SignUpFormBloc extends FormBloc<String, String> {
       model.city = city.value;
       model.state = states.value;
 
-      final response = await AuthResources.signUp(
+      plateNumberModel.isMain = true;
+      plateNumberModel.plateNumber = carPlateNumber.value;
+
+      final responseCreateAccount = await AuthResources.signUp(
         prefix: '/auth/signup',
         body: jsonEncode({
           'firstName': model.firstName,
@@ -154,10 +166,26 @@ class SignUpFormBloc extends FormBloc<String, String> {
         }),
       );
 
-      if (response['error'] != null) {
-        emitFailure(failureResponse: response['error'].toString());
+      if (responseCreateAccount['error'] != null) {
+        emitFailure(failureResponse: responseCreateAccount['error'].toString());
       } else {
-        emitSuccess(successResponse: 'Success Created Account');
+        SharedPreferencesHelper.saveToken(
+          responseCreateAccount['token'],
+        );
+
+        final responseCarPlate = await AuthResources.carPlate(
+          prefix: '/carplatenumber/create',
+          body: jsonEncode({
+            'isMain': plateNumberModel.isMain,
+            'plateNumber': plateNumberModel.plateNumber,
+          }),
+        );
+
+        if (responseCarPlate['error'] != null) {
+          emitFailure(failureResponse: responseCarPlate['error'].toString());
+        } else {
+          emitSuccess(successResponse: 'Success Created Account');
+        }
       }
     }
   }

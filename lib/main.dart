@@ -15,7 +15,7 @@ Future<void> main() async {
 
     // Set the flag to false after initialization is done
     await SharedPreferencesHelper.setDefaultSetting(false);
-  }
+  } 
 
   runApp(const CityCarPark());
   FilePicker.platform;

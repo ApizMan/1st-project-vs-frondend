@@ -52,7 +52,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onSuccess: (context, state) {
               LoadingDialog.hide(context);
               if (state.stepCompleted == state.lastStep) {
-                Navigator.pop(context);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoute.homeScreen,
+                  (route) => false,
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.successResponse!),
@@ -312,7 +316,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           TextFieldBlocBuilder(
             textFieldBloc: formBloc.confirmPassword,
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               label: const Text('Confirm Password'),
               hintText: 'Enter Confirm Password',
@@ -488,6 +492,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
             decoration: InputDecoration(
               label: const Text('State'),
               hintText: 'Enter State',
+              hintStyle: const TextStyle(
+                color: Colors.black26,
+              ),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: Colors.black12,
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: Colors.black12,
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.8),
+            ),
+          ),
+          TextFieldBlocBuilder(
+            textFieldBloc: formBloc.carPlateNumber,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              label: const Text('Car Plate Number'),
+              hintText: 'Enter Car Plate Number',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),

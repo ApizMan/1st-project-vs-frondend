@@ -10,7 +10,7 @@ class SharedPreferencesHelper {
   static Future<void> saveLocationDetail(
       {String location = 'Majlis Bandaraya Kuantan',
       String state = 'Pahang',
-      String logo = '',
+      String logo = kuantanLogo,
       int? color}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(keyLocation, location);

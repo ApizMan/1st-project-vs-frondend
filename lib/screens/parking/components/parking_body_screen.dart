@@ -101,6 +101,8 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
               Navigator.popAndPushNamed(context, AppRoute.parkingReceiptScreen,
                   arguments: {
                     'userModel': widget.userModel,
+                    'locationDetail': widget.details,
+                    'amount': _value.toStringAsFixed(2),
                   });
 
               ScaffoldMessenger.of(context).showSnackBar(
