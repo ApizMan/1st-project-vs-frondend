@@ -38,6 +38,10 @@ const String kuantanLogo = 'assets_images/pbtlogo_kuantan-removebg-preview.png';
 const String terengganuLogo = 'assets_images/pbkk_kt-removebg-preview.png';
 const String machangLogo = 'assets_images/PBT_machang-removebg-preview.png';
 
+const String pahangImg = 'assets_images/pahang_flag.png';
+const String terengganuImg = 'assets_images/terengganu_flag.png';
+const String kelantanImg = 'assets_images/kelantan_flag.png';
+
 // Save Local Storage Keys
 const String keyToken = 'token';
 const String keyLocation = 'location';

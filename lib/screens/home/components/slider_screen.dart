@@ -56,7 +56,7 @@ class _SliderScreenState extends State<SliderScreen> {
 
       return ScaleTap(
         onPressed: () async {
-// Only handle the tapped item
+      // Only handle the tapped item
           await SharedPreferencesHelper.saveLocationDetail(
             location: imgName[index],
             state: imgState[index],

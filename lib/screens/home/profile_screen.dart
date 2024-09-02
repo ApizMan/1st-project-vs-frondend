@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/component/home_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
-import 'package:project/resources/profile/profile_resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/custom_dialog.dart';
@@ -75,6 +73,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool loading = true;
   get prefs => null;
   List<CarPlate> carPlates = [];
+
+  List<String> profileList = [
+    'About Me',
+    'E-Mail & Password',
+    'List of Vehicle',
+    'Transaction History',
+    'Settings',
+    'Share This App',
+    'Help Center',
+    'Term & Conditions',
+  ];
+
+  List<Icon> profileListIcon = [
+    const Icon(Icons.person),
+    const Icon(Icons.email_sharp),
+    const Icon(Icons.location_on),
+    const Icon(Icons.history),
+    const Icon(Icons.settings),
+    const Icon(Icons.share),
+    const Icon(Icons.help_outline_rounded),
+    const Icon(Icons.telegram),
+  ];
 
   @override
   void initState() {
@@ -254,279 +274,150 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(250.0),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(40),
-              bottomRight: Radius.circular(40),
-            ),
-            child: Column(
-              children: [
-                AppBar(
-                  elevation: 0,
-                  scrolledUnderElevation: 0,
-                  toolbarHeight: 100,
-                  foregroundColor:
-                      details['color'] == 4294961979 ? kBlack : kWhite,
-                  backgroundColor: Color(details['color']),
-                  centerTitle: true,
-                  title: Text(
-                    'Profile',
-                    style: textStyleNormal(
-                      fontSize: 26,
-                      color: kWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  actions: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: ScaleTap(
-                        onPressed: () async {
-                          await CustomDialog.show(
-                            context,
-                            title: 'Logout',
-                            description: 'Are you sure you want to logout?',
-                            btnOkOnPress: () async {
-                              await logout();
-                            },
-                            btnOkText: 'Yes',
-                            btnCancelOnPress: () {
-                              Navigator.pop(context);
-                            },
-                            btnCancelText: 'No',
-                          );
-                        },
-                        child: const Icon(
-                          Icons.logout,
-                          color: kRed,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(
-                        details['color']), // Set the desired background color
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
-                    ), // Set the desired border radius
-                    border: Border.all(
-                      color: Color(
-                        details['color'],
-                      ),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      const CircleAvatar(
-                        backgroundImage: AssetImage(
-                            'assets_images/account.png'), // Ganti dengan path gambar Anda
-                        radius: 40, // Sesuaikan ukuran radius sesuai kebutuhan
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        '${userModel!.firstName} ${userModel.secondName}',
-                        style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold,
-                          color: kWhite,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(240.0),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(40),
+            bottomRight: Radius.circular(40),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 50, left: 30, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'About Me',
-                  style: GoogleFonts.dmSans(
+          child: Column(
+            children: [
+              AppBar(
+                elevation: 0,
+                scrolledUnderElevation: 0,
+                toolbarHeight: 100,
+                foregroundColor:
+                    details['color'] == 4294961979 ? kBlack : kWhite,
+                backgroundColor: Color(details['color']),
+                centerTitle: true,
+                title: Text(
+                  'Profile',
+                  style: textStyleNormal(
+                    fontSize: 26,
+                    color: kWhite,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 35),
-                GestureDetector(
-                  //onTap: showAccountInfoDialog,
-                  onTap: () {
-                    showAccountInfoDialog(userModel);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.person),
-                      const SizedBox(width: 20),
-                      Text(
-                        'Account Info',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: ScaleTap(
+                      onPressed: () async {
+                        await CustomDialog.show(
+                          context,
+                          title: 'Logout',
+                          description: 'Are you sure you want to logout?',
+                          btnOkOnPress: () async {
+                            await logout();
+                          },
+                          btnOkText: 'Yes',
+                          btnCancelOnPress: () {
+                            Navigator.pop(context);
+                          },
+                          btnCancelText: 'No',
+                        );
+                      },
+                      child: const Icon(
+                        Icons.logout,
+                        color: kRed,
                       ),
-                      const SizedBox(width: 170),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(
+                      details['color']), // Set the desired background color
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40),
+                  ), // Set the desired border radius
+                  border: Border.all(
+                    color: Color(
+                      details['color'],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                  endIndent: 5,
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  //onTap: showEmailnPassword,
-                  onTap: () {
-                    showEmailnPassword(userModel);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.email_sharp),
-                      const SizedBox(width: 20),
-                      Text(
-                        'Email & Password',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 130),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    showListOfVehicle.call();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.location_on),
-                      const SizedBox(width: 20),
-                      Text(
-                        'List of Vehicle',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 160),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 5),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HistoryScreen()));
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.email_sharp),
-                      const SizedBox(width: 20),
-                      Text(
-                        'Transaction History',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 115),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Share.share(
-                        'Hey, check out this app! https://play.google.com/store/apps/details?id=com.example.project');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.share),
-                      const SizedBox(width: 20),
-                      Text('Share This App',
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold,
-                          )),
-                      const SizedBox(width: 150),
-                      const Icon(Icons.keyboard_arrow_right_sharp)
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: showhelpcentre,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.help_outline_rounded),
-                      const SizedBox(width: 20),
-                      Text(
-                        'Help Center',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 170),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Column(
                   children: [
-                    const Icon(Icons.telegram),
-                    const SizedBox(width: 20),
-                    Text('Terms & Conditions',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                        )),
-                    const SizedBox(width: 110),
-                    const Icon(Icons.keyboard_arrow_right_sharp)
+                    const CircleAvatar(
+                      backgroundImage: AssetImage(
+                          'assets_images/account.png'), // Ganti dengan path gambar Anda
+                      radius: 40, // Sesuaikan ukuran radius sesuai kebutuhan
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      '${userModel!.firstName} ${userModel.secondName}',
+                      style: GoogleFonts.dmSans(
+                        fontWeight: FontWeight.bold,
+                        color: kWhite,
+                        fontSize: 15,
+                      ),
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 50, left: 10, right: 10),
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: profileList.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      leading: profileListIcon[index],
+                      title: Text(
+                        profileList[index],
+                        style: GoogleFonts.dmSans(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      trailing: const Icon(Icons.keyboard_arrow_right_sharp),
+                      // selected: true,
+                      onTap: () {
+                        if (index == 0) {
+                          showAccountInfoDialog(userModel);
+                        } else if (index == 1) {
+                          showEmailnPassword(userModel);
+                        } else if (index == 2) {
+                          showListOfVehicle();
+                        } else if (index == 3) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const HistoryScreen()));
+                        } else if (index == 4) {
+                          showSetting();
+                        } else if (index == 5) {
+                          Share.share(
+                              'Hey, check out this app! https://play.google.com/store/apps/details?id=com.example.project');
+                        } else if (index == 6) {
+                          showhelpcentre();
+                        }
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Divider(
+                        color: kBlack,
+                        thickness: 0.2,
+                      ),
+                    ),
+                  ],
+                );
+              }),
+        ),
+      ),
+    );
   }
 
   void showAccountInfoDialog(UserModel userModel) {
@@ -1212,4 +1103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+
+  void showSetting() {}
 }

@@ -154,14 +154,11 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ScaleTap(
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoute.profileScreen,
-                      arguments: {
-                        'userModel': userModel,
-                        'locationDetail': details,
-                      }
-                    );
+                    Navigator.pushNamed(context, AppRoute.profileScreen,
+                        arguments: {
+                          'userModel': userModel,
+                          'locationDetail': details,
+                        });
                   },
                   child: const CircleAvatar(
                     radius: 30,
@@ -217,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _topWidget(BuildContext context, UserModel userModel) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.37,
       decoration: BoxDecoration(
         color: Color(details['color']),
         borderRadius: const BorderRadius.only(
@@ -231,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(
             left: 30.0,
             right: 30.0,
-            bottom: 40.0,
+            bottom: 20.0,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -280,7 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Updated on $lastUpdated',
                     style: textStyleNormal(
                       color: details['color'] == 4294961979 ? kBlack : kWhite,
-                      fontSize: 13,
+                      fontSize: 11,
                     ),
                   ),
                 ],
@@ -291,30 +288,53 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment:
                     MainAxisAlignment.center, // Center vertically
                 children: [
-                  Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: kWhite,
-                        radius: 50,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image(
-                            image: AssetImage(
-                              details['logo'],
+                  ScaleTap(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.stateScreen,
+                        arguments: {
+                          'locationDetail': details,
+                        },
+                      );
+                    },
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: kWhite,
+                          radius: 50,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage(
+                                details['logo'],
+                              ),
                             ),
                           ),
                         ),
+                        CircleAvatar(
+                          backgroundColor:
+                              const Color.fromARGB(255, 212, 212, 212),
+                          child: Icon(
+                            Icons.change_circle,
+                            color: Color(details['color']),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 100,
+                    child: Text(
+                      details['location'],
+                      style: textStyleNormal(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: details['color'] == 4294961979 ? kBlack : kWhite,
                       ),
-                      CircleAvatar(
-                        backgroundColor:
-                            const Color.fromARGB(255, 212, 212, 212),
-                        child: Icon(
-                          Icons.change_circle,
-                          color: Color(details['color']),
-                        ),
-                      )
-                    ],
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               )
@@ -327,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _clockingCountdown(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.42,
       padding: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
         color: Color(details['color']).withOpacity(0.5),
