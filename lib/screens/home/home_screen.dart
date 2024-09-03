@@ -9,6 +9,7 @@ import 'package:project/routes/route_manager.dart';
 import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,6 +78,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+
+  Future<void> logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(keyToken);
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoute.loginScreen, (context) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<void>(
@@ -87,11 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
             body: LoadingDialog(),
           );
         } else if (snapshot.hasError) {
-          return Scaffold(
-            body: Center(
-              child: Text('Error: ${snapshot.error}'),
-            ),
-          );
+          Future.delayed(const Duration(milliseconds: 500), () async {
+            await logout();
+          });
+          return const Scaffold(body: LoadingDialog());
         } else {
           return RefreshIndicator(
             key: _refreshIndicatorKey,
