@@ -5,18 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/component/home_screen.dart';
 import 'package:project/component/payment_screen.dart';
 import 'package:project/constant.dart';
+import 'package:project/models/models.dart';
 //import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReloadCreditScreen extends StatefulWidget {
-  final UserProfile userProfile;
+  final UserModel userProfile;
   const ReloadCreditScreen({super.key, required this.userProfile});
   @override
   State<ReloadCreditScreen> createState() => _ReloadCreditScreenState();
-}
-
-class GlobalState { 
-  static double amount = 0.0;  
 }
 
 class _ReloadCreditScreenState extends State<ReloadCreditScreen> {

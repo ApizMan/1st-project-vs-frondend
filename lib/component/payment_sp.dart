@@ -126,45 +126,45 @@ class _PaymentspScreenState extends State<PaymentspScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(      
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 55, 26, 200),
-        leading: SizedBox(
-          child: IconButton(
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  PassPage(userProfile: widget.userProfile,)));
-            }, 
-            icon: const Icon(Icons.arrow_back_sharp,
-              color: Colors.white,
-            )
-          ),
-        ),
-        title: Text('Back',
-          style: GoogleFonts.dmSans(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(90.0), 
-          child: Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [                
-                Text('Payment',
-                  style: GoogleFonts.openSans(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),                
-              ],
-            ),
-          )
-        ), 
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: const Color.fromARGB(255, 55, 26, 200),
+      //   leading: SizedBox(
+      //     child: IconButton(
+      //       onPressed: (){
+      //         Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  PassPage(userProfile: widget.userProfile,)));
+      //       }, 
+      //       icon: const Icon(Icons.arrow_back_sharp,
+      //         color: Colors.white,
+      //       )
+      //     ),
+      //   ),
+      //   title: Text('Back',
+      //     style: GoogleFonts.dmSans(
+      //       color: Colors.white,
+      //       fontSize: 15,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   bottom: PreferredSize(
+      //     preferredSize: const Size.fromHeight(90.0), 
+      //     child: Container(
+      //       padding: const EdgeInsets.all(10.0),
+      //       alignment: Alignment.centerLeft,
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [                
+      //           Text('Payment',
+      //             style: GoogleFonts.openSans(
+      //               color: Colors.white,
+      //               fontSize: 40,
+      //               fontWeight: FontWeight.bold,
+      //             ),
+      //           ),                
+      //         ],
+      //       ),
+      //     )
+      //   ), 
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 50,left: 20, right: 20),

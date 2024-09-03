@@ -29,10 +29,7 @@ class ParkingBodyScreen extends StatefulWidget {
   State<ParkingBodyScreen> createState() => _ParkingBodyScreenState();
 }
 
-class GlobalState {
-  static String plate = '';
-  static double amount = 0.0;
-}
+
 
 class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   double _value = 0.65;

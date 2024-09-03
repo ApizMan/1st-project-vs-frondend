@@ -1,23 +1,19 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/component/home_screen.dart';
 import 'package:project/component/payment_sp.dart';
+import 'package:project/constant.dart';
+import 'package:project/screens/screens.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PassPage extends StatefulWidget {
-  final UserProfile userProfile;
-  const PassPage({super.key, required this.userProfile});
+  const PassPage({super.key});
   @override
   // ignore: library_private_types_in_public_api
   _PassPageState createState() => _PassPageState();
 }
 
-class GlobalState {
-  static String location = '';
-  static double amount = 0.0;
-  static int month = 0;
-}
+
 
 class _PassPageState extends State<PassPage> {  
   late DateTime _focusedDay;  
@@ -343,7 +339,7 @@ double calculatePrice() {
               height: 30,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentspScreen(userProfile: widget.userProfile)));                      
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentspScreen(userProfile: widget.userProfile)));                      
                   GlobalState.location = selectedLocation;
                   GlobalState.amount = calculatePrice();
                   GlobalState.month = _selectedMonth;

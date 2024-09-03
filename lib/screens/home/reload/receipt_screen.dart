@@ -1,27 +1,30 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
+import 'package:project/component/home_screen.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
-import 'package:project/widget/primary_button.dart';
-import 'package:printing/printing.dart';
-import 'package:pdf/pdf.dart';
+import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
+import 'package:project/widget/primary_button.dart';
 
-class ReceiptScreen extends StatefulWidget {
-  const ReceiptScreen({super.key});
+class ReloadReceiptScreen extends StatefulWidget {
+  const ReloadReceiptScreen({
+    super.key,
+  });
 
   @override
-  State<ReceiptScreen> createState() => _ReceiptScreenState();
+  State<ReloadReceiptScreen> createState() => _ReloadReceiptScreenState();
 }
 
-class _ReceiptScreenState extends State<ReceiptScreen> {
+class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
   String _currentDate = ''; // Initialize variable for date
   final GlobalKey _printKey = GlobalKey(); // Key to capture the part to print
 
@@ -65,9 +68,10 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
   Widget build(BuildContext context) {
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    UserModel? userModel = arguments['userModel'] as UserModel?;
+
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
+    UserModel? userModel = arguments['userModel'] as UserModel?;
     double amount = double.parse(arguments['amount']);
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -96,6 +100,22 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           ),
         ],
       ),
+      floatingActionButton: PrimaryButton(
+        borderRadius: 10.0,
+        buttonWidth: 0.8,
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, AppRoute.homeScreen, (context) => false);
+        },
+        label: Text(
+          'Back To Home',
+          style: textStyleNormal(
+            color: kWhite,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: RepaintBoundary(
           key: _printKey,
@@ -223,22 +243,6 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           ),
         ),
       ),
-      floatingActionButton: PrimaryButton(
-        borderRadius: 10.0,
-        buttonWidth: 0.8,
-        onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, AppRoute.homeScreen, (context) => false);
-        },
-        label: Text(
-          'Back To Home',
-          style: textStyleNormal(
-            color: kWhite,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

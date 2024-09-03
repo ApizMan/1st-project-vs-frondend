@@ -1,5 +1,5 @@
 class WalletModel {
-  double? amount;
+  String? amount;
 
   WalletModel({this.amount});
 

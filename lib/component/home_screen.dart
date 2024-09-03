@@ -423,9 +423,9 @@ class HomeScreenState extends State<HomeScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (userProfile != null) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ReloadCreditScreen(
-                                    userProfile: userProfile!)));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => ReloadCreditScreen(
+                            //         userProfile: userProfile)));
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -659,11 +659,11 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        PassPage(userProfile: userProfile!)));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             PassPage(userProfile: userProfile!)));
                           },
                           child: Image.asset(
                             'assets_images/MP.png',

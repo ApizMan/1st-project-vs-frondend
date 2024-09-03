@@ -93,12 +93,24 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         );
                       }),
                   ServiceCard(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoute.summonsScreen,
+                          arguments: {
+                            'locationDetail': widget.details,
+                            'userModel': widget.userModel,
+                          });
+                    },
                     image: summonImage,
                     title: 'Summons',
                   ),
                   ServiceCard(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoute.reserveBayScreen,
+                          arguments: {
+                            'locationDetail': widget.details,
+                            'userModel': widget.userModel,
+                          });
+                    },
                     image: reserveBayImage,
                     title: 'Reserve Bay',
                   ),

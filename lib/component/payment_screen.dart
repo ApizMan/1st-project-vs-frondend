@@ -8,14 +8,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/component/home_screen.dart';
 import 'package:project/component/paymentGateway.dart';
 import 'package:project/component/receipt_screen.dart';
-import 'package:project/component/reload_screen.dart';
 import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
+import 'package:project/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class PaymentScreen extends StatefulWidget {
-  final UserProfile userProfile;
+  final UserModel userProfile;
   const PaymentScreen({super.key, required this.userProfile});
 
   @override
@@ -216,7 +215,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   const SizedBox(width: 50),
                   Expanded(
                     child: Text(
-                      widget.userProfile.email,
+                      widget.userProfile.email!,
                       style: GoogleFonts.firaCode(),
                       textAlign: TextAlign.right, // Align text to the right
                     ),
@@ -298,7 +297,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           ),
                           const SizedBox(width: 10),
                           GestureDetector(
-                            onTap: () async{
+                            onTap: () async {
                               peymentplatformtwo();
                             },
                             child: Container(

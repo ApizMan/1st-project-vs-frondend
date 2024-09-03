@@ -250,7 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Text(
-                        'RM ${userModel.wallet?.amount?.toDouble().toStringAsFixed(2) ?? '0.00'}',
+                        // ignore: unrelated_type_equality_checks
+                        'RM ${userModel.wallet?.amount == 0 ? 0.00 : double.parse(userModel.wallet!.amount!).toStringAsFixed(2)}',
                         style: textStyleNormal(
                           color:
                               details['color'] == 4294961979 ? kBlack : kWhite,
@@ -260,7 +261,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       spaceHorizontal(width: 10.0),
                       ScaleTap(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoute.reloadScreen,
+                              arguments: {
+                                'locationDetail': details,
+                                'userModel': userModel,
+                              });
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //       builder: (context) => ReloadCreditScreen(
+                          //           userProfile: userModel!)));
+                        },
                         child: CircleAvatar(
                           radius: 18,
                           backgroundColor:

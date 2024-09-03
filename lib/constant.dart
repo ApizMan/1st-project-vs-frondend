@@ -49,10 +49,19 @@ const String keyState = 'state';
 const String keyLogo = 'logo';
 const String keyColor = 'color';
 const String isFirstRunKey = 'isFirstRun';
+const String paymentKey = 'paymentKey';
+
 
 class GlobalDeclaration {
   static String globalDuration = '';
   static double globalAmount = 0.0;
+}
+
+class GlobalState {
+  static String location = '';
+  static String plate = '';
+  static double amount = 0.0;
+  static int month = 0;
 }
 
 class DialogType {

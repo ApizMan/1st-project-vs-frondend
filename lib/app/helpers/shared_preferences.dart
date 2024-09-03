@@ -48,4 +48,16 @@ class SharedPreferencesHelper {
 
     return isFirstRun;
   }
+
+  static Future<void> setPayment(String setPayment) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(setPayment, paymentKey);
+  }
+
+  static Future<String> getPayment() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String paymentStatus = prefs.getString(paymentKey)!;
+
+    return paymentStatus;
+  }
 }

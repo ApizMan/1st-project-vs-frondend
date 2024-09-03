@@ -12,7 +12,11 @@ class AppRoute {
   static const parkingReceiptScreen = '/parkingReceiptScreen';
   static const pbtScreen = '/pbtScreen';
   static const stateScreen = '/stateScreen';
-
+  static const reloadScreen = '/reloadScreen';
+  static const reloadPaymentScreen = '/reloadPaymentScreen';
+  static const reloadReceiptScreen = '/reloadReceiptScreen';
+  static const reserveBayScreen = '/reserveBayScreen';
+  static const summonsScreen = '/summonsScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -25,5 +29,10 @@ class AppRoute {
     GetPage(name: parkingReceiptScreen, page: () => const ReceiptScreen()),
     GetPage(name: pbtScreen, page: () => const PbtScreen()),
     GetPage(name: stateScreen, page: () => const StateScreen()),
+    GetPage(name: reloadScreen, page: () => const ReloadScreen()),
+    GetPage(name: reloadPaymentScreen, page: () => const ReloadPaymentScreen()),
+    GetPage(name: reloadReceiptScreen, page: () => const ReloadReceiptScreen()),
+    GetPage(name: reserveBayScreen, page: () => const ReserveBayScreen()),
+    GetPage(name: summonsScreen, page: () => const SummonsScreen()),
   ];
 }
