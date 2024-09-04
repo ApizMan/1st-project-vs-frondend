@@ -16,4 +16,7 @@ export 'home/reload/reload_screen.dart';
 export 'home/reload/payment_screen.dart';
 export 'home/reload/receipt_screen.dart';
 export 'reserve_bay/reserve_bay_screen.dart';
+export 'reserve_bay/components/reserve_detail_widget.dart';
+export 'reserve_bay/components/reserve_incharge_widget.dart';
+export 'reserve_bay/components/reserve_document_widget.dart';
 export 'summons/summons_screen.dart';

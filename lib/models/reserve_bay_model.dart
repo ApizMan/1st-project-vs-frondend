@@ -9,6 +9,7 @@ class ReserveBayModel {
   String? address3;
   String? postcode;
   String? city;
+  String? state;
   String? picFirstName;
   String? picLastName;
   String? phoneNumber;
@@ -18,6 +19,9 @@ class ReserveBayModel {
   String? reason;
   String? lotNumber;
   String? location;
+  String? designatedBayPicture;
+  String? registerNumberPicture;
+  String? idCardPicture;
   String? createdAt;
   String? updatedAt;
 
@@ -32,6 +36,7 @@ class ReserveBayModel {
       this.address3,
       this.postcode,
       this.city,
+      this.state,
       this.picFirstName,
       this.picLastName,
       this.phoneNumber,
@@ -41,6 +46,9 @@ class ReserveBayModel {
       this.reason,
       this.lotNumber,
       this.location,
+      this.designatedBayPicture,
+      this.registerNumberPicture,
+      this.idCardPicture,
       this.createdAt,
       this.updatedAt});
 
@@ -55,6 +63,7 @@ class ReserveBayModel {
     address3 = json['address3'];
     postcode = json['postcode'];
     city = json['city'];
+    state = json['state'];
     picFirstName = json['picFirstName'];
     picLastName = json['picLastName'];
     phoneNumber = json['phoneNumber'];
@@ -64,6 +73,9 @@ class ReserveBayModel {
     reason = json['reason'];
     lotNumber = json['lotNumber'];
     location = json['location'];
+    designatedBayPicture = json['designatedBayPicture'];
+    registerNumberPicture = json['registerNumberPicture'];
+    idCardPicture = json['idCardPicture'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
   }
@@ -80,6 +92,7 @@ class ReserveBayModel {
     data['address3'] = address3;
     data['postcode'] = postcode;
     data['city'] = city;
+    data['state'] = state;
     data['picFirstName'] = picFirstName;
     data['picLastName'] = picLastName;
     data['phoneNumber'] = phoneNumber;
@@ -89,6 +102,9 @@ class ReserveBayModel {
     data['reason'] = reason;
     data['lotNumber'] = lotNumber;
     data['location'] = location;
+    data['designatedBayPicture'] = designatedBayPicture;
+    data['registerNumberPicture'] = registerNumberPicture;
+    data['idCardPicture'] = idCardPicture;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
     return data;

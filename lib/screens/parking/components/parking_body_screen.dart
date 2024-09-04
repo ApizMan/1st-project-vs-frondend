@@ -416,7 +416,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       AppRoute.parkingPaymentScreen,
                       arguments: {
                         'userModel': widget.userModel,
-                        'selectedCarPlate': selectedCarPlate!,
+                        'selectedCarPlate': formBloc?.carPlateNumber.value!,
                         'amount': _value.toStringAsFixed(2),
                         'locationDetail': widget.details,
                         'formBloc': formBloc,
