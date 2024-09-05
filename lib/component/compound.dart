@@ -44,6 +44,8 @@ class _CompoundScreenState extends State<CompoundScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Notice> noticeList = []; // List to hold Notice objects
 
+
+
   Future<void> fetchCompound() async {
     var url = Uri.parse("http://43.252.37.175/ParkingWebService/HandheldService.svc/SearchNotice");
     var response = await http.post(

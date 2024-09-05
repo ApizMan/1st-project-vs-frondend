@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:project/screens/screens.dart';
+import 'package:project/screens/summons/components/summons_receipt_screen.dart';
 
 class AppRoute {
   static const splashScreen = '/splashScreen';
@@ -17,6 +18,8 @@ class AppRoute {
   static const reloadReceiptScreen = '/reloadReceiptScreen';
   static const reserveBayScreen = '/reserveBayScreen';
   static const summonsScreen = '/summonsScreen';
+  static const summonsPaymentScreen = '/summonsPaymentScreen';
+  static const summonsReceiptScreen = '/summonsReceiptScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -34,5 +37,7 @@ class AppRoute {
     GetPage(name: reloadReceiptScreen, page: () => const ReloadReceiptScreen()),
     GetPage(name: reserveBayScreen, page: () => const ReserveBayScreen()),
     GetPage(name: summonsScreen, page: () => const SummonsScreen()),
+    GetPage(name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),
+    GetPage(name: summonsReceiptScreen, page: () => const SummonsReceiptScreen()),
   ];
 }

@@ -226,59 +226,6 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
                   ),
                 ),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     GestureDetector(
-              //       onTap: () {
-              //         // peymentplatformone();
-              //         formBloc.submit();
-              //       },
-              //       child: Container(
-              //         padding: const EdgeInsets.symmetric(vertical: 5.0),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.center,
-              //           children: [
-              //             Container(
-              //               width: 120,
-              //               height: 80,
-              //               decoration: const BoxDecoration(
-              //                 image: DecorationImage(
-              //                     image:
-              //                         AssetImage('assets_images/duitnow.png'),
-              //                     fit: BoxFit.contain),
-              //               ),
-              //             ),
-              //             const SizedBox(width: 10),
-              //             GestureDetector(
-              //               onTap: () async {
-              //                 // peymentplatformtwo();
-              //                 formBloc.submit();
-              //               },
-              //               child: Container(
-              //                 width: 120,
-              //                 height: 80,
-              //                 decoration: const BoxDecoration(
-              //                   image: DecorationImage(
-              //                       image: AssetImage('assets_images/fpx.png'),
-              //                       fit: BoxFit.contain),
-              //                 ),
-              //               ),
-              //             ),
-              //             if (shortcutLink != null)
-              //               Padding(
-              //                 padding: const EdgeInsets.only(top: 8.0),
-              //                 child: Text(
-              //                   'Shortcut Link: $shortcutLink',
-              //                   style: const TextStyle(fontSize: 14),
-              //                 ),
-              //               )
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               const SizedBox(height: 15),
               Center(
                 child: Row(
