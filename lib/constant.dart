@@ -51,7 +51,6 @@ const String keyColor = 'color';
 const String isFirstRunKey = 'isFirstRun';
 const String paymentKey = 'paymentKey';
 
-
 class GlobalDeclaration {
   static String globalDuration = '';
   static double globalAmount = 0.0;

@@ -19,5 +19,6 @@ export 'reserve_bay/reserve_bay_screen.dart';
 export 'reserve_bay/components/reserve_detail_widget.dart';
 export 'reserve_bay/components/reserve_incharge_widget.dart';
 export 'reserve_bay/components/reserve_document_widget.dart';
+export 'reserve_bay/components/reserve_tnc_widget.dart';
 export 'summons/summons_screen.dart';
 export 'summons/components/summons_payment_screen.dart';

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/app/helpers/validators.dart';
+import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
 
@@ -163,6 +164,10 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
     ],
   );
 
+  final tnc = BooleanFieldBloc(initialValue: false, validators: [
+    InputValidator.required,
+  ]);
+
   ReserveBayFormBloc() {
     addFieldBlocs(
       step: 0,
@@ -205,6 +210,13 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
         idCardName,
       ],
     );
+
+    addFieldBlocs(
+      step: 3,
+      fieldBlocs: [
+        tnc,
+      ],
+    );
   }
 
   @override
@@ -238,6 +250,8 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
       model.registerNumberPicture = certificate.value;
       model.idCardPicture = idCard.value;
 
+      emitSuccess();
+    } else if (state.currentStep == 3) {
       final response = await ReserveBayResources.createReserveBay(
         prefix: '/reservebay/create',
         body: jsonEncode({

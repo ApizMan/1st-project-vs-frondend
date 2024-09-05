@@ -78,6 +78,7 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                   _reserveStep1(formBloc!),
                   _reserveStep2(formBloc),
                   _reserveStep3(formBloc),
+                  _reserveStep4(formBloc),
                 ];
               },
               controlsBuilder:
@@ -116,6 +117,18 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                           ),
                         )
                       else if (step == 1)
+                        Expanded(
+                          flex: 1,
+                          child: PrimaryButton(
+                            onPressed: onStepContinue,
+                            borderRadius: 10.0,
+                            label: Text(
+                              'Next',
+                              style: textStyleNormal(color: kWhite),
+                            ),
+                          ),
+                        )
+                      else if (step == 2)
                         Expanded(
                           flex: 1,
                           child: PrimaryButton(
@@ -190,6 +203,19 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
         ),
       ),
       content: ReserveDocumentWidget(formBloc: reserveBayFormBloc),
+    );
+  }
+
+  FormBlocStep _reserveStep4(ReserveBayFormBloc reserveBayFormBloc) {
+    return FormBlocStep(
+      title: Text(
+        'T&C',
+        style: textStyleNormal(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      content: ReserveTncWidget(formBloc: reserveBayFormBloc),
     );
   }
 }
