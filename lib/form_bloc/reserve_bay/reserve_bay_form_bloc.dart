@@ -134,7 +134,7 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
   );
 
   final designatedBay = TextFieldBloc(
-    initialValue: '',
+    initialValue: 'empty',
   );
 
   final designatedBayName = TextFieldBloc(
@@ -144,7 +144,7 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
   );
 
   final certificate = TextFieldBloc(
-    initialValue: '',
+    initialValue: 'empty',
   );
 
   final certificateName = TextFieldBloc(
@@ -154,7 +154,7 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
   );
 
   final idCard = TextFieldBloc(
-    initialValue: '',
+    initialValue: 'empty',
   );
 
   final idCardName = TextFieldBloc(
@@ -234,6 +234,10 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
 
       emitSuccess();
     } else if (state.currentStep == 2) {
+      model.designatedBayPicture = designatedBay.value;
+      model.registerNumberPicture = certificate.value;
+      model.idCardPicture = idCard.value;
+
       final response = await ReserveBayResources.createReserveBay(
         prefix: '/reservebay/create',
         body: jsonEncode({
@@ -255,6 +259,9 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
           'reason': model.reason.toString(),
           'lotNumber': model.lotNumber.toString(),
           'location': model.location.toString(),
+          'designatedBayPicture': model.designatedBayPicture.toString(),
+          'registerNumberPicture': model.registerNumberPicture.toString(),
+          'idCardPicture': model.idCardPicture.toString(),
         }),
       );
 

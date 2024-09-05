@@ -34,7 +34,9 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
           onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
           onSuccess: (context, state) {
             LoadingDialog.hide(context);
+
             if (state.stepCompleted == state.lastStep) {
+              Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.successResponse!),
