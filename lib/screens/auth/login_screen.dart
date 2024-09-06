@@ -220,7 +220,7 @@ class LoginScreenState extends State<LoginScreen> {
                             TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, AppRoute.signupScreen);
+                                    context, AppRoute.signUpScreen);
                               },
                               child: Text(
                                 "Sign Up",

@@ -5,7 +5,7 @@ import 'package:project/screens/summons/components/summons_receipt_screen.dart';
 class AppRoute {
   static const splashScreen = '/splashScreen';
   static const loginScreen = '/loginScreen';
-  static const signupScreen = '/signupScreen';
+  static const signUpScreen = '/signupScreen';
   static const homeScreen = '/homeScreen';
   static const profileScreen = '/profileScreen';
   static const parkingScreen = '/parkingScreen';
@@ -20,11 +20,12 @@ class AppRoute {
   static const summonsScreen = '/summonsScreen';
   static const summonsPaymentScreen = '/summonsPaymentScreen';
   static const summonsReceiptScreen = '/summonsReceiptScreen';
+  static const monthlyPassScreen = '/monthlyPassScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
-    GetPage(name: signupScreen, page: () => const SignUpScreen()),
+    GetPage(name: signUpScreen, page: () => const SignUpScreen()),
     GetPage(name: homeScreen, page: () => const HomeScreen()),
     GetPage(name: profileScreen, page: () => const ProfileScreen()),
     GetPage(name: parkingScreen, page: () => const ParkingScreen()),
@@ -37,7 +38,8 @@ class AppRoute {
     GetPage(name: reloadReceiptScreen, page: () => const ReloadReceiptScreen()),
     GetPage(name: reserveBayScreen, page: () => const ReserveBayScreen()),
     GetPage(name: summonsScreen, page: () => const SummonsScreen()),
-    GetPage(name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),
-    GetPage(name: summonsReceiptScreen, page: () => const SummonsReceiptScreen()),
+    GetPage(
+        name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),
+    GetPage(name: monthlyPassScreen, page: () => const MonthlyPassScreen()),
   ];
 }

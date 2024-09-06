@@ -22,3 +22,4 @@ export 'reserve_bay/components/reserve_document_widget.dart';
 export 'reserve_bay/components/reserve_tnc_widget.dart';
 export 'summons/summons_screen.dart';
 export 'summons/components/summons_payment_screen.dart';
+export 'monthly_pass/monthly_pass_screen.dart';
