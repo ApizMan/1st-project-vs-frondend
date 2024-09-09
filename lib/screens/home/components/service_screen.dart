@@ -121,12 +121,31 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ServiceCard(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.monthlyPassScreen,
+                        arguments: {
+                          'locationDetail': widget.details,
+                          'userModel': widget.userModel,
+                          'plateNumbers': widget.plateNumbers ?? [],
+                          'pbtModel': pbtModel,
+                        },
+                      );
+                    },
                     image: monthlyPassImage,
                     title: 'Monthly Pass',
                   ),
                   ServiceCard(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.transportInfoScreen,
+                        arguments: {
+                          'locationDetail': widget.details,
+                        },
+                      );
+                    },
                     image: transportInfoImage,
                     title: 'Transport Info',
                   ),

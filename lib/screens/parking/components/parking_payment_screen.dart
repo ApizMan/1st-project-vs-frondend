@@ -7,21 +7,22 @@ import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
 
-class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({
+class ParkingPaymentScreen extends StatefulWidget {
+  const ParkingPaymentScreen({
     super.key,
   });
 
   @override
-  State<PaymentScreen> createState() => _PaymentsppkScreenState();
+  State<ParkingPaymentScreen> createState() => _ParkingPaymentScreenState();
 }
 
-class _PaymentsppkScreenState extends State<PaymentScreen> {
+class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
   //final double _value = 40.0;
   String _currentDate = '';
   String _currentTime = '';
 
   @override
+
   void initState() {
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());

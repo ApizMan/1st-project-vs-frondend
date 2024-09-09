@@ -5,12 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project/component/Pass.dart';
-import 'package:project/component/ReserveBay_screen.dart';
-import 'package:project/component/compound.dart';
 import 'package:project/component/map_page.dart';
-import 'package:project/component/profile_screen.dart';
-import 'package:project/component/reload_screen.dart';
 import 'package:project/constant.dart';
 // import 'package:project/screens/screens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -338,9 +333,9 @@ class HomeScreenState extends State<HomeScreen> {
             GestureDetector(
               onTap: () {
                 if (userProfile != null) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          ProfileScreen(userProfile: userProfile!)));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) =>
+                  //         ProfileScreen(userProfile: userProfile!)));
                 }
               },
               child: const CircleAvatar(
@@ -596,11 +591,11 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CompoundScreen()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             const CompoundScreen()));
                           },
                           child: Image.asset(
                             'assets_images/ss_2.png',
@@ -628,10 +623,10 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const ReserveBay()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const ReserveBay()));
                           },
                           child: Image.asset(
                             'assets_images/ss_3.png',

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:project/screens/screens.dart';
-import 'package:project/screens/summons/components/summons_receipt_screen.dart';
 
 class AppRoute {
   static const splashScreen = '/splashScreen';
@@ -21,6 +20,9 @@ class AppRoute {
   static const summonsPaymentScreen = '/summonsPaymentScreen';
   static const summonsReceiptScreen = '/summonsReceiptScreen';
   static const monthlyPassScreen = '/monthlyPassScreen';
+  static const monthlyPassPaymentScreen = '/monthlyPassPaymentScreen';
+  static const monthlyPassReceiptScreen = '/monthlyPassReceiptScreen';
+  static const transportInfoScreen = '/transportInfoScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -29,7 +31,8 @@ class AppRoute {
     GetPage(name: homeScreen, page: () => const HomeScreen()),
     GetPage(name: profileScreen, page: () => const ProfileScreen()),
     GetPage(name: parkingScreen, page: () => const ParkingScreen()),
-    GetPage(name: parkingPaymentScreen, page: () => const PaymentScreen()),
+    GetPage(
+        name: parkingPaymentScreen, page: () => const ParkingPaymentScreen()),
     GetPage(name: parkingReceiptScreen, page: () => const ReceiptScreen()),
     GetPage(name: pbtScreen, page: () => const PbtScreen()),
     GetPage(name: stateScreen, page: () => const StateScreen()),
@@ -41,5 +44,11 @@ class AppRoute {
     GetPage(
         name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),
     GetPage(name: monthlyPassScreen, page: () => const MonthlyPassScreen()),
+    GetPage(
+        name: monthlyPassPaymentScreen,
+        page: () => const MonthlyPassPaymentScreen()),
+    GetPage(
+        name: transportInfoScreen,
+        page: () => const TransportInfoScreen()),
   ];
 }
