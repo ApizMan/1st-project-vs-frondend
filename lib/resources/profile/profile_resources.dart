@@ -50,4 +50,32 @@ class ProfileResources {
     );
     return json.decode(response.body);
   }
+
+  static Future getTransactionHistory({
+    required String prefix,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.get(
+      Uri.parse('$baseUrl$prefix'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
+
+  static Future getTransactionWallet({
+    required String prefix,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.get(
+      Uri.parse('$baseUrl$prefix'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
 }

@@ -7,3 +7,5 @@ export 'reserve_bay_model.dart';
 export 'car_plate_number_model.dart';
 export 'pbt_model.dart';
 export 'compound_model.dart';
+export 'transaction_model.dart';
+export 'transaction_wallet_model.dart';

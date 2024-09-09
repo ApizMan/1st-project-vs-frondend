@@ -7,6 +7,7 @@ class AppRoute {
   static const signUpScreen = '/signupScreen';
   static const homeScreen = '/homeScreen';
   static const profileScreen = '/profileScreen';
+  static const transactionHistoryScreen = '/transactionHistoryScreen';
   static const parkingScreen = '/parkingScreen';
   static const parkingPaymentScreen = '/parkingPaymentScreen';
   static const parkingReceiptScreen = '/parkingReceiptScreen';
@@ -30,6 +31,9 @@ class AppRoute {
     GetPage(name: signUpScreen, page: () => const SignUpScreen()),
     GetPage(name: homeScreen, page: () => const HomeScreen()),
     GetPage(name: profileScreen, page: () => const ProfileScreen()),
+    GetPage(
+        name: transactionHistoryScreen,
+        page: () => const TransactionHistoryScreen()),
     GetPage(name: parkingScreen, page: () => const ParkingScreen()),
     GetPage(
         name: parkingPaymentScreen, page: () => const ParkingPaymentScreen()),

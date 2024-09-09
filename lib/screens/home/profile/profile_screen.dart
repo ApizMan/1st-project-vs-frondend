@@ -393,8 +393,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         } else if (index == 2) {
                           showListOfVehicle();
                         } else if (index == 3) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HistoryScreen()));
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.transactionHistoryScreen,
+                            arguments: {
+                              'locationDetail': details,
+                            },
+                          );
                         } else if (index == 4) {
                           showSetting();
                         } else if (index == 5) {
