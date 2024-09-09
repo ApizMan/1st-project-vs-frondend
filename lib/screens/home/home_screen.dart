@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:intl/intl.dart'; // For date formatting
+import 'package:location/location.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
@@ -8,6 +9,7 @@ import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
+import 'package:project/widget/custom_dialog.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,13 +27,44 @@ class _HomeScreenState extends State<HomeScreen> {
       GlobalKey<RefreshIndicatorState>();
   late Future<void> _initData;
   late Map<String, dynamic> details;
+  Location locationController = Location();
 
   @override
   void initState() {
     super.initState();
     analyzeLocation();
+    getLocation();
     userModel = UserModel();
     _initData = _getUserDetails();
+  }
+
+  Future<void> getLocation() async {
+    PermissionStatus _permissionGranted;
+
+    _permissionGranted = await locationController.hasPermission();
+
+    if (_permissionGranted == PermissionStatus.denied) {
+      await CustomDialog.show(
+        context,
+        icon: Icons.location_on,
+        dialogType: 2,
+        description:
+            'Our GPS detect you in Kuantan specifically in Jalan Woh Ah Jang. Please confirm if this is accurate or inaccurate.',
+        btnOkText: 'Yes',
+        btnOkOnPress: () async {
+          _permissionGranted = await locationController.requestPermission();
+          if (_permissionGranted != PermissionStatus.granted) {
+            return;
+          } else {
+            Navigator.pop(context);
+          }
+        },
+        btnCancelText: 'No',
+        btnCancelOnPress: () {
+          Navigator.pop(context);
+        },
+      );
+    }
   }
 
   Future<void> analyzeLocation() async {
@@ -77,7 +110,6 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-
 
   Future<void> logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

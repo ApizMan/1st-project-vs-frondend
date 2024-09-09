@@ -13,7 +13,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
   final SelectFieldBloc<String?, dynamic> pbt;
   final SelectFieldBloc<String?, dynamic> location;
 
-  final TextFieldBloc amount = TextFieldBloc();
+  final TextFieldBloc amount;
 
   final paymentMethod = SelectFieldBloc(
     items: ['QR', 'FPX'],
@@ -43,7 +43,8 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
         ),
         location = SelectFieldBloc(
           items: ['Kelantan', 'Terengganu', 'Pahang'],
-        ) {
+        ),
+        amount = TextFieldBloc() {
     pbt.updateInitialValue(details['location'] ?? '');
     location.updateInitialValue(details['state'] ?? '');
     addFieldBlocs(

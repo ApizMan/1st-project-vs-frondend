@@ -48,7 +48,8 @@ class AppRoute {
         name: monthlyPassPaymentScreen,
         page: () => const MonthlyPassPaymentScreen()),
     GetPage(
-        name: transportInfoScreen,
-        page: () => const TransportInfoScreen()),
+        name: monthlyPassReceiptScreen,
+        page: () => const MonthlyPassReceiptScreen()),
+    GetPage(name: transportInfoScreen, page: () => const TransportInfoScreen()),
   ];
 }

@@ -53,7 +53,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   form_field_validator: ^1.1.0
   validation_textformfield: ^2.2.5
-  google_maps_flutter: ^2.5.3
+  google_maps_flutter: ^2.9.0
   flutter_launcher_icons: ^0.13.1
   geolocator: ^12.0.0
   excel: ^4.0.2
@@ -80,6 +80,7 @@ dependencies:
   flutter_scale_tap: ^1.0.5
   printing: ^5.13.2
   pdf: ^3.11.1
+  flutter_polyline_points: ^1.0.0
 
 dev_dependencies:
   flutter_test:

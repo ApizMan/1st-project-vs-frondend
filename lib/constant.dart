@@ -6,6 +6,11 @@ import 'package:flutter/widgets.dart';
 const String baseUrl =
     'http://192.168.0.128:3000'; /* IP Address on Won Laptop */
 
+// Coordinate
+const String GOOGLE_MAPS_API_KEY = "AIzaSyDqSqaRpMggI2QWsPd-jdp-611FxMrxyMs";
+const String YOU_ARE_HERE_ICON = 'assets_images/you_are_here.png';
+const String METER_ICON = 'assets_images/meter_icon.png';
+
 // Colors
 const Color kBlack = Colors.black;
 const Color kWhite = Colors.white;
