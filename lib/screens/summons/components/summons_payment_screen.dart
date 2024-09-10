@@ -314,7 +314,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets_images/duitnow.png'),
+                                            'assets/images/duitnow.png'),
                                         fit: BoxFit.contain),
                                   ),
                                 )
@@ -324,7 +324,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                         image:
-                                            AssetImage('assets_images/fpx.png'),
+                                            AssetImage('assets/images/fpx.png'),
                                         fit: BoxFit.contain),
                                   ),
                                 ),

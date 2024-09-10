@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({Key? key}) : super(key: key);
 
@@ -39,29 +38,26 @@ class Transaction {
   String description;
   String amount;
   DateTime createdAt;
-  
 
   Transaction({
     required this.description,
     required this.amount,
     required this.createdAt,
-    
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) {
-  try {
-    print(json); // Debugging line to print the entire JSON object
-    return Transaction(
-      description: json['description'] as String,
-      amount: json['amount'].toString(),
-      createdAt: DateTime.parse(json['createdAt']),
-      
-    );
-  } catch (e) {
-    print('Error parsing Transaction: $e'); // Print the error for debugging
-    rethrow;
+    try {
+      print(json); // Debugging line to print the entire JSON object
+      return Transaction(
+        description: json['description'] as String,
+        amount: json['amount'].toString(),
+        createdAt: DateTime.parse(json['createdAt']),
+      );
+    } catch (e) {
+      print('Error parsing Transaction: $e'); // Print the error for debugging
+      rethrow;
+    }
   }
-}
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
@@ -98,7 +94,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
         List<Payment> tempList =
             jsonResponse.map((json) => Payment.fromJson(json)).toList();
         paymentList = tempList;
-        
       });
     }
   }
@@ -128,7 +123,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
     if (response.statusCode == 200) {
       setState(() {
         List<dynamic> jsonResponse = jsonDecode(response.body);
-        List<Transaction> tempList = jsonResponse.map((json) => Transaction.fromJson(json)).toList();            
+        List<Transaction> tempList =
+            jsonResponse.map((json) => Transaction.fromJson(json)).toList();
         transList = tempList;
       });
     }
@@ -175,7 +171,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                   ),
                   const Image(
-                    image: AssetImage('assets_images/transaction_history.png'),
+                    image: AssetImage('assets/images/transaction_history.png'),
                     width: 60,
                     height: 60,
                   ),
@@ -232,7 +228,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               itemBuilder: (context, index) {
                 final trans = transList[index];
                 Color amountColor = Colors.red;
-                
+
                 return Card(
                   child: ListTile(
                     title: Row(
@@ -256,7 +252,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             fontSize: 10,
                           ),
                         ),
-                       
                       ],
                     ),
                   ),

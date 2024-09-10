@@ -346,7 +346,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     const CircleAvatar(
                       backgroundImage: AssetImage(
-                          'assets_images/account.png'), // Ganti dengan path gambar Anda
+                          'assets/images/account.png'), // Ganti dengan path gambar Anda
                       radius: 40, // Sesuaikan ukuran radius sesuai kebutuhan
                     ),
                     const SizedBox(width: 10),

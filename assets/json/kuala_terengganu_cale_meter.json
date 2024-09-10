@@ -1,0 +1,489 @@
+{
+  "data": [
+    {
+      "Terminal ID": "ST1A01",
+      "Latitude": "103.1319716",
+      "Longitude": "103.1319716"
+    },
+    {
+      "Terminal ID": "ST1A02",
+      "Latitude": "103.1337948",
+      "Longitude": "103.1337948"
+    },
+    {
+      "Terminal ID": "ST1A03",
+      "Latitude": "103.1346759",
+      "Longitude": "103.1346759"
+    },
+    {
+      "Terminal ID": "ST1A04",
+      "Latitude": "103.1360902",
+      "Longitude": "103.1360902"
+    },
+    {
+      "Terminal ID": "ST1A05",
+      "Latitude": "103.139104",
+      "Longitude": "103.139104"
+    },
+    {
+      "Terminal ID": "ST1A06",
+      "Latitude": "103.138417",
+      "Longitude": "103.138417"
+    },
+    {
+      "Terminal ID": "ST1A07",
+      "Latitude": "103.1368063",
+      "Longitude": "103.1368063"
+    },
+    {
+      "Terminal ID": "ST1A08",
+      "Latitude": "103.1362042",
+      "Longitude": "103.1362042"
+    },
+    {
+      "Terminal ID": "ST1A09",
+      "Latitude": "103.1358434",
+      "Longitude": "103.1358434"
+    },
+    {
+      "Terminal ID": "ST1A10",
+      "Latitude": "103.135374",
+      "Longitude": "103.135374"
+    },
+    {
+      "Terminal ID": "ST1A11",
+      "Latitude": "103.1325617",
+      "Longitude": "103.1325617"
+    },
+    {
+      "Terminal ID": "ST1A12",
+      "Latitude": "103.1349033",
+      "Longitude": "103.1349033"
+    },
+    {
+      "Terminal ID": "ST1A13",
+      "Latitude": "103.1334737",
+      "Longitude": "103.1334737"
+    },
+    {
+      "Terminal ID": "ST1A14",
+      "Latitude": "103.1332591",
+      "Longitude": "103.1332591"
+    },
+    {
+      "Terminal ID": "ST1A15",
+      "Latitude": "103.1354746",
+      "Longitude": "103.1354746"
+    },
+    {
+      "Terminal ID": "ST1A16",
+      "Latitude": "103.1354129",
+      "Longitude": "103.1354129"
+    },
+    {
+      "Terminal ID": "ST1A17",
+      "Latitude": "103.1355537",
+      "Longitude": "103.1355537"
+    },
+    {
+      "Terminal ID": "ST1A18",
+      "Latitude": "103.1337969",
+      "Longitude": "103.1337969"
+    },
+    {
+      "Terminal ID": "ST1A19",
+      "Latitude": "103.1344581",
+      "Longitude": "103.1344581"
+    },
+    {
+      "Terminal ID": "ST1A20",
+      "Latitude": "103.1347196",
+      "Longitude": "103.1347196"
+    },
+    {
+      "Terminal ID": "ST1A21",
+      "Latitude": "103.1348787",
+      "Longitude": "103.1348787"
+    },
+    {
+      "Terminal ID": "ST1A22",
+      "Latitude": "103.1367326",
+      "Longitude": "103.1367326"
+    },
+    {
+      "Terminal ID": "ST1A23",
+      "Latitude": "103.1327106",
+      "Longitude": "103.1327106"
+    },
+    {
+      "Terminal ID": "ST1A24",
+      "Latitude": "103.1355041",
+      "Longitude": "103.1355041"
+    },
+    {
+      "Terminal ID": "ST1A25",
+      "Latitude": "103.1381169",
+      "Longitude": "103.1381169"
+    },
+    {
+      "Terminal ID": "ST1A26",
+      "Latitude": "103.1381568",
+      "Longitude": "103.1381568"
+    },
+    {
+      "Terminal ID": "ST1A27",
+      "Latitude": "103.1383449",
+      "Longitude": "103.1383449"
+    },
+    {
+      "Terminal ID": "ST1A28",
+      "Latitude": "103.1385139",
+      "Longitude": "103.1385139"
+    },
+    {
+      "Terminal ID": "ST1A29",
+      "Latitude": "103.1385876",
+      "Longitude": "103.1385876"
+    },
+    {
+      "Terminal ID": "ST1A30",
+      "Latitude": "103.1389628",
+      "Longitude": "103.1389628"
+    },
+    {
+      "Terminal ID": "ST1A31",
+      "Latitude": "103.1382131",
+      "Longitude": "103.1382131"
+    },
+    {
+      "Terminal ID": "ST1A32",
+      "Latitude": "103.1381679",
+      "Longitude": "103.1381679"
+    },
+    {
+      "Terminal ID": "ST1A33",
+      "Latitude": "103.138118",
+      "Longitude": "103.138118"
+    },
+    {
+      "Terminal ID": "ST1A34",
+      "Latitude": "103.1384519",
+      "Longitude": "103.1384519"
+    },
+    {
+      "Terminal ID": "ST1A35",
+      "Latitude": "103.1390986",
+      "Longitude": "103.1390986"
+    },
+    {
+      "Terminal ID": "ST1A36",
+      "Latitude": "103.1390151",
+      "Longitude": "103.1390151"
+    },
+    {
+      "Terminal ID": "ST1A37",
+      "Latitude": "103.1392666",
+      "Longitude": "103.1392666"
+    },
+    {
+      "Terminal ID": "ST1A38",
+      "Latitude": "103.1444976",
+      "Longitude": "103.1444976"
+    },
+    {
+      "Terminal ID": "ST1A39",
+      "Latitude": "103.1447819",
+      "Longitude": "103.1447819"
+    },
+    {
+      "Terminal ID": "ST1A40",
+      "Latitude": "103.1416061",
+      "Longitude": "103.1416061"
+    },
+    {
+      "Terminal ID": "ST1A41",
+      "Latitude": "103.1429985",
+      "Longitude": "103.1429985"
+    },
+    {
+      "Terminal ID": "ST1A42",
+      "Latitude": "103.1432057",
+      "Longitude": "103.1432057"
+    },
+    {
+      "Terminal ID": "ST1A43",
+      "Latitude": "103.1426771",
+      "Longitude": "103.1426771"
+    },
+    {
+      "Terminal ID": "ST1A44",
+      "Latitude": "103.1426047",
+      "Longitude": "103.1426047"
+    },
+    {
+      "Terminal ID": "ST1A45",
+      "Latitude": "103.1427426",
+      "Longitude": "103.1427426"
+    },
+    {
+      "Terminal ID": "ST1A46",
+      "Latitude": "103.1452719",
+      "Longitude": "103.1452719"
+    },
+    {
+      "Terminal ID": "T01A01",
+      "Latitude": "103.13976158398881",
+      "Longitude": "103.13976158398881"
+    },
+    {
+      "Terminal ID": "T01A02",
+      "Latitude": "103.14036383376882",
+      "Longitude": "103.14036383376882"
+    },
+    {
+      "Terminal ID": "T01A03",
+      "Latitude": "103.14125359895814",
+      "Longitude": "103.14125359895814"
+    },
+    {
+      "Terminal ID": "T01A04",
+      "Latitude": "103.1411630446967",
+      "Longitude": "103.1411630446967"
+    },
+    {
+      "Terminal ID": "T01A05",
+      "Latitude": "103.14232746353997",
+      "Longitude": "103.14232746353997"
+    },
+    {
+      "Terminal ID": "T01A06",
+      "Latitude": "103.1411517720367",
+      "Longitude": "103.1411517720367"
+    },
+    {
+      "Terminal ID": "T01A07",
+      "Latitude": "103.14104699031512",
+      "Longitude": "103.14104699031512"
+    },
+    {
+      "Terminal ID": "T01A08",
+      "Latitude": "103.14102592786293",
+      "Longitude": "103.14102592786293"
+    },
+    {
+      "Terminal ID": "T01A09",
+      "Latitude": "103.14080494228074",
+      "Longitude": "103.14080494228074"
+    },
+    {
+      "Terminal ID": "T01A10",
+      "Latitude": "103.14080718846901",
+      "Longitude": "103.14080718846901"
+    },
+    {
+      "Terminal ID": "T01A11",
+      "Latitude": "103.14047506934057",
+      "Longitude": "103.14047506934057"
+    },
+    {
+      "Terminal ID": "T01A12",
+      "Latitude": "103.1400299368081",
+      "Longitude": "103.1400299368081"
+    },
+    {
+      "Terminal ID": "T01A13",
+      "Latitude": "103.13927474391424",
+      "Longitude": "103.13927474391424"
+    },
+    {
+      "Terminal ID": "T01A14",
+      "Latitude": "103.14044178151192",
+      "Longitude": "103.14044178151192"
+    },
+    {
+      "Terminal ID": "T01A15",
+      "Latitude": "103.13991362365759",
+      "Longitude": "103.13991362365759"
+    },
+    {
+      "Terminal ID": "T01A16",
+      "Latitude": "103.14038707156016",
+      "Longitude": "103.14038707156016"
+    },
+    {
+      "Terminal ID": "T01A17",
+      "Latitude": "103.14021262189397",
+      "Longitude": "103.14021262189397"
+    },
+    {
+      "Terminal ID": "T01A18",
+      "Latitude": "103.14063577149136",
+      "Longitude": "103.14063577149136"
+    },
+    {
+      "Terminal ID": "T01A19",
+      "Latitude": "103.14095764841879",
+      "Longitude": "103.14095764841879"
+    },
+    {
+      "Terminal ID": "T01A20",
+      "Latitude": "103.14143584779397",
+      "Longitude": "103.14143584779397"
+    },
+    {
+      "Terminal ID": "T01A21",
+      "Latitude": "103.14187425877373",
+      "Longitude": "103.14187425877373"
+    },
+    {
+      "Terminal ID": "T01A22",
+      "Latitude": "103.14250754369871",
+      "Longitude": "103.14250754369871"
+    },
+    {
+      "Terminal ID": "T01A23",
+      "Latitude": "103.1425764215029",
+      "Longitude": "103.1425764215029"
+    },
+    {
+      "Terminal ID": "T01A24",
+      "Latitude": "103.14372415334522",
+      "Longitude": "103.14372415334522"
+    },
+    {
+      "Terminal ID": "T01A25",
+      "Latitude": "103.14407608257642",
+      "Longitude": "103.14407608257642"
+    },
+    {
+      "Terminal ID": "T01A26",
+      "Latitude": "103.14411244675672",
+      "Longitude": "103.14411244675672"
+    },
+    {
+      "Terminal ID": "T01A27",
+      "Latitude": "103.14440436654942",
+      "Longitude": "103.14440436654942"
+    },
+    {
+      "Terminal ID": "T01A28",
+      "Latitude": "103.14467486661097",
+      "Longitude": "103.14467486661097"
+    },
+    {
+      "Terminal ID": "T01A29",
+      "Latitude": "103.14440006613532",
+      "Longitude": "103.14440006613532"
+    },
+    {
+      "Terminal ID": "T01A30",
+      "Latitude": "103.14501898681885",
+      "Longitude": "103.14501898681885"
+    },
+    {
+      "Terminal ID": "T01A31",
+      "Latitude": "103.14481968957966",
+      "Longitude": "103.14481968957966"
+    },
+    {
+      "Terminal ID": "T01A32",
+      "Latitude": "103.14520326877027",
+      "Longitude": "103.14520326877027"
+    },
+    {
+      "Terminal ID": "T01A33",
+      "Latitude": "103.14543191871613",
+      "Longitude": "103.14543191871613"
+    },
+    {
+      "Terminal ID": "T01A34",
+      "Latitude": "103.132316",
+      "Longitude": "103.132316"
+    },
+    {
+      "Terminal ID": "T01A35",
+      "Latitude": "103.132316",
+      "Longitude": "103.132316"
+    },
+    {
+      "Terminal ID": "T01A36",
+      "Latitude": "103.14543756663886",
+      "Longitude": "103.14543756663886"
+    },
+    {
+      "Terminal ID": "T01A37",
+      "Latitude": "103.14653314920237",
+      "Longitude": "103.14653314920237"
+    },
+    {
+      "Terminal ID": "T01A38",
+      "Latitude": "103.1468167780254",
+      "Longitude": "103.1468167780254"
+    },
+    {
+      "Terminal ID": "T01A39",
+      "Latitude": "103.14719551878164",
+      "Longitude": "103.14719551878164"
+    },
+    {
+      "Terminal ID": "T01A40",
+      "Latitude": "103.14146324264995",
+      "Longitude": "103.14146324264995"
+    },
+    {
+      "Terminal ID": "T01A41",
+      "Latitude": "103.14147141606234",
+      "Longitude": "103.14147141606234"
+    },
+    {
+      "Terminal ID": "T01A42",
+      "Latitude": "103.14155198559071",
+      "Longitude": "103.14155198559071"
+    },
+    {
+      "Terminal ID": "T01A43",
+      "Latitude": "103.1416823114425",
+      "Longitude": "103.1416823114425"
+    },
+    {
+      "Terminal ID": "T01A44",
+      "Latitude": "103.1417452606914",
+      "Longitude": "103.1417452606914"
+    },
+    {
+      "Terminal ID": "T01A45",
+      "Latitude": "103.141358292969",
+      "Longitude": "103.141358292969"
+    },
+    {
+      "Terminal ID": "T01A46",
+      "Latitude": "103.14127488890571",
+      "Longitude": "103.14127488890571"
+    },
+    {
+      "Terminal ID": "T01A47",
+      "Latitude": "103.13967784604084",
+      "Longitude": "103.13967784604084"
+    },
+    {
+      "Terminal ID": "T01A48",
+      "Latitude": "103.13896258087155",
+      "Longitude": "103.13896258087155"
+    },
+    {
+      "Terminal ID": "T01A49",
+      "Latitude": "103.13894632178386",
+      "Longitude": "103.13894632178386"
+    },
+    {
+      "Terminal ID": "T01A50",
+      "Latitude": "103.13918065616409",
+      "Longitude": "103.13918065616409"
+    },
+    {
+      "Terminal ID": "T01A55",
+      "Latitude": "103.15274281653763",
+      "Longitude": "103.15274281653763"
+    }
+  ]
+}

@@ -42,20 +42,21 @@ class _MapPageState extends State<MapPage> {
     _getCurrentLocation();
   }
 
- Future<void> _getCurrentLocation() async {
+  Future<void> _getCurrentLocation() async {
     try {
       LocationData currentLocation = await location.getLocation();
-      if(_controller.isCompleted){
+      if (_controller.isCompleted) {
         final GoogleMapController mapController = await _controller.future;
         mapController.animateCamera(
           CameraUpdate.newCameraPosition(
             CameraPosition(
-              target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
+              target:
+                  LatLng(currentLocation.latitude!, currentLocation.longitude!),
               zoom: 14.4746,
             ),
           ),
         );
-      }      
+      }
     } catch (e) {
       print(e);
     }
@@ -102,7 +103,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   ),
                   const Image(
-                    image: AssetImage('assets_images/icons8-info-50.png'),
+                    image: AssetImage('assets/images/icons8-info-50.png'),
                     width: 60,
                     height: 80,
                     color: Colors.white,
@@ -138,7 +139,7 @@ class _MapPageState extends State<MapPage> {
       initialCameraPosition = myMarker.first.position;
     } else {
       // Default to a specific location if user location is not available
-      initialCameraPosition =  const LatLng(0.0,0.0);
+      initialCameraPosition = const LatLng(0.0, 0.0);
     }
 
     return SizedBox(
@@ -171,14 +172,14 @@ class _MapPageState extends State<MapPage> {
               setState(() {});
             },
             child: const Image(
-              image: AssetImage('assets_images/Parking.png'),
+              image: AssetImage('assets/images/Parking.png'),
               height: 35,
               width: 35,
             ),
           ),
           const SizedBox(height: 8),
           const Image(
-            image: AssetImage('assets_images/debit_credit.png'),
+            image: AssetImage('assets/images/debit_credit.png'),
             height: 35,
             width: 35,
           ),
@@ -189,7 +190,7 @@ class _MapPageState extends State<MapPage> {
               });
             },
             child: const Image(
-              image: AssetImage('assets_images/location.png'),
+              image: AssetImage('assets/images/location.png'),
               height: 35,
               width: 35,
             ),

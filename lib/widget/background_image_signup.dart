@@ -5,11 +5,11 @@ class BackgroundImage_signup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets_images/signup_wall.png'),
+          image: DecorationImage(
+        image: AssetImage('assets/images/signup_wall.png'),
         fit: BoxFit.cover,
         colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
-        )
-      ),
+      )),
     );
   }
 }

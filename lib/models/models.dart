@@ -9,3 +9,4 @@ export 'pbt_model.dart';
 export 'compound_model.dart';
 export 'transaction_model.dart';
 export 'transaction_wallet_model.dart';
+export 'meter_model.dart';

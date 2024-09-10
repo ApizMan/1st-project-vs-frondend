@@ -9,7 +9,7 @@ Future<void> main() async {
   final isFirstRun = await SharedPreferencesHelper.getDefaultSetting();
 
   if (isFirstRun) {
-    // Run the location detail saving function for the first time
+    // Run the location detail saving function for the first time\
     await SharedPreferencesHelper.saveLocationDetail();
 
     // Set the flag to false after initialization is done

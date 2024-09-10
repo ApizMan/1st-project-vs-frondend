@@ -1,0 +1,5079 @@
+{
+  "data": [
+    {
+      "Terminal ID": "KN1A01",
+      "Latitude": "3.817183417294624",
+      "Longitude": "103.32688848336772"
+    },
+    {
+      "Terminal ID": "KN1A02",
+      "Latitude": "3.817305258861144",
+      "Longitude": "103.32653390283947"
+    },
+    {
+      "Terminal ID": "KN1A03",
+      "Latitude": "3.81745",
+      "Longitude": "103.326"
+    },
+    {
+      "Terminal ID": "KN1A04",
+      "Latitude": "3.81739",
+      "Longitude": "103.3258"
+    },
+    {
+      "Terminal ID": "KN1A05",
+      "Latitude": "3.81732",
+      "Longitude": "103.3257"
+    },
+    {
+      "Terminal ID": "KN1A06",
+      "Latitude": "3.81748",
+      "Longitude": "103.3251"
+    },
+    {
+      "Terminal ID": "KN1A07",
+      "Latitude": "3.81718",
+      "Longitude": "103.3252"
+    },
+    {
+      "Terminal ID": "KN1A08",
+      "Latitude": "3.81727",
+      "Longitude": "103.3251"
+    },
+    {
+      "Terminal ID": "KN1A09",
+      "Latitude": "3.81554",
+      "Longitude": "103.3243"
+    },
+    {
+      "Terminal ID": "KN1A10",
+      "Latitude": "3.816924532498685",
+      "Longitude": "103.32460419874191"
+    },
+    {
+      "Terminal ID": "KN1A11",
+      "Latitude": "3.816617338250208",
+      "Longitude": "103.32469807605743"
+    },
+    {
+      "Terminal ID": "KN1A12",
+      "Latitude": "3.81626",
+      "Longitude": "103.3248"
+    },
+    {
+      "Terminal ID": "KN1A13",
+      "Latitude": "3.81603",
+      "Longitude": "103.3249"
+    },
+    {
+      "Terminal ID": "KN1A14",
+      "Latitude": "3.81561",
+      "Longitude": "103.3250"
+    },
+    {
+      "Terminal ID": "KN1A15",
+      "Latitude": "3.8154",
+      "Longitude": "103.32486"
+    },
+    {
+      "Terminal ID": "KN1A16",
+      "Latitude": "3.81548",
+      "Longitude": "103.3256"
+    },
+    {
+      "Terminal ID": "KN1A17",
+      "Latitude": "3.81557",
+      "Longitude": "103.3257"
+    },
+    {
+      "Terminal ID": "KN1A18",
+      "Latitude": "3.81574",
+      "Longitude": "103.3256"
+    },
+    {
+      "Terminal ID": "KN1A19",
+      "Latitude": "3.8162",
+      "Longitude": "103.32549"
+    },
+    {
+      "Terminal ID": "KN1A20",
+      "Latitude": "3.81648",
+      "Longitude": "103.3253"
+    },
+    {
+      "Terminal ID": "KN1A21",
+      "Latitude": "3.81675",
+      "Longitude": "103.3253"
+    },
+    {
+      "Terminal ID": "KN1A22",
+      "Latitude": "3.81697",
+      "Longitude": "103.3252"
+    },
+    {
+      "Terminal ID": "KN1A23",
+      "Latitude": "3.817",
+      "Longitude": "103.32539"
+    },
+    {
+      "Terminal ID": "KN1A24",
+      "Latitude": "3.81677",
+      "Longitude": "103.326"
+    },
+    {
+      "Terminal ID": "KN1A25",
+      "Latitude": "3.81658",
+      "Longitude": "103.3261"
+    },
+    {
+      "Terminal ID": "KN1A26",
+      "Latitude": "3.81637",
+      "Longitude": "103.326"
+    },
+    {
+      "Terminal ID": "KN1A27",
+      "Latitude": "3.81594",
+      "Longitude": "103.3261"
+    },
+    {
+      "Terminal ID": "KN1A28",
+      "Latitude": "3.81565",
+      "Longitude": "103.3257"
+    },
+    {
+      "Terminal ID": "KN1A29",
+      "Latitude": "3.81628",
+      "Longitude": "103.3265"
+    },
+    {
+      "Terminal ID": "KN1A30",
+      "Latitude": "3.81673",
+      "Longitude": "103.3265"
+    },
+    {
+      "Terminal ID": "KN1A31",
+      "Latitude": "3.81791",
+      "Longitude": "103.3272"
+    },
+    {
+      "Terminal ID": "KN1A32",
+      "Latitude": "3.81788",
+      "Longitude": "103.3271"
+    },
+    {
+      "Terminal ID": "KN1A33",
+      "Latitude": "3.81868",
+      "Longitude": "103.3279"
+    },
+    {
+      "Terminal ID": "KN1A34",
+      "Latitude": "3.81899",
+      "Longitude": "103.3276"
+    },
+    {
+      "Terminal ID": "KN1A35",
+      "Latitude": "3.81945",
+      "Longitude": "103.3271"
+    },
+    {
+      "Terminal ID": "KN1A36",
+      "Latitude": "3.81928",
+      "Longitude": "103.3274"
+    },
+    {
+      "Terminal ID": "KN1A37",
+      "Latitude": "3.81918",
+      "Longitude": "103.3282"
+    },
+    {
+      "Terminal ID": "KN1A38",
+      "Latitude": "3.81899",
+      "Longitude": "103.3284"
+    },
+    {
+      "Terminal ID": "KN1A39",
+      "Latitude": "3.81873",
+      "Longitude": "103.3287"
+    },
+    {
+      "Terminal ID": "KN1A40",
+      "Latitude": "3.81857",
+      "Longitude": "103.329"
+    },
+    {
+      "Terminal ID": "KN1A41",
+      "Latitude": "3.81805",
+      "Longitude": "103.3287"
+    },
+    {
+      "Terminal ID": "KN1A42",
+      "Latitude": "3.81821",
+      "Longitude": "103.3285"
+    },
+    {
+      "Terminal ID": "KN1A43",
+      "Latitude": "3.8183",
+      "Longitude": "103.32835"
+    },
+    {
+      "Terminal ID": "KN1A44",
+      "Latitude": "3.81798",
+      "Longitude": "103.3298"
+    },
+    {
+      "Terminal ID": "KN1A45",
+      "Latitude": "3.81775",
+      "Longitude": "103.3302"
+    },
+    {
+      "Terminal ID": "KN1A46",
+      "Latitude": "3.81746",
+      "Longitude": "103.3304"
+    },
+    {
+      "Terminal ID": "KN1A47",
+      "Latitude": "3.81735",
+      "Longitude": "103.3309"
+    },
+    {
+      "Terminal ID": "KN1A48",
+      "Latitude": "3.81709",
+      "Longitude": "103.3309"
+    },
+    {
+      "Terminal ID": "KN1A49",
+      "Latitude": "3.81686",
+      "Longitude": "103.3307"
+    },
+    {
+      "Terminal ID": "KN1A50",
+      "Latitude": "3.81673",
+      "Longitude": "103.3305"
+    },
+    {
+      "Terminal ID": "KN1A51",
+      "Latitude": "3.81659",
+      "Longitude": "103.3303"
+    },
+    {
+      "Terminal ID": "KN1A52",
+      "Latitude": "3.81601",
+      "Longitude": "103.3298"
+    },
+    {
+      "Terminal ID": "KN1A53",
+      "Latitude": "3.81594",
+      "Longitude": "103.3292"
+    },
+    {
+      "Terminal ID": "KN1A54",
+      "Latitude": "3.81566",
+      "Longitude": "103.3291"
+    },
+    {
+      "Terminal ID": "KN1A55",
+      "Latitude": "3.81569",
+      "Longitude": "103.3284"
+    },
+    {
+      "Terminal ID": "KN1A56",
+      "Latitude": "3.81621",
+      "Longitude": "103.3285"
+    },
+    {
+      "Terminal ID": "KN1A57",
+      "Latitude": "3.8168",
+      "Longitude": "103.32823"
+    },
+    {
+      "Terminal ID": "KN1A58",
+      "Latitude": "3.81712",
+      "Longitude": "103.3282"
+    },
+    {
+      "Terminal ID": "KN1A59",
+      "Latitude": "3.81737",
+      "Longitude": "103.3285"
+    },
+    {
+      "Terminal ID": "KN1A60",
+      "Latitude": "3.81755",
+      "Longitude": "103.3286"
+    },
+    {
+      "Terminal ID": "KN1A61",
+      "Latitude": "3.81717",
+      "Longitude": "103.3291"
+    },
+    {
+      "Terminal ID": "KN1A62",
+      "Latitude": "3.81745",
+      "Longitude": "103.3295"
+    },
+    {
+      "Terminal ID": "KN1A63",
+      "Latitude": "3.81785",
+      "Longitude": "103.3299"
+    },
+    {
+      "Terminal ID": "KN1A64",
+      "Latitude": "3.81825",
+      "Longitude": "103.3293"
+    },
+    {
+      "Terminal ID": "KN1A65",
+      "Latitude": "3.81809",
+      "Longitude": "103.329"
+    },
+    {
+      "Terminal ID": "KN1A66",
+      "Latitude": "3.81719",
+      "Longitude": "103.3301"
+    },
+    {
+      "Terminal ID": "KN1A67",
+      "Latitude": "3.81693",
+      "Longitude": "103.3305"
+    },
+    {
+      "Terminal ID": "KN1A68",
+      "Latitude": "3.81694",
+      "Longitude": "103.3297"
+    },
+    {
+      "Terminal ID": "KN1A69",
+      "Latitude": "3.81655",
+      "Longitude": "103.32943"
+    },
+    {
+      "Terminal ID": "KN1A70",
+      "Latitude": "3.81695",
+      "Longitude": "103.3292"
+    },
+    {
+      "Terminal ID": "KN1A71",
+      "Latitude": "3.81589",
+      "Longitude": "103.3291"
+    },
+    {
+      "Terminal ID": "KN1A72",
+      "Latitude": "3.81619",
+      "Longitude": "103.329"
+    },
+    {
+      "Terminal ID": "KN1A73",
+      "Latitude": "3.81661",
+      "Longitude": "103.329"
+    },
+    {
+      "Terminal ID": "KN1A74",
+      "Latitude": "3.817",
+      "Longitude": "103.32901"
+    },
+    {
+      "Terminal ID": "KN1A75",
+      "Latitude": "3.81667",
+      "Longitude": "103.3285"
+    },
+    {
+      "Terminal ID": "KN1A76",
+      "Latitude": "3.81643",
+      "Longitude": "103.3274"
+    },
+    {
+      "Terminal ID": "KN1A77",
+      "Latitude": "3.81559",
+      "Longitude": "103.3278"
+    },
+    {
+      "Terminal ID": "KN1A78",
+      "Latitude": "3.81556",
+      "Longitude": "103.328"
+    },
+    {
+      "Terminal ID": "KN1A79",
+      "Latitude": "3.81546",
+      "Longitude": "103.328"
+    },
+    {
+      "Terminal ID": "KN1A80",
+      "Latitude": "3.81492",
+      "Longitude": "103.3281"
+    },
+    {
+      "Terminal ID": "KN1A81",
+      "Latitude": "3.815",
+      "Longitude": "103.32829"
+    },
+    {
+      "Terminal ID": "KN1A82",
+      "Latitude": "3.81535",
+      "Longitude": "103.3287"
+    },
+    {
+      "Terminal ID": "KN1A83",
+      "Latitude": "3.81566",
+      "Longitude": "103.3283"
+    },
+    {
+      "Terminal ID": "KN1A84",
+      "Latitude": "3.81599",
+      "Longitude": "103.3283"
+    },
+    {
+      "Terminal ID": "KN1A85",
+      "Latitude": "3.81633",
+      "Longitude": "103.3282"
+    },
+    {
+      "Terminal ID": "KN1A86",
+      "Latitude": "3.81672",
+      "Longitude": "103.3278"
+    },
+    {
+      "Terminal ID": "KN1A87",
+      "Latitude": "3.81661",
+      "Longitude": "103.3276"
+    },
+    {
+      "Terminal ID": "KN1A88",
+      "Latitude": "3.81397",
+      "Longitude": "103.3249"
+    },
+    {
+      "Terminal ID": "KN1A89",
+      "Latitude": "3.81385",
+      "Longitude": "103.3244"
+    },
+    {
+      "Terminal ID": "KN1A90",
+      "Latitude": "3.81374",
+      "Longitude": "103.3239"
+    },
+    {
+      "Terminal ID": "KN1A91",
+      "Latitude": "3.8128",
+      "Longitude": "103.32377"
+    },
+    {
+      "Terminal ID": "KN1A92",
+      "Latitude": "3.81247",
+      "Longitude": "103.3232"
+    },
+    {
+      "Terminal ID": "KN1A93",
+      "Latitude": "3.8122361863069356",
+      "Longitude": "103.32376857175827"
+    },
+    {
+      "Terminal ID": "KN1A94",
+      "Latitude": "3.8126329644618777",
+      "Longitude": "103.32413947486877"
+    },
+    {
+      "Terminal ID": "KN1A95",
+      "Latitude": "3.812409439009343",
+      "Longitude": "103.32395440244674"
+    },
+    {
+      "Terminal ID": "KN1A96",
+      "Latitude": "3.81273",
+      "Longitude": "103.3241"
+    },
+    {
+      "Terminal ID": "KN1A97",
+      "Latitude": "3.8128",
+      "Longitude": "103.3241"
+    },
+    {
+      "Terminal ID": "KN1A98",
+      "Latitude": "3.81287",
+      "Longitude": "103.324"
+    },
+    {
+      "Terminal ID": "KN1A99",
+      "Latitude": "3.81169",
+      "Longitude": "103.3242"
+    },
+    {
+      "Terminal ID": "KN1B01",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B02",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B03",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B04",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B05",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B06",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B07",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B08",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B09",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B10",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B11",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B12",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B13",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B14",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B15",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B16",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B17",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B18",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B19",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B20",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B21",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B22",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B23",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B24",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B25",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B26",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B27",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B28",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B29",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B30",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B31",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B32",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B33",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B34",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B35",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B36",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B37",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B38",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B39",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B40",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B41",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B42",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B43",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B44",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B45",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B46",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B47",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B48",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B49",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B50",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B51",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B52",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B53",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B54",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B55",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B56",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B57",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B58",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B59",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B60",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B61",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B62",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B63",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B64",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B65",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B66",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B67",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B68",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B69",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B70",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B71",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B72",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B73",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B74",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B75",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B76",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B77",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B78",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B79",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B80",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B81",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B82",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B83",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B84",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B85",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B86",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B87",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B88",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B89",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B90",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B91",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B92",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B93",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B94",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B95",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B96",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B97",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B98",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN1B99",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2A01",
+      "Latitude": "3.81175",
+      "Longitude": "103.32466"
+    },
+    {
+      "Terminal ID": "KN2A02",
+      "Latitude": "3.81199",
+      "Longitude": "103.32462"
+    },
+    {
+      "Terminal ID": "KN2A03",
+      "Latitude": "3.81167",
+      "Longitude": "103.32251"
+    },
+    {
+      "Terminal ID": "KN2A04",
+      "Latitude": "3.81153",
+      "Longitude": "103.32243"
+    },
+    {
+      "Terminal ID": "KN2A05",
+      "Latitude": "3.81147",
+      "Longitude": "103.32191"
+    },
+    {
+      "Terminal ID": "KN2A06",
+      "Latitude": "3.81146",
+      "Longitude": "103.32192"
+    },
+    {
+      "Terminal ID": "KN2A07",
+      "Latitude": "3.81092",
+      "Longitude": "103.32184"
+    },
+    {
+      "Terminal ID": "KN2A08",
+      "Latitude": "3.81054",
+      "Longitude": "103.32196"
+    },
+    {
+      "Terminal ID": "KN2A09",
+      "Latitude": "3.81062",
+      "Longitude": "103.32214"
+    },
+    {
+      "Terminal ID": "KN2A10",
+      "Latitude": "3.81098",
+      "Longitude": "103.32243"
+    },
+    {
+      "Terminal ID": "KN2A11",
+      "Latitude": "3.81105",
+      "Longitude": "103.32252"
+    },
+    {
+      "Terminal ID": "KN2A12",
+      "Latitude": "3.81044",
+      "Longitude": "103.32338"
+    },
+    {
+      "Terminal ID": "KN2A13",
+      "Latitude": "3.81025",
+      "Longitude": "103.32299"
+    },
+    {
+      "Terminal ID": "KN2A14",
+      "Latitude": "3.81031",
+      "Longitude": "103.32296"
+    },
+    {
+      "Terminal ID": "KN2A15",
+      "Latitude": "3.80964",
+      "Longitude": "103.32292"
+    },
+    {
+      "Terminal ID": "KN2A16",
+      "Latitude": "3.80997",
+      "Longitude": "103.32272"
+    },
+    {
+      "Terminal ID": "KN2A17",
+      "Latitude": "3.80984",
+      "Longitude": "103.32232"
+    },
+    {
+      "Terminal ID": "KN2A18",
+      "Latitude": "3.81144",
+      "Longitude": "103.32225"
+    },
+    {
+      "Terminal ID": "KN2A19",
+      "Latitude": "3.81051",
+      "Longitude": "103.32392"
+    },
+    {
+      "Terminal ID": "KN2A20",
+      "Latitude": "3.81152",
+      "Longitude": "103.32425"
+    },
+    {
+      "Terminal ID": "KN2A21",
+      "Latitude": "3.80965",
+      "Longitude": "103.32982"
+    },
+    {
+      "Terminal ID": "KN2A22",
+      "Latitude": "3.80957",
+      "Longitude": "103.32993"
+    },
+    {
+      "Terminal ID": "KN2A23",
+      "Latitude": "3.80982",
+      "Longitude": "103.33037"
+    },
+    {
+      "Terminal ID": "KN2A24",
+      "Latitude": "3.80982",
+      "Longitude": "103.33027"
+    },
+    {
+      "Terminal ID": "KN2A25",
+      "Latitude": "3.81041",
+      "Longitude": "103.33038"
+    },
+    {
+      "Terminal ID": "KN2A26",
+      "Latitude": "3.81038",
+      "Longitude": "103.33058"
+    },
+    {
+      "Terminal ID": "KN2A27",
+      "Latitude": "3.81078",
+      "Longitude": "103.33049"
+    },
+    {
+      "Terminal ID": "KN2A28",
+      "Latitude": "3.81131",
+      "Longitude": "103.33092"
+    },
+    {
+      "Terminal ID": "KN2A29",
+      "Latitude": "3.81183",
+      "Longitude": "103.33086"
+    },
+    {
+      "Terminal ID": "KN2A30",
+      "Latitude": "3.81184",
+      "Longitude": "103.33091"
+    },
+    {
+      "Terminal ID": "KN2A31",
+      "Latitude": "3.81154",
+      "Longitude": "103.33032"
+    },
+    {
+      "Terminal ID": "KN2A32",
+      "Latitude": "3.81089",
+      "Longitude": "103.33058"
+    },
+    {
+      "Terminal ID": "KN2A33",
+      "Latitude": "3.81243",
+      "Longitude": "103.33059"
+    },
+    {
+      "Terminal ID": "KN2A34",
+      "Latitude": "3.81243",
+      "Longitude": "103.32997"
+    },
+    {
+      "Terminal ID": "KN2A35",
+      "Latitude": "3.81232",
+      "Longitude": "103.32978"
+    },
+    {
+      "Terminal ID": "KN2A36",
+      "Latitude": "3.81202",
+      "Longitude": "103.32934"
+    },
+    {
+      "Terminal ID": "KN2A37",
+      "Latitude": "3.8105077881213356",
+      "Longitude": "103.32904390674591"
+    },
+    {
+      "Terminal ID": "KN2A38",
+      "Latitude": "3.81131",
+      "Longitude": "103.32914"
+    },
+    {
+      "Terminal ID": "KN2A39",
+      "Latitude": "3.81179",
+      "Longitude": "103.33003"
+    },
+    {
+      "Terminal ID": "KN2A40",
+      "Latitude": "3.81198",
+      "Longitude": "103.33056"
+    },
+    {
+      "Terminal ID": "KN2A41",
+      "Latitude": "3.81145",
+      "Longitude": "103.33102"
+    },
+    {
+      "Terminal ID": "KN2A42",
+      "Latitude": "3.81185",
+      "Longitude": "103.33162"
+    },
+    {
+      "Terminal ID": "KN2A43",
+      "Latitude": "3.81204",
+      "Longitude": "103.33161"
+    },
+    {
+      "Terminal ID": "KN2A44",
+      "Latitude": "3.81146",
+      "Longitude": "103.33236"
+    },
+    {
+      "Terminal ID": "KN2A45",
+      "Latitude": "3.81037",
+      "Longitude": "103.33168"
+    },
+    {
+      "Terminal ID": "KN2A46",
+      "Latitude": "3.8102349856856517",
+      "Longitude": "103.33150123468148"
+    },
+    {
+      "Terminal ID": "KN2A47",
+      "Latitude": "3.80981",
+      "Longitude": "103.33136"
+    },
+    {
+      "Terminal ID": "KN2A48",
+      "Latitude": "3.80821",
+      "Longitude": "103.33035"
+    },
+    {
+      "Terminal ID": "KN2A49",
+      "Latitude": "3.80699",
+      "Longitude": "103.32978"
+    },
+    {
+      "Terminal ID": "KN2A50",
+      "Latitude": "3.807027364144013",
+      "Longitude": "103.33003823121595"
+    },
+    {
+      "Terminal ID": "KN2A51",
+      "Latitude": "3.80594",
+      "Longitude": "103.32945"
+    },
+    {
+      "Terminal ID": "KN2A52",
+      "Latitude": "3.806073906256054",
+      "Longitude": "103.32896542835344"
+    },
+    {
+      "Terminal ID": "KN2A53",
+      "Latitude": "3.80611",
+      "Longitude": "103.32898"
+    },
+    {
+      "Terminal ID": "KN2A54",
+      "Latitude": "3.80541",
+      "Longitude": "103.32825"
+    },
+    {
+      "Terminal ID": "KN2A55",
+      "Latitude": "3.80497",
+      "Longitude": "103.32772"
+    },
+    {
+      "Terminal ID": "KN2A56",
+      "Latitude": "3.802646847127251",
+      "Longitude": "103.32582353918684"
+    },
+    {
+      "Terminal ID": "KN2A57",
+      "Latitude": "3.80314",
+      "Longitude": "103.32387"
+    },
+    {
+      "Terminal ID": "KN2A58",
+      "Latitude": "3.80296",
+      "Longitude": "103.32377"
+    },
+    {
+      "Terminal ID": "KN2A59",
+      "Latitude": "3.798851146579174",
+      "Longitude": "103.3225985319148"
+    },
+    {
+      "Terminal ID": "KN2A60",
+      "Latitude": "3.8036900722550304",
+      "Longitude": "103.32543524785041"
+    },
+    {
+      "Terminal ID": "KN2A61",
+      "Latitude": "3.80425",
+      "Longitude": "103.32574"
+    },
+    {
+      "Terminal ID": "KN2A62",
+      "Latitude": "3.80438",
+      "Longitude": "103.32573"
+    },
+    {
+      "Terminal ID": "KN2A63",
+      "Latitude": "3.80487",
+      "Longitude": "103.32625"
+    },
+    {
+      "Terminal ID": "KN2A64",
+      "Latitude": "3.80473",
+      "Longitude": "103.32623"
+    },
+    {
+      "Terminal ID": "KN2A65",
+      "Latitude": "3.80527",
+      "Longitude": "103.32676"
+    },
+    {
+      "Terminal ID": "KN2A66",
+      "Latitude": "3.80551",
+      "Longitude": "103.32715"
+    },
+    {
+      "Terminal ID": "KN2A67",
+      "Latitude": "3.80568",
+      "Longitude": "103.32722"
+    },
+    {
+      "Terminal ID": "KN2A68",
+      "Latitude": "3.80595",
+      "Longitude": "103.32763"
+    },
+    {
+      "Terminal ID": "KN2A69",
+      "Latitude": "3.806474668546901",
+      "Longitude": "103.32803444974051"
+    },
+    {
+      "Terminal ID": "KN2A70",
+      "Latitude": "3.80655",
+      "Longitude": "103.32797"
+    },
+    {
+      "Terminal ID": "KN2A71",
+      "Latitude": "3.80704",
+      "Longitude": "103.32844"
+    },
+    {
+      "Terminal ID": "KN2A72",
+      "Latitude": "3.80576",
+      "Longitude": "103.32764"
+    },
+    {
+      "Terminal ID": "KN2A73",
+      "Latitude": "3.80687",
+      "Longitude": "103.32819"
+    },
+    {
+      "Terminal ID": "KN2A74",
+      "Latitude": "3.8072",
+      "Longitude": "103.32851"
+    },
+    {
+      "Terminal ID": "KN2A75",
+      "Latitude": "3.80739",
+      "Longitude": "103.32879"
+    },
+    {
+      "Terminal ID": "KN2A76",
+      "Latitude": "3.8076512245632834",
+      "Longitude": "103.32890629119635"
+    },
+    {
+      "Terminal ID": "KN2A77",
+      "Latitude": "3.808098173166308",
+      "Longitude": "103.32920586011886"
+    },
+    {
+      "Terminal ID": "KN2A78",
+      "Latitude": "3.80823",
+      "Longitude": "103.32909"
+    },
+    {
+      "Terminal ID": "KN2A79",
+      "Latitude": "3.8090032371591476",
+      "Longitude": "103.32992536441805"
+    },
+    {
+      "Terminal ID": "KN2A80",
+      "Latitude": "3.8085607486680164",
+      "Longitude": "103.3303578814211"
+    },
+    {
+      "Terminal ID": "KN2A81",
+      "Latitude": "3.80825",
+      "Longitude": "103.33017"
+    },
+    {
+      "Terminal ID": "KN2A82",
+      "Latitude": "3.8075239422677907",
+      "Longitude": "103.32979291534426"
+    },
+    {
+      "Terminal ID": "KN2A83",
+      "Latitude": "3.80706",
+      "Longitude": "103.32959"
+    },
+    {
+      "Terminal ID": "KN2A84",
+      "Latitude": "3.80647",
+      "Longitude": "103.32903"
+    },
+    {
+      "Terminal ID": "KN2A85",
+      "Latitude": "3.80583",
+      "Longitude": "103.32857"
+    },
+    {
+      "Terminal ID": "KN2A86",
+      "Latitude": "3.80535",
+      "Longitude": "103.32793"
+    },
+    {
+      "Terminal ID": "KN2A87",
+      "Latitude": "3.80498",
+      "Longitude": "103.32759"
+    },
+    {
+      "Terminal ID": "KN2A88",
+      "Latitude": "3.80463",
+      "Longitude": "103.32719"
+    },
+    {
+      "Terminal ID": "KN2A89",
+      "Latitude": "3.80431",
+      "Longitude": "103.32686"
+    },
+    {
+      "Terminal ID": "KN2A90",
+      "Latitude": "3.80374",
+      "Longitude": "103.32645"
+    },
+    {
+      "Terminal ID": "KN2A91",
+      "Latitude": "3.80382",
+      "Longitude": "103.32631"
+    },
+    {
+      "Terminal ID": "KN2A92",
+      "Latitude": "3.803160560675387",
+      "Longitude": "103.32593413988113"
+    },
+    {
+      "Terminal ID": "KN2A93",
+      "Latitude": "3.80296",
+      "Longitude": "103.32521"
+    },
+    {
+      "Terminal ID": "KN2A94",
+      "Latitude": "3.80354",
+      "Longitude": "103.32562"
+    },
+    {
+      "Terminal ID": "KN2A95",
+      "Latitude": "3.80381",
+      "Longitude": "103.32572"
+    },
+    {
+      "Terminal ID": "KN2A96",
+      "Latitude": "3.80816",
+      "Longitude": "103.32903"
+    },
+    {
+      "Terminal ID": "KN2A97",
+      "Latitude": "3.80833",
+      "Longitude": "103.32893"
+    },
+    {
+      "Terminal ID": "KN2A98",
+      "Latitude": "3.80881",
+      "Longitude": "103.32865"
+    },
+    {
+      "Terminal ID": "KN2A99",
+      "Latitude": "3.80845",
+      "Longitude": "103.32879"
+    },
+    {
+      "Terminal ID": "KN2B01",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B02",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B03",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B04",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B05",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B06",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B07",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B08",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B09",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B10",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B11",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B12",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B13",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B14",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B15",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B16",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B17",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B18",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B19",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B20",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B21",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B22",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B23",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B24",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN2B25",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN3A01",
+      "Latitude": "3.80811",
+      "Longitude": "103.3289"
+    },
+    {
+      "Terminal ID": "KN3A02",
+      "Latitude": "3.80839",
+      "Longitude": "103.32933"
+    },
+    {
+      "Terminal ID": "KN3A03",
+      "Latitude": "3.810390373474198",
+      "Longitude": "103.3312276918576"
+    },
+    {
+      "Terminal ID": "KN3A04",
+      "Latitude": "3.8104570472783656",
+      "Longitude": "103.33137604505757"
+    },
+    {
+      "Terminal ID": "KN3A05",
+      "Latitude": "3.8105486353411995",
+      "Longitude": "103.33139907695887"
+    },
+    {
+      "Terminal ID": "KN3A06",
+      "Latitude": "3.810871958460765",
+      "Longitude": "103.33158629552334"
+    },
+    {
+      "Terminal ID": "KN3A07",
+      "Latitude": "3.8052855642842784",
+      "Longitude": "103.32467044763253"
+    },
+    {
+      "Terminal ID": "KN3A08",
+      "Latitude": "3.80511",
+      "Longitude": "103.32504"
+    },
+    {
+      "Terminal ID": "KN3A09",
+      "Latitude": "3.80513",
+      "Longitude": "103.32573"
+    },
+    {
+      "Terminal ID": "KN3A10",
+      "Latitude": "3.80561",
+      "Longitude": "103.32499"
+    },
+    {
+      "Terminal ID": "KN3A11",
+      "Latitude": "3.80481",
+      "Longitude": "103.32511"
+    },
+    {
+      "Terminal ID": "KN3A12",
+      "Latitude": "3.80626",
+      "Longitude": "103.32343"
+    },
+    {
+      "Terminal ID": "KN3A13",
+      "Latitude": "3.8062",
+      "Longitude": "103.32339"
+    },
+    {
+      "Terminal ID": "KN3A14",
+      "Latitude": "3.80616",
+      "Longitude": "103.32301"
+    },
+    {
+      "Terminal ID": "KN3A15",
+      "Latitude": "3.80647",
+      "Longitude": "103.324"
+    },
+    {
+      "Terminal ID": "KN3A16",
+      "Latitude": "3.80673",
+      "Longitude": "103.32387"
+    },
+    {
+      "Terminal ID": "KN3A17",
+      "Latitude": "3.80734",
+      "Longitude": "103.32277"
+    },
+    {
+      "Terminal ID": "KN3A18",
+      "Latitude": "3.80795",
+      "Longitude": "103.32283"
+    },
+    {
+      "Terminal ID": "KN3A19",
+      "Latitude": "3.80799",
+      "Longitude": "103.32211"
+    },
+    {
+      "Terminal ID": "KN3A20",
+      "Latitude": "3.8077",
+      "Longitude": "103.32204"
+    },
+    {
+      "Terminal ID": "KN3A21",
+      "Latitude": "3.80729",
+      "Longitude": "103.32228"
+    },
+    {
+      "Terminal ID": "KN3A22",
+      "Latitude": "3.80754",
+      "Longitude": "103.32159"
+    },
+    {
+      "Terminal ID": "KN3A23",
+      "Latitude": "3.80545",
+      "Longitude": "103.32599"
+    },
+    {
+      "Terminal ID": "KN3A24",
+      "Latitude": "3.80564",
+      "Longitude": "103.32578"
+    },
+    {
+      "Terminal ID": "KN3A25",
+      "Latitude": "3.80664",
+      "Longitude": "103.3248"
+    },
+    {
+      "Terminal ID": "KN3A26",
+      "Latitude": "3.80775",
+      "Longitude": "103.3238"
+    },
+    {
+      "Terminal ID": "KN3A27",
+      "Latitude": "3.80855",
+      "Longitude": "103.32316"
+    },
+    {
+      "Terminal ID": "KN3A28",
+      "Latitude": "3.80881",
+      "Longitude": "103.32276"
+    },
+    {
+      "Terminal ID": "KN3A29",
+      "Latitude": "3.80891",
+      "Longitude": "103.32218"
+    },
+    {
+      "Terminal ID": "KN3A30",
+      "Latitude": "3.80853",
+      "Longitude": "103.32178"
+    },
+    {
+      "Terminal ID": "KN3A31",
+      "Latitude": "3.80785",
+      "Longitude": "103.32398"
+    },
+    {
+      "Terminal ID": "KN3A32",
+      "Latitude": "3.80858",
+      "Longitude": "103.32334"
+    },
+    {
+      "Terminal ID": "KN3A33",
+      "Latitude": "3.80892",
+      "Longitude": "103.32304"
+    },
+    {
+      "Terminal ID": "KN3A34",
+      "Latitude": "3.80902",
+      "Longitude": "103.32288"
+    },
+    {
+      "Terminal ID": "KN3A35",
+      "Latitude": "3.8096593951080617",
+      "Longitude": "103.32295839925666"
+    },
+    {
+      "Terminal ID": "KN3A36",
+      "Latitude": "3.80969",
+      "Longitude": "103.32318"
+    },
+    {
+      "Terminal ID": "KN3A37",
+      "Latitude": "3.80963",
+      "Longitude": "103.32339"
+    },
+    {
+      "Terminal ID": "KN3A38",
+      "Latitude": "3.80947",
+      "Longitude": "103.32342"
+    },
+    {
+      "Terminal ID": "KN3A39",
+      "Latitude": "3.80916",
+      "Longitude": "103.32371"
+    },
+    {
+      "Terminal ID": "KN3A40",
+      "Latitude": "3.80895",
+      "Longitude": "103.3239"
+    },
+    {
+      "Terminal ID": "KN3A41",
+      "Latitude": "3.80861",
+      "Longitude": "103.32415"
+    },
+    {
+      "Terminal ID": "KN3A42",
+      "Latitude": "3.80867",
+      "Longitude": "103.32426"
+    },
+    {
+      "Terminal ID": "KN3A43",
+      "Latitude": "3.80827",
+      "Longitude": "103.32417"
+    },
+    {
+      "Terminal ID": "KN3A44",
+      "Latitude": "3.80858",
+      "Longitude": "103.32464"
+    },
+    {
+      "Terminal ID": "KN3A45",
+      "Latitude": "3.80898",
+      "Longitude": "103.32477"
+    },
+    {
+      "Terminal ID": "KN3A46",
+      "Latitude": "3.80898",
+      "Longitude": "103.32467"
+    },
+    {
+      "Terminal ID": "KN3A47",
+      "Latitude": "3.80918",
+      "Longitude": "103.32463"
+    },
+    {
+      "Terminal ID": "KN3A48",
+      "Latitude": "3.80902",
+      "Longitude": "103.3244"
+    },
+    {
+      "Terminal ID": "KN3A49",
+      "Latitude": "3.80963",
+      "Longitude": "103.32429"
+    },
+    {
+      "Terminal ID": "KN3A50",
+      "Latitude": "3.80958",
+      "Longitude": "103.32383"
+    },
+    {
+      "Terminal ID": "KN3A51",
+      "Latitude": "3.81082",
+      "Longitude": "103.3249"
+    },
+    {
+      "Terminal ID": "KN3A52",
+      "Latitude": "3.81057",
+      "Longitude": "103.32468"
+    },
+    {
+      "Terminal ID": "KN3A53",
+      "Latitude": "3.81032",
+      "Longitude": "103.32455"
+    },
+    {
+      "Terminal ID": "KN3A54",
+      "Latitude": "3.8103",
+      "Longitude": "103.32439"
+    },
+    {
+      "Terminal ID": "KN3A55",
+      "Latitude": "3.80997",
+      "Longitude": "103.32405"
+    },
+    {
+      "Terminal ID": "KN3A56",
+      "Latitude": "3.8096",
+      "Longitude": "103.32369"
+    },
+    {
+      "Terminal ID": "KN3A57",
+      "Latitude": "3.81153",
+      "Longitude": "103.32465"
+    },
+    {
+      "Terminal ID": "KN3A58",
+      "Latitude": "3.81161",
+      "Longitude": "103.32479"
+    },
+    {
+      "Terminal ID": "KN3A59",
+      "Latitude": "3.81191",
+      "Longitude": "103.32532"
+    },
+    {
+      "Terminal ID": "KN3A60",
+      "Latitude": "3.81192",
+      "Longitude": "103.32564"
+    },
+    {
+      "Terminal ID": "KN3A61",
+      "Latitude": "3.81138",
+      "Longitude": "103.32547"
+    },
+    {
+      "Terminal ID": "KN3A62",
+      "Latitude": "3.81117",
+      "Longitude": "103.32542"
+    },
+    {
+      "Terminal ID": "KN3A63",
+      "Latitude": "3.81105",
+      "Longitude": "103.32514"
+    },
+    {
+      "Terminal ID": "KN3A64",
+      "Latitude": "3.81091",
+      "Longitude": "103.32519"
+    },
+    {
+      "Terminal ID": "KN3A65",
+      "Latitude": "3.8110764864197813",
+      "Longitude": "103.32480226791085"
+    },
+    {
+      "Terminal ID": "KN3A66",
+      "Latitude": "3.81103",
+      "Longitude": "103.32465"
+    },
+    {
+      "Terminal ID": "KN3A67",
+      "Latitude": "3.8109081887929754",
+      "Longitude": "103.32319583299636"
+    },
+    {
+      "Terminal ID": "KN3A68",
+      "Latitude": "3.81033",
+      "Longitude": "103.32338"
+    },
+    {
+      "Terminal ID": "KN3A69",
+      "Latitude": "3.80998",
+      "Longitude": "103.32332"
+    },
+    {
+      "Terminal ID": "KN3A70",
+      "Latitude": "3.81346",
+      "Longitude": "103.32764"
+    },
+    {
+      "Terminal ID": "KN3A71",
+      "Latitude": "3.81346",
+      "Longitude": "103.32787"
+    },
+    {
+      "Terminal ID": "KN3A72",
+      "Latitude": "3.81378",
+      "Longitude": "103.32829"
+    },
+    {
+      "Terminal ID": "KN3A73",
+      "Latitude": "3.81391",
+      "Longitude": "103.32847"
+    },
+    {
+      "Terminal ID": "KN3A74",
+      "Latitude": "3.81415",
+      "Longitude": "103.32876"
+    },
+    {
+      "Terminal ID": "KN3A75",
+      "Latitude": "3.81451",
+      "Longitude": "103.32921"
+    },
+    {
+      "Terminal ID": "KN3A76",
+      "Latitude": "3.81466",
+      "Longitude": "103.32938"
+    },
+    {
+      "Terminal ID": "KN3A77",
+      "Latitude": "3.81474",
+      "Longitude": "103.3289"
+    },
+    {
+      "Terminal ID": "KN3A78",
+      "Latitude": "3.81459",
+      "Longitude": "103.32867"
+    },
+    {
+      "Terminal ID": "KN3A79",
+      "Latitude": "3.81427",
+      "Longitude": "103.32826"
+    },
+    {
+      "Terminal ID": "KN3A80",
+      "Latitude": "3.81385",
+      "Longitude": "103.32754"
+    },
+    {
+      "Terminal ID": "KN3A81",
+      "Latitude": "3.8131",
+      "Longitude": "103.32749"
+    },
+    {
+      "Terminal ID": "KN3A82",
+      "Latitude": "3.81278",
+      "Longitude": "103.32705"
+    },
+    {
+      "Terminal ID": "KN3A83",
+      "Latitude": "3.81217",
+      "Longitude": "103.32645"
+    },
+    {
+      "Terminal ID": "KN3A84",
+      "Latitude": "3.81254",
+      "Longitude": "103.3261"
+    },
+    {
+      "Terminal ID": "KN3A85",
+      "Latitude": "3.81286",
+      "Longitude": "103.32633"
+    },
+    {
+      "Terminal ID": "KN3A86",
+      "Latitude": "3.81328",
+      "Longitude": "103.32685"
+    },
+    {
+      "Terminal ID": "KN3A87",
+      "Latitude": "3.81349",
+      "Longitude": "103.32706"
+    },
+    {
+      "Terminal ID": "KN3A88",
+      "Latitude": "3.81467",
+      "Longitude": "103.32983"
+    },
+    {
+      "Terminal ID": "KN3A89",
+      "Latitude": "3.81512",
+      "Longitude": "103.32943"
+    },
+    {
+      "Terminal ID": "KN3A90",
+      "Latitude": "3.81589",
+      "Longitude": "103.33031"
+    },
+    {
+      "Terminal ID": "KN3A91",
+      "Latitude": "3.81543",
+      "Longitude": "103.33118"
+    },
+    {
+      "Terminal ID": "KN3A92",
+      "Latitude": "3.81443",
+      "Longitude": "103.33027"
+    },
+    {
+      "Terminal ID": "KN3A93",
+      "Latitude": "3.81411",
+      "Longitude": "103.32973"
+    },
+    {
+      "Terminal ID": "KN3A94",
+      "Latitude": "3.8142835536260304",
+      "Longitude": "103.32928915633966"
+    },
+    {
+      "Terminal ID": "KN3A95",
+      "Latitude": "3.81297",
+      "Longitude": "103.32774"
+    },
+    {
+      "Terminal ID": "KN3A96",
+      "Latitude": "3.81262",
+      "Longitude": "103.32774"
+    },
+    {
+      "Terminal ID": "KN3A97",
+      "Latitude": "3.80814",
+      "Longitude": "103.32511"
+    },
+    {
+      "Terminal ID": "KN3A98",
+      "Latitude": "3.80779",
+      "Longitude": "103.3248"
+    },
+    {
+      "Terminal ID": "KN3A99",
+      "Latitude": "3.8073",
+      "Longitude": "103.32453"
+    },
+    {
+      "Terminal ID": "KN4A01",
+      "Latitude": "3.8069169072679663",
+      "Longitude": "103.32485145767212"
+    },
+    {
+      "Terminal ID": "KN4A02",
+      "Latitude": "3.8065195668752163",
+      "Longitude": "103.32560970800401"
+    },
+    {
+      "Terminal ID": "KN4A03",
+      "Latitude": "3.807586514619092",
+      "Longitude": "103.32677557482853"
+    },
+    {
+      "Terminal ID": "KN4A04",
+      "Latitude": "3.8068644255399566",
+      "Longitude": "103.32804382076264"
+    },
+    {
+      "Terminal ID": "KN4A05",
+      "Latitude": "3.8058105776581064",
+      "Longitude": "103.32594431415559"
+    },
+    {
+      "Terminal ID": "KN4A06",
+      "Latitude": "3.79958",
+      "Longitude": "103.31636"
+    },
+    {
+      "Terminal ID": "KN4A07",
+      "Latitude": "3.80053",
+      "Longitude": "103.31581"
+    },
+    {
+      "Terminal ID": "KN4A08",
+      "Latitude": "3.80011",
+      "Longitude": "103.31615"
+    },
+    {
+      "Terminal ID": "KN4A09",
+      "Latitude": "3.80052",
+      "Longitude": "103.31612"
+    },
+    {
+      "Terminal ID": "KN4A10",
+      "Latitude": "3.800420994571572",
+      "Longitude": "103.31677032142639"
+    },
+    {
+      "Terminal ID": "KN4A11",
+      "Latitude": "3.80079",
+      "Longitude": "103.31707"
+    },
+    {
+      "Terminal ID": "KN4A12",
+      "Latitude": "3.80085",
+      "Longitude": "103.3171"
+    },
+    {
+      "Terminal ID": "KN4A13",
+      "Latitude": "3.80258",
+      "Longitude": "103.31749"
+    },
+    {
+      "Terminal ID": "KN4A14",
+      "Latitude": "3.80306",
+      "Longitude": "103.31793"
+    },
+    {
+      "Terminal ID": "KN4A15",
+      "Latitude": "3.80424",
+      "Longitude": "103.31855"
+    },
+    {
+      "Terminal ID": "KN4A16",
+      "Latitude": "3.80486",
+      "Longitude": "103.31894"
+    },
+    {
+      "Terminal ID": "KN4A17",
+      "Latitude": "3.8051475955706078",
+      "Longitude": "103.31946676322939"
+    },
+    {
+      "Terminal ID": "KN4A18",
+      "Latitude": "3.8058450637728187",
+      "Longitude": "103.31985378902432"
+    },
+    {
+      "Terminal ID": "KN4A19",
+      "Latitude": "3.8068170516436473",
+      "Longitude": "103.31943043914796"
+    },
+    {
+      "Terminal ID": "KN4A20",
+      "Latitude": "3.807190144347414",
+      "Longitude": "103.31923658895495"
+    },
+    {
+      "Terminal ID": "KN4A21",
+      "Latitude": "3.80758",
+      "Longitude": "103.31933"
+    },
+    {
+      "Terminal ID": "KN4A22",
+      "Latitude": "3.80781",
+      "Longitude": "103.32075"
+    },
+    {
+      "Terminal ID": "KN4A23",
+      "Latitude": "3.80802",
+      "Longitude": "103.32096"
+    },
+    {
+      "Terminal ID": "KN4A24",
+      "Latitude": "3.80814",
+      "Longitude": "103.32103"
+    },
+    {
+      "Terminal ID": "KN4A25",
+      "Latitude": "3.8086",
+      "Longitude": "103.32162"
+    },
+    {
+      "Terminal ID": "KN4A26",
+      "Latitude": "3.8098",
+      "Longitude": "103.32195"
+    },
+    {
+      "Terminal ID": "KN4A27",
+      "Latitude": "3.80991",
+      "Longitude": "103.32174"
+    },
+    {
+      "Terminal ID": "KN4A28",
+      "Latitude": "3.81043",
+      "Longitude": "103.32167"
+    },
+    {
+      "Terminal ID": "KN4A29",
+      "Latitude": "3.81096",
+      "Longitude": "103.3213"
+    },
+    {
+      "Terminal ID": "KN4A30",
+      "Latitude": "3.81123",
+      "Longitude": "103.32155"
+    },
+    {
+      "Terminal ID": "KN4A31",
+      "Latitude": "3.81291",
+      "Longitude": "103.32092"
+    },
+    {
+      "Terminal ID": "KN4A32",
+      "Latitude": "3.80609",
+      "Longitude": "103.31952"
+    },
+    {
+      "Terminal ID": "KN4A33",
+      "Latitude": "3.80523",
+      "Longitude": "103.31917"
+    },
+    {
+      "Terminal ID": "KN4A34",
+      "Latitude": "3.80384",
+      "Longitude": "103.31883"
+    },
+    {
+      "Terminal ID": "KN4A35",
+      "Latitude": "3.80323",
+      "Longitude": "103.31804"
+    },
+    {
+      "Terminal ID": "KN4A36",
+      "Latitude": "3.80266",
+      "Longitude": "103.32042"
+    },
+    {
+      "Terminal ID": "KN4A37",
+      "Latitude": "3.80168",
+      "Longitude": "103.32064"
+    },
+    {
+      "Terminal ID": "KN4A38",
+      "Latitude": "3.80182",
+      "Longitude": "103.32025"
+    },
+    {
+      "Terminal ID": "KN4A39",
+      "Latitude": "3.8029857223123287",
+      "Longitude": "103.3181824034609"
+    },
+    {
+      "Terminal ID": "KN4A40",
+      "Latitude": "3.80227",
+      "Longitude": "103.31792"
+    },
+    {
+      "Terminal ID": "KN4A41",
+      "Latitude": "3.80183",
+      "Longitude": "103.31773"
+    },
+    {
+      "Terminal ID": "KN4A42",
+      "Latitude": "3.80087",
+      "Longitude": "103.31728"
+    },
+    {
+      "Terminal ID": "KN4A43",
+      "Latitude": "3.80024",
+      "Longitude": "103.31709"
+    },
+    {
+      "Terminal ID": "KN4A44",
+      "Latitude": "3.7994607052551466",
+      "Longitude": "103.31673550926207"
+    },
+    {
+      "Terminal ID": "KN4A45",
+      "Latitude": "3.7988",
+      "Longitude": "103.31638"
+    },
+    {
+      "Terminal ID": "KN4A46",
+      "Latitude": "3.79829",
+      "Longitude": "103.31627"
+    },
+    {
+      "Terminal ID": "KN4A47",
+      "Latitude": "3.79727",
+      "Longitude": "103.31578"
+    },
+    {
+      "Terminal ID": "KN4A48",
+      "Latitude": "3.79681",
+      "Longitude": "103.31571"
+    },
+    {
+      "Terminal ID": "KN4A49",
+      "Latitude": "3.796337007578994",
+      "Longitude": "103.31581844246973"
+    },
+    {
+      "Terminal ID": "KN4A50",
+      "Latitude": "3.7963",
+      "Longitude": "103.31715"
+    },
+    {
+      "Terminal ID": "KN4A51",
+      "Latitude": "3.7966370",
+      "Longitude": "103.3176740"
+    },
+    {
+      "Terminal ID": "KN4A52",
+      "Latitude": "3.79874",
+      "Longitude": "103.31849"
+    },
+    {
+      "Terminal ID": "KN4A53",
+      "Latitude": "3.7993",
+      "Longitude": "103.31787"
+    },
+    {
+      "Terminal ID": "KN4A54",
+      "Latitude": "3.79938",
+      "Longitude": "103.31776"
+    },
+    {
+      "Terminal ID": "KN4A55",
+      "Latitude": "3.81553",
+      "Longitude": "103.31927"
+    },
+    {
+      "Terminal ID": "KN4A56",
+      "Latitude": "3.81508",
+      "Longitude": "103.31965"
+    },
+    {
+      "Terminal ID": "KN4A57",
+      "Latitude": "3.81464",
+      "Longitude": "103.32008"
+    },
+    {
+      "Terminal ID": "KN4A58",
+      "Latitude": "3.81469",
+      "Longitude": "103.32171"
+    },
+    {
+      "Terminal ID": "KN4A59",
+      "Latitude": "3.81493",
+      "Longitude": "103.32191"
+    },
+    {
+      "Terminal ID": "KN4A60",
+      "Latitude": "3.8154743595566902",
+      "Longitude": "103.32227708465577"
+    },
+    {
+      "Terminal ID": "KN4A61",
+      "Latitude": "3.8161291519502907",
+      "Longitude": "103.32284213666095"
+    },
+    {
+      "Terminal ID": "KN4A62",
+      "Latitude": "3.81679",
+      "Longitude": "103.32342"
+    },
+    {
+      "Terminal ID": "KN4A63",
+      "Latitude": "3.8187944312277655",
+      "Longitude": "103.32325503480799"
+    },
+    {
+      "Terminal ID": "KN4A64",
+      "Latitude": "3.818413668924071",
+      "Longitude": "103.32350411045073"
+    },
+    {
+      "Terminal ID": "KN4A65",
+      "Latitude": "3.8193364134563197",
+      "Longitude": "103.32306549202396"
+    },
+    {
+      "Terminal ID": "KN4A66",
+      "Latitude": "3.81971",
+      "Longitude": "103.32291"
+    },
+    {
+      "Terminal ID": "KN4A67",
+      "Latitude": "3.8205683805800317",
+      "Longitude": "103.32262650380154"
+    },
+    {
+      "Terminal ID": "KN4A68",
+      "Latitude": "3.8211018458974673",
+      "Longitude": "103.32243159659949"
+    },
+    {
+      "Terminal ID": "KN4A69",
+      "Latitude": "3.8216834832878335",
+      "Longitude": "103.32221578797159"
+    },
+    {
+      "Terminal ID": "KN4A70",
+      "Latitude": "3.822492600892779",
+      "Longitude": "103.32191013211741"
+    },
+    {
+      "Terminal ID": "KN4A71",
+      "Latitude": "3.826294304627007",
+      "Longitude": "103.3234291059235"
+    },
+    {
+      "Terminal ID": "KN4A72",
+      "Latitude": "3.8268892147996683",
+      "Longitude": "103.32360657874649"
+    },
+    {
+      "Terminal ID": "KN4A73",
+      "Latitude": "3.8274146475032835",
+      "Longitude": "103.32376840534342"
+    },
+    {
+      "Terminal ID": "KN4A74",
+      "Latitude": "3.827873174254655",
+      "Longitude": "103.32391950310428"
+    },
+    {
+      "Terminal ID": "KN4A75",
+      "Latitude": "3.8225197127431856",
+      "Longitude": "103.32569807605744"
+    },
+    {
+      "Terminal ID": "KN4A76",
+      "Latitude": "3.8226711226880195",
+      "Longitude": "103.32633291534425"
+    },
+    {
+      "Terminal ID": "KN4A77",
+      "Latitude": "3.8227963578514754",
+      "Longitude": "103.3270194454384"
+    },
+    {
+      "Terminal ID": "KN4A78",
+      "Latitude": "3.8228897127778283",
+      "Longitude": "103.32763839632989"
+    },
+    {
+      "Terminal ID": "KN4A79",
+      "Latitude": "3.8226602582727067",
+      "Longitude": "103.3263278474167"
+    },
+    {
+      "Terminal ID": "KN4A80",
+      "Latitude": "3.8231778851210367",
+      "Longitude": "103.3290990085983"
+    },
+    {
+      "Terminal ID": "KN4A81",
+      "Latitude": "3.823159597494691",
+      "Longitude": "103.32954470232279"
+    },
+    {
+      "Terminal ID": "KN4A82",
+      "Latitude": "3.82131",
+      "Longitude": "103.32478"
+    },
+    {
+      "Terminal ID": "KN4A83",
+      "Latitude": "3.8217583027190076",
+      "Longitude": "103.32485023313525"
+    },
+    {
+      "Terminal ID": "KN4A84",
+      "Latitude": "3.822042950266408",
+      "Longitude": "103.32449463558197"
+    },
+    {
+      "Terminal ID": "KN4A85",
+      "Latitude": "3.820774373657491",
+      "Longitude": "103.32564486871719"
+    },
+    {
+      "Terminal ID": "KN4A86",
+      "Latitude": "3.8211185900291365",
+      "Longitude": "103.3255909325409"
+    },
+    {
+      "Terminal ID": "KN4A87",
+      "Latitude": "3.821371827580524",
+      "Longitude": "103.32586172023773"
+    },
+    {
+      "Terminal ID": "KN4A88",
+      "Latitude": "3.821481553643156",
+      "Longitude": "103.32594218650817"
+    },
+    {
+      "Terminal ID": "KN4A89",
+      "Latitude": "3.8219804309750405",
+      "Longitude": "103.32566728836056"
+    },
+    {
+      "Terminal ID": "KN4A90",
+      "Latitude": "3.8216583027071622",
+      "Longitude": "103.32532157308576"
+    },
+    {
+      "Terminal ID": "KN4A91",
+      "Latitude": "3.82137",
+      "Longitude": "103.3248"
+    },
+    {
+      "Terminal ID": "KN4A92",
+      "Latitude": "3.818754404740927",
+      "Longitude": "103.3248445337976"
+    },
+    {
+      "Terminal ID": "KN4A93",
+      "Latitude": "3.818341846520311",
+      "Longitude": "103.33184314531329"
+    },
+    {
+      "Terminal ID": "KN4A94",
+      "Latitude": "3.8188685445039834",
+      "Longitude": "103.33193854810803"
+    },
+    {
+      "Terminal ID": "KN4A95",
+      "Latitude": "3.818015711354736",
+      "Longitude": "103.33107577086126"
+    },
+    {
+      "Terminal ID": "KN4A96",
+      "Latitude": "3.8194901207636613",
+      "Longitude": "103.33141166580064"
+    },
+    {
+      "Terminal ID": "KN4A97",
+      "Latitude": "3.819544091846895",
+      "Longitude": "103.33104004320779"
+    },
+    {
+      "Terminal ID": "KN4A98",
+      "Latitude": "3.819660062756042",
+      "Longitude": "103.33078344519839"
+    },
+    {
+      "Terminal ID": "KN4A99",
+      "Latitude": "3.820022248667433",
+      "Longitude": "103.33120276386074"
+    },
+    {
+      "Terminal ID": "KN5A01",
+      "Latitude": "3.8197272021169413",
+      "Longitude": "103.33151309590843"
+    },
+    {
+      "Terminal ID": "KN5A02",
+      "Latitude": "3.8197534",
+      "Longitude": "103.3319109"
+    },
+    {
+      "Terminal ID": "KN5A03",
+      "Latitude": "3.8206208",
+      "Longitude": "103.3305164"
+    },
+    {
+      "Terminal ID": "KN5A04",
+      "Latitude": "3.8207690",
+      "Longitude": "103.3302392"
+    },
+    {
+      "Terminal ID": "KN5A05",
+      "Latitude": "3.8206724",
+      "Longitude": "103.3299117"
+    },
+    {
+      "Terminal ID": "KN5A06",
+      "Latitude": "3.8212417",
+      "Longitude": "103.3304470"
+    },
+    {
+      "Terminal ID": "KN5A07",
+      "Latitude": "3.8209845",
+      "Longitude": "103.3305993"
+    },
+    {
+      "Terminal ID": "KN5A08",
+      "Latitude": "3.8201581",
+      "Longitude": "103.3302673"
+    },
+    {
+      "Terminal ID": "KN5A09",
+      "Latitude": "3.8198200",
+      "Longitude": "103.3300715"
+    },
+    {
+      "Terminal ID": "KN5A10",
+      "Latitude": "3.8201642",
+      "Longitude": "103.3298372"
+    },
+    {
+      "Terminal ID": "KN5A11",
+      "Latitude": "3.8204609",
+      "Longitude": "103.3295405"
+    },
+    {
+      "Terminal ID": "KN5A12",
+      "Latitude": "3.8203853",
+      "Longitude": "103.3294459"
+    },
+    {
+      "Terminal ID": "KN5A13",
+      "Latitude": "3.8198160",
+      "Longitude": "103.3294204"
+    },
+    {
+      "Terminal ID": "KN5A14",
+      "Latitude": "3.8198688",
+      "Longitude": "103.3295408"
+    },
+    {
+      "Terminal ID": "KN5A15",
+      "Latitude": "3.8215187",
+      "Longitude": "103.3307632"
+    },
+    {
+      "Terminal ID": "KN5A16",
+      "Latitude": "3.8214154",
+      "Longitude": "103.3310690"
+    },
+    {
+      "Terminal ID": "KN5A17",
+      "Latitude": "3.8214217",
+      "Longitude": "103.3315323"
+    },
+    {
+      "Terminal ID": "KN5A18",
+      "Latitude": "3.8217783",
+      "Longitude": "103.3317932"
+    },
+    {
+      "Terminal ID": "KN5A19",
+      "Latitude": "3.8195637",
+      "Longitude": "103.3323363"
+    },
+    {
+      "Terminal ID": "KN5A20",
+      "Latitude": "3.8204934",
+      "Longitude": "103.3323330"
+    },
+    {
+      "Terminal ID": "KN5A21",
+      "Latitude": "3.8184501",
+      "Longitude": "103.3321925"
+    },
+    {
+      "Terminal ID": "KN5A22",
+      "Latitude": "3.8294213",
+      "Longitude": "103.3279841"
+    },
+    {
+      "Terminal ID": "KN5A23",
+      "Latitude": "3.8325334",
+      "Longitude": "103.3282312"
+    },
+    {
+      "Terminal ID": "KN5A24",
+      "Latitude": "3.8335671",
+      "Longitude": "103.3283348"
+    },
+    {
+      "Terminal ID": "KN5A25",
+      "Latitude": "3.8361664",
+      "Longitude": "103.3284615"
+    },
+    {
+      "Terminal ID": "KN5A26",
+      "Latitude": "3.8383906",
+      "Longitude": "103.3292796"
+    },
+    {
+      "Terminal ID": "KN5A27",
+      "Latitude": "3.8389038",
+      "Longitude": "103.3296990"
+    },
+    {
+      "Terminal ID": "KN5A28",
+      "Latitude": "3.8395732",
+      "Longitude": "103.3302881"
+    },
+    {
+      "Terminal ID": "KN5A29",
+      "Latitude": "3.8400729",
+      "Longitude": "103.3314019"
+    },
+    {
+      "Terminal ID": "KN5A30",
+      "Latitude": "3.8396575",
+      "Longitude": "103.3310505"
+    },
+    {
+      "Terminal ID": "KN5A31",
+      "Latitude": "3.8392631",
+      "Longitude": "103.3306958"
+    },
+    {
+      "Terminal ID": "KN5A32",
+      "Latitude": "3.8375868",
+      "Longitude": "103.3291934"
+    },
+    {
+      "Terminal ID": "KN5A33",
+      "Latitude": "3.8305577",
+      "Longitude": "103.3284676"
+    },
+    {
+      "Terminal ID": "KN5A34",
+      "Latitude": "3.8300619",
+      "Longitude": "103.3284629"
+    },
+    {
+      "Terminal ID": "KN5A35",
+      "Latitude": "3.8246014",
+      "Longitude": "103.3336338"
+    },
+    {
+      "Terminal ID": "KN5A36",
+      "Latitude": "3.8249824",
+      "Longitude": "103.3345082"
+    },
+    {
+      "Terminal ID": "KN5A37",
+      "Latitude": "3.8252474",
+      "Longitude": "103.3350142"
+    },
+    {
+      "Terminal ID": "KN5A38",
+      "Latitude": "3.8255535",
+      "Longitude": "103.3354986"
+    },
+    {
+      "Terminal ID": "KN5A39",
+      "Latitude": "3.8263065",
+      "Longitude": "103.3364401"
+    },
+    {
+      "Terminal ID": "KN5A40",
+      "Latitude": "3.8262212",
+      "Longitude": "103.3367915"
+    },
+    {
+      "Terminal ID": "KN5A41",
+      "Latitude": "3.8271405",
+      "Longitude": "103.3371915"
+    },
+    {
+      "Terminal ID": "KN5A42",
+      "Latitude": "3.8146525",
+      "Longitude": "103.3328282"
+    },
+    {
+      "Terminal ID": "KN5A43",
+      "Latitude": "3.8142443",
+      "Longitude": "103.3330676"
+    },
+    {
+      "Terminal ID": "KN5A44",
+      "Latitude": "3.8135793",
+      "Longitude": "103.3332754"
+    },
+    {
+      "Terminal ID": "KN5A45",
+      "Latitude": "3.8147147",
+      "Longitude": "103.3345253"
+    },
+    {
+      "Terminal ID": "KN5A46",
+      "Latitude": "3.8152262",
+      "Longitude": "103.3349578"
+    },
+    {
+      "Terminal ID": "KN5A47",
+      "Latitude": "3.8159642",
+      "Longitude": "103.3348221"
+    },
+    {
+      "Terminal ID": "KN5A48",
+      "Latitude": "3.8157290",
+      "Longitude": "103.3346011"
+    },
+    {
+      "Terminal ID": "KN5A49",
+      "Latitude": "3.8155065",
+      "Longitude": "103.3345401"
+    },
+    {
+      "Terminal ID": "KN5A50",
+      "Latitude": "3.8154312",
+      "Longitude": "103.3343265"
+    },
+    {
+      "Terminal ID": "KN5A51",
+      "Latitude": "3.8152670",
+      "Longitude": "103.3343215"
+    },
+    {
+      "Terminal ID": "KN5A52",
+      "Latitude": "3.8148712",
+      "Longitude": "103.3342642"
+    },
+    {
+      "Terminal ID": "KN5A53",
+      "Latitude": "3.8166145",
+      "Longitude": "103.3382751"
+    },
+    {
+      "Terminal ID": "KN5A54",
+      "Latitude": "3.8170460",
+      "Longitude": "103.3399595"
+    },
+    {
+      "Terminal ID": "KN5A55",
+      "Latitude": "3.8164894",
+      "Longitude": "103.3403518"
+    },
+    {
+      "Terminal ID": "KN5A56",
+      "Latitude": "3.8146324",
+      "Longitude": "103.3351500"
+    },
+    {
+      "Terminal ID": "KN5A57",
+      "Latitude": "3.8140804",
+      "Longitude": "103.3347118"
+    },
+    {
+      "Terminal ID": "KN5A58",
+      "Latitude": "3.8138027",
+      "Longitude": "103.3345679"
+    },
+    {
+      "Terminal ID": "KN5A59",
+      "Latitude": "3.8265196",
+      "Longitude": "103.3373189"
+    },
+    {
+      "Terminal ID": "KN5A60",
+      "Latitude": "3.8266959",
+      "Longitude": "103.3378999"
+    },
+    {
+      "Terminal ID": "KN5A61",
+      "Latitude": "3.8268615",
+      "Longitude": "103.3382938"
+    },
+    {
+      "Terminal ID": "KN5A62",
+      "Latitude": "3.8271923",
+      "Longitude": "103.3388625"
+    },
+    {
+      "Terminal ID": "KN5A63",
+      "Latitude": "3.8278914",
+      "Longitude": "103.3387505"
+    },
+    {
+      "Terminal ID": "KN5A64",
+      "Latitude": "3.8276714",
+      "Longitude": "103.3386891"
+    },
+    {
+      "Terminal ID": "KN5A65",
+      "Latitude": "3.8283264",
+      "Longitude": "103.3402636"
+    },
+    {
+      "Terminal ID": "KN5A66",
+      "Latitude": "3.8279775",
+      "Longitude": "103.3399863"
+    },
+    {
+      "Terminal ID": "KN5A67",
+      "Latitude": "3.8275677",
+      "Longitude": "103.3393882"
+    },
+    {
+      "Terminal ID": "KN5A68",
+      "Latitude": "3.8288131",
+      "Longitude": "103.3410860"
+    },
+    {
+      "Terminal ID": "KN5A69",
+      "Latitude": "3.8290858",
+      "Longitude": "103.3413874"
+    },
+    {
+      "Terminal ID": "KN5A70",
+      "Latitude": "3.8311394",
+      "Longitude": "103.3445156"
+    },
+    {
+      "Terminal ID": "KN5A71",
+      "Latitude": "3.8314014",
+      "Longitude": "103.3448656"
+    },
+    {
+      "Terminal ID": "KN5A72",
+      "Latitude": "3.8317466",
+      "Longitude": "103.3454047"
+    },
+    {
+      "Terminal ID": "KN5A73",
+      "Latitude": "3.8327412",
+      "Longitude": "103.3467053"
+    },
+    {
+      "Terminal ID": "KN5A74",
+      "Latitude": "3.8328275",
+      "Longitude": "103.3470157"
+    },
+    {
+      "Terminal ID": "KN5A75",
+      "Latitude": "3.8330814",
+      "Longitude": "103.3473587"
+    },
+    {
+      "Terminal ID": "KN5A76",
+      "Latitude": "3.8332811",
+      "Longitude": "103.3477513"
+    },
+    {
+      "Terminal ID": "KN5A77",
+      "Latitude": "3.8376737",
+      "Longitude": "103.3523476"
+    },
+    {
+      "Terminal ID": "KN5A78",
+      "Latitude": "3.8372760",
+      "Longitude": "103.3521210"
+    },
+    {
+      "Terminal ID": "KN5A79",
+      "Latitude": "3.8369404",
+      "Longitude": "103.3517683"
+    },
+    {
+      "Terminal ID": "KN5A80",
+      "Latitude": "3.8366089",
+      "Longitude": "103.3514065"
+    },
+    {
+      "Terminal ID": "KN5A81",
+      "Latitude": "3.8361637",
+      "Longitude": "103.3508177"
+    },
+    {
+      "Terminal ID": "KN5A82",
+      "Latitude": "3.8357948",
+      "Longitude": "103.3504773"
+    },
+    {
+      "Terminal ID": "KN5A83",
+      "Latitude": "3.8355689",
+      "Longitude": "103.3502189"
+    },
+    {
+      "Terminal ID": "KN5A84",
+      "Latitude": "3.8372191",
+      "Longitude": "103.3511715"
+    },
+    {
+      "Terminal ID": "KN5A85",
+      "Latitude": "3.8364591",
+      "Longitude": "103.3503162"
+    },
+    {
+      "Terminal ID": "KN5A86",
+      "Latitude": "3.8359295",
+      "Longitude": "103.3499115"
+    },
+    {
+      "Terminal ID": "KN5A87",
+      "Latitude": "3.8359974",
+      "Longitude": "103.3498364"
+    },
+    {
+      "Terminal ID": "KN5A88",
+      "Latitude": "3.8338769",
+      "Longitude": "103.3494746"
+    },
+    {
+      "Terminal ID": "KN5A89",
+      "Latitude": "3.8333794",
+      "Longitude": "103.3486170"
+    },
+    {
+      "Terminal ID": "KN5A90",
+      "Latitude": "3.8332633",
+      "Longitude": "103.3484061"
+    },
+    {
+      "Terminal ID": "KN5A91",
+      "Latitude": "3.8326308",
+      "Longitude": "103.3474640"
+    },
+    {
+      "Terminal ID": "KN5A92",
+      "Latitude": "3.8320507",
+      "Longitude": "103.3464954"
+    },
+    {
+      "Terminal ID": "KN5A93",
+      "Latitude": "3.8317402",
+      "Longitude": "103.3460079"
+    },
+    {
+      "Terminal ID": "KN5A94",
+      "Latitude": "3.8315215",
+      "Longitude": "103.3456679"
+    },
+    {
+      "Terminal ID": "KN5A95",
+      "Latitude": "3.8307136",
+      "Longitude": "103.3444975"
+    },
+    {
+      "Terminal ID": "KN5A96",
+      "Latitude": "3.8304433",
+      "Longitude": "103.3441119"
+    },
+    {
+      "Terminal ID": "KN5A97",
+      "Latitude": "3.8301228",
+      "Longitude": "103.3437005"
+    },
+    {
+      "Terminal ID": "KN5A98",
+      "Latitude": "3.8298913",
+      "Longitude": "103.3431537"
+    },
+    {
+      "Terminal ID": "KN5A99",
+      "Latitude": "3.8292333",
+      "Longitude": "103.3429173"
+    },
+    {
+      "Terminal ID": "KN6A01",
+      "Latitude": "3.8288602150019466",
+      "Longitude": "103.34182647238731"
+    },
+    {
+      "Terminal ID": "KN6A02",
+      "Latitude": "3.828506057340082",
+      "Longitude": "103.34132854232789"
+    },
+    {
+      "Terminal ID": "KN6A03",
+      "Latitude": "3.828221266430707",
+      "Longitude": "103.34085731779102"
+    },
+    {
+      "Terminal ID": "KN6A04",
+      "Latitude": "3.827876057351904",
+      "Longitude": "103.34060000000002"
+    },
+    {
+      "Terminal ID": "KN6A05",
+      "Latitude": "3.8276507765995085",
+      "Longitude": "103.3402839067459"
+    },
+    {
+      "Terminal ID": "KN6A06",
+      "Latitude": "3.82743",
+      "Longitude": "103.33991"
+    },
+    {
+      "Terminal ID": "KN6A07",
+      "Latitude": "3.82728",
+      "Longitude": "103.33968"
+    },
+    {
+      "Terminal ID": "KN6A08",
+      "Latitude": "3.82696",
+      "Longitude": "103.33942"
+    },
+    {
+      "Terminal ID": "KN6A09",
+      "Latitude": "3.82543",
+      "Longitude": "103.33615"
+    },
+    {
+      "Terminal ID": "KN6A10",
+      "Latitude": "3.8257",
+      "Longitude": "103.33677"
+    },
+    {
+      "Terminal ID": "KN6A11",
+      "Latitude": "3.82559",
+      "Longitude": "103.3371"
+    },
+    {
+      "Terminal ID": "KN6A12",
+      "Latitude": "3.82526",
+      "Longitude": "103.3373"
+    },
+    {
+      "Terminal ID": "KN6A13",
+      "Latitude": "3.82463",
+      "Longitude": "103.33738"
+    },
+    {
+      "Terminal ID": "KN6A14",
+      "Latitude": "3.8243649",
+      "Longitude": "103.3368357"
+    },
+    {
+      "Terminal ID": "KN6A15",
+      "Latitude": "3.8247904",
+      "Longitude": "103.3367479"
+    },
+    {
+      "Terminal ID": "KN6A16",
+      "Latitude": "3.8251905",
+      "Longitude": "103.3369715"
+    },
+    {
+      "Terminal ID": "KN6A17",
+      "Latitude": "3.8249908",
+      "Longitude": "103.3364864"
+    },
+    {
+      "Terminal ID": "KN6A18",
+      "Latitude": "3.8247720",
+      "Longitude": "103.3361984"
+    },
+    {
+      "Terminal ID": "KN6A19",
+      "Latitude": "3.8251477",
+      "Longitude": "103.3361712"
+    },
+    {
+      "Terminal ID": "KN6A20",
+      "Latitude": "3.8251327",
+      "Longitude": "103.3359389"
+    },
+    {
+      "Terminal ID": "KN6A21",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN6A22",
+      "Latitude": "3.8247610",
+      "Longitude": "103.3349025"
+    },
+    {
+      "Terminal ID": "KN6A23",
+      "Latitude": "3.8245573",
+      "Longitude": "103.3343909"
+    },
+    {
+      "Terminal ID": "KN6A24",
+      "Latitude": "3.8242793",
+      "Longitude": "103.3337837"
+    },
+    {
+      "Terminal ID": "KN6A25",
+      "Latitude": "3.8269926",
+      "Longitude": "103.3359580"
+    },
+    {
+      "Terminal ID": "KN6A26",
+      "Latitude": "3.8276202",
+      "Longitude": "103.3358544"
+    },
+    {
+      "Terminal ID": "KN6A27",
+      "Latitude": "3.8289245",
+      "Longitude": "103.3358105"
+    },
+    {
+      "Terminal ID": "KN6A28",
+      "Latitude": "3.8302074",
+      "Longitude": "103.3358775"
+    },
+    {
+      "Terminal ID": "KN6A29",
+      "Latitude": "3.8302021",
+      "Longitude": "103.3359214"
+    },
+    {
+      "Terminal ID": "KN6A30",
+      "Latitude": "3.8311622",
+      "Longitude": "103.3359519"
+    },
+    {
+      "Terminal ID": "KN6A31",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN6A32",
+      "Latitude": "3.83246",
+      "Longitude": "103.33605"
+    },
+    {
+      "Terminal ID": "KN6A33",
+      "Latitude": "3.83297",
+      "Longitude": "103.33614"
+    },
+    {
+      "Terminal ID": "KN6A34",
+      "Latitude": "3.8336",
+      "Longitude": "103.33628"
+    },
+    {
+      "Terminal ID": "KN6A35",
+      "Latitude": "3.83522",
+      "Longitude": "103.3366"
+    },
+    {
+      "Terminal ID": "KN6A36",
+      "Latitude": "3.83667",
+      "Longitude": "103.33703"
+    },
+    {
+      "Terminal ID": "KN6A37",
+      "Latitude": "3.83709",
+      "Longitude": "103.33718"
+    },
+    {
+      "Terminal ID": "KN6A38",
+      "Latitude": "3.83764",
+      "Longitude": "103.33737"
+    },
+    {
+      "Terminal ID": "KN6A39",
+      "Latitude": "3.83857",
+      "Longitude": "103.33736"
+    },
+    {
+      "Terminal ID": "KN6A40",
+      "Latitude": "3.83896",
+      "Longitude": "103.33752"
+    },
+    {
+      "Terminal ID": "KN6A41",
+      "Latitude": "3.841371179098692",
+      "Longitude": "103.33635652527333"
+    },
+    {
+      "Terminal ID": "KN6A42",
+      "Latitude": "3.841433623394603",
+      "Longitude": "103.33688317272515"
+    },
+    {
+      "Terminal ID": "KN6A43",
+      "Latitude": "3.8417231132289396",
+      "Longitude": "103.3377584667154"
+    },
+    {
+      "Terminal ID": "KN6A44",
+      "Latitude": "3.842133461462928",
+      "Longitude": "103.33752869059151"
+    },
+    {
+      "Terminal ID": "KN6A45",
+      "Latitude": "3.842613163742694",
+      "Longitude": "103.33733071125262"
+    },
+    {
+      "Terminal ID": "KN6A46",
+      "Latitude": "3.843189434559623",
+      "Longitude": "103.33697487130503"
+    },
+    {
+      "Terminal ID": "KN6A47",
+      "Latitude": "3.8438513425998355",
+      "Longitude": "103.33660001153973"
+    },
+    {
+      "Terminal ID": "KN6A48",
+      "Latitude": "3.844264365983914",
+      "Longitude": "103.33637023541584"
+    },
+    {
+      "Terminal ID": "KN6A49",
+      "Latitude": "3.844334838997657",
+      "Longitude": "103.33566034387829"
+    },
+    {
+      "Terminal ID": "KN6A50",
+      "Latitude": "3.8442097141316265",
+      "Longitude": "103.33681550191199"
+    },
+    {
+      "Terminal ID": "KN6A51",
+      "Latitude": "3.8447700156968225",
+      "Longitude": "103.33700944670642"
+    },
+    {
+      "Terminal ID": "KN6A52",
+      "Latitude": "3.845169315807245",
+      "Longitude": "103.33761926514124"
+    },
+    {
+      "Terminal ID": "KN6A53",
+      "Latitude": "3.844398140930774",
+      "Longitude": "103.33861976778186"
+    },
+    {
+      "Terminal ID": "KN6A54",
+      "Latitude": "3.843636323623745",
+      "Longitude": "103.33703011168743"
+    },
+    {
+      "Terminal ID": "KN6A55",
+      "Latitude": "3.8432063516840156",
+      "Longitude": "103.33738237491977"
+    },
+    {
+      "Terminal ID": "KN6A56",
+      "Latitude": "3.8428245507415526",
+      "Longitude": "103.33771854489802"
+    },
+    {
+      "Terminal ID": "KN6A57",
+      "Latitude": "3.8421802810269385",
+      "Longitude": "103.3379795973769"
+    },
+    {
+      "Terminal ID": "KN6A58",
+      "Latitude": "3.8415897374270105",
+      "Longitude": "103.33829967410107"
+    },
+    {
+      "Terminal ID": "KN6A59",
+      "Latitude": "3.8410531672844983",
+      "Longitude": "103.33853123792774"
+    },
+    {
+      "Terminal ID": "KN6A60",
+      "Latitude": "3.8397935761697433",
+      "Longitude": "103.33821831332439"
+    },
+    {
+      "Terminal ID": "KN6A61",
+      "Latitude": "3.839157620718543",
+      "Longitude": "103.33809856974825"
+    },
+    {
+      "Terminal ID": "KN6A62",
+      "Latitude": "3.8386097440147258",
+      "Longitude": "103.33787150499609"
+    },
+    {
+      "Terminal ID": "KN6A63",
+      "Latitude": "3.8381480466871665",
+      "Longitude": "103.33775968278796"
+    },
+    {
+      "Terminal ID": "KN6A64",
+      "Latitude": "3.837626996975925",
+      "Longitude": "103.3376318424476"
+    },
+    {
+      "Terminal ID": "KN6A65",
+      "Latitude": "3.8367011174698042",
+      "Longitude": "103.33744675818461"
+    },
+    {
+      "Terminal ID": "KN6A66",
+      "Latitude": "3.834820640933857",
+      "Longitude": "103.33749324958926"
+    },
+    {
+      "Terminal ID": "KN6A67",
+      "Latitude": "3.8335238563326337",
+      "Longitude": "103.33657491670448"
+    },
+    {
+      "Terminal ID": "KN6A68",
+      "Latitude": "3.8328744301373816",
+      "Longitude": "103.33644974673217"
+    },
+    {
+      "Terminal ID": "KN6A69",
+      "Latitude": "3.832208946178677",
+      "Longitude": "103.33632457675986"
+    },
+    {
+      "Terminal ID": "KN6A70",
+      "Latitude": "3.8311045625225115",
+      "Longitude": "103.33634424607436"
+    },
+    {
+      "Terminal ID": "KN6A71",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN6A72",
+      "Latitude": "3.830139340799354",
+      "Longitude": "103.33631027120856"
+    },
+    {
+      "Terminal ID": "KN6A73",
+      "Latitude": "3.827593220250348",
+      "Longitude": "103.336161699777"
+    },
+    {
+      "Terminal ID": "KN6A74",
+      "Latitude": "3.836634509932277",
+      "Longitude": "103.34708348200485"
+    },
+    {
+      "Terminal ID": "KN6A75",
+      "Latitude": "3.837442275715024",
+      "Longitude": "103.34579155111106"
+    },
+    {
+      "Terminal ID": "KN6A76",
+      "Latitude": "3.837866006977017",
+      "Longitude": "103.34512189270873"
+    },
+    {
+      "Terminal ID": "KN6A77",
+      "Latitude": "3.838177337927951",
+      "Longitude": "103.34439054349906"
+    },
+    {
+      "Terminal ID": "KN6A78",
+      "Latitude": "3.838574306907586",
+      "Longitude": "103.3436618764984"
+    },
+    {
+      "Terminal ID": "KN6A79",
+      "Latitude": "3.838863923476111",
+      "Longitude": "103.34320997768863"
+    },
+    {
+      "Terminal ID": "KN6A80",
+      "Latitude": "3.840799699802925",
+      "Longitude": "103.3415130332336"
+    },
+    {
+      "Terminal ID": "KN6A81",
+      "Latitude": "3.8404178977835137",
+      "Longitude": "103.34175800810534"
+    },
+    {
+      "Terminal ID": "KN6A82",
+      "Latitude": "3.8404161140950777",
+      "Longitude": "103.34136998164958"
+    },
+    {
+      "Terminal ID": "KN6A83",
+      "Latitude": "3.8411261955968885",
+      "Longitude": "103.34083175148898"
+    },
+    {
+      "Terminal ID": "KN6A84",
+      "Latitude": "3.8415472488479727",
+      "Longitude": "103.34098016683619"
+    },
+    {
+      "Terminal ID": "KN6A85",
+      "Latitude": "3.841133440415838",
+      "Longitude": "103.34127335752356"
+    },
+    {
+      "Terminal ID": "KN6A86",
+      "Latitude": "3.8496455717261644",
+      "Longitude": "103.33536139510011"
+    },
+    {
+      "Terminal ID": "KN6A87",
+      "Latitude": "3.8491246134274357",
+      "Longitude": "103.33577266693078"
+    },
+    {
+      "Terminal ID": "KN6A88",
+      "Latitude": "3.848694644256646",
+      "Longitude": "103.33610883690903"
+    },
+    {
+      "Terminal ID": "KN6A89",
+      "Latitude": "3.848393130606383",
+      "Longitude": "103.33634844736275"
+    },
+    {
+      "Terminal ID": "KN6A90",
+      "Latitude": "3.847989922689373",
+      "Longitude": "103.33665779525086"
+    },
+    {
+      "Terminal ID": "KN6A91",
+      "Latitude": "3.847292336542106",
+      "Longitude": "103.33719244869621"
+    },
+    {
+      "Terminal ID": "KN6A92",
+      "Latitude": "3.8468239722486945",
+      "Longitude": "103.33753351810705"
+    },
+    {
+      "Terminal ID": "KN6A93",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN6A94",
+      "Latitude": "3.8462378530701793",
+      "Longitude": "103.33797777902579"
+    },
+    {
+      "Terminal ID": "KN6A95",
+      "Latitude": "3.8497695064543067",
+      "Longitude": "103.33583392590283"
+    },
+    {
+      "Terminal ID": "KN6A96",
+      "Latitude": "3.7978036896517398",
+      "Longitude": "103.31573686014671"
+    },
+    {
+      "Terminal ID": "KN6A97",
+      "Latitude": "3.798909249341306",
+      "Longitude": "103.31614276755936"
+    },
+    {
+      "Terminal ID": "KN6A98",
+      "Latitude": "3.809576247786463",
+      "Longitude": "103.33087548427906"
+    },
+    {
+      "Terminal ID": "KN6A99",
+      "Latitude": "3.8112376642662604",
+      "Longitude": "103.32290370759645"
+    },
+    {
+      "Terminal ID": "KN7A01",
+      "Latitude": "3.770199404075712",
+      "Longitude": "103.2351779866649"
+    },
+    {
+      "Terminal ID": "KN7A02",
+      "Latitude": "3.770187902765304",
+      "Longitude": "103.23561853195966"
+    },
+    {
+      "Terminal ID": "KN7A03",
+      "Latitude": "3.7702517566951603",
+      "Longitude": "103.23634291188422"
+    },
+    {
+      "Terminal ID": "KN7A04",
+      "Latitude": "3.770807793704423",
+      "Longitude": "103.23618576666051"
+    },
+    {
+      "Terminal ID": "KN7A05",
+      "Latitude": "3.7708189821205007",
+      "Longitude": "103.23537985063604"
+    },
+    {
+      "Terminal ID": "KN7A06",
+      "Latitude": "3.769785580540651",
+      "Longitude": "103.23389805565608"
+    },
+    {
+      "Terminal ID": "KN7A07",
+      "Latitude": "3.769884533939275",
+      "Longitude": "103.2335140774632"
+    },
+    {
+      "Terminal ID": "KN7A08",
+      "Latitude": "3.7697720302449977",
+      "Longitude": "103.23303375477293"
+    },
+    {
+      "Terminal ID": "KN7A09",
+      "Latitude": "3.769908686802973",
+      "Longitude": "103.23290755967473"
+    },
+    {
+      "Terminal ID": "KN7A10",
+      "Latitude": "3.7699293340906226",
+      "Longitude": "103.23250885150073"
+    },
+    {
+      "Terminal ID": "KN7A11",
+      "Latitude": "3.769975648450405",
+      "Longitude": "103.23221750193053"
+    },
+    {
+      "Terminal ID": "KN7A12",
+      "Latitude": "3.7697357487503598",
+      "Longitude": "103.23206114855437"
+    },
+    {
+      "Terminal ID": "KN7A13",
+      "Latitude": "3.7697380403098046",
+      "Longitude": "103.23169921833977"
+    },
+    {
+      "Terminal ID": "KN7A14",
+      "Latitude": "3.7697051890630204",
+      "Longitude": "103.23120580553592"
+    },
+    {
+      "Terminal ID": "KN7A15",
+      "Latitude": "3.7698128445393015",
+      "Longitude": "103.23097159135051"
+    },
+    {
+      "Terminal ID": "KN7A16",
+      "Latitude": "3.769964551347263",
+      "Longitude": "103.230912646848"
+    },
+    {
+      "Terminal ID": "KN7A17",
+      "Latitude": "3.770256654220393",
+      "Longitude": "103.23096749781656"
+    },
+    {
+      "Terminal ID": "KN7A18",
+      "Latitude": "3.7703591324858037",
+      "Longitude": "103.2309070874837"
+    },
+    {
+      "Terminal ID": "KN7A19",
+      "Latitude": "3.770651588012475",
+      "Longitude": "103.23091949751623"
+    },
+    {
+      "Terminal ID": "KN7A20",
+      "Latitude": "3.770958430608089",
+      "Longitude": "103.23081071772269"
+    },
+    {
+      "Terminal ID": "KN7A21",
+      "Latitude": "3.7711671635503206",
+      "Longitude": "103.230943572938"
+    },
+    {
+      "Terminal ID": "KN7A22",
+      "Latitude": "3.771473676489673",
+      "Longitude": "103.2308847981401"
+    },
+    {
+      "Terminal ID": "KN7A23",
+      "Latitude": "3.771833474922909",
+      "Longitude": "103.23094617787035"
+    },
+    {
+      "Terminal ID": "KN7A24",
+      "Latitude": "3.772071964056953",
+      "Longitude": "103.2308700972019"
+    },
+    {
+      "Terminal ID": "KN7A25",
+      "Latitude": "3.771967061159279",
+      "Longitude": "103.23148985272381"
+    },
+    {
+      "Terminal ID": "KN7A26",
+      "Latitude": "3.7711969512442165",
+      "Longitude": "103.23133103372166"
+    },
+    {
+      "Terminal ID": "KN7A27",
+      "Latitude": "3.7711047794066124",
+      "Longitude": "103.23144636848096"
+    },
+    {
+      "Terminal ID": "KN7A28",
+      "Latitude": "3.77064324581042",
+      "Longitude": "103.23145536027499"
+    },
+    {
+      "Terminal ID": "KN7A29",
+      "Latitude": "3.7704756864404687",
+      "Longitude": "103.2319163652125"
+    },
+    {
+      "Terminal ID": "KN7A30",
+      "Latitude": "3.770908472768344",
+      "Longitude": "103.23222345495712"
+    },
+    {
+      "Terminal ID": "KN7A31",
+      "Latitude": "3.7712367775698423",
+      "Longitude": "103.23195364718161"
+    },
+    {
+      "Terminal ID": "KN7A32",
+      "Latitude": "3.770291193313783",
+      "Longitude": "103.23145366450434"
+    },
+    {
+      "Terminal ID": "KN7A33",
+      "Latitude": "3.7701925810114685",
+      "Longitude": "103.23151885129056"
+    },
+    {
+      "Terminal ID": "KN7A34",
+      "Latitude": "3.7699117690463146",
+      "Longitude": "103.23147300229812"
+    },
+    {
+      "Terminal ID": "KN7A35",
+      "Latitude": "3.7702571004143155",
+      "Longitude": "103.23227566780221"
+    },
+    {
+      "Terminal ID": "KN7A36",
+      "Latitude": "3.7703906796073725",
+      "Longitude": "103.23249777840549"
+    },
+    {
+      "Terminal ID": "KN7A37",
+      "Latitude": "3.7703807251702037",
+      "Longitude": "103.23289477178726"
+    },
+    {
+      "Terminal ID": "KN7A38",
+      "Latitude": "3.7703722343094173",
+      "Longitude": "103.23331846874093"
+    },
+    {
+      "Terminal ID": "KN7A39",
+      "Latitude": "3.770428696807008",
+      "Longitude": "103.23360090257546"
+    },
+    {
+      "Terminal ID": "KN7A40",
+      "Latitude": "3.7708254263120837",
+      "Longitude": "103.23376227862782"
+    },
+    {
+      "Terminal ID": "KN7A41",
+      "Latitude": "3.770815740635984",
+      "Longitude": "103.23418878281066"
+    },
+    {
+      "Terminal ID": "KN7A42",
+      "Latitude": "3.7574632355671476",
+      "Longitude": "103.20565617790986"
+    },
+    {
+      "Terminal ID": "KN7A43",
+      "Latitude": "3.7571110449828993",
+      "Longitude": "103.20545375916609"
+    },
+    {
+      "Terminal ID": "KN7A44",
+      "Latitude": "3.756726812467071",
+      "Longitude": "103.20567814964585"
+    },
+    {
+      "Terminal ID": "KN7A45",
+      "Latitude": "3.756845589186598",
+      "Longitude": "103.2060225327889"
+    },
+    {
+      "Terminal ID": "KN7A46",
+      "Latitude": "3.756652328699183",
+      "Longitude": "103.20625250732303"
+    },
+    {
+      "Terminal ID": "KN7A47",
+      "Latitude": "3.756474113385156",
+      "Longitude": "103.2060826068423"
+    },
+    {
+      "Terminal ID": "KN7A48",
+      "Latitude": "3.755873374107693",
+      "Longitude": "103.20558927165061"
+    },
+    {
+      "Terminal ID": "KN7A49",
+      "Latitude": "3.7554618816698073",
+      "Longitude": "103.20578967516823"
+    },
+    {
+      "Terminal ID": "KN7A50",
+      "Latitude": "3.7550232247303073",
+      "Longitude": "103.2059669969202"
+    },
+    {
+      "Terminal ID": "KN7A51",
+      "Latitude": "3.7544738421971124",
+      "Longitude": "103.20556324466553"
+    },
+    {
+      "Terminal ID": "KN7A52",
+      "Latitude": "3.7546790978768745",
+      "Longitude": "103.20539002587066"
+    },
+    {
+      "Terminal ID": "KN7A53",
+      "Latitude": "3.7550194966731616",
+      "Longitude": "103.20558216780306"
+    },
+    {
+      "Terminal ID": "KN7A54",
+      "Latitude": "3.7550009495649004",
+      "Longitude": "103.20518830502914"
+    },
+    {
+      "Terminal ID": "KN7A55",
+      "Latitude": "3.7554332403051323",
+      "Longitude": "103.20491046128917"
+    },
+    {
+      "Terminal ID": "KN7A56",
+      "Latitude": "3.755703025643097",
+      "Longitude": "103.2053891797016"
+    },
+    {
+      "Terminal ID": "KN7A57",
+      "Latitude": "3.7561249608577567",
+      "Longitude": "103.20460034647662"
+    },
+    {
+      "Terminal ID": "KN7A58",
+      "Latitude": "3.755049619907014",
+      "Longitude": "103.20445906728403"
+    },
+    {
+      "Terminal ID": "KN7A59",
+      "Latitude": "3.755794632262394",
+      "Longitude": "103.20404754672057"
+    },
+    {
+      "Terminal ID": "KN7A60",
+      "Latitude": "3.755887159844517",
+      "Longitude": "103.20343796769811"
+    },
+    {
+      "Terminal ID": "KN7A61",
+      "Latitude": "3.755644576394429",
+      "Longitude": "103.2036432967787"
+    },
+    {
+      "Terminal ID": "KN7A62",
+      "Latitude": "3.754883816152077",
+      "Longitude": "103.20405249807365"
+    },
+    {
+      "Terminal ID": "KN7A63",
+      "Latitude": "3.754435770890898",
+      "Longitude": "103.20394584724757"
+    },
+    {
+      "Terminal ID": "KN7A64",
+      "Latitude": "3.754588895235568",
+      "Longitude": "103.20360886309115"
+    },
+    {
+      "Terminal ID": "KN7A65",
+      "Latitude": "3.7547934405146135",
+      "Longitude": "103.20314832826858"
+    },
+    {
+      "Terminal ID": "KN7A66",
+      "Latitude": "3.7550539574183324",
+      "Longitude": "103.20359398084454"
+    },
+    {
+      "Terminal ID": "KN7A67",
+      "Latitude": "3.7554686347385404",
+      "Longitude": "103.20352051081404"
+    },
+    {
+      "Terminal ID": "KN7A68",
+      "Latitude": "3.755388265416146",
+      "Longitude": "103.20324915120854"
+    },
+    {
+      "Terminal ID": "KN7A69",
+      "Latitude": "3.755165535311104",
+      "Longitude": "103.20299541306709"
+    },
+    {
+      "Terminal ID": "KN7A70",
+      "Latitude": "3.7552521642872385",
+      "Longitude": "103.20274480157944"
+    },
+    {
+      "Terminal ID": "KN7A71",
+      "Latitude": "3.755915012495573",
+      "Longitude": "103.20299429106531"
+    },
+    {
+      "Terminal ID": "KN7A72",
+      "Latitude": "3.755484073258531",
+      "Longitude": "103.20221001022632"
+    },
+    {
+      "Terminal ID": "KN7A73",
+      "Latitude": "3.7552686782246605",
+      "Longitude": "103.20182564913381"
+    },
+    {
+      "Terminal ID": "KN7A74",
+      "Latitude": "3.771276506818757",
+      "Longitude": "103.2554565333063"
+    },
+    {
+      "Terminal ID": "KN7A75",
+      "Latitude": "3.770595930119394",
+      "Longitude": "103.2554399103102"
+    },
+    {
+      "Terminal ID": "KN7A76",
+      "Latitude": "3.7700215890770097",
+      "Longitude": "103.25510115951923"
+    },
+    {
+      "Terminal ID": "KN7A77",
+      "Latitude": "3.770080275825061",
+      "Longitude": "103.25565104867847"
+    },
+    {
+      "Terminal ID": "KN7A78",
+      "Latitude": "3.809022055919627",
+      "Longitude": "103.2949431883262"
+    },
+    {
+      "Terminal ID": "KN7A79",
+      "Latitude": "3.808603751085166",
+      "Longitude": "103.29525279205697"
+    },
+    {
+      "Terminal ID": "KN7A80",
+      "Latitude": "3.8082189392376256",
+      "Longitude": "103.29549070429867"
+    },
+    {
+      "Terminal ID": "KN7A81",
+      "Latitude": "3.8077638431070726",
+      "Longitude": "103.29577663472605"
+    },
+    {
+      "Terminal ID": "KN7A82",
+      "Latitude": "3.80341314109325",
+      "Longitude": "103.30189697036862"
+    },
+    {
+      "Terminal ID": "KN7A83",
+      "Latitude": "3.8036525488329977",
+      "Longitude": "103.30200749512801"
+    },
+    {
+      "Terminal ID": "KN7A84",
+      "Latitude": "3.8042247138755263",
+      "Longitude": "103.30226083185413"
+    },
+    {
+      "Terminal ID": "KN7A85",
+      "Latitude": "3.8045286577165043",
+      "Longitude": "103.30242805425588"
+    },
+    {
+      "Terminal ID": "KN7A86",
+      "Latitude": "3.8055928192087056",
+      "Longitude": "103.30275114630605"
+    },
+    {
+      "Terminal ID": "KN7A87",
+      "Latitude": "3.806072550140156",
+      "Longitude": "103.30296845037239"
+    },
+    {
+      "Terminal ID": "KN7A88",
+      "Latitude": "3.804977176948343",
+      "Longitude": "103.30206816438191"
+    },
+    {
+      "Terminal ID": "KN7A89",
+      "Latitude": "3.805584152072356",
+      "Longitude": "103.30233368775264"
+    },
+    {
+      "Terminal ID": "KN7A90",
+      "Latitude": "3.806122288197109",
+      "Longitude": "103.30255852829151"
+    },
+    {
+      "Terminal ID": "KN7A91",
+      "Latitude": "3.807375342802544",
+      "Longitude": "103.3036669057974"
+    },
+    {
+      "Terminal ID": "KN7A92",
+      "Latitude": "3.8103894344732",
+      "Longitude": "103.30884888300334"
+    },
+    {
+      "Terminal ID": "KN7A93",
+      "Latitude": "3.809375424732062",
+      "Longitude": "103.30975244487674"
+    },
+    {
+      "Terminal ID": "KN7A94",
+      "Latitude": "3.8091763988950698",
+      "Longitude": "103.31040145823204"
+    },
+    {
+      "Terminal ID": "KN7A95",
+      "Latitude": "3.8083571812465262",
+      "Longitude": "103.31142363359147"
+    },
+    {
+      "Terminal ID": "KN7A96",
+      "Latitude": "3.805064083777633",
+      "Longitude": "103.32181173644084"
+    },
+    {
+      "Terminal ID": "KN7A97",
+      "Latitude": "3.804835726106539",
+      "Longitude": "103.32171183101498"
+    },
+    {
+      "Terminal ID": "KN7A98",
+      "Latitude": "3.8053473870172883",
+      "Longitude": "103.32141207348978"
+    },
+    {
+      "Terminal ID": "KN7A99",
+      "Latitude": "3.8057012781592547",
+      "Longitude": "103.3210698924831"
+    },
+    {
+      "Terminal ID": "KN8A01",
+      "Latitude": "3.805337412119878",
+      "Longitude": "103.32062771085434"
+    },
+    {
+      "Terminal ID": "KN8A02",
+      "Latitude": "3.805031966559067",
+      "Longitude": "103.32083103422265"
+    },
+    {
+      "Terminal ID": "KN8A03",
+      "Latitude": "3.8049379237854764",
+      "Longitude": "103.3205495251673"
+    },
+    {
+      "Terminal ID": "KN8A04",
+      "Latitude": "3.795967589421577",
+      "Longitude": "103.31694681351696"
+    },
+    {
+      "Terminal ID": "KN8A05",
+      "Latitude": "3.7955903050965376",
+      "Longitude": "103.31632710162397"
+    },
+    {
+      "Terminal ID": "KN8A06",
+      "Latitude": "3.8220704",
+      "Longitude": "103.3304601"
+    },
+    {
+      "Terminal ID": "KN8A07",
+      "Latitude": "3.822394148612745",
+      "Longitude": "103.33047352076383"
+    },
+    {
+      "Terminal ID": "KN8A08",
+      "Latitude": "3.822206044777197",
+      "Longitude": "103.33085698535136"
+    },
+    {
+      "Terminal ID": "KN8A09",
+      "Latitude": "3.799885027685567",
+      "Longitude": "103.33846021581199"
+    },
+    {
+      "Terminal ID": "KN8A10",
+      "Latitude": "3.8000252431759005",
+      "Longitude": "103.33878542374781"
+    },
+    {
+      "Terminal ID": "KN8A11",
+      "Latitude": "3.800015050881192",
+      "Longitude": "103.339445637238"
+    },
+    {
+      "Terminal ID": "KN8A12",
+      "Latitude": "3.7958871436267394",
+      "Longitude": "103.33596866766715"
+    },
+    {
+      "Terminal ID": "KN8A13",
+      "Latitude": "3.796374090417374",
+      "Longitude": "103.33622375646695"
+    },
+    {
+      "Terminal ID": "KN8A14",
+      "Latitude": "3.796907189975525",
+      "Longitude": "103.33661534113652"
+    },
+    {
+      "Terminal ID": "KN8A15",
+      "Latitude": "3.7965010913742696",
+      "Longitude": "103.33712748437685"
+    },
+    {
+      "Terminal ID": "KN8A16",
+      "Latitude": "3.7954104025151087",
+      "Longitude": "103.33542932579822"
+    },
+    {
+      "Terminal ID": "KN8A17",
+      "Latitude": "3.7949411668243056",
+      "Longitude": "103.33543948574346"
+    },
+    {
+      "Terminal ID": "KN8A18",
+      "Latitude": "3.7946054877487936",
+      "Longitude": "103.33509017191552"
+    },
+    {
+      "Terminal ID": "KN8A19",
+      "Latitude": "3.798000957054651",
+      "Longitude": "103.33670250069166"
+    },
+    {
+      "Terminal ID": "KN8A20",
+      "Latitude": "3.797750867628513",
+      "Longitude": "103.33648254850779"
+    },
+    {
+      "Terminal ID": "KN8A21",
+      "Latitude": "3.7972131145343977",
+      "Longitude": "103.33602633231895"
+    },
+    {
+      "Terminal ID": "KN8A22",
+      "Latitude": "3.7976115776552413",
+      "Longitude": "103.3358943129207"
+    },
+    {
+      "Terminal ID": "KN8A23",
+      "Latitude": "3.8344249337378704",
+      "Longitude": "103.30181317329406"
+    },
+    {
+      "Terminal ID": "KN8A24",
+      "Latitude": "3.83428",
+      "Longitude": "103.30136"
+    },
+    {
+      "Terminal ID": "KN8A25",
+      "Latitude": "3.8342583222822553",
+      "Longitude": "103.3009345767212"
+    },
+    {
+      "Terminal ID": "KN8A26",
+      "Latitude": "3.83422",
+      "Longitude": "103.30058"
+    },
+    {
+      "Terminal ID": "KN8A27",
+      "Latitude": "3.8341859698489427",
+      "Longitude": "103.30027"
+    },
+    {
+      "Terminal ID": "KN8A28",
+      "Latitude": "3.833838",
+      "Longitude": "103.300034"
+    },
+    {
+      "Terminal ID": "KN8A29",
+      "Latitude": "3.83356",
+      "Longitude": "103.30047"
+    },
+    {
+      "Terminal ID": "KN8A30",
+      "Latitude": "3.8335914186100193",
+      "Longitude": "103.30081309325408"
+    },
+    {
+      "Terminal ID": "KN8A31",
+      "Latitude": "3.8348691521366116",
+      "Longitude": "103.30055012268448"
+    },
+    {
+      "Terminal ID": "KN8A32",
+      "Latitude": "3.835246553954635",
+      "Longitude": "103.30053362698364"
+    },
+    {
+      "Terminal ID": "KN8A33",
+      "Latitude": "3.83584213279247",
+      "Longitude": "103.30045145767212"
+    },
+    {
+      "Terminal ID": "KN8A34",
+      "Latitude": "3.83642144830969",
+      "Longitude": "103.3003924490738"
+    },
+    {
+      "Terminal ID": "KN8A35",
+      "Latitude": "3.8367643910327422",
+      "Longitude": "103.30009663558198"
+    },
+    {
+      "Terminal ID": "KN8A36",
+      "Latitude": "3.836415",
+      "Longitude": "103.299599"
+    },
+    {
+      "Terminal ID": "KN8A37",
+      "Latitude": "3.8359166475997606",
+      "Longitude": "103.29922387368015"
+    },
+    {
+      "Terminal ID": "KN8A38",
+      "Latitude": "3.835542075534964",
+      "Longitude": "103.29926666137698"
+    },
+    {
+      "Terminal ID": "KN8A39",
+      "Latitude": "3.8351932951904764",
+      "Longitude": "103.2992933558197"
+    },
+    {
+      "Terminal ID": "KN8A40",
+      "Latitude": "3.83482",
+      "Longitude": "103.299339"
+    },
+    {
+      "Terminal ID": "KN8A41",
+      "Latitude": "3.8345794473027834",
+      "Longitude": "103.29956636441804"
+    },
+    {
+      "Terminal ID": "KN8A42",
+      "Latitude": "3.8346393614719614",
+      "Longitude": "103.30026259755326"
+    },
+    {
+      "Terminal ID": "KN8A43",
+      "Latitude": "3.8348112951856836",
+      "Longitude": "103.299979390213"
+    },
+    {
+      "Terminal ID": "KN8A44",
+      "Latitude": "3.834895780220808",
+      "Longitude": "103.29988453372953"
+    },
+    {
+      "Terminal ID": "KN8A45",
+      "Latitude": "3.835139295189805",
+      "Longitude": "103.29996329695891"
+    },
+    {
+      "Terminal ID": "KN8A46",
+      "Latitude": "3.8353241327016336",
+      "Longitude": "103.29984886011887"
+    },
+    {
+      "Terminal ID": "KN8A47",
+      "Latitude": "3.835679",
+      "Longitude": "103.299881"
+    },
+    {
+      "Terminal ID": "KN8A48",
+      "Latitude": "3.835753",
+      "Longitude": "103.299736"
+    },
+    {
+      "Terminal ID": "KN8A49",
+      "Latitude": "3.83615",
+      "Longitude": "103.29979"
+    },
+    {
+      "Terminal ID": "KN8A50",
+      "Latitude": "3.836398704794566",
+      "Longitude": "103.2998584834671"
+    },
+    {
+      "Terminal ID": "KN8A51",
+      "Latitude": "3.83473",
+      "Longitude": "103.30183"
+    },
+    {
+      "Terminal ID": "KN8A52",
+      "Latitude": "3.834734515019441",
+      "Longitude": "103.30147443187715"
+    },
+    {
+      "Terminal ID": "KN8A53",
+      "Latitude": "3.83472",
+      "Longitude": "103.30101"
+    },
+    {
+      "Terminal ID": "KN8A54",
+      "Latitude": "3.835262",
+      "Longitude": "103.301697"
+    },
+    {
+      "Terminal ID": "KN8A55",
+      "Latitude": "3.835220589348661",
+      "Longitude": "103.30110520064132"
+    },
+    {
+      "Terminal ID": "KN8A56",
+      "Latitude": "3.8349622288773895",
+      "Longitude": "103.30060977546307"
+    },
+    {
+      "Terminal ID": "KN8A57",
+      "Latitude": "3.835558352402541",
+      "Longitude": "103.30256537665174"
+    },
+    {
+      "Terminal ID": "KN8A58",
+      "Latitude": "3.8355977528580403",
+      "Longitude": "103.30318155952455"
+    },
+    {
+      "Terminal ID": "KN8A59",
+      "Latitude": "3.835877",
+      "Longitude": "103.303413"
+    },
+    {
+      "Terminal ID": "KN8A60",
+      "Latitude": "3.836126923430226",
+      "Longitude": "103.30314868220904"
+    },
+    {
+      "Terminal ID": "KN8A61",
+      "Latitude": "3.836081234748067",
+      "Longitude": "103.30250107903204"
+    },
+    {
+      "Terminal ID": "KN8A62",
+      "Latitude": "3.835773038866283",
+      "Longitude": "103.30217597420501"
+    },
+    {
+      "Terminal ID": "KN8A63",
+      "Latitude": "3.829766",
+      "Longitude": "103.302582"
+    },
+    {
+      "Terminal ID": "KN8A64",
+      "Latitude": "3.830131",
+      "Longitude": "103.302864"
+    },
+    {
+      "Terminal ID": "KN8A65",
+      "Latitude": "3.830595",
+      "Longitude": "103.303139"
+    },
+    {
+      "Terminal ID": "KN8A66",
+      "Latitude": "3.830909",
+      "Longitude": "103.303284"
+    },
+    {
+      "Terminal ID": "KN8A67",
+      "Latitude": "3.829049",
+      "Longitude": "103.302216"
+    },
+    {
+      "Terminal ID": "KN8A68",
+      "Latitude": "3.828645",
+      "Longitude": "103.301933"
+    },
+    {
+      "Terminal ID": "KN8A69",
+      "Latitude": "3.828387",
+      "Longitude": "103.301704"
+    },
+    {
+      "Terminal ID": "KN8A70",
+      "Latitude": "3.827825",
+      "Longitude": "103.301765"
+    },
+    {
+      "Terminal ID": "KN8A71",
+      "Latitude": "3.827597",
+      "Longitude": "103.302048"
+    },
+    {
+      "Terminal ID": "KN8A72",
+      "Latitude": "3.827092",
+      "Longitude": "103.302513"
+    },
+    {
+      "Terminal ID": "KN8A73",
+      "Latitude": "3.826744433846479",
+      "Longitude": "103.30289196182788"
+    },
+    {
+      "Terminal ID": "KN8A74",
+      "Latitude": "3.8263817913882177",
+      "Longitude": "103.30329465298838"
+    },
+    {
+      "Terminal ID": "KN8A75",
+      "Latitude": "3.825955777350618",
+      "Longitude": "103.30376611493382"
+    },
+    {
+      "Terminal ID": "KN8A76",
+      "Latitude": "3.823141094661838",
+      "Longitude": "103.30709815255713"
+    },
+    {
+      "Terminal ID": "KN8A77",
+      "Latitude": "3.8234694533429376",
+      "Longitude": "103.3067627842402"
+    },
+    {
+      "Terminal ID": "KN8A78",
+      "Latitude": "3.8238376464015045",
+      "Longitude": "103.30638958312848"
+    },
+    {
+      "Terminal ID": "KN8A79",
+      "Latitude": "3.823734182103903",
+      "Longitude": "103.30701698710548"
+    },
+    {
+      "Terminal ID": "KN8A80",
+      "Latitude": "3.8200291595338793",
+      "Longitude": "103.31089557635394"
+    },
+    {
+      "Terminal ID": "KN8A81",
+      "Latitude": "3.8190679451710374",
+      "Longitude": "103.31245942420311"
+    },
+    {
+      "Terminal ID": "KN8A82",
+      "Latitude": "3.8188643322025153",
+      "Longitude": "103.31302666560192"
+    },
+    {
+      "Terminal ID": "KN8A83",
+      "Latitude": "3.8186539527444507",
+      "Longitude": "103.31359441431741"
+    },
+    {
+      "Terminal ID": "KN8A84",
+      "Latitude": "3.8175714723633276",
+      "Longitude": "103.30036686157551"
+    },
+    {
+      "Terminal ID": "KN8A85",
+      "Latitude": "3.8174297990847244",
+      "Longitude": "103.30016715991786"
+    },
+    {
+      "Terminal ID": "KN8A86",
+      "Latitude": "3.8170936690680453",
+      "Longitude": "103.30004291534424"
+    },
+    {
+      "Terminal ID": "KN8A87",
+      "Latitude": "3.816911683440787",
+      "Longitude": "103.29979615211487"
+    },
+    {
+      "Terminal ID": "KN8A88",
+      "Latitude": "3.81716592805642",
+      "Longitude": "103.29961376190185"
+    },
+    {
+      "Terminal ID": "KN8A89",
+      "Latitude": "3.8174576402068925",
+      "Longitude": "103.29990344047546"
+    },
+    {
+      "Terminal ID": "KN8A90",
+      "Latitude": "3.817677304898116",
+      "Longitude": "103.27645342881173"
+    },
+    {
+      "Terminal ID": "KN8A91",
+      "Latitude": "3.818352911995482",
+      "Longitude": "103.27686226810788"
+    },
+    {
+      "Terminal ID": "KN8A92",
+      "Latitude": "3.8189314403624786",
+      "Longitude": "103.27712473942863"
+    },
+    {
+      "Terminal ID": "KN8A93",
+      "Latitude": "3.819529033401548",
+      "Longitude": "103.27739517857658"
+    },
+    {
+      "Terminal ID": "KN8A94",
+      "Latitude": "3.8199776492513746",
+      "Longitude": "103.2774997953575"
+    },
+    {
+      "Terminal ID": "KN8A95",
+      "Latitude": "3.8205718515906377",
+      "Longitude": "103.27778141667473"
+    },
+    {
+      "Terminal ID": "KN8A96",
+      "Latitude": "3.821190628575454",
+      "Longitude": "103.27833688226214"
+    },
+    {
+      "Terminal ID": "KN8A97",
+      "Latitude": "3.821599301533419",
+      "Longitude": "103.27835363199226"
+    },
+    {
+      "Terminal ID": "KN8A98",
+      "Latitude": "3.8221113356705816",
+      "Longitude": "103.27865224632664"
+    },
+    {
+      "Terminal ID": "KN8A99",
+      "Latitude": "3.822555591942248",
+      "Longitude": "103.27893119606419"
+    },
+    {
+      "Terminal ID": "KN9A01",
+      "Latitude": "3.822811133907013",
+      "Longitude": "103.27905548608042"
+    },
+    {
+      "Terminal ID": "KN9A02",
+      "Latitude": "3.823289735327443",
+      "Longitude": "103.27929777874316"
+    },
+    {
+      "Terminal ID": "KN9A03",
+      "Latitude": "3.8236131146556276",
+      "Longitude": "103.2794703339715"
+    },
+    {
+      "Terminal ID": "KN9A04",
+      "Latitude": "3.823948308229887",
+      "Longitude": "103.27956487592778"
+    },
+    {
+      "Terminal ID": "KN9A05",
+      "Latitude": "3.82421857295394",
+      "Longitude": "103.28016197658904"
+    },
+    {
+      "Terminal ID": "KN9A06",
+      "Latitude": "3.8235102624460677",
+      "Longitude": "103.28054642632956"
+    },
+    {
+      "Terminal ID": "KN9A07",
+      "Latitude": "3.8224286485139283",
+      "Longitude": "103.28021764755249"
+    },
+    {
+      "Terminal ID": "KN9A08",
+      "Latitude": "3.8217210319007116",
+      "Longitude": "103.27981408349787"
+    },
+    {
+      "Terminal ID": "KN9A09",
+      "Latitude": "3.8214034512621535",
+      "Longitude": "103.27885206431291"
+    },
+    {
+      "Terminal ID": "KN9A10",
+      "Latitude": "3.8218389560959776",
+      "Longitude": "103.27921236905304"
+    },
+    {
+      "Terminal ID": "KN9A11",
+      "Latitude": "3.822246637625839",
+      "Longitude": "103.27944929729775"
+    },
+    {
+      "Terminal ID": "KN9A12",
+      "Latitude": "3.8225488381097734",
+      "Longitude": "103.27962256732376"
+    },
+    {
+      "Terminal ID": "KN9A13",
+      "Latitude": "3.8229216346897266",
+      "Longitude": "103.27983800366287"
+    },
+    {
+      "Terminal ID": "KN9A14",
+      "Latitude": "3.823195522462495",
+      "Longitude": "103.27998372212573"
+    },
+    {
+      "Terminal ID": "KN9A15",
+      "Latitude": "3.8234176607134973",
+      "Longitude": "103.27982919045392"
+    },
+    {
+      "Terminal ID": "KN9A16",
+      "Latitude": "3.8232365615935304",
+      "Longitude": "103.2801573230124"
+    },
+    {
+      "Terminal ID": "KN9A17",
+      "Latitude": "3.816341120885048",
+      "Longitude": "103.2750157715911"
+    },
+    {
+      "Terminal ID": "KN9A18",
+      "Latitude": "3.8169923446533716",
+      "Longitude": "103.2753425538378"
+    },
+    {
+      "Terminal ID": "KN9A19",
+      "Latitude": "3.817493697510045",
+      "Longitude": "103.27558216429152"
+    },
+    {
+      "Terminal ID": "KN9A20",
+      "Latitude": "3.8180419595280113",
+      "Longitude": "103.2758701449337"
+    },
+    {
+      "Terminal ID": "KN9A21",
+      "Latitude": "3.8184711710515677",
+      "Longitude": "103.27609039611076"
+    },
+    {
+      "Terminal ID": "KN9A22",
+      "Latitude": "3.818996745228977",
+      "Longitude": "103.27635678973763"
+    },
+    {
+      "Terminal ID": "KN9A23",
+      "Latitude": "3.8195489456910643",
+      "Longitude": "103.27662858669953"
+    },
+    {
+      "Terminal ID": "KN9A24",
+      "Latitude": "3.820031563306334",
+      "Longitude": "103.27687087936226"
+    },
+    {
+      "Terminal ID": "KN9A25",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A26",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A27",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A28",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A29",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A30",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A31",
+      "Latitude": "3.7801624",
+      "Longitude": "103.2779974"
+    },
+    {
+      "Terminal ID": "KN9A32",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A33",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A34",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A35",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A36",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A37",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A38",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A39",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A40",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A41",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A42",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "Kn9A43",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A44",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A45",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A46",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A47",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A48",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A49",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A50",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A51",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A52",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A53",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A54",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A55",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A56",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A57",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A58",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A59",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A60",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A61",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A62",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A63",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A64",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A65",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A66",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A67",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A68",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A69",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A70",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A71",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A72",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A73",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A74",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A75",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A76",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A77",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A78",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A79",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A80",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A81",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A82",
+      "Latitude": "3.7893477",
+      "Longitude": "103.3006551"
+    },
+    {
+      "Terminal ID": "KN9A83",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A84",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A85",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A86",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A87",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A88",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A89",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A90",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A91",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A92",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A93",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A94",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A95",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A96",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A97",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A98",
+      "Latitude": "",
+      "Longitude": ""
+    },
+    {
+      "Terminal ID": "KN9A99",
+      "Latitude": "",
+      "Longitude": ""
+    }
+  ]
+}

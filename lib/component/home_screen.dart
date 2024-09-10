@@ -128,13 +128,13 @@ class HomeScreenState extends State<HomeScreen> {
 
   List<CarouselItem> myitems = [
     CarouselItem(
-        imageUrl: 'assets_images/pbtlogo_kuantan-removebg-preview.png',
+        imageUrl: 'assets/images/pbtlogo_kuantan-removebg-preview.png',
         location: 'Kuantan'),
     CarouselItem(
-        imageUrl: 'assets_images/pbkk_kt-removebg-preview.png',
+        imageUrl: 'assets/images/pbkk_kt-removebg-preview.png',
         location: 'Kuala Terengganu'),
     CarouselItem(
-        imageUrl: 'assets_images/PBT_machang-removebg-preview.png',
+        imageUrl: 'assets/images/PBT_machang-removebg-preview.png',
         location: 'Machang'),
   ];
   UserProfile? userProfile;
@@ -315,9 +315,9 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   final mynews = [
-    Image.asset('assets_images/news_1.png'),
-    Image.asset('assets_images/news_2.png'),
-    Image.asset('assets_images/news_3.png'),
+    Image.asset('assets/images/news_1.png'),
+    Image.asset('assets/images/news_2.png'),
+    Image.asset('assets/images/news_3.png'),
   ];
   double currentBalance = 0.00;
   int myCurrentIndex = 0;
@@ -340,7 +340,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               child: const CircleAvatar(
                 backgroundImage: AssetImage(
-                    'assets_images/account.png'), // Ganti dengan path gambar Anda
+                    'assets/images/account.png'), // Ganti dengan path gambar Anda
                 radius: 15, // Sesuaikan ukuran radius sesuai kebutuhan
               ),
             ),
@@ -566,7 +566,7 @@ class HomeScreenState extends State<HomeScreen> {
                             //         builder: (context) => ParkingScreen()));
                           },
                           child: Image.asset(
-                            'assets_images/ss_1.png',
+                            'assets/images/ss_1.png',
                             width: 70,
                             height: 90,
                             fit: BoxFit.contain,
@@ -598,7 +598,7 @@ class HomeScreenState extends State<HomeScreen> {
                             //             const CompoundScreen()));
                           },
                           child: Image.asset(
-                            'assets_images/ss_2.png',
+                            'assets/images/ss_2.png',
                             width: 70,
                             height: 90,
                             fit: BoxFit.contain,
@@ -629,7 +629,7 @@ class HomeScreenState extends State<HomeScreen> {
                             //         builder: (context) => const ReserveBay()));
                           },
                           child: Image.asset(
-                            'assets_images/ss_3.png',
+                            'assets/images/ss_3.png',
                             width: 70,
                             height: 90,
                             fit: BoxFit.contain,
@@ -661,7 +661,7 @@ class HomeScreenState extends State<HomeScreen> {
                             //             PassPage(userProfile: userProfile!)));
                           },
                           child: Image.asset(
-                            'assets_images/MP.png',
+                            'assets/images/MP.png',
                             width: 70,
                             height: 90,
                             fit: BoxFit.contain,
@@ -704,7 +704,7 @@ class HomeScreenState extends State<HomeScreen> {
                                     builder: (context) => const MapPage()));
                           },
                           child: Image.asset(
-                            'assets_images/ss_5.png',
+                            'assets/images/ss_5.png',
                             width: 70,
                             height: 90,
                             fit: BoxFit.contain,

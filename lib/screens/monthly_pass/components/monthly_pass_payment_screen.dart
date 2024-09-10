@@ -250,7 +250,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('assets_images/duitnow.png'),
+                                        AssetImage('assets/images/duitnow.png'),
                                     fit: BoxFit.contain),
                               ),
                             )
@@ -259,7 +259,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                               height: 80,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage('assets_images/fpx.png'),
+                                    image: AssetImage('assets/images/fpx.png'),
                                     fit: BoxFit.contain),
                               ),
                             ),

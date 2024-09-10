@@ -81,6 +81,11 @@ dependencies:
   printing: ^5.13.2
   pdf: ^3.11.1
   flutter_polyline_points: ^1.0.0
+  google_maps_cluster_manager:
+    git:
+      url: https://github.com/MacDeveloper1/google_maps_cluster_manager.git
+      ref: fix/cluster
+  dart_geohash: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -95,11 +100,13 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - assets_images/
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+    - assets/images/
+    - assets/json/kuantan_meter.json
+    - assets/json/kuala_terengganu_cale_meter.json
+    - assets/json/kuala_terengganu_strada_meter.json
+    - assets/json/machang_meter.json
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets_images/Logo ccp.png" # Replace with the path to your custom logo
+  image_path: "assets/images/Logo ccp.png" # Replace with the path to your custom logo

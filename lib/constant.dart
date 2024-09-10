@@ -8,8 +8,14 @@ const String baseUrl =
 
 // Coordinate
 const String GOOGLE_MAPS_API_KEY = "AIzaSyDqSqaRpMggI2QWsPd-jdp-611FxMrxyMs";
-const String YOU_ARE_HERE_ICON = 'assets_images/you_are_here.png';
-const String METER_ICON = 'assets_images/meter_icon.png';
+const String YOU_ARE_HERE_ICON = 'assets/images/you_are_here.png';
+const String METER_ICON = 'assets/images/meter_icon.png';
+const String METER_KUANTAN = 'assets/json/kuantan_meter.json';
+const String METER_KUALA_TERENGGANU_STRADA =
+    'assets/json/kuala_terengganu_strada_meter.json';
+const String METER_KUALA_TERENGGANU_CALE =
+    'assets/json/kuala_terengganu_cale_meter.json';
+const String METER_MACHANG = 'assets/json/machang_meter.json';
 
 // Colors
 const Color kBlack = Colors.black;
@@ -23,29 +29,29 @@ const Color kYellow = Colors.yellow;
 const Color kRed = Color.fromARGB(255, 240, 108, 99);
 
 // image
-const String logo = 'assets_images/Logo ccp.png';
-const String backgroundSignIn = 'assets_images/login_screen.png';
-const String backgroundSignUp = 'assets_images/signup_wall.png';
+const String logo = 'assets/images/Logo ccp.png';
+const String backgroundSignIn = 'assets/images/login_screen.png';
+const String backgroundSignUp = 'assets/images/signup_wall.png';
 
 // Service Image
-const String parkingImage = 'assets_images/ss_1.png';
-const String summonImage = 'assets_images/ss_2.png';
-const String reserveBayImage = 'assets_images/ss_3.png';
-const String monthlyPassImage = 'assets_images/ss_4.png';
-const String transportInfoImage = 'assets_images/ss_5.png';
+const String parkingImage = 'assets/images/ss_1.png';
+const String summonImage = 'assets/images/ss_2.png';
+const String reserveBayImage = 'assets/images/ss_3.png';
+const String monthlyPassImage = 'assets/images/ss_4.png';
+const String transportInfoImage = 'assets/images/ss_5.png';
 
 // News Image
-const String newsImage1 = 'assets_images/news_1.png';
-const String newsImage2 = 'assets_images/news_2.png';
-const String newsImage3 = 'assets_images/news_3.png';
+const String newsImage1 = 'assets/images/news_1.png';
+const String newsImage2 = 'assets/images/news_2.png';
+const String newsImage3 = 'assets/images/news_3.png';
 
-const String kuantanLogo = 'assets_images/pbtlogo_kuantan-removebg-preview.png';
-const String terengganuLogo = 'assets_images/pbkk_kt-removebg-preview.png';
-const String machangLogo = 'assets_images/PBT_machang-removebg-preview.png';
+const String kuantanLogo = 'assets/images/pbtlogo_kuantan-removebg-preview.png';
+const String terengganuLogo = 'assets/images/pbkk_kt-removebg-preview.png';
+const String machangLogo = 'assets/images/PBT_machang-removebg-preview.png';
 
-const String pahangImg = 'assets_images/pahang_flag.png';
-const String terengganuImg = 'assets_images/terengganu_flag.png';
-const String kelantanImg = 'assets_images/kelantan_flag.png';
+const String pahangImg = 'assets/images/pahang_flag.png';
+const String terengganuImg = 'assets/images/terengganu_flag.png';
+const String kelantanImg = 'assets/images/kelantan_flag.png';
 
 // Save Local Storage Keys
 const String keyToken = 'token';
