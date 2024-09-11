@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -417,13 +416,12 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       arguments: {
                         'userModel': widget.userModel,
                         'selectedCarPlate': formBloc?.carPlateNumber.value!,
+                        'duration': _formatDuration(_remainingTime),
                         'amount': _value.toStringAsFixed(2),
                         'locationDetail': widget.details,
                         'formBloc': formBloc,
                       },
                     );
-                    GlobalState.amount = _value;
-                    calculateRemainingTime();
                   },
                   label: Text(
                     'Confirm',
@@ -443,56 +441,6 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     );
   }
 
-  void _showTimeEndingDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Center(
-            child: Text(
-              "Peringatan",
-              style: GoogleFonts.poppins(
-                color: Colors.red[800],
-              ),
-            ),
-          ),
-          content: Center(
-            child: Text(
-              "Your Duration of Parking will be terminated in 10 minute",
-              style: GoogleFonts.poppins(),
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void startCountdown() {
-    const oneSecond = Duration(seconds: 1);
-
-    Timer.periodic(oneSecond, (Timer timer) {
-      setState(() {
-        if (_remainingTime > 0) {
-          _remainingTime--;
-          if (_remainingTime == 600) {
-            // Jika sisa waktu 10 menit
-            _showTimeEndingDialog(); // Tampilkan dialog peringatan
-          }
-        } else {
-          timer.cancel();
-        }
-      });
-    });
-  }
-
   String _formatDuration(int totalSeconds) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
 
@@ -505,24 +453,5 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     String formattedSeconds = twoDigits(seconds);
 
     return "$formattedHours:$formattedMinutes:$formattedSeconds";
-  }
-
-  void calculateRemainingTime() {
-    // Calculate the remaining time in seconds
-    int _remainingTime =
-        (((_value - 0.65) / (4.80 - 0.65) * 5 + 1).round() * 3600);
-
-    // Convert seconds to hours
-    int hours = (_remainingTime / 3600).round();
-
-    // Determine the correct singular or plural form
-    String hourLabel = hours == 1 ? "hour" : "hours";
-
-    // Create the formatted string
-    GlobalDeclaration.globalDuration = "$hours $hourLabel";
-  }
-
-  void calculateGlobalAmount() {
-    GlobalDeclaration.globalAmount = _value;
   }
 }

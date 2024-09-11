@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:location/location.dart';
@@ -27,15 +30,96 @@ class _HomeScreenState extends State<HomeScreen> {
       GlobalKey<RefreshIndicatorState>();
   late Future<void> _initData;
   late Map<String, dynamic> details;
+  late bool paymentStatus;
+  late bool isUpdate;
   Location locationController = Location();
+
+  Timer? _countdownTimer;
+  // ignore: unused_field
+
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
     super.initState();
     analyzeLocation();
+    analyzePaymentStatus();
     getLocation();
     userModel = UserModel();
     _initData = _getUserDetails();
+    _startCountdown();
+    initializeNotifications(); // Initialize notifications on start
+  }
+
+  // Initialize notifications
+  void initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings(
+            '@mipmap/ic_launcher'); // Ensure you have an icon resource
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  // Convert String duration 'HH:mm:ss' to Duration
+
+  // Start countdown when "Pay" button is pressed
+  void _startCountdown() {
+    if (_countdownTimer != null) {
+      _countdownTimer!.cancel();
+    }
+
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (countDownDuration.inSeconds > 0) {
+          countDownDuration -= const Duration(seconds: 1);
+          paymentStatus = true;
+
+          if (isUpdate == false) {
+            SharedPreferencesHelper.setParkingDuration(
+              duration: formatDuration(countDownDuration),
+            );
+          }
+
+          // Trigger notification when there are 5 minutes left
+          if (countDownDuration == const Duration(minutes: 5)) {
+            _showNotification();
+          }
+        } else {
+          timer.cancel();
+        }
+      });
+    });
+  }
+
+  // Show notification when 5 minutes remain
+  void _showNotification() async {
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+      'countdown_channel', // This should match the channel ID in MainActivity.kt
+      'Countdown Notifications',
+      channelDescription: 'Notification when there are 5 minutes remaining',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails notificationDetails =
+        NotificationDetails(android: androidDetails);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Parking Time',
+      'You have 5 minutes left!',
+      notificationDetails,
+    );
+  }
+
+  // Format countdown duration into 'HH:mm:ss'
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$hours:$minutes:$seconds';
   }
 
   Future<void> getLocation() async {
@@ -64,6 +148,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pop(context);
         },
       );
+    }
+  }
+
+  Future<void> analyzePaymentStatus() async {
+    paymentStatus = await SharedPreferencesHelper.getPaymentStatus();
+    isUpdate = await SharedPreferencesHelper.getDurationUpdate();
+
+    if (isUpdate == true) {
+      final getDuration = await SharedPreferencesHelper.getParkingDuration();
+      countDownDuration = parseDuration(getDuration);
     }
   }
 
@@ -120,6 +214,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Trigger countdown timer is 0
+    if (countDownDuration == const Duration(hours: 0, minutes: 0, seconds: 0)) {
+      paymentStatus = false;
+    }
+
     return FutureBuilder<void>(
       future: _initData,
       builder: (context, snapshot) {
@@ -147,7 +246,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Stack(
                       children: [
-                        _clockingCountdown(context),
+                        Visibility(
+                          visible: paymentStatus,
+                          child: _clockingCountdown(context, countDownDuration),
+                        ),
                         _topWidget(context, userModel),
                       ],
                     ),
@@ -395,8 +497,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _clockingCountdown(BuildContext context) {
+  Widget _clockingCountdown(BuildContext context, Duration countdownDuration) {
     return Container(
+      width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.42,
       padding: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
@@ -406,15 +509,26 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(40.0),
         ),
       ),
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Text(
-          'Parking Time Remaining: ',
-          style: textStyleNormal(
-            color: kBlack,
-            fontWeight: FontWeight.bold,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            'Parking Time Remaining: ',
+            style: textStyleNormal(
+              color: details['color'] == 4294961979 ? kBlack : kWhite,
+            ),
           ),
-        ),
+          const SizedBox(height: 10),
+          Text(
+            formatDuration(
+                countdownDuration), // Display the countdown duration here
+            style: textStyleNormal(
+              color: details['color'] == 4294961979 ? kBlack : kWhite,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

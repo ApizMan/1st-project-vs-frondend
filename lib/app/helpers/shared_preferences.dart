@@ -60,4 +60,37 @@ class SharedPreferencesHelper {
 
     return paymentStatus;
   }
+
+  static Future<void> setPaymentStatus({bool paymentStatus = false}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(paymentStatusKey, paymentStatus);
+  }
+
+  static Future<bool> getPaymentStatus() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool paymentStatus = prefs.getBool(paymentStatusKey) ?? false;
+
+    return paymentStatus;
+  }
+
+  static Future<void> setParkingDuration(
+      {String duration = '00:00:00', bool isUpdate = false}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(durationKey, duration);
+    prefs.setBool(isUpdateKey, isUpdate);
+  }
+
+  static Future<String> getParkingDuration() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String duration = prefs.getString(durationKey) ?? '00:00:00';
+
+    return duration;
+  }
+
+  static Future<bool> getDurationUpdate() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool duration = prefs.getBool(isUpdateKey) ?? false;
+
+    return duration;
+  }
 }

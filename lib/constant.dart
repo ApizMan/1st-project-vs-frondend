@@ -6,6 +6,26 @@ import 'package:flutter/widgets.dart';
 const String baseUrl =
     'http://192.168.0.128:3000'; /* IP Address on Won Laptop */
 
+// Countdown
+Duration countDownDuration = const Duration();
+
+
+Duration parseDuration(String durationString) {
+  final parts = durationString.split(':');
+  final hours = int.parse(parts[0]);
+  final minutes = int.parse(parts[1]);
+  final seconds = int.parse(parts[2]);
+  return Duration(hours: hours, minutes: minutes, seconds: seconds);
+}
+
+String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$hours:$minutes:$seconds';
+  }
+
 // Coordinate
 const String GOOGLE_MAPS_API_KEY = "AIzaSyDqSqaRpMggI2QWsPd-jdp-611FxMrxyMs";
 const String YOU_ARE_HERE_ICON = 'assets/images/you_are_here.png';
@@ -61,6 +81,9 @@ const String keyLogo = 'logo';
 const String keyColor = 'color';
 const String isFirstRunKey = 'isFirstRun';
 const String paymentKey = 'paymentKey';
+const String paymentStatusKey = 'paymentStatusKey';
+const String durationKey = 'durationKey';
+const String isUpdateKey = 'isUpdateKey';
 
 class GlobalDeclaration {
   static String globalDuration = '';

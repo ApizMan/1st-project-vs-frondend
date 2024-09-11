@@ -6,7 +6,6 @@ import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
-import 'package:project/component/home_screen.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';

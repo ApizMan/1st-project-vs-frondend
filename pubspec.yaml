@@ -86,6 +86,7 @@ dependencies:
       url: https://github.com/MacDeveloper1/google_maps_cluster_manager.git
       ref: fix/cluster
   dart_geohash: ^2.1.0
+  flutter_local_notifications: ^17.2.2
 
 dev_dependencies:
   flutter_test:
