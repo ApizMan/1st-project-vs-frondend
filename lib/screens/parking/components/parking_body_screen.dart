@@ -28,8 +28,6 @@ class ParkingBodyScreen extends StatefulWidget {
   State<ParkingBodyScreen> createState() => _ParkingBodyScreenState();
 }
 
-
-
 class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   double _value = 0.65;
   int _remainingTime = 3600;
@@ -174,6 +172,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: DropdownFieldBlocBuilder<String?>(
+                      isEnabled: false,
                       showEmptyItem: false,
                       selectFieldBloc: formBloc!.carPlateNumber,
                       decoration: InputDecoration(

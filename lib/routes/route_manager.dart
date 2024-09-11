@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:project/screens/home/card_stack.dart';
 import 'package:project/screens/screens.dart';
 
 class AppRoute {
@@ -24,12 +25,14 @@ class AppRoute {
   static const monthlyPassPaymentScreen = '/monthlyPassPaymentScreen';
   static const monthlyPassReceiptScreen = '/monthlyPassReceiptScreen';
   static const transportInfoScreen = '/transportInfoScreen';
+  static const notificationScreen = '/notificationScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
     GetPage(name: signUpScreen, page: () => const SignUpScreen()),
     GetPage(name: homeScreen, page: () => const HomeScreen()),
+    // GetPage(name: homeScreen, page: () => const CardsStack()),
     GetPage(name: profileScreen, page: () => const ProfileScreen()),
     GetPage(
         name: transactionHistoryScreen,
@@ -55,5 +58,6 @@ class AppRoute {
         name: monthlyPassReceiptScreen,
         page: () => const MonthlyPassReceiptScreen()),
     GetPage(name: transportInfoScreen, page: () => const TransportInfoScreen()),
+    GetPage(name: notificationScreen, page: () => const NotificationScreen()),
   ];
 }

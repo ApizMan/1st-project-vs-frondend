@@ -29,3 +29,4 @@ export 'monthly_pass/components/monthly_pass_payment_screen.dart';
 export 'monthly_pass/components/monthly_pass_receipt_screen.dart';
 export 'transport_info/transport_info_screen.dart';
 export 'transport_info/components/transport_info_body.dart';
+export 'notification/notification_screen.dart';

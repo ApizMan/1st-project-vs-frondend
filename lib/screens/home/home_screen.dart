@@ -244,16 +244,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Stack(
-                      children: [
-                        Visibility(
-                          visible: paymentStatus,
-                          child: _clockingCountdown(context, countDownDuration),
-                        ),
-                        _topWidget(context, userModel),
-                      ],
+                    // Wrap Stack inside a Container or SizedBox with specific height
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.45, // You can adjust this based on your layout
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          double screenHeight = constraints.maxHeight;
+                          double screenWidth = constraints.maxWidth;
+
+                          return Stack(
+                            children: [
+                              // Position the countdown at the top or any desired position
+                              Positioned(
+                                top: screenHeight *
+                                    0.0, // Adjust the top position based on screen size
+                                left: screenWidth *
+                                    0.0, // Adjust left position if necessary
+                                right: screenWidth *
+                                    0.0, // Adjust right position if necessary
+                                child: Visibility(
+                                  visible: paymentStatus,
+                                  child: _clockingCountdown(
+                                      context, countDownDuration),
+                                ),
+                              ),
+                              // Position the top widget
+                              Positioned(
+                                top:
+                                    0, // You can adjust this value based on screen height
+                                left: 0,
+                                right: 0,
+                                child: _topWidget(context, userModel),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ),
-                    spaceVertical(height: 20.0),
                     const SliderScreen(),
                     spaceVertical(height: 20.0),
                     ServiceScreen(
@@ -341,7 +369,15 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoute.notificationScreen,
+                    arguments: {
+                      'locationDetail': details,
+                    },
+                  );
+                },
                 icon: Icon(
                   Icons.notifications_outlined,
                   color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -393,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         // ignore: unrelated_type_equality_checks
-                        'RM ${userModel.wallet?.amount == 0 ? 0.00 : double.parse(userModel.wallet!.amount!).toStringAsFixed(2)}',
+                        '${userModel.wallet?.amount == 0 ? 0.00 : double.parse(userModel.wallet!.amount!).toStringAsFixed(2)}',
                         style: textStyleNormal(
                           color:
                               details['color'] == 4294961979 ? kBlack : kWhite,

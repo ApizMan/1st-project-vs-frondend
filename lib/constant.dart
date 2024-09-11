@@ -2,13 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-// const String baseUrl = 'http://192.168.0.128:3000';  /* IP Address on Company Laptop */
-const String baseUrl =
-    'http://192.168.0.128:3000'; /* IP Address on Won Laptop */
+const String baseUrl = 'http://192.168.0.128:3000';  /* IP Address on Company Laptop */
+// const String baseUrl =
+//     'http://192.168.0.128:3000'; /* IP Address on Won Laptop */
+
+// const String baseUrl =
+//     'http://60.54.235.142:3000'; /* IP Address on Oneplus -> Win Laptop */
 
 // Countdown
 Duration countDownDuration = const Duration();
-
 
 Duration parseDuration(String durationString) {
   final parts = durationString.split(':');
@@ -19,12 +21,12 @@ Duration parseDuration(String durationString) {
 }
 
 String formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final hours = twoDigits(duration.inHours);
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$hours:$minutes:$seconds';
-  }
+  String twoDigits(int n) => n.toString().padLeft(2, '0');
+  final hours = twoDigits(duration.inHours);
+  final minutes = twoDigits(duration.inMinutes.remainder(60));
+  final seconds = twoDigits(duration.inSeconds.remainder(60));
+  return '$hours:$minutes:$seconds';
+}
 
 // Coordinate
 const String GOOGLE_MAPS_API_KEY = "AIzaSyDqSqaRpMggI2QWsPd-jdp-611FxMrxyMs";
