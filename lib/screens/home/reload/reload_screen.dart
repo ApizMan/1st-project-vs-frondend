@@ -2,7 +2,6 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
-import 'package:project/component/paymentGateway.dart';
 import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -23,6 +22,23 @@ class _ReloadScreenState extends State<ReloadScreen> {
   String? _selectedLabel; // Variable to store the selected label
   bool isOtherValue = false; // Flag to determine if "Other" is selected
   late ReloadFormBloc formBloc; // Make it non-nullable
+  late double amountReload;
+  String? payment;
+
+  @override
+  void initState() {
+    super.initState();
+    getReloadAmount();
+    getPaymentMethod();
+  }
+
+  Future<void> getReloadAmount() async {
+    amountReload = await SharedPreferencesHelper.getReloadAmount();
+  }
+
+  Future<void> getPaymentMethod() async {
+    payment = await SharedPreferencesHelper.getPayment();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,44 +62,60 @@ class _ReloadScreenState extends State<ReloadScreen> {
               LoadingDialog.show(context);
             },
             onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
-            onSuccess: (context, state) async {
+            onSuccess: (context, state) {
               LoadingDialog.hide(context);
 
-              // final payment = await SharedPreferencesHelper.getPayment();
+              try {
+                if (payment == 'FPX') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          WebViewPage(url: state.successResponse!),
+                    ),
+                  ).then(
+                    (value) => Navigator.pushNamed(
+                      context,
+                      AppRoute.reloadReceiptScreen,
+                      arguments: {
+                        'locationDetail': details,
+                        'userModel': userModel,
+                        'amount': amountReload,
+                      },
+                    ),
+                  );
 
-              // if (payment == 'FPX') {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) =>
-              //           WebViewPage(url: state.successResponse!),
-              //     ),
-              //   );
-              // } else {
-              //   Navigator.of(context).push(
-              //     MaterialPageRoute(
-              //       builder: (context) =>
-              //           QrCodeScreen(qrCodeUrl: state.successResponse!),
-              //     ),
-              //   );
-              // }
-
-              
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.successResponse!),
-                ),
-              );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.successResponse!),
+                    ),
+                  );
+                } else {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoute.reloadQRScreen,
+                    arguments: {
+                      'locationDetail': details,
+                      'qrCodeUrl': state.successResponse!,
+                    },
+                  ).then(
+                    (value) => Navigator.pushNamed(
+                      context,
+                      AppRoute.reloadReceiptScreen,
+                      arguments: {
+                        'locationDetail': details,
+                        'userModel': userModel,
+                        'amount': amountReload,
+                      },
+                    ),
+                  );
+                }
+              } catch (e) {
+                e.toString();
+              }
             },
             onFailure: (context, state) {
               LoadingDialog.hide(context);
-
-              Navigator.pushNamed(context, AppRoute.reloadReceiptScreen,
-                  arguments: {
-                    'locationDetail': details,
-                    'userModel': userModel,
-                  });
 
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

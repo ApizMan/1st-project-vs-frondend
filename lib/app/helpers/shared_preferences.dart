@@ -49,16 +49,16 @@ class SharedPreferencesHelper {
     return isFirstRun;
   }
 
-  static Future<void> setPayment(String setPayment) async {
+  static Future<void> setPayment({String setPayment = 'QR'}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(setPayment, paymentKey);
   }
 
   static Future<String> getPayment() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String paymentStatus = prefs.getString(paymentKey)!;
+    String paymentMethod = prefs.getString(paymentKey) ?? 'QR';
 
-    return paymentStatus;
+    return paymentMethod;
   }
 
   static Future<void> setPaymentStatus({bool paymentStatus = false}) async {
@@ -90,6 +90,34 @@ class SharedPreferencesHelper {
   static Future<bool> getDurationUpdate() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool duration = prefs.getBool(isUpdateKey) ?? false;
+
+    return duration;
+  }
+
+  static Future<void> setReloadAmount({double amount = 0.00, String carPlate = '', String monthlyDuration = ''}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble(amountReloadKey, amount);
+    prefs.setString(carPlateKey, carPlate);
+    prefs.setString(monthlyDurationKey, monthlyDuration);
+  }
+
+  static Future<double> getReloadAmount() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    double amount = prefs.getDouble(amountReloadKey) ?? 0.00;
+
+    return amount;
+  }
+
+  static Future<String> getCarPlate() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String carPlate = prefs.getString(carPlateKey) ?? '';
+
+    return carPlate;
+  }
+
+  static Future<String> getMonthlyDuration() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String duration = prefs.getString(monthlyDurationKey) ?? '';
 
     return duration;
   }

@@ -74,7 +74,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
     String? parkingCar = arguments['selectedCarPlate'] as String?;
-    double amount = double.parse(arguments['amount']);
+    double? amount = arguments['amount'] as double?;
     String? duration = arguments['duration'] as String?;
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -89,6 +89,18 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
             fontSize: 26,
             color: kWhite,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(AppRoute.monthlyPassScreen),
+            );
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: kWhite,
           ),
         ),
         actions: [
@@ -240,7 +252,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        amount.toStringAsFixed(2),
+                        amount!.toStringAsFixed(2),
                         style:
                             GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right

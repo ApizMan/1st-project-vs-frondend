@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
+import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
@@ -33,11 +35,27 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   int _selectedMonth = 1;
   DateTime _dateTime = DateTime.now();
   MonthlyPassFormBloc? formBloc;
+  late double amountReload;
+  String? payment;
+  String? selectPlate;
+  String? durationMonthly;
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now(); // Initialize _focusedDay with current date
+    getReloadAmount();
+    getPaymentMethod();
+  }
+
+  Future<void> getReloadAmount() async {
+    amountReload = await SharedPreferencesHelper.getReloadAmount();
+  }
+
+  Future<void> getPaymentMethod() async {
+    payment = await SharedPreferencesHelper.getPayment();
+    selectPlate = await SharedPreferencesHelper.getCarPlate();
+    durationMonthly = await SharedPreferencesHelper.getMonthlyDuration();
   }
 
   Map<String, List<int>> pricesPerMonth = {
@@ -101,6 +119,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
         platModel: widget.carPlates.isNotEmpty ? widget.carPlates : [],
         pbtModel: widget.pbtModel,
         details: widget.details,
+        model: widget.userModel,
       ),
       child: Builder(builder: (context) {
         formBloc = BlocProvider.of<MonthlyPassFormBloc>(context);
@@ -112,18 +131,53 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
           onSuccess: (context, state) {
             LoadingDialog.hide(context);
 
-            // Navigator.popAndPushNamed(context, AppRoute.parkingReceiptScreen,
-            //     arguments: {
-            //       'userModel': widget.userModel,
-            //       'locationDetail': widget.details,
-            //       'amount': _value.toStringAsFixed(2),
-            //     });
+            try {
+              if (payment == 'FPX') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        WebViewPage(url: state.successResponse!),
+                  ),
+                ).then(
+                  (value) => Navigator.pushNamed(
+                    context,
+                    AppRoute.monthlyPassReceiptScreen,
+                    arguments: {
+                      'locationDetail': widget.details,
+                      'userModel': widget.userModel,
+                      'amount': amountReload,
+                    },
+                  ),
+                );
 
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.successResponse!),
-              ),
-            );
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.successResponse!),
+                  ),
+                );
+              } else {
+                Navigator.pushNamed(
+                  context,
+                  AppRoute.reloadQRScreen,
+                  arguments: {
+                    'locationDetail': widget.details,
+                    'qrCodeUrl': state.successResponse!,
+                  },
+                ).then(
+                  (value) => Navigator.pushNamed(
+                      context, AppRoute.monthlyPassReceiptScreen,
+                      arguments: {
+                        'locationDetail': widget.details,
+                        'selectedCarPlate': selectPlate,
+                        'amount': amountReload,
+                        'duration': getDurationLabel(_selectedMonth),
+                      }),
+                );
+              }
+            } catch (e) {
+              e.toString();
+            }
           },
           onFailure: (context, state) {
             LoadingDialog.hide(context);

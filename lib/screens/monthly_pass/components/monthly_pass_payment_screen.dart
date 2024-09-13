@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
-import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
 
@@ -68,15 +68,13 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
         floatingActionButton: PrimaryButton(
           borderRadius: 10.0,
           buttonWidth: 0.8,
-          onPressed: () {
+          onPressed: () async {
             formBloc.submit();
-            Navigator.pushNamed(context, AppRoute.monthlyPassReceiptScreen,
-                arguments: {
-                  'locationDetail': details,
-                  'selectedCarPlate': parkingCar,
-                  'amount': formBloc.amount.value,
-                  'duration': duration,
-                });
+            await SharedPreferencesHelper.setReloadAmount(
+              amount: amount,
+              carPlate: parkingCar!,
+              monthlyDuration: duration!,
+            );
           },
           label: Text(
             'PAY',
@@ -150,7 +148,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        parkingCar!.split('-')[0],
+                        parkingCar!,
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),

@@ -71,7 +71,7 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
     UserModel? userModel = arguments['userModel'] as UserModel?;
-    double amount = double.parse(arguments['amount']);
+    double amount = arguments['amount'] as double;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
