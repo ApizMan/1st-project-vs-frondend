@@ -67,7 +67,16 @@ class ReloadFormBloc extends FormBloc<String, String> {
         if (response['error'] != null) {
           emitFailure(failureResponse: response['error'].toString());
         } else {
-          emitSuccess(successResponse: response['content']['qr']);
+          await SharedPreferencesHelper.setOrderDetails(
+            orderNo: response['order']['order_no'],
+            amount: double.parse(amount.value),
+            shiftId: response['order']['shift_id'],
+            terminalId: response['order']['terminal_id'],
+            storeId: response['order']['store_id'],
+            status: 'paid',
+          );
+
+          emitSuccess(successResponse: response['data']['content']['qr']);
         }
       } else {
         final response = await ReloadResources.reloadMoneyFPX(

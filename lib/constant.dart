@@ -91,7 +91,12 @@ const String isUpdateKey = 'isUpdateKey';
 const String amountReloadKey = 'amountReloadKey';
 const String carPlateKey = 'carPlateKey';
 const String monthlyDurationKey = 'monthlyDurationKey';
-
+const String orderNoKey = 'orderNoKey';
+const String orderAmountKey = 'orderAmountKey';
+const String orderStatusKey = 'orderStatusKey';
+const String orderStoreIdKey = 'orderStoreIdKey';
+const String orderShiftIdKey = 'orderShiftIdKey';
+const String orderTerminalIdKey = 'orderTerminalIdKey';
 
 class GlobalDeclaration {
   static String globalDuration = '';

@@ -94,7 +94,10 @@ class SharedPreferencesHelper {
     return duration;
   }
 
-  static Future<void> setReloadAmount({double amount = 0.00, String carPlate = '', String monthlyDuration = ''}) async {
+  static Future<void> setReloadAmount(
+      {double amount = 0.00,
+      String carPlate = '',
+      String monthlyDuration = ''}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble(amountReloadKey, amount);
     prefs.setString(carPlateKey, carPlate);
@@ -120,5 +123,48 @@ class SharedPreferencesHelper {
     String duration = prefs.getString(monthlyDurationKey) ?? '';
 
     return duration;
+  }
+
+// Method to set order details
+  static Future<void> setOrderDetails({
+    String orderNo = '',
+    double amount = 0,
+    String status = '',
+    String storeId = '',
+    String shiftId = '',
+    String terminalId = '',
+  }) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Save all the details in SharedPreferences
+    prefs.setString(orderNoKey, orderNo);
+    prefs.setDouble(orderAmountKey, amount);
+    prefs.setString(orderStatusKey, status);
+    prefs.setString(orderStoreIdKey, storeId);
+    prefs.setString(orderShiftIdKey, shiftId);
+    prefs.setString(orderTerminalIdKey, terminalId);
+  }
+
+// Method to get order details
+  static Future<Map<String, dynamic>> getOrderDetails() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Retrieve all the details from SharedPreferences
+    String orderNo = prefs.getString(orderNoKey) ?? '';
+    double amount = prefs.getDouble(orderAmountKey) ?? 0;
+    String status = prefs.getString(orderStatusKey) ?? '';
+    String storeId = prefs.getString(orderStoreIdKey) ?? '';
+    String shiftId = prefs.getString(orderShiftIdKey) ?? '';
+    String terminalId = prefs.getString(orderTerminalIdKey) ?? '';
+
+    // Return the details as a map
+    return {
+      'orderNo': orderNo,
+      'amount': amount,
+      'status': status,
+      'storeId': storeId,
+      'shiftId': shiftId,
+      'terminalId': terminalId,
+    };
   }
 }

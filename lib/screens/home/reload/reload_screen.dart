@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
@@ -24,12 +27,14 @@ class _ReloadScreenState extends State<ReloadScreen> {
   late ReloadFormBloc formBloc; // Make it non-nullable
   late double amountReload;
   String? payment;
+  late Map<String, dynamic> order;
 
   @override
   void initState() {
     super.initState();
     getReloadAmount();
     getPaymentMethod();
+    getPaymentProcess();
   }
 
   Future<void> getReloadAmount() async {
@@ -38,6 +43,10 @@ class _ReloadScreenState extends State<ReloadScreen> {
 
   Future<void> getPaymentMethod() async {
     payment = await SharedPreferencesHelper.getPayment();
+  }
+
+  Future<void> getPaymentProcess() async {
+    order = await SharedPreferencesHelper.getOrderDetails();
   }
 
   @override
@@ -98,17 +107,52 @@ class _ReloadScreenState extends State<ReloadScreen> {
                       'locationDetail': details,
                       'qrCodeUrl': state.successResponse!,
                     },
-                  ).then(
-                    (value) => Navigator.pushNamed(
-                      context,
-                      AppRoute.reloadReceiptScreen,
-                      arguments: {
-                        'locationDetail': details,
-                        'userModel': userModel,
-                        'amount': amountReload,
-                      },
-                    ),
-                  );
+                  ).then((value) async {
+                    final response = await ReloadResources.reloadProcess(
+                      prefix: '/payment/transaction-details',
+                      body: jsonEncode({
+                        'order_no': order['orderNo'],
+                      }),
+                    );
+
+                    if (response['status'] == 'success') {
+                      if (response['content']['order_status'] == 'successful') {
+                        await ReloadResources.reloadSuccessful(
+                          prefix: '/payment/transaction-details',
+                          body: jsonEncode({
+                            'order_no': order['orderNo'],
+                            'order_amount': order['amount'],
+                            'order_Status': order['status'],
+                            'store_id': order['storeId'],
+                            'shift_id': order['shiftId'],
+                            'terminal_id': order['terminalId'],
+                          }),
+                        );
+
+                        Navigator.pushNamed(
+                          context,
+                          AppRoute.reloadReceiptScreen,
+                          arguments: {
+                            'locationDetail': details,
+                            'userModel': userModel,
+                            'amount': amountReload,
+                          },
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(response['content']['order_status']),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(response['status']),
+                        ),
+                      );
+                    }
+                  });
                 }
               } catch (e) {
                 e.toString();
