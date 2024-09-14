@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
+import 'package:project/models/models.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
 
@@ -48,6 +49,8 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
         arguments['locationDetail'] as Map<String, dynamic>;
     MonthlyPassFormBloc? formBloc =
         arguments['formBloc'] as MonthlyPassFormBloc;
+    MonthlyPassModel? model =
+        arguments['monthlyPassModel'] as MonthlyPassModel?;
 
     return Scaffold(
         appBar: AppBar(
@@ -70,6 +73,13 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
           buttonWidth: 0.8,
           onPressed: () async {
             formBloc.submit();
+
+            model!.duration = duration;
+            model.amount = amount.toString();
+            model.location = formBloc.location.value;
+            model.pbt = formBloc.pbt.value;
+            model.plateNumber = parkingCar;
+
             await SharedPreferencesHelper.setReloadAmount(
               amount: amount,
               carPlate: parkingCar!,

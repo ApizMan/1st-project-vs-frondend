@@ -39,24 +39,18 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   DateTime _dateTime = DateTime.now();
   MonthlyPassFormBloc? formBloc;
   late double amountReload;
-  String? selectPlate;
-  String? durationMonthly;
+  late MonthlyPassModel monthlyPassModel;
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now(); // Initialize _focusedDay with current date
     getReloadAmount();
-    getPaymentMethod();
+    monthlyPassModel = MonthlyPassModel();
   }
 
   Future<void> getReloadAmount() async {
     amountReload = await SharedPreferencesHelper.getReloadAmount();
-  }
-
-  Future<void> getPaymentMethod() async {
-    selectPlate = await SharedPreferencesHelper.getCarPlate();
-    durationMonthly = await SharedPreferencesHelper.getMonthlyDuration();
   }
 
   Map<String, List<int>> pricesPerMonth = {
@@ -145,6 +139,12 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                 ).then((value) async {
                   final order = await SharedPreferencesHelper.getOrderDetails();
 
+                  final selectPlate =
+                      await SharedPreferencesHelper.getCarPlate();
+
+                  final durationMonthly =
+                      await SharedPreferencesHelper.getMonthlyDuration();
+
                   final response = await ReloadResources.reloadProcess(
                     prefix: '/paymentfpx/callbackurl-fpx/',
                     body: jsonEncode({
@@ -160,15 +160,40 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
 
                   if (response['SFM']['Constant'] ==
                       'SFM_EXECUTE_PAYMENT_SUCCESS') {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoute.reloadReceiptScreen,
-                      arguments: {
-                        'locationDetail': widget.details,
-                        'userModel': widget.userModel,
-                        'amount': double.parse(order['amount']),
-                      },
+                    final response =
+                        await MonthlyPassResources.createMonthlyPass(
+                      prefix: '/monthlyPass/create',
+                      body: jsonEncode(
+                        {
+                          'plateNumberId':
+                              monthlyPassModel.plateNumber.toString(),
+                          'pbtId': monthlyPassModel.pbt.toString(),
+                          'amount': double.parse(monthlyPassModel.amount!),
+                          'duration': monthlyPassModel.duration.toString(),
+                          'location': monthlyPassModel.location.toString(),
+                        },
+                      ),
                     );
+
+                    if (response['status'] == 'success') {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.monthlyPassReceiptScreen,
+                        arguments: {
+                          'locationDetail': widget.details,
+                          'selectedCarPlate': selectPlate,
+                          'amount': double.parse(response['data']['amount']),
+                          'duration': durationMonthly,
+                        },
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Monthly Pass Unsuccessful Store to Database'),
+                        ),
+                      );
+                    }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -187,6 +212,12 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                   },
                 ).then((value) async {
                   final order = await SharedPreferencesHelper.getOrderDetails();
+
+                  final selectPlate =
+                      await SharedPreferencesHelper.getCarPlate();
+
+                  final durationMonthly =
+                      await SharedPreferencesHelper.getMonthlyDuration();
 
                   final response = await ReloadResources.reloadProcess(
                     prefix: '/payment/transaction-details',
@@ -210,16 +241,41 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                       );
 
                       if (response['order_status'] == 'paid') {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoute.reloadReceiptScreen,
-                          arguments: {
-                            'locationDetail': widget.details,
-                            'userModel': widget.userModel,
-                            'amount': double.parse(
-                                response['order_amount'].toString()),
-                          },
+                        final response =
+                            await MonthlyPassResources.createMonthlyPass(
+                          prefix: '/monthlyPass/create',
+                          body: jsonEncode(
+                            {
+                              'plateNumber':
+                                  monthlyPassModel.plateNumber.toString(),
+                              'pbt': monthlyPassModel.pbt.toString(),
+                              'amount': double.parse(monthlyPassModel.amount!),
+                              'duration': monthlyPassModel.duration.toString(),
+                              'location': monthlyPassModel.location.toString(),
+                            },
+                          ),
                         );
+
+                        if (response['status'] == 'success') {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.monthlyPassReceiptScreen,
+                            arguments: {
+                              'locationDetail': widget.details,
+                              'selectedCarPlate': selectPlate,
+                              'amount':
+                                  double.parse(response['data']['amount']),
+                              'duration': durationMonthly,
+                            },
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Monthly Pass Unsuccessful Store to Database'),
+                            ),
+                          );
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -399,12 +455,17 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                         fillColor: Colors.white.withOpacity(0.8),
                       ),
                       itemBuilder: (context, value) {
+                        final pbtValue = widget.pbtModel.firstWhere(
+                          (pbt) => pbt.name == value,
+                          orElse: () => widget.pbtModel.first,
+                        );
+
                         return FieldItem(
                           onTap: () {
-                            if (value == imgName[0]) {
+                            if (pbtValue.name == imgName[0]) {
                               formBloc!.location
                                   .updateInitialValue(imgState[0]);
-                            } else if (value == imgName[1]) {
+                            } else if (pbtValue.name == imgName[1]) {
                               formBloc!.location
                                   .updateInitialValue(imgState[1]);
                             } else {
@@ -415,7 +476,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Text(value!),
+                            child: Text(pbtValue.name!),
                           ),
                         );
                       },
@@ -583,6 +644,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                         'duration': getDurationLabel(_selectedMonth),
                         'locationDetail': widget.details,
                         'formBloc': formBloc,
+                        'monthlyPassModel': monthlyPassModel,
                       },
                     );
                     formBloc!.amount

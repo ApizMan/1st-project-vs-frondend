@@ -73,16 +73,13 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
         prefix: '/payment/generate-qr',
         body: jsonEncode({
           'order_amount': double.parse(amount.value),
-          'store_id': 'Token', //description
+          'store_id': 'Monthly Pass', //description
           'terminal_id': details['location'], //email
           'shift_id': model.email, //city
         }),
       );
 
       GlobalState.paymentMethod = 'QR';
-
-      await SharedPreferencesHelper.setReloadAmount(
-          amount: double.parse(amount.value));
 
       if (response['error'] != null) {
         emitFailure(failureResponse: response['error'].toString());

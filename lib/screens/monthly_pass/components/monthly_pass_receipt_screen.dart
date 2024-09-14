@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/constant.dart';
+import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'dart:ui' as ui;
@@ -76,6 +77,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
     String? parkingCar = arguments['selectedCarPlate'] as String?;
     double? amount = arguments['amount'] as double?;
     String? duration = arguments['duration'] as String?;
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
