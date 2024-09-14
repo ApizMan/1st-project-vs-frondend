@@ -8,7 +8,7 @@ class SharedPreferencesHelper {
   }
 
   static Future<void> saveLocationDetail(
-      {String location = 'Majlis Bandaraya Kuantan',
+      {String location = 'PBT Kuantan',
       String state = 'Pahang',
       String logo = kuantanLogo,
       int? color}) async {
@@ -47,18 +47,6 @@ class SharedPreferencesHelper {
     bool isFirstRun = prefs.getBool(isFirstRunKey) ?? true;
 
     return isFirstRun;
-  }
-
-  static Future<void> setPayment({String setPayment = 'QR'}) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(setPayment, paymentKey);
-  }
-
-  static Future<String> getPayment() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String paymentMethod = prefs.getString(paymentKey) ?? 'QR';
-
-    return paymentMethod;
   }
 
   static Future<void> setPaymentStatus({bool paymentStatus = false}) async {
@@ -128,7 +116,7 @@ class SharedPreferencesHelper {
 // Method to set order details
   static Future<void> setOrderDetails({
     String orderNo = '',
-    double amount = 0,
+    String amount = '',
     String status = '',
     String storeId = '',
     String shiftId = '',
@@ -138,7 +126,7 @@ class SharedPreferencesHelper {
 
     // Save all the details in SharedPreferences
     prefs.setString(orderNoKey, orderNo);
-    prefs.setDouble(orderAmountKey, amount);
+    prefs.setString(orderAmountKey, amount);
     prefs.setString(orderStatusKey, status);
     prefs.setString(orderStoreIdKey, storeId);
     prefs.setString(orderShiftIdKey, shiftId);
@@ -151,7 +139,7 @@ class SharedPreferencesHelper {
 
     // Retrieve all the details from SharedPreferences
     String orderNo = prefs.getString(orderNoKey) ?? '';
-    double amount = prefs.getDouble(orderAmountKey) ?? 0;
+    String amount = prefs.getString(orderAmountKey) ?? '';
     String status = prefs.getString(orderStatusKey) ?? '';
     String storeId = prefs.getString(orderStoreIdKey) ?? '';
     String shiftId = prefs.getString(orderShiftIdKey) ?? '';

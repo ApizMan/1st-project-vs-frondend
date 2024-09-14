@@ -26,27 +26,15 @@ class _ReloadScreenState extends State<ReloadScreen> {
   bool isOtherValue = false; // Flag to determine if "Other" is selected
   late ReloadFormBloc formBloc; // Make it non-nullable
   late double amountReload;
-  String? payment;
-  late Map<String, dynamic> order;
 
   @override
   void initState() {
     super.initState();
     getReloadAmount();
-    getPaymentMethod();
-    getPaymentProcess();
   }
 
   Future<void> getReloadAmount() async {
     amountReload = await SharedPreferencesHelper.getReloadAmount();
-  }
-
-  Future<void> getPaymentMethod() async {
-    payment = await SharedPreferencesHelper.getPayment();
-  }
-
-  Future<void> getPaymentProcess() async {
-    order = await SharedPreferencesHelper.getOrderDetails();
   }
 
   @override
@@ -61,6 +49,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
     return BlocProvider(
       create: (context) => ReloadFormBloc(
         model: userModel!,
+        details: details,
       ),
       child: Builder(
         builder: (context) {
@@ -74,6 +63,8 @@ class _ReloadScreenState extends State<ReloadScreen> {
             onSuccess: (context, state) {
               LoadingDialog.hide(context);
 
+              final payment = GlobalState.paymentMethod;
+
               try {
                 if (payment == 'FPX') {
                   Navigator.push(
@@ -82,23 +73,42 @@ class _ReloadScreenState extends State<ReloadScreen> {
                       builder: (context) =>
                           WebViewPage(url: state.successResponse!),
                     ),
-                  ).then(
-                    (value) => Navigator.pushNamed(
-                      context,
-                      AppRoute.reloadReceiptScreen,
-                      arguments: {
-                        'locationDetail': details,
-                        'userModel': userModel,
-                        'amount': amountReload,
-                      },
-                    ),
-                  );
+                  ).then((value) async {
+                    final order =
+                        await SharedPreferencesHelper.getOrderDetails();
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.successResponse!),
-                    ),
-                  );
+                    final response = await ReloadResources.reloadProcess(
+                      prefix: '/paymentfpx/callbackurl-fpx/',
+                      body: jsonEncode({
+                        'ActivityTag': "CheckPaymentStatus",
+                        'LanguageCode': 'en',
+                        'AppReleaseId': 34,
+                        'GMTTimeDifference': 8,
+                        'PaymentTxnRef': null,
+                        'BillId': order['orderNo'],
+                        'BillReference': "Reload${order['terminalId']}",
+                      }),
+                    );
+
+                    if (response['SFM']['Constant'] ==
+                        'SFM_EXECUTE_PAYMENT_SUCCESS') {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.reloadReceiptScreen,
+                        arguments: {
+                          'locationDetail': details,
+                          'userModel': userModel,
+                          'amount': double.parse(order['amount']),
+                        },
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Payment FPX Unseccessful'),
+                        ),
+                      );
+                    }
+                  });
                 } else {
                   Navigator.pushNamed(
                     context,
@@ -108,6 +118,9 @@ class _ReloadScreenState extends State<ReloadScreen> {
                       'qrCodeUrl': state.successResponse!,
                     },
                   ).then((value) async {
+                    final order =
+                        await SharedPreferencesHelper.getOrderDetails();
+
                     final response = await ReloadResources.reloadProcess(
                       prefix: '/payment/transaction-details',
                       body: jsonEncode({
@@ -117,27 +130,36 @@ class _ReloadScreenState extends State<ReloadScreen> {
 
                     if (response['status'] == 'success') {
                       if (response['content']['order_status'] == 'successful') {
-                        await ReloadResources.reloadSuccessful(
-                          prefix: '/payment/transaction-details',
+                        final response = await ReloadResources.reloadSuccessful(
+                          prefix: '/payment/callbackUrl/pegeypay',
                           body: jsonEncode({
                             'order_no': order['orderNo'],
-                            'order_amount': order['amount'],
-                            'order_Status': order['status'],
+                            'order_amount': double.parse(order['amount']),
+                            'order_status': order['status'],
                             'store_id': order['storeId'],
                             'shift_id': order['shiftId'],
                             'terminal_id': order['terminalId'],
                           }),
                         );
 
-                        Navigator.pushNamed(
-                          context,
-                          AppRoute.reloadReceiptScreen,
-                          arguments: {
-                            'locationDetail': details,
-                            'userModel': userModel,
-                            'amount': amountReload,
-                          },
-                        );
+                        if (response['order_status'] == 'paid') {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.reloadReceiptScreen,
+                            arguments: {
+                              'locationDetail': details,
+                              'userModel': userModel,
+                              'amount': double.parse(
+                                  response['order_amount'].toString()),
+                            },
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('UnSuccessful Reload'),
+                            ),
+                          );
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

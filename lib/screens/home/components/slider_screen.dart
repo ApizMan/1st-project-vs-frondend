@@ -20,9 +20,9 @@ class _SliderScreenState extends State<SliderScreen> {
   ];
 
   final List<String> imgName = [
-    'Majlis Bandaraya Kuantan',
-    'Majlis Bandaraya Kuala Terengganu',
-    'Majlis Daerah Machang',
+    'PBT Kuantan',
+    'PBT Kuala Terengganu',
+    'PBT Machang',
   ];
 
   final List<String> imgState = [
@@ -56,7 +56,7 @@ class _SliderScreenState extends State<SliderScreen> {
 
       return ScaleTap(
         onPressed: () async {
-      // Only handle the tapped item
+          // Only handle the tapped item
           await SharedPreferencesHelper.saveLocationDetail(
             location: imgName[index],
             state: imgState[index],

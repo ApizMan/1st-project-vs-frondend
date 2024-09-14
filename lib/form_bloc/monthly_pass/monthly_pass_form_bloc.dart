@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
+import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
 
@@ -73,17 +74,29 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
         body: jsonEncode({
           'order_amount': double.parse(amount.value),
           'store_id': 'Token', //description
-          'terminal_id': model.firstName, //email
+          'terminal_id': details['location'], //email
           'shift_id': model.email, //city
         }),
       );
 
-      await SharedPreferencesHelper.setPayment(setPayment: 'QR');
+      GlobalState.paymentMethod = 'QR';
+
+      await SharedPreferencesHelper.setReloadAmount(
+          amount: double.parse(amount.value));
 
       if (response['error'] != null) {
         emitFailure(failureResponse: response['error'].toString());
       } else {
-        emitSuccess(successResponse: response['content']['qr']);
+        await SharedPreferencesHelper.setOrderDetails(
+          orderNo: response['order']['order_no'],
+          amount: response['order']['order_amount'].toString(),
+          shiftId: response['order']['shift_id'],
+          terminalId: response['order']['terminal_id'],
+          storeId: response['order']['store_id'],
+          status: 'paid',
+        );
+
+        emitSuccess(successResponse: response['data']['content']['qr']);
       }
     } else {
       final response = await ReloadResources.reloadMoneyFPX(
@@ -93,7 +106,13 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
         }),
       );
 
-      await SharedPreferencesHelper.setPayment(setPayment: 'FPX');
+      GlobalState.paymentMethod = 'FPX';
+
+      await SharedPreferencesHelper.setOrderDetails(
+        orderNo: response['BillId'].toString(),
+        amount: amount.value.toString(),
+        terminalId: response['BatchName'].toString(),
+      );
 
       if (response['error'] != null) {
         emitFailure(failureResponse: response['error'].toString());

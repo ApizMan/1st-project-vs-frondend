@@ -37,9 +37,9 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   StoreParkingFormBloc? formBloc;
 
   final List<String> imgName = [
-    'Majlis Bandaraya Kuantan',
-    'Majlis Bandaraya Kuala Terengganu',
-    'Majlis Daerah Machang',
+    'PBT Kuantan',
+    'PBT Kuala Terengganu',
+    'PBT Machang',
   ];
 
   final List<String> imgState = [

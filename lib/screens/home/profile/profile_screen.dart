@@ -103,9 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   final Map<String, String> pbtMap = {
-    'Majlis Bandaraya Kuantan': 'e2cdf0ae-3d97-4032-b451-3bff0c9853ec',
-    'Majlis Daerah Machang': '942a008f-65a1-4edf-a67a-0509e1c6867d',
-    'Majlis Bandaraya Kuala Terengganu': 'b7c6f626-c33f-4f08-a9d2-cfe4a49bad47',
+    'PBT Kuantan': 'e2cdf0ae-3d97-4032-b451-3bff0c9853ec',
+    'PBT Machang': '942a008f-65a1-4edf-a67a-0509e1c6867d',
+    'PBT Kuala Terengganu': 'b7c6f626-c33f-4f08-a9d2-cfe4a49bad47',
   };
 
   Future<void> fetchCarPlate() async {

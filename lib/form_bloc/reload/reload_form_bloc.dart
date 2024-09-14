@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
+import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/reload/reload_resources.dart';
 
 class ReloadFormBloc extends FormBloc<String, String> {
   final UserModel model;
+  final Map<String, dynamic> details;
   final other = TextFieldBloc();
 
   final token = TextFieldBloc(
@@ -32,6 +34,7 @@ class ReloadFormBloc extends FormBloc<String, String> {
 
   ReloadFormBloc({
     required this.model,
+    required this.details,
   }) {
     addFieldBlocs(
       fieldBlocs: [
@@ -54,12 +57,12 @@ class ReloadFormBloc extends FormBloc<String, String> {
           body: jsonEncode({
             'order_amount': double.parse(amount.value),
             'store_id': 'Token', //description
-            'terminal_id': model.firstName, //email
+            'terminal_id': details['location'], //email
             'shift_id': model.email, //city
           }),
         );
 
-        await SharedPreferencesHelper.setPayment(setPayment: 'QR');
+        GlobalState.paymentMethod = 'QR';
 
         await SharedPreferencesHelper.setReloadAmount(
             amount: double.parse(amount.value));
@@ -69,7 +72,7 @@ class ReloadFormBloc extends FormBloc<String, String> {
         } else {
           await SharedPreferencesHelper.setOrderDetails(
             orderNo: response['order']['order_no'],
-            amount: double.parse(amount.value),
+            amount: response['order']['order_amount'].toString(),
             shiftId: response['order']['shift_id'],
             terminalId: response['order']['terminal_id'],
             storeId: response['order']['store_id'],
@@ -86,7 +89,13 @@ class ReloadFormBloc extends FormBloc<String, String> {
           }),
         );
 
-        await SharedPreferencesHelper.setPayment(setPayment: 'FPX');
+        GlobalState.paymentMethod = 'FPX';
+
+        await SharedPreferencesHelper.setOrderDetails(
+          orderNo: response['BillId'].toString(),
+          amount: amount.value.toString(),
+          terminalId: response['BatchName'].toString(),
+        );
 
         if (response['error'] != null) {
           emitFailure(failureResponse: response['error'].toString());
@@ -94,8 +103,6 @@ class ReloadFormBloc extends FormBloc<String, String> {
           emitSuccess(successResponse: response['ShortcutLink']);
         }
       }
-
-      // emitSuccess();
     } else {
       if (token.value.isEmpty) {
         // Assuming token holds 'Other'

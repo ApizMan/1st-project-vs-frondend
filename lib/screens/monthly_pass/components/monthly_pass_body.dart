@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +8,7 @@ import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
@@ -36,7 +39,6 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   DateTime _dateTime = DateTime.now();
   MonthlyPassFormBloc? formBloc;
   late double amountReload;
-  String? payment;
   String? selectPlate;
   String? durationMonthly;
 
@@ -53,7 +55,6 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   }
 
   Future<void> getPaymentMethod() async {
-    payment = await SharedPreferencesHelper.getPayment();
     selectPlate = await SharedPreferencesHelper.getCarPlate();
     durationMonthly = await SharedPreferencesHelper.getMonthlyDuration();
   }
@@ -71,9 +72,9 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   };
 
   final List<String> imgName = [
-    'Majlis Bandaraya Kuantan',
-    'Majlis Bandaraya Kuala Terengganu',
-    'Majlis Daerah Machang',
+    'PBT Kuantan',
+    'PBT Kuala Terengganu',
+    'PBT Machang',
   ];
 
   final List<String> imgState = [
@@ -131,6 +132,8 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
           onSuccess: (context, state) {
             LoadingDialog.hide(context);
 
+            final payment = GlobalState.paymentMethod;
+
             try {
               if (payment == 'FPX') {
                 Navigator.push(
@@ -139,23 +142,41 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                     builder: (context) =>
                         WebViewPage(url: state.successResponse!),
                   ),
-                ).then(
-                  (value) => Navigator.pushNamed(
-                    context,
-                    AppRoute.monthlyPassReceiptScreen,
-                    arguments: {
-                      'locationDetail': widget.details,
-                      'userModel': widget.userModel,
-                      'amount': amountReload,
-                    },
-                  ),
-                );
+                ).then((value) async {
+                  final order = await SharedPreferencesHelper.getOrderDetails();
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.successResponse!),
-                  ),
-                );
+                  final response = await ReloadResources.reloadProcess(
+                    prefix: '/paymentfpx/callbackurl-fpx/',
+                    body: jsonEncode({
+                      'ActivityTag': "CheckPaymentStatus",
+                      'LanguageCode': 'en',
+                      'AppReleaseId': 34,
+                      'GMTTimeDifference': 8,
+                      'PaymentTxnRef': null,
+                      'BillId': order['orderNo'],
+                      'BillReference': "Reload${order['terminalId']}",
+                    }),
+                  );
+
+                  if (response['SFM']['Constant'] ==
+                      'SFM_EXECUTE_PAYMENT_SUCCESS') {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoute.reloadReceiptScreen,
+                      arguments: {
+                        'locationDetail': widget.details,
+                        'userModel': widget.userModel,
+                        'amount': double.parse(order['amount']),
+                      },
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Payment FPX Unseccessful'),
+                      ),
+                    );
+                  }
+                });
               } else {
                 Navigator.pushNamed(
                   context,
@@ -164,16 +185,63 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                     'locationDetail': widget.details,
                     'qrCodeUrl': state.successResponse!,
                   },
-                ).then(
-                  (value) => Navigator.pushNamed(
-                      context, AppRoute.monthlyPassReceiptScreen,
-                      arguments: {
-                        'locationDetail': widget.details,
-                        'selectedCarPlate': selectPlate,
-                        'amount': amountReload,
-                        'duration': getDurationLabel(_selectedMonth),
-                      }),
-                );
+                ).then((value) async {
+                  final order = await SharedPreferencesHelper.getOrderDetails();
+
+                  final response = await ReloadResources.reloadProcess(
+                    prefix: '/payment/transaction-details',
+                    body: jsonEncode({
+                      'order_no': order['orderNo'],
+                    }),
+                  );
+
+                  if (response['status'] == 'success') {
+                    if (response['content']['order_status'] == 'successful') {
+                      final response = await ReloadResources.reloadSuccessful(
+                        prefix: '/payment/callbackUrl/pegeypay',
+                        body: jsonEncode({
+                          'order_no': order['orderNo'],
+                          'order_amount': double.parse(order['amount']),
+                          'order_status': order['status'],
+                          'store_id': order['storeId'],
+                          'shift_id': order['shiftId'],
+                          'terminal_id': order['terminalId'],
+                        }),
+                      );
+
+                      if (response['order_status'] == 'paid') {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoute.reloadReceiptScreen,
+                          arguments: {
+                            'locationDetail': widget.details,
+                            'userModel': widget.userModel,
+                            'amount': double.parse(
+                                response['order_amount'].toString()),
+                          },
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('UnSuccessful Reload'),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(response['content']['order_status']),
+                        ),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(response['status']),
+                      ),
+                    );
+                  }
+                });
               }
             } catch (e) {
               e.toString();
