@@ -6,7 +6,7 @@ import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 
 class ReserveDocumentWidget extends StatelessWidget {
-  final ReserveBayFormBloc formBloc;
+  final StoreReserveBayFormBloc formBloc;
 
   const ReserveDocumentWidget({super.key, required this.formBloc});
 

@@ -108,7 +108,6 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       Navigator.pushNamed(context, AppRoute.reserveBayScreen,
                           arguments: {
                             'locationDetail': widget.details,
-                            'userModel': widget.userModel,
                           });
                     },
                     image: reserveBayImage,

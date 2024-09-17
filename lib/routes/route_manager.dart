@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:project/component/paymentGateway.dart';
-import 'package:project/screens/home/card_stack.dart';
 import 'package:project/screens/screens.dart';
 
 class AppRoute {
@@ -20,6 +19,8 @@ class AppRoute {
   static const reloadPaymentScreen = '/reloadPaymentScreen';
   static const reloadReceiptScreen = '/reloadReceiptScreen';
   static const reserveBayScreen = '/reserveBayScreen';
+  static const addReserveBayScreen = '/addReserveBayScreen';
+  static const viewReserveBayScreen = '/viewReserveBayScreen';
   static const summonsScreen = '/summonsScreen';
   static const summonsPaymentScreen = '/summonsPaymentScreen';
   static const summonsReceiptScreen = '/summonsReceiptScreen';
@@ -50,6 +51,9 @@ class AppRoute {
     GetPage(name: reloadPaymentScreen, page: () => const ReloadPaymentScreen()),
     GetPage(name: reloadReceiptScreen, page: () => const ReloadReceiptScreen()),
     GetPage(name: reserveBayScreen, page: () => const ReserveBayScreen()),
+    GetPage(name: addReserveBayScreen, page: () => const AddReserveBayScreen()),
+    GetPage(
+        name: viewReserveBayScreen, page: () => const ViewReserveBayScreen()),
     GetPage(name: summonsScreen, page: () => const SummonsScreen()),
     GetPage(
         name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),

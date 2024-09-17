@@ -3,11 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/app/helpers/validators.dart';
-import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
 
-class ReserveBayFormBloc extends FormBloc<String, String> {
+class StoreReserveBayFormBloc extends FormBloc<String, String> {
   final ReserveBayModel model = ReserveBayModel();
   final companyName = TextFieldBloc(
     validators: [
@@ -27,7 +26,7 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
       'Agensi Kerajaan',
       'Bank / Institusi Kewangan',
       'Kilang',
-      'Kedai Membaiki Kenderaan / MOtorsikal',
+      'Kedai Membaiki Kenderaan / Motorsikal',
       'Industri Kecil / Sederhana',
       'Hotel Bajet',
       'Lain - Lain',
@@ -168,7 +167,7 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
     InputValidator.required,
   ]);
 
-  ReserveBayFormBloc() {
+  StoreReserveBayFormBloc() {
     addFieldBlocs(
       step: 0,
       fieldBlocs: [
@@ -240,7 +239,16 @@ class ReserveBayFormBloc extends FormBloc<String, String> {
       model.phoneNumber = phoneNumber.value;
       model.email = email.value;
       model.idNumber = idNumber.value;
-      model.lotNumber = totalLot.value;
+
+      if (totalLot.value == "3 Bulan: RM 300") {
+        model.totalLotRequired = 300;
+      } else if (totalLot.value == "6 Bulan: RM 600") {
+        model.totalLotRequired = 600;
+      } else {
+        model.totalLotRequired = 1200;
+      }
+
+      model.lotNumber = lotNumber.value;
       model.reason = reason.value;
       model.location = location.value;
 

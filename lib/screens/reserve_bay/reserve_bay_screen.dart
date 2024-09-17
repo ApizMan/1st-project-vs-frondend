@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:project/constant.dart';
-import 'package:project/form_bloc/form_bloc.dart';
-import 'package:project/screens/screens.dart';
+import 'package:project/models/models.dart';
+import 'package:project/resources/resources.dart';
+import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
-import 'package:project/widget/primary_button.dart';
 
 class ReserveBayScreen extends StatefulWidget {
   const ReserveBayScreen({super.key});
@@ -15,7 +15,35 @@ class ReserveBayScreen extends StatefulWidget {
 }
 
 class _ReserveBayScreenState extends State<ReserveBayScreen> {
-  ReserveBayFormBloc? formBloc;
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+  late Future<void> _initData;
+  List<ReserveBayModel> reserveBayList = []; // List to store models
+
+  @override
+  void initState() {
+    super.initState();
+    _initData = _getReserveBay();
+  }
+
+  Future<void> _getReserveBay() async {
+    final data = await ReserveBayResources.getListReserveBay(
+      prefix: '/reservebay',
+    );
+
+    if (data != null && mounted) {
+      if (data is List) {
+        setState(() {
+          reserveBayList = data
+              .map((item) => ReserveBayModel.fromJson(item))
+              .toList(); // Populate list with models
+        });
+      } else {
+        const LoadingDialog();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final arguments =
@@ -23,199 +51,186 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
 
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
-    return BlocProvider(
-      create: (context) => ReserveBayFormBloc(),
-      child: Builder(builder: (context) {
-        formBloc = BlocProvider.of<ReserveBayFormBloc>(context);
-        return FormBlocListener<ReserveBayFormBloc, String, String>(
-          onSubmitting: (context, state) {
-            LoadingDialog.show(context);
-          },
-          onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
-          onSuccess: (context, state) {
-            LoadingDialog.hide(context);
-
-            if (state.stepCompleted == state.lastStep) {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.successResponse!),
+    return FutureBuilder<void>(
+        future: _initData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: LoadingDialog(),
+            );
+          } else if (snapshot.hasError) {
+            return const Scaffold(body: LoadingDialog());
+          } else {
+            return Scaffold(
+              backgroundColor: kBackgroundColor,
+              appBar: AppBar(
+                toolbarHeight: 100,
+                foregroundColor:
+                    details['color'] == 4294961979 ? kBlack : kWhite,
+                backgroundColor: Color(details['color']),
+                centerTitle: true,
+                title: Text(
+                  'Reserve Bay',
+                  style: textStyleNormal(
+                    fontSize: 26,
+                    color: details['color'] == 4294961979 ? kBlack : kWhite,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              );
-            }
-          },
-          onFailure: (context, state) {
-            LoadingDialog.hide(context);
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoute.addReserveBayScreen,
+                    arguments: {
+                      'locationDetail': details,
+                    },
+                  );
+                },
+                backgroundColor: kPrimaryColor,
+                foregroundColor: kWhite,
+                child: const Icon(
+                  Icons.add,
+                ),
+              ),
+              body: RefreshIndicator(
+                key: _refreshIndicatorKey,
+                onRefresh: _getReserveBay,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: reserveBayList.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.receipt,
+                                color: kGrey,
+                                size: 80,
+                              ),
+                              spaceVertical(height: 10.0),
+                              Text(
+                                'There no records of Reserve Bay.',
+                                style: textStyleNormal(
+                                  color: kGrey,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : ListView.builder(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemCount: reserveBayList.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            final reserveBay = reserveBayList[index];
+                            final String reserveBayTotalLot;
 
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.failureResponse!),
+                            if (reserveBay.totalLotRequired == 300) {
+                              reserveBayTotalLot = '3 Bulan: RM 300';
+                            } else if (reserveBay.totalLotRequired == 600) {
+                              reserveBayTotalLot = '6 Bulan: RM 600';
+                            } else {
+                              reserveBayTotalLot = '12 Bulan: RM 1,200';
+                            }
+                            return ScaleTap(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, AppRoute.viewReserveBayScreen,
+                                    arguments: {
+                                      'locationDetail': details,
+                                      'reserveBayModel': reserveBay,
+                                    });
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 5.0),
+                                padding: const EdgeInsets.all(10.0),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
+                                  border: Border.all(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Company Name: ${reserveBay.companyName}",
+                                          style: textStyleNormal(),
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0),
+                                          decoration: BoxDecoration(
+                                            color: kPrimaryColor,
+                                            borderRadius:
+                                                BorderRadius.circular(30.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                                blurRadius: 4,
+                                                offset: const Offset(0, 2),
+                                              ),
+                                            ],
+                                            border: Border.all(
+                                              color:
+                                                  Colors.grey.withOpacity(0.3),
+                                              width: 1,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            reserveBay.businessType!,
+                                            style: textStyleNormal(
+                                              color: kWhite,
+                                              fontSize: 10,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Company Registration: ${reserveBay.companyRegistration}",
+                                      style: textStyleNormal(),
+                                    ),
+                                    Text(
+                                      "Total Lot Required: $reserveBayTotalLot",
+                                      style: textStyleNormal(),
+                                    ),
+                                    Text(
+                                      "Reason: ${reserveBay.reason}",
+                                      style: textStyleNormal(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                ),
               ),
             );
-          },
-          child: Scaffold(
-            backgroundColor: kBackgroundColor,
-            appBar: AppBar(
-              toolbarHeight: 100,
-              foregroundColor: details['color'] == 4294961979 ? kBlack : kWhite,
-              backgroundColor: Color(details['color']),
-              centerTitle: true,
-              title: Text(
-                'Reserve Bay',
-                style: textStyleNormal(
-                  fontSize: 26,
-                  color: details['color'] == 4294961979 ? kBlack : kWhite,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            body: StepperFormBlocBuilder<ReserveBayFormBloc>(
-              formBloc: context.read<ReserveBayFormBloc>(),
-              type: StepperType.horizontal,
-              physics: const BouncingScrollPhysics(),
-              stepsBuilder: (formBloc) {
-                return [
-                  _reserveStep1(formBloc!),
-                  _reserveStep2(formBloc),
-                  _reserveStep3(formBloc),
-                  _reserveStep4(formBloc),
-                ];
-              },
-              controlsBuilder:
-                  (context, onStepContinue, onStepCancel, step, formBloc) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Visibility(
-                          visible: step != 0,
-                          child: PrimaryButton(
-                            color: kGrey,
-                            onPressed: onStepCancel,
-                            borderRadius: 10.0,
-                            buttonWidth: 0.35,
-                            label: Text(
-                              'Back',
-                              style: textStyleNormal(color: kWhite),
-                            ),
-                          ),
-                        ),
-                      ),
-                      spaceHorizontal(width: step != 0 ? 20.0 : 0),
-                      if (step == 0)
-                        Expanded(
-                          flex: 100,
-                          child: PrimaryButton(
-                            onPressed: onStepContinue,
-                            borderRadius: 10.0,
-                            label: Text(
-                              'Next',
-                              style: textStyleNormal(color: kWhite),
-                            ),
-                          ),
-                        )
-                      else if (step == 1)
-                        Expanded(
-                          flex: 1,
-                          child: PrimaryButton(
-                            onPressed: onStepContinue,
-                            borderRadius: 10.0,
-                            label: Text(
-                              'Next',
-                              style: textStyleNormal(color: kWhite),
-                            ),
-                          ),
-                        )
-                      else if (step == 2)
-                        Expanded(
-                          flex: 1,
-                          child: PrimaryButton(
-                            onPressed: onStepContinue,
-                            borderRadius: 10.0,
-                            label: Text(
-                              'Next',
-                              style: textStyleNormal(color: kWhite),
-                            ),
-                          ),
-                        )
-                      else
-                        Expanded(
-                          flex: 1,
-                          child: PrimaryButton(
-                            onPressed: () {
-                              setState(() {
-                                formBloc.submit();
-                              });
-                            },
-                            borderRadius: 10.0,
-                            label: Text(
-                              'Submit',
-                              style: textStyleNormal(color: kWhite),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-        );
-      }),
-    );
-  }
-
-  FormBlocStep _reserveStep1(ReserveBayFormBloc reserveBayFormBloc) {
-    return FormBlocStep(
-      title: Text(
-        'Reserve\nDetails',
-        style: textStyleNormal(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: ReserveDetailWidget(formBloc: reserveBayFormBloc),
-    );
-  }
-
-  FormBlocStep _reserveStep2(ReserveBayFormBloc reserveBayFormBloc) {
-    return FormBlocStep(
-      title: Text(
-        'PIC',
-        style: textStyleNormal(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: ReserveInChargeWidget(formBloc: reserveBayFormBloc),
-    );
-  }
-
-  FormBlocStep _reserveStep3(ReserveBayFormBloc reserveBayFormBloc) {
-    return FormBlocStep(
-      title: Text(
-        'Documents',
-        style: textStyleNormal(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: ReserveDocumentWidget(formBloc: reserveBayFormBloc),
-    );
-  }
-
-  FormBlocStep _reserveStep4(ReserveBayFormBloc reserveBayFormBloc) {
-    return FormBlocStep(
-      title: Text(
-        'T&C',
-        style: textStyleNormal(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: ReserveTncWidget(formBloc: reserveBayFormBloc),
-    );
+          }
+        });
   }
 }

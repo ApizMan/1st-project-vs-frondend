@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
+import 'package:project/models/models.dart';
 import 'package:project/theme.dart';
 
 class ReserveTncWidget extends StatefulWidget {
-  final ReserveBayFormBloc formBloc;
+  final UpdateReserveBayFormBloc formBloc;
+  final ReserveBayModel reserveBay;
   const ReserveTncWidget({
     super.key,
     required this.formBloc,
+    required this.reserveBay,
   });
 
   @override
@@ -17,37 +20,31 @@ class ReserveTncWidget extends StatefulWidget {
 
 class _ReserveTncWidgetState extends State<ReserveTncWidget> {
   List<String> duration = [
-    'Tempoh',
     'Enam (6) bulan',
     'Satu (1) bulan',
   ];
 
   List<String> fees = [
-    'Kadar (RM)',
     '720.00',
     '1,220.00',
   ];
 
   List<String> caj = [
-    'Caj Selenggara Petak (RM)',
     '60.00',
     '120.00',
   ];
 
   List<String> barrier = [
-    'Barrier Stand (RM)',
     '220.00',
     '200.00',
   ];
 
   List<String> sst = [
-    'SST 6% (RM)',
     '43.20',
     '86.40',
   ];
 
   List<String> total = [
-    'Jumlah (RM)',
     '1,023.20',
     '1,846.40',
   ];
@@ -443,6 +440,7 @@ class _ReserveTncWidgetState extends State<ReserveTncWidget> {
             ),
           ),
           CheckboxFieldBlocBuilder(
+            isEnabled: false,
             booleanFieldBloc: widget.formBloc.tnc,
             body: Container(
               alignment: Alignment.topLeft,
