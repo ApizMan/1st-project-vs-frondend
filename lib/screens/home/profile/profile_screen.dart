@@ -13,6 +13,7 @@ import 'package:project/theme.dart';
 import 'package:project/widget/custom_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -72,17 +73,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool loading = true;
   get prefs => null;
   List<CarPlate> carPlates = [];
-
-  List<String> profileList = [
-    'About Me',
-    'E-Mail & Password',
-    'List of Vehicle',
-    'Transaction History',
-    'Settings',
-    'Share This App',
-    'Help Center',
-    'Term & Conditions',
-  ];
 
   List<Icon> profileListIcon = [
     const Icon(Icons.person),
@@ -267,6 +257,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> profileList = [
+      AppLocalizations.of(context)!.aboutMe,
+      AppLocalizations.of(context)!.emailPassword,
+      AppLocalizations.of(context)!.listOfVehicle,
+      AppLocalizations.of(context)!.transactionHistory,
+      AppLocalizations.of(context)!.settings,
+      AppLocalizations.of(context)!.shareThisApp,
+      AppLocalizations.of(context)!.helpCenter,
+      AppLocalizations.of(context)!.termAndConditions,
+    ];
+
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     UserModel? userModel = arguments['userModel'] as UserModel?;
@@ -291,7 +292,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 backgroundColor: Color(details['color']),
                 centerTitle: true,
                 title: Text(
-                  'Profile',
+                  AppLocalizations.of(context)!.profile,
                   style: textStyleNormal(
                     fontSize: 26,
                     color: kWhite,
@@ -305,16 +306,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: () async {
                         await CustomDialog.show(
                           context,
-                          title: 'Logout',
-                          description: 'Are you sure you want to logout?',
+                          title: AppLocalizations.of(context)!.logout,
+                          description:
+                              '${AppLocalizations.of(context)!.logoutDesc}?',
                           btnOkOnPress: () async {
                             await logout();
                           },
-                          btnOkText: 'Yes',
+                          btnOkText: AppLocalizations.of(context)!.yes,
                           btnCancelOnPress: () {
                             Navigator.pop(context);
                           },
-                          btnCancelText: 'No',
+                          btnCancelText: AppLocalizations.of(context)!.no,
                         );
                       },
                       child: const Icon(
@@ -400,7 +402,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                           );
                         } else if (index == 4) {
-                          showSetting();
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.settingsScreen,
+                            arguments: {
+                              'locationDetail': details,
+                            },
+                          );
                         } else if (index == 5) {
                           Share.share(
                               'Hey, check out this app! https://play.google.com/store/apps/details?id=com.example.project');
@@ -1107,6 +1115,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
-
-  void showSetting() {}
 }

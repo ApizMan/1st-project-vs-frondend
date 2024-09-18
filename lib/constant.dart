@@ -97,6 +97,7 @@ const String orderStatusKey = 'orderStatusKey';
 const String orderStoreIdKey = 'orderStoreIdKey';
 const String orderShiftIdKey = 'orderShiftIdKey';
 const String orderTerminalIdKey = 'orderTerminalIdKey';
+const String keyLanguage = 'language';
 
 class GlobalDeclaration {
   static String globalDuration = '';

@@ -4,6 +4,7 @@ import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
   const TransactionHistoryScreen({super.key});
@@ -51,7 +52,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         backgroundColor: Color(details['color'] ?? 0xFFFFFFFF),
         centerTitle: true,
         title: Text(
-          'Transaction History',
+          AppLocalizations.of(context)!.transactionHistory,
           style: textStyleNormal(
             fontSize: 26,
             color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -128,14 +129,14 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                       ),
                       child: ListTile(
                         title: Text(
-                          'Transaction: ${_transactionModel.description}',
+                          '${AppLocalizations.of(context)!.transaction}: ${_transactionModel.description}',
                           style: textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Amount: RM${double.parse(_transactionModel.amount!).toStringAsFixed(2)}',
+                              '${AppLocalizations.of(context)!.amount}: RM${double.parse(_transactionModel.amount!).toStringAsFixed(2)}',
                               style: textStyleNormal(),
                             ),
                             Text(
@@ -143,7 +144,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                               style: textStyleNormal(),
                             ),
                             Text(
-                              'Date: $formattedTime',
+                              '${AppLocalizations.of(context)!.date}: $formattedTime',
                               style: textStyleNormal(),
                             ),
                           ],
@@ -180,18 +181,18 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                       ),
                       child: ListTile(
                         title: Text(
-                          'Compound Status: ${_walletModel.status}',
+                          '${AppLocalizations.of(context)!.compoundStatus}: ${_walletModel.status}',
                           style: textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Amount: RM${_walletModel.amount!.toStringAsFixed(2)}',
+                              '${AppLocalizations.of(context)!.amount}: RM${_walletModel.amount!.toStringAsFixed(2)}',
                               style: textStyleNormal(),
                             ),
                             Text(
-                              'Date: $formattedTime',
+                              '${AppLocalizations.of(context)!.date}: $formattedTime',
                               style: textStyleNormal(),
                             ),
                           ],

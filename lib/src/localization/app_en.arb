@@ -1,0 +1,22 @@
+{
+  "settings": "Settings",
+  "language": "Language",
+  "malay": "Malay",
+  "english": "English",
+  "transactionHistory": "Transaction History",
+  "transaction": "Transaction",
+  "amount": "Amount",
+  "date": "Date",
+  "compoundStatus": "Compound Status",
+  "profile": "Profile",
+  "logout": "Logout",
+  "logoutDesc": "Are you sure you want to logout",
+  "yes": "Ya",
+  "no": "Tidak",
+  "aboutMe": "About Me",
+  "emailPassword": "E-Mail & Password",
+  "listOfVehicle": "List of Vehicle",
+  "shareThisApp": "Share This App",
+  "helpCenter": "Help Center",
+  "termAndConditions": "Term & Conditions"
+}

@@ -7,7 +7,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CityCarPark extends StatelessWidget {
-  const CityCarPark({super.key});
+  final String? defaultLanguage;
+  const CityCarPark({
+    super.key,
+    required this.defaultLanguage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class CityCarPark extends StatelessWidget {
       initialRoute: AppRoute.splashScreen,
       getPages: AppRoute.routes,
       supportedLocales: L10n.all,
-      locale: const Locale('en'),
+      locale: Locale(defaultLanguage != null ? defaultLanguage! : 'en'),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

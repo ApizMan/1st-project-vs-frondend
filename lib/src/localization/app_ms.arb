@@ -1,0 +1,22 @@
+{
+  "settings": "Tetapan",
+  "language": "Bahasa",
+  "malay": "Bahasa Melayu",
+  "english": "Bahasa Inggeris",
+  "transactionHistory": "Sejarah Transaksi",
+  "transaction": "Transaksi",
+  "amount": "Jumlah",
+  "date": "Tarikh",
+  "compoundStatus": "Status Kompaun",
+  "profile": "Profil",
+  "logout": "Log Keluar",
+  "logoutDesc": "Adakah anda pasti mahu log keluar",
+  "yes": "Yes",
+  "no": "No",
+  "aboutMe": "Tentang Saya",
+  "emailPassword": "E-Mel & Kata Laluan",
+  "listOfVehicle": "Senarai Kenderaan",
+  "shareThisApp": "Kongsi Aplikasi Ini",
+  "helpCenter": "Pusat Bantuan",
+  "termAndConditions": "Terma & Syarat"
+}

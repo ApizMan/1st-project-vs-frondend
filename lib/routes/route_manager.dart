@@ -29,6 +29,7 @@ class AppRoute {
   static const monthlyPassReceiptScreen = '/monthlyPassReceiptScreen';
   static const transportInfoScreen = '/transportInfoScreen';
   static const notificationScreen = '/notificationScreen';
+  static const settingsScreen = '/settingsScreen';
 
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -66,5 +67,6 @@ class AppRoute {
         page: () => const MonthlyPassReceiptScreen()),
     GetPage(name: transportInfoScreen, page: () => const TransportInfoScreen()),
     GetPage(name: notificationScreen, page: () => const NotificationScreen()),
+    GetPage(name: settingsScreen, page: () => const SettingsScreen()),
   ];
 }
