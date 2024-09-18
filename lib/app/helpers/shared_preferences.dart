@@ -62,24 +62,24 @@ class SharedPreferencesHelper {
   }
 
   static Future<void> setParkingDuration(
-      {String duration = '00:00:00', bool isUpdate = false}) async {
+      {required String duration, required bool isUpdate}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(durationKey, duration);
-    prefs.setBool(isUpdateKey, isUpdate);
+    await prefs.setString(durationKey, duration);
+    await prefs.setBool(isUpdateKey, isUpdate);
   }
 
   static Future<String> getParkingDuration() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String duration = prefs.getString(durationKey) ?? '00:00:00';
+    String? duration = prefs.getString(durationKey);
 
-    return duration;
+    return duration ?? '00:00:00';
   }
 
   static Future<bool> getDurationUpdate() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool duration = prefs.getBool(isUpdateKey) ?? false;
+    bool? duration = prefs.getBool(isUpdateKey);
 
-    return duration;
+    return duration ?? false;
   }
 
   static Future<void> setReloadAmount(

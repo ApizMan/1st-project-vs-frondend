@@ -92,7 +92,7 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
     final GoogleMapController controller = await _mapController.future;
     CameraPosition _newCameraPosition = CameraPosition(
       target: position,
-      zoom: 15,
+      zoom: 18,
     );
 
     await controller.animateCamera(
@@ -164,7 +164,7 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
       mapType: MapType.normal,
       initialCameraPosition: CameraPosition(
         target: _currentPosition!,
-        zoom: 15,
+        zoom: 18,
       ),
       markers: {
         Marker(

@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (isUpdate == false) {
             SharedPreferencesHelper.setParkingDuration(
               duration: formatDuration(countDownDuration),
+              isUpdate: false,
             );
           }
 
@@ -158,6 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
     if (isUpdate == true) {
       final getDuration = await SharedPreferencesHelper.getParkingDuration();
       countDownDuration = parseDuration(getDuration);
+
+      SharedPreferencesHelper.setParkingDuration(
+        duration: formatDuration(countDownDuration),
+        isUpdate: false,
+      );
     }
   }
 
