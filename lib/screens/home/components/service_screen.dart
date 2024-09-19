@@ -5,6 +5,7 @@ import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/service_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ServiceScreen extends StatefulWidget {
   final UserModel? userModel;
@@ -58,7 +59,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Our Service',
+            AppLocalizations.of(context)!.ourService,
             style: textStyleNormal(
               color: kBlack,
               fontSize: 20.0,
@@ -71,6 +72,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FutureBuilder(
                       future: _initDataPBT,
@@ -89,7 +91,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             );
                           },
                           image: parkingImage,
-                          title: 'Parking',
+                          title: AppLocalizations.of(context)!.parking2,
                         );
                       }),
                   ServiceCard(
@@ -101,7 +103,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           });
                     },
                     image: summonImage,
-                    title: 'Summons',
+                    title: AppLocalizations.of(context)!.summons,
                   ),
                   ServiceCard(
                     onPressed: () {
@@ -111,13 +113,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           });
                     },
                     image: reserveBayImage,
-                    title: 'Reserve Bay',
+                    title: AppLocalizations.of(context)!.reserveBays,
                   ),
                 ],
               ),
               spaceVertical(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ServiceCard(
                     onPressed: () {
@@ -133,7 +136,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       );
                     },
                     image: monthlyPassImage,
-                    title: 'Monthly Pass',
+                    title: AppLocalizations.of(context)!.monthlyPass,
                   ),
                   ServiceCard(
                     onPressed: () {
@@ -146,7 +149,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       );
                     },
                     image: transportInfoImage,
-                    title: 'Transport Info',
+                    title: AppLocalizations.of(context)!.transportInfo2,
                   ),
                 ],
               ),

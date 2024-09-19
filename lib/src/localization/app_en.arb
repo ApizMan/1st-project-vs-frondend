@@ -42,5 +42,16 @@
   "errorDesc": "Cannot add more than 2 vehicles",
   "add": "Add",
   "confirmDeletion": "Confirm Deletion",
-  "confirmDeletionDesc": "Are you sure you want to delete the plate number"
+  "confirmDeletionDesc": "Are you sure you want to delete the plate number",
+  "welcome": "Welcome",
+  "availableBalance": "Available Balance",
+  "updatedOn": "Updated On",
+  "parkingTimeRemaining": "Parking Time Remaining",
+  "ourService": "Our Service",
+  "summons": "Summons",
+  "parking2": "Parking",
+  "monthlyPass": "Monthly Pass",
+  "transportInfo": "Transport Info",
+  "transportInfo2": "Transport Info",
+  "newsUpdate": "News Update"
 }

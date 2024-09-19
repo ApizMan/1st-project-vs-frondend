@@ -87,6 +87,7 @@ dependencies:
       ref: fix/cluster
   dart_geohash: ^2.1.0
   flutter_local_notifications: ^17.2.2
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:

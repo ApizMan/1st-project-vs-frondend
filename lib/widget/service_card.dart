@@ -29,6 +29,7 @@ class ServiceCard extends StatelessWidget {
           Text(
             title,
             style: textStyleNormal(),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

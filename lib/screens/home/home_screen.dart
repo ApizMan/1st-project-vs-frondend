@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:location/location.dart';
+import 'package:permission_handler/permission_handler.dart' as permission;
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
@@ -15,6 +17,7 @@ import 'package:project/theme.dart';
 import 'package:project/widget/custom_dialog.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -138,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
         btnOkText: 'Yes',
         btnOkOnPress: () async {
           _permissionGranted = await locationController.requestPermission();
+          await permission.Permission.notification.request();
           if (_permissionGranted != PermissionStatus.granted) {
             return;
           } else {
@@ -351,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Welcome',
+                        AppLocalizations.of(context)!.welcome,
                         style: textStyleNormal(
                           color:
                               details['color'] == 4294961979 ? kBlack : kWhite,
@@ -425,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Available Balance',
+                    AppLocalizations.of(context)!.availableBalance,
                     style: textStyleNormal(
                       color: details['color'] == 4294961979 ? kBlack : kWhite,
                       fontWeight: FontWeight.bold,
@@ -468,7 +472,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Text(
-                    'Updated on $lastUpdated',
+                    Get.locale!.languageCode == 'ms'
+                        ? '${AppLocalizations.of(context)!.updatedOn}\n$lastUpdated'
+                        : '${AppLocalizations.of(context)!.updatedOn} $lastUpdated',
                     style: textStyleNormal(
                       color: details['color'] == 4294961979 ? kBlack : kWhite,
                       fontSize: 11,
@@ -556,7 +562,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            'Parking Time Remaining: ',
+            '${AppLocalizations.of(context)!.parkingTimeRemaining}: ',
             style: textStyleNormal(
               color: details['color'] == 4294961979 ? kBlack : kWhite,
             ),

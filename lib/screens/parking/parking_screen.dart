@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/screens/screens.dart';
@@ -12,6 +13,24 @@ class ParkingScreen extends StatefulWidget {
 }
 
 class _ParkingScreenState extends State<ParkingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    checkNotificationPermission();
+  }
+
+Future<void> checkNotificationPermission() async {
+  PermissionStatus status = await Permission.notification.status;
+
+  if (status.isDenied) {
+    // Request the notification permission if it's denied
+    await Permission.notification.request();
+  } else if (status.isPermanentlyDenied) {
+    // Guide the user to settings since permission is permanently denied
+    openAppSettings(); // This opens the app settings page
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     final arguments =

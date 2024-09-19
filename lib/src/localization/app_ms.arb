@@ -42,5 +42,16 @@
   "errorDesc": "Tidak boleh menambah lebih daripada 2 kenderaan",
   "add": "Tambah",
   "confirmDeletion": "Kepastian Pemadaman",
-  "confirmDeletionDesc": "Adakah anda pasti mahu memadamkan nombor plat"
+  "confirmDeletionDesc": "Adakah anda pasti mahu memadamkan nombor plat",
+  "welcome": "Selamat Datang",
+  "availableBalance": "Baki Tersedia",
+  "updatedOn": "Dikemas kini Pada",
+  "parkingTimeRemaining": "Baki Masa Letak Kereta",
+  "ourService": "Perkhidmatan Kami",
+  "summons": "Saman",
+  "parking2": "Tempat Letak\nKereta",
+  "monthlyPass": "Pass Bulanan",
+  "transportInfo": "Maklumat Pengangkutan",
+  "transportInfo2": "Maklumat\nPengangkutan",
+  "newsUpdate": "Berita Terkini"
 }

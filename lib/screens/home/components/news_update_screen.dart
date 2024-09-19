@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project/constant.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewsUpdateScreen extends StatefulWidget {
   const NewsUpdateScreen({super.key});
@@ -39,7 +40,7 @@ class _NewsUpdateScreenState extends State<NewsUpdateScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'News Update',
+            AppLocalizations.of(context)!.newsUpdate,
             style: textStyleNormal(
               color: kBlack,
               fontSize: 20.0,
