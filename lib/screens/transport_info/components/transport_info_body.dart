@@ -39,6 +39,8 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
 
   late List<MeterModel> model = [];
 
+  bool _isManagerReady = false; // Add this flag
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +50,7 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
         model = events;
         _manager =
             _initClusterManager(); // Initialize _manager here after model is loaded
+        _isManagerReady = true; // Mark manager as ready
       });
     });
   }
@@ -151,6 +154,15 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
   @override
   Widget build(BuildContext context) {
     if (_currentPosition == null) {
+      return const Center(
+        child: CircularProgressIndicator(
+          color: kPrimaryColor,
+        ),
+      );
+    }
+
+    // Ensure that _manager is initialized before proceeding
+    if (!_isManagerReady) {
       return const Center(
         child: CircularProgressIndicator(
           color: kPrimaryColor,

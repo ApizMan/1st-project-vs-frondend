@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -444,7 +442,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'ACCOUNT INFO',
+                    AppLocalizations.of(context)!.accountInfo,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -459,7 +457,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'Name',
+                    AppLocalizations.of(context)!.name,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -478,7 +476,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'I.D NUMBER',
+                    AppLocalizations.of(context)!.idNumber,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -497,7 +495,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'PHONE NUMBER',
+                    Localizations.of(context, AppLocalizations).phoneNumber,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -516,7 +514,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'Email',
+                    AppLocalizations.of(context)!.email,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -566,7 +564,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
-                    'ADDRESS',
+                    AppLocalizations.of(context)!.address,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -642,7 +640,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //   Navigator.of(context).pop();
                       // }
                     },
-                    child: const Text('Confirm'),
+                    child: Text(AppLocalizations.of(context)!.confirm),
                   ),
                   const SizedBox(
                       width:
@@ -651,7 +649,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Cancel'),
+                    child: Text(AppLocalizations.of(context)!.cancel),
                   ),
                 ],
               ),
@@ -684,7 +682,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Email & Password',
+                    AppLocalizations.of(context)!.emailPassword,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -699,7 +697,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 10), // Spacer
                 Center(
                   child: Text(
-                    'EMAIL',
+                    AppLocalizations.of(context)!.email,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -718,7 +716,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 5),
                 Center(
                   child: Text(
-                    'PASSWORD',
+                    AppLocalizations.of(context)!.password,
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -728,7 +726,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 5),
                 Center(
                   child: Text(
-                    'CONFIRM PASSWORD',
+                    '********',
                     style: GoogleFonts.dmSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -744,7 +742,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('Confirm'),
+                child: Text(AppLocalizations.of(context)!.confirm),
               ),
             ),
           ],
@@ -775,7 +773,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Help Centre',
+                    AppLocalizations.of(context)!.helpCenter,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -792,11 +790,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: SizedBox(
                     child: DropdownButtonFormField<String>(
                       items: <String>[
-                        'Season Pass',
-                        'Reserve Bay',
-                        'Parking',
-                        'Enforcement',
-                        'Others'
+                        AppLocalizations.of(context)!.seasonPass,
+                        AppLocalizations.of(context)!.reserveBays,
+                        AppLocalizations.of(context)!.parking,
+                        AppLocalizations.of(context)!.enforcement,
+                        AppLocalizations.of(context)!.others
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -812,7 +810,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         });
                       },
                       decoration: InputDecoration(
-                        hintText: 'Select Item',
+                        hintText: AppLocalizations.of(context)!.selectItem,
                         hintStyle: const TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -861,7 +859,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     controller: description,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 100),
-                      hintText: ' Please write here..... ',
+                      hintText:
+                          ' ${AppLocalizations.of(context)!.pleaseWriteHere}..... ',
                       hintStyle: const TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -898,7 +897,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                   );
                 },
-                child: const Text('Confirm'),
+                child: Text(AppLocalizations.of(context)!.confirm),
               ),
             ),
           ],
@@ -919,7 +918,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'List of Vehicle',
+                    AppLocalizations.of(context)!.listOfVehicle,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -945,7 +944,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Car Plate ${i + 1}',
+                                  '${AppLocalizations.of(context)!.carPlate} ${i + 1}',
                                   style: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
@@ -986,7 +985,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       _showAddVehicleDialog(context);
                     },
-                    child: const Text('Add No Plate'),
+                    child: Text(AppLocalizations.of(context)!.addPlateNo),
                   ),
                   const SizedBox(
                       width:
@@ -995,7 +994,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Cancel'),
+                    child: Text(AppLocalizations.of(context)!.cancel),
                   ),
                 ],
               ),
@@ -1008,7 +1007,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _showAddVehicleDialog(BuildContext context) {
     if (carPlates.length >= 2) {
-      _showErrorDialog(context, 'Error', 'Cannot add more than 2 vehicles');
+      _showErrorDialog(context, AppLocalizations.of(context)!.error,
+          AppLocalizations.of(context)!.errorDesc);
       return;
     }
     bool isMain = false; // Default value for isMain
@@ -1019,7 +1019,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return AlertDialog(
-              title: const Text('Add Vehicle'),
+              title: Text(AppLocalizations.of(context)!.addVehicle),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -1049,13 +1049,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.of(context).pop();
                           showListOfVehicle();
                         },
-                        child: const Text('Add'),
+                        child: Text(AppLocalizations.of(context)!.add),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Cancel'),
+                        child: Text(AppLocalizations.of(context)!.cancel),
                       ),
                     ],
                   ),
@@ -1093,22 +1093,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Confirm Deletion'),
+          title: Text(AppLocalizations.of(context)!.confirmDeletion),
           content: Text(
-              'Are you sure you want to delete the plate number ${carPlate.carPlateNumber}?'),
+              '${AppLocalizations.of(context)!.confirmDeletionDesc} ${carPlate.carPlateNumber}?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context)!.cancel),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.of(context).pop();
                 await deleteplate(carPlate.id);
               },
-              child: const Text('Confirm'),
+              child: Text(AppLocalizations.of(context)!.confirm),
             ),
           ],
         );
