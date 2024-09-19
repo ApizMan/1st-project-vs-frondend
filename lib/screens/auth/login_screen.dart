@@ -9,6 +9,7 @@ import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
 import 'package:project/widget/widgets.dart';
 import 'package:project/widget/background-image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -104,8 +105,9 @@ class LoginScreenState extends State<LoginScreen> {
                           textFieldBloc: formBloc!.email,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            label: const Text('Email'),
-                            hintText: 'Enter Email',
+                            label: Text(AppLocalizations.of(context)!.email),
+                            hintText:
+                                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.email}',
                             hintStyle: const TextStyle(
                               color: Colors.black26,
                             ),
@@ -133,8 +135,10 @@ class LoginScreenState extends State<LoginScreen> {
                               obscureText: value,
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
-                                label: const Text('Password'),
-                                hintText: 'Enter Password',
+                                label: Text(
+                                    AppLocalizations.of(context)!.password),
+                                hintText:
+                                    '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.password}',
                                 suffixIcon: GestureDetector(
                                   onTap: () {
                                     _showPasswordNotifier.value =
@@ -169,24 +173,12 @@ class LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Expanded(
-                              child: CheckboxFieldBlocBuilder(
-                                booleanFieldBloc: formBloc!.rememberMe,
-                                body: Text(
-                                  'Remember Me',
-                                  style: textStyleNormal(
-                                    fontWeight: FontWeight.bold,
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
                             GestureDetector(
                               onTap: _forgotPassword,
                               child: Text(
-                                'Forget Password?',
+                                '${AppLocalizations.of(context)!.forgetPassword}?',
                                 style: textStyleNormal(
                                   fontWeight: FontWeight.bold,
                                   color: kPrimaryColor,
@@ -201,7 +193,7 @@ class LoginScreenState extends State<LoginScreen> {
                           borderRadius: 10.0,
                           onPressed: () => formBloc!.submit(),
                           label: Text(
-                            'Login',
+                            AppLocalizations.of(context)!.login,
                             style: textStyleNormal(
                               color: kWhite,
                             ),
@@ -212,7 +204,7 @@ class LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account?",
+                              "${AppLocalizations.of(context)!.loginDesc}?",
                               style: textStyleNormal(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -223,7 +215,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     context, AppRoute.signUpScreen);
                               },
                               child: Text(
-                                "Sign Up",
+                                AppLocalizations.of(context)!.signUp,
                                 style: textStyleNormal(
                                   color: kPrimaryColor,
                                   fontWeight: FontWeight.bold,

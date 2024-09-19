@@ -107,5 +107,11 @@
   "reload": "Reload",
   "other": "Other",
   "token": "Token",
-  "paymentDesc2": "You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate."
+  "paymentDesc2": "You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate.",
+  "search": "Search",
+  "notifications": "Notifications",
+  "forgetPassword": "Forget Password",
+  "login": "Login",
+  "loginDesc": "Don't have an account",
+  "signUp": "Sign Up"
 }

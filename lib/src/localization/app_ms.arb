@@ -107,5 +107,11 @@
   "reload": "Tambah Nilai",
   "other": "Lain-lain",
   "token": "Token",
-  "paymentDesc2": "Anda akan dibawa ke laman web Pihak Ketiga untuk Tambah Nilai Token. Sila pastikan butiran di atas adalah tepat."
+  "paymentDesc2": "Anda akan dibawa ke laman web Pihak Ketiga untuk Tambah Nilai Token. Sila pastikan butiran di atas adalah tepat.",
+  "search": "Cari",
+  "notifications": "Pemberitahuan",
+  "forgetPassword": "Lupa Kata Laluan",
+  "login": "Log Masuk",
+  "loginDesc": "Masih Tiada Akaun",
+  "signUp": "Daftar Masuk"
 }

@@ -9,6 +9,7 @@ import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummonsScreen extends StatefulWidget {
   const SummonsScreen({super.key});
@@ -97,7 +98,7 @@ class _SummonsScreenState extends State<SummonsScreen> {
                   backgroundColor: Color(details['color']),
                   centerTitle: true,
                   title: Text(
-                    'Summons',
+                    AppLocalizations.of(context)!.summons,
                     style: textStyleNormal(
                       fontSize: 26,
                       color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -115,7 +116,7 @@ class _SummonsScreenState extends State<SummonsScreen> {
                         TextField(
                           controller: _searchController,
                           decoration: InputDecoration(
-                            label: const Text('Search'),
+                            label: Text(AppLocalizations.of(context)!.search),
                             hintText: 'Enter Summons Name',
                             hintStyle: const TextStyle(
                               color: Colors.black26,
@@ -201,7 +202,7 @@ class _SummonsScreenState extends State<SummonsScreen> {
                             );
                           },
                           label: Text(
-                            'Pay',
+                            AppLocalizations.of(context)!.pay,
                             style: textStyleNormal(
                               color: kWhite,
                             ),
