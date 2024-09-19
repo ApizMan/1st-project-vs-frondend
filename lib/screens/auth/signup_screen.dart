@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:project/theme.dart';
 import 'package:project/widget/background-image.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -32,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           icon: const Icon(Icons.arrow_back, color: kWhite),
         ),
         title: Text(
-          'Create New Account',
+          AppLocalizations.of(context)!.createNewAccount,
           style: textStyleNormal(
             fontSize: 26,
             color: kWhite,
@@ -76,10 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Center(
               child: Padding(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1,
+                  top: MediaQuery.of(context).size.height * 0.12,
                   left: 20.0,
                   right: 20.0,
-                  bottom: MediaQuery.of(context).size.height * 0.02,
+                  bottom: MediaQuery.of(context).size.height * 0.1,
                 ),
                 child: Container(
                   padding: const EdgeInsets.only(top: 20.0),
@@ -113,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   borderRadius: 10.0,
                                   buttonWidth: 0.35,
                                   label: Text(
-                                    'Back',
+                                    AppLocalizations.of(context)!.back,
                                     style: textStyleNormal(color: kWhite),
                                   ),
                                 ),
@@ -128,7 +128,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     : () => formBloc.submit(),
                                 borderRadius: 10.0,
                                 label: Text(
-                                  step != 0 ? 'Submit' : 'Next',
+                                  step != 0
+                                      ? AppLocalizations.of(context)!.submit
+                                      : AppLocalizations.of(context)!.next,
                                   style: textStyleNormal(color: kWhite),
                                 ),
                               ),

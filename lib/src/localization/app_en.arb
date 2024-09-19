@@ -113,5 +113,6 @@
   "forgetPassword": "Forget Password",
   "login": "Login",
   "loginDesc": "Don't have an account",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "createNewAccount": "Create New Account"
 }

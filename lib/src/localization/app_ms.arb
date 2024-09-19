@@ -113,5 +113,6 @@
   "forgetPassword": "Lupa Kata Laluan",
   "login": "Log Masuk",
   "loginDesc": "Masih Tiada Akaun",
-  "signUp": "Daftar Masuk"
+  "signUp": "Daftar Masuk",
+  "createNewAccount": "Cipta Akaun Baru"
 }
