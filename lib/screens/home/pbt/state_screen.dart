@@ -4,6 +4,7 @@ import 'package:project/constant.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/screens/home/pbt/state_pbt_mapping.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StateScreen extends StatefulWidget {
   const StateScreen({super.key});
@@ -29,7 +30,7 @@ class _StateScreenState extends State<StateScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Select State',
+          AppLocalizations.of(context)!.selectState,
           style: textStyleNormal(
             fontSize: 26,
             color: details['color'] == 4294961979 ? kBlack : kWhite,

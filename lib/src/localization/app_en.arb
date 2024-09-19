@@ -53,5 +53,7 @@
   "monthlyPass": "Monthly Pass",
   "transportInfo": "Transport Info",
   "transportInfo2": "Transport Info",
-  "newsUpdate": "News Update"
+  "newsUpdate": "News Update",
+  "selectState": "Select State",
+  "selectPbt": "Select PBT"
 }

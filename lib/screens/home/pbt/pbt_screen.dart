@@ -5,6 +5,7 @@ import 'package:project/constant.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/screens/home/pbt/state_pbt_mapping.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PbtScreen extends StatefulWidget {
   const PbtScreen({super.key});
@@ -33,7 +34,7 @@ class _PbtScreenState extends State<PbtScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Select PBT',
+          AppLocalizations.of(context)!.selectPbt,
           style: textStyleNormal(
             fontSize: 26,
             color: details['color'] == 4294961979 ? kBlack : kWhite,

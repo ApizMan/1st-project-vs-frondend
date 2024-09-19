@@ -53,5 +53,7 @@
   "monthlyPass": "Pass Bulanan",
   "transportInfo": "Maklumat Pengangkutan",
   "transportInfo2": "Maklumat\nPengangkutan",
-  "newsUpdate": "Berita Terkini"
+  "newsUpdate": "Berita Terkini",
+  "selectState": "Pilih Negeri",
+  "selectPbt": "Pilih PBT"
 }
