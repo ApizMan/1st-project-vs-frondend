@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ParkingBodyScreen extends StatefulWidget {
   final UserModel userModel;
@@ -136,6 +138,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                             firstDay: DateTime.utc(2010, 10, 16),
                             lastDay: DateTime.utc(2030, 3, 14),
                             focusedDay: _focusedDay,
+                            locale: Get.locale!.languageCode,
                             calendarFormat: CalendarFormat.week,
                             onFormatChanged: (format) {
                               setState(() {
@@ -176,7 +179,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       showEmptyItem: false,
                       selectFieldBloc: formBloc!.carPlateNumber,
                       decoration: InputDecoration(
-                        label: const Text('Plate Number'),
+                        label: Text(AppLocalizations.of(context)!.plateNumber),
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(
                             color: Colors.black12,
@@ -286,7 +289,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                     selectFieldBloc:
                         formBloc!.location, // Bind to PBT field bloc
                     decoration: InputDecoration(
-                      label: const Text('Location'),
+                      label: Text(AppLocalizations.of(context)!.location),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(
                           color: Colors.black12,
@@ -331,7 +334,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                             children: [
                               const SizedBox(height: 35),
                               Text(
-                                'Duration',
+                                AppLocalizations.of(context)!.duration,
                                 style: GoogleFonts.secularOne(
                                   fontSize: 20,
                                   color: Colors.black,
@@ -346,7 +349,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                               ),
                               const SizedBox(height: 15),
                               Text(
-                                'A M O U N T',
+                                AppLocalizations.of(context)!.amount,
                                 style: GoogleFonts.secularOne(
                                   fontSize: 20,
                                   color: Colors.black,
@@ -423,7 +426,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                     );
                   },
                   label: Text(
-                    'Confirm',
+                    AppLocalizations.of(context)!.confirm,
                     style: textStyleNormal(
                       color: kWhite,
                       fontWeight: FontWeight.bold,

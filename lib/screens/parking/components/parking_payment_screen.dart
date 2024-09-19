@@ -7,6 +7,7 @@ import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ParkingPaymentScreen extends StatefulWidget {
   const ParkingPaymentScreen({
@@ -62,7 +63,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Payment',
+          AppLocalizations.of(context)!.payment,
           style: textStyleNormal(
             fontSize: 26,
             color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -80,7 +81,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    "Date",
+                    AppLocalizations.of(context)!.date,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -97,7 +98,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Time',
+                    AppLocalizations.of(context)!.time,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -114,7 +115,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Location',
+                    AppLocalizations.of(context)!.location,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -131,7 +132,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Number Plate',
+                    AppLocalizations.of(context)!.plateNumber,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -148,7 +149,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Duration',
+                    AppLocalizations.of(context)!.duration,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -165,13 +166,13 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Description',
+                    AppLocalizations.of(context)!.description,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
                   Expanded(
                     child: Text(
-                      'Parking',
+                      AppLocalizations.of(context)!.parking,
                       style: GoogleFonts.firaCode(),
                       textAlign: TextAlign.right, // Align text to the right
                     ),
@@ -182,7 +183,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Total',
+                    AppLocalizations.of(context)!.total,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -198,7 +199,7 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               const SizedBox(height: 40),
               Center(
                 child: Text(
-                  'Please Pay and Park Responsibly',
+                  AppLocalizations.of(context)!.paymentDesc,
                   style: GoogleFonts.firaCode(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -229,8 +230,9 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
                     });
                   },
                   label: Text(
-                    'PAY',
-                    style: GoogleFonts.nunitoSans(color: Colors.white),
+                    AppLocalizations.of(context)!.pay,
+                    style: textStyleNormal(
+                        color: kWhite, fontWeight: FontWeight.bold),
                   ),
                   color: kPrimaryColor,
                   borderRadius: 10.0,

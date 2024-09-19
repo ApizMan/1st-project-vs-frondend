@@ -55,5 +55,19 @@
   "transportInfo2": "Maklumat\nPengangkutan",
   "newsUpdate": "Berita Terkini",
   "selectState": "Pilih Negeri",
-  "selectPbt": "Pilih PBT"
+  "selectPbt": "Pilih PBT",
+  "onStreet": "Di Jalanan",
+  "plateNumber": "Nombor Plat",
+  "location": "Lokasi",
+  "duration": "Masa",
+  "payment": "Pembayaran",
+  "time": "Masa",
+  "description": "Penerangan",
+  "total": "Jumlah",
+  "paymentDesc": "Sila Bayar dan Letak Kenderaan Anda Dengan Bertanggungjawab",
+  "pay": "Bayar",
+  "receipt": "Resit",
+  "successful": "Berjaya",
+  "thankYou": "Terima Kasih",
+  "backToHome": "Kembali ke Halaman Utama"
 }

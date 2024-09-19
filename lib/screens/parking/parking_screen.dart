@@ -4,6 +4,7 @@ import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ParkingScreen extends StatefulWidget {
   const ParkingScreen({super.key});
@@ -19,17 +20,17 @@ class _ParkingScreenState extends State<ParkingScreen> {
     checkNotificationPermission();
   }
 
-Future<void> checkNotificationPermission() async {
-  PermissionStatus status = await Permission.notification.status;
+  Future<void> checkNotificationPermission() async {
+    PermissionStatus status = await Permission.notification.status;
 
-  if (status.isDenied) {
-    // Request the notification permission if it's denied
-    await Permission.notification.request();
-  } else if (status.isPermanentlyDenied) {
-    // Guide the user to settings since permission is permanently denied
-    openAppSettings(); // This opens the app settings page
+    if (status.isDenied) {
+      // Request the notification permission if it's denied
+      await Permission.notification.request();
+    } else if (status.isPermanentlyDenied) {
+      // Guide the user to settings since permission is permanently denied
+      openAppSettings(); // This opens the app settings page
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ Future<void> checkNotificationPermission() async {
         title: Column(
           children: [
             Text(
-              'Parking',
+              AppLocalizations.of(context)!.parking,
               style: textStyleNormal(
                 fontSize: 26,
                 color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -62,7 +63,7 @@ Future<void> checkNotificationPermission() async {
             ),
             spaceVertical(height: 5.0),
             Text(
-              'OnStreet',
+              AppLocalizations.of(context)!.onStreet,
               style: textStyleNormal(
                 color: details['color'] == 4294961979 ? kBlack : kWhite,
               ),

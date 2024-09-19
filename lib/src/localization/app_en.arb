@@ -55,5 +55,19 @@
   "transportInfo2": "Transport Info",
   "newsUpdate": "News Update",
   "selectState": "Select State",
-  "selectPbt": "Select PBT"
+  "selectPbt": "Select PBT",
+  "onStreet": "On Street",
+  "plateNumber": "Plate Number",
+  "location": "Location",
+  "duration": "Duration",
+  "payment": "Payment",
+  "time": "Time",
+  "description": "Description",
+  "total": "Total",
+  "paymentDesc": "Please Pay and Park Responsibly",
+  "pay": "Pay",
+  "receipt": "Receipt",
+  "successful": "Successful",
+  "thankYou": "Thank You",
+  "backToHome": "Back To Home"
 }

@@ -13,6 +13,7 @@ import 'package:project/widget/primary_button.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReceiptScreen extends StatefulWidget {
   const ReceiptScreen({super.key});
@@ -77,7 +78,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Receipt',
+          AppLocalizations.of(context)!.receipt,
           style: textStyleNormal(
             fontSize: 26,
             color: kWhite,
@@ -114,7 +115,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Successful!',
+                      '${AppLocalizations.of(context)!.successful}!',
                       style: GoogleFonts.firaCode(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
@@ -127,7 +128,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                   children: [
                     const SizedBox(height: 20),
                     Text(
-                      'Name',
+                      AppLocalizations.of(context)!.name,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -144,7 +145,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Date',
+                      AppLocalizations.of(context)!.date,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -161,7 +162,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Email',
+                      AppLocalizations.of(context)!.email,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -178,13 +179,13 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Description',
+                      AppLocalizations.of(context)!.description,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        'Desription',
+                        AppLocalizations.of(context)!.parking,
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -195,13 +196,13 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Total',
+                      AppLocalizations.of(context)!.total,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        amount.toStringAsFixed(2),
+                        'RM ${amount.toStringAsFixed(2)}',
                         style:
                             GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
@@ -212,7 +213,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 const SizedBox(height: 20),
                 Center(
                   child: Text(
-                    'THANK YOU',
+                    AppLocalizations.of(context)!.thankYou,
                     style: GoogleFonts.dmSans(
                       fontSize: 20,
                     ),
@@ -231,7 +232,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
               context, AppRoute.homeScreen, (context) => false);
         },
         label: Text(
-          'Back To Home',
+          AppLocalizations.of(context)!.backToHome,
           style: textStyleNormal(
             color: kWhite,
             fontWeight: FontWeight.bold,
