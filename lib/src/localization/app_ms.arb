@@ -69,5 +69,9 @@
   "receipt": "Resit",
   "successful": "Berjaya",
   "thankYou": "Terima Kasih",
-  "backToHome": "Kembali ke Halaman Utama"
+  "backToHome": "Kembali ke Halaman Utama",
+  "statusTopUpWallet": "Status Tambah Nilai Dompet",
+  "monthlyPass2": "P A S S\nB U L A N A N",
+  "amount2": "J U M L A H",
+  "paymentMethod": "Cara Bayaran"
 }

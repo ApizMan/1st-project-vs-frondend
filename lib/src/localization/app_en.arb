@@ -69,5 +69,9 @@
   "receipt": "Receipt",
   "successful": "Successful",
   "thankYou": "Thank You",
-  "backToHome": "Back To Home"
+  "backToHome": "Back To Home",
+  "statusTopUpWallet": "Status Top Up Wallet",
+  "monthlyPass2": "M O N T H L Y\nP A S S",
+  "amount2": "A M O U N T",
+  "paymentMethod": "Payment Method"
 }

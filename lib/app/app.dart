@@ -24,7 +24,7 @@ class CityCarPark extends StatelessWidget {
       initialRoute: AppRoute.splashScreen,
       getPages: AppRoute.routes,
       supportedLocales: L10n.all,
-      locale: Locale(defaultLanguage != null ? defaultLanguage! : 'en'),
+      locale: Locale(defaultLanguage != null ? defaultLanguage! : 'ms'),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -3,6 +3,7 @@ import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MonthlyPassScreen extends StatelessWidget {
   const MonthlyPassScreen({super.key});
@@ -29,7 +30,7 @@ class MonthlyPassScreen extends StatelessWidget {
         title: Column(
           children: [
             Text(
-              'Monthly Pass',
+              AppLocalizations.of(context)!.monthlyPass,
               style: textStyleNormal(
                 fontSize: 26,
                 color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -38,7 +39,7 @@ class MonthlyPassScreen extends StatelessWidget {
             ),
             spaceVertical(height: 5.0),
             Text(
-              'OnStreet',
+              AppLocalizations.of(context)!.onStreet,
               style: textStyleNormal(
                 color: details['color'] == 4294961979 ? kBlack : kWhite,
               ),

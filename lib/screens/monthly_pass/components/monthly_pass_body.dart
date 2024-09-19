@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/component/webview.dart';
@@ -14,6 +15,7 @@ import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MonthlyPassBody extends StatefulWidget {
   final UserModel userModel;
@@ -86,9 +88,11 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
 
   String getDurationLabel(int months) {
     if (months == 1.0) {
-      return '1 month';
+      String month = Get.locale!.languageCode == 'en' ? 'month' : 'bulan';
+      return '1 $month';
     } else {
-      return '${months.toInt()} months';
+      String month = Get.locale!.languageCode == 'en' ? 'months' : 'bulan';
+      return '${months.toInt()} $month';
     }
   }
 
@@ -335,6 +339,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             firstDay: DateTime.utc(2010, 10, 16),
                             lastDay: DateTime.utc(2030, 3, 14),
                             focusedDay: _focusedDay,
+                            locale: Get.locale!.languageCode,
                             calendarFormat: CalendarFormat.week,
                             onFormatChanged: (format) {
                               setState(() {
@@ -374,7 +379,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                       showEmptyItem: false,
                       selectFieldBloc: formBloc!.carPlateNumber,
                       decoration: InputDecoration(
-                        label: const Text('Plate Number'),
+                        label: Text(AppLocalizations.of(context)!.plateNumber),
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(
                             color: Colors.black12,
@@ -489,7 +494,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                     selectFieldBloc:
                         formBloc!.location, // Bind to PBT field bloc
                     decoration: InputDecoration(
-                      label: const Text('Location'),
+                      label: Text(AppLocalizations.of(context)!.location),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(
                           color: Colors.black12,
@@ -540,7 +545,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             .center, // Align horizontally in the center
                         children: [
                           Text(
-                            'M O N T H L Y\nP A S S',
+                            AppLocalizations.of(context)!.monthlyPass2,
                             style: GoogleFonts.dmSans(
                               color: const Color.fromARGB(255, 31, 36, 132),
                               fontSize: 20,
@@ -577,7 +582,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             .center, // Align horizontally in the center
                         children: [
                           Text(
-                            'A M O U N T',
+                            AppLocalizations.of(context)!.amount2,
                             style: GoogleFonts.dmSans(
                               color: const Color.fromARGB(255, 31, 36, 132),
                               fontSize: 20,
@@ -651,7 +656,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                         .updateValue(calculatePrice().toStringAsFixed(2));
                   },
                   label: Text(
-                    'Confirm',
+                    AppLocalizations.of(context)!.confirm,
                     style: textStyleNormal(
                       color: kWhite,
                       fontWeight: FontWeight.bold,

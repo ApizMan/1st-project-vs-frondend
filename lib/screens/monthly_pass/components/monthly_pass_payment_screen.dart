@@ -8,6 +8,7 @@ import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MonthlyPassPaymentScreen extends StatefulWidget {
   const MonthlyPassPaymentScreen({
@@ -59,7 +60,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
           backgroundColor: Color(details['color']),
           centerTitle: true,
           title: Text(
-            'Payment',
+            AppLocalizations.of(context)!.payment,
             style: textStyleNormal(
               fontSize: 26,
               color: kWhite,
@@ -87,8 +88,8 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
             );
           },
           label: Text(
-            'PAY',
-            style: GoogleFonts.nunitoSans(color: Colors.white),
+            AppLocalizations.of(context)!.pay,
+            style: textStyleNormal(color: kWhite, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -101,7 +102,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      "Date",
+                      AppLocalizations.of(context)!.date,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -118,7 +119,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Time',
+                      AppLocalizations.of(context)!.time,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -135,7 +136,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Location',
+                      AppLocalizations.of(context)!.location,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -152,7 +153,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Number Plate',
+                      AppLocalizations.of(context)!.plateNumber,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -169,7 +170,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Duration',
+                      AppLocalizations.of(context)!.duration,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -186,13 +187,13 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Description',
+                      AppLocalizations.of(context)!.description,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        'Parking',
+                        AppLocalizations.of(context)!.monthlyPass,
                         style: GoogleFonts.firaCode(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -203,7 +204,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 Row(
                   children: [
                     Text(
-                      'Total',
+                      AppLocalizations.of(context)!.total,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -220,7 +221,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                 const SizedBox(height: 40),
                 Center(
                   child: Text(
-                    'Please Pay and Park Responsibly',
+                    AppLocalizations.of(context)!.paymentDesc,
                     style: GoogleFonts.firaCode(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -244,7 +245,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                     ),
                     selectFieldBloc: formBloc.paymentMethod,
                     decoration: InputDecoration(
-                      labelText: 'Payment Method',
+                      labelText: AppLocalizations.of(context)!.paymentMethod,
                       labelStyle: textStyleNormal(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

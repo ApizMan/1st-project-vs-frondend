@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/constant.dart';
-import 'package:project/models/models.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'dart:ui' as ui;
@@ -86,7 +86,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Receipt',
+          AppLocalizations.of(context)!.receipt,
           style: textStyleNormal(
             fontSize: 26,
             color: kWhite,
@@ -125,7 +125,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
               context, AppRoute.homeScreen, (context) => false);
         },
         label: Text(
-          'Back To Home',
+          AppLocalizations.of(context)!.backToHome,
           style: textStyleNormal(
             color: kWhite,
             fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      'Successful!',
+                      '${AppLocalizations.of(context)!.successful}!',
                       style: GoogleFonts.firaCode(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
@@ -163,7 +163,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Date',
+                      AppLocalizations.of(context)!.date,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -180,7 +180,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Time',
+                      AppLocalizations.of(context)!.time,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -197,7 +197,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Location',
+                      AppLocalizations.of(context)!.location,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -214,7 +214,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Number Plate',
+                      AppLocalizations.of(context)!.plateNumber,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -231,7 +231,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Duration',
+                      AppLocalizations.of(context)!.duration,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -248,7 +248,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 Row(
                   children: [
                     Text(
-                      'Total',
+                      AppLocalizations.of(context)!.total,
                       style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
@@ -265,7 +265,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                 const SizedBox(height: 20),
                 Center(
                   child: Text(
-                    'THANK YOU',
+                    AppLocalizations.of(context)!.thankYou,
                     style: GoogleFonts.dmSans(
                       fontSize: 20,
                     ),
