@@ -6,6 +6,7 @@ import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReserveBayScreen extends StatefulWidget {
   const ReserveBayScreen({super.key});
@@ -70,7 +71,7 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                 backgroundColor: Color(details['color']),
                 centerTitle: true,
                 title: Text(
-                  'Reserve Bay',
+                  AppLocalizations.of(context)!.reserveBays,
                   style: textStyleNormal(
                     fontSize: 26,
                     color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -173,7 +174,7 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Company Name: ${reserveBay.companyName}",
+                                          "${AppLocalizations.of(context)!.companyName}: ${reserveBay.companyName}",
                                           style: textStyleNormal(),
                                         ),
                                         Container(
@@ -210,15 +211,15 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                       ],
                                     ),
                                     Text(
-                                      "Company Registration: ${reserveBay.companyRegistration}",
+                                      "${AppLocalizations.of(context)!.companyRegistration}: ${reserveBay.companyRegistration}",
                                       style: textStyleNormal(),
                                     ),
                                     Text(
-                                      "Total Lot Required: $reserveBayTotalLot",
+                                      "${AppLocalizations.of(context)!.totalLotRequired}: $reserveBayTotalLot",
                                       style: textStyleNormal(),
                                     ),
                                     Text(
-                                      "Reason: ${reserveBay.reason}",
+                                      "${AppLocalizations.of(context)!.reason}: ${reserveBay.reason}",
                                       style: textStyleNormal(),
                                     ),
                                   ],

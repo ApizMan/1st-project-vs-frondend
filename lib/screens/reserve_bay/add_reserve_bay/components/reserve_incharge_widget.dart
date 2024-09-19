@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/form_bloc/form_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class ReserveInChargeWidget extends StatelessWidget {
@@ -18,8 +19,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.picFirstName,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('First Name'),
-            hintText: 'Enter Person In Charge First Name',
+            label: Text(AppLocalizations.of(context)!.firstName),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.firstName} ${AppLocalizations.of(context)!.personInCharge}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -43,8 +45,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.picLastName,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('Last Name'),
-            hintText: 'Enter Person In Charge Last Name',
+            label: Text(AppLocalizations.of(context)!.lastName),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.lastName} ${AppLocalizations.of(context)!.personInCharge}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -69,8 +72,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('Phone Number'),
-            hintText: 'Enter Phone Number',
+            label: Text(AppLocalizations.of(context)!.phoneNumber),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.phoneNumber}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -94,8 +98,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.email,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('Email'),
-            hintText: 'Enter Email',
+            label: Text(AppLocalizations.of(context)!.email),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.email}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -119,8 +124,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.idNumber,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('ID Number'),
-            hintText: 'Enter ID Number',
+            label: Text(AppLocalizations.of(context)!.idNumber),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.idNumber}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -144,7 +150,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           showEmptyItem: false,
           selectFieldBloc: formBloc.totalLot,
           decoration: InputDecoration(
-            label: const Text('Total Lot'),
+            label: Text(AppLocalizations.of(context)!.totalLot),
             border: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: Colors.black12,
@@ -170,8 +176,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.reason,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('Reason'),
-            hintText: 'Enter Reason',
+            label: Text(AppLocalizations.of(context)!.reason),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.reason}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -196,8 +203,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            label: const Text('Lot Number'),
-            hintText: 'Enter Lot Number',
+            label: Text(AppLocalizations.of(context)!.lotNumber),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.lotNumber}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -221,8 +229,9 @@ class ReserveInChargeWidget extends StatelessWidget {
           textFieldBloc: formBloc.location,
           textInputAction: TextInputAction.done,
           decoration: InputDecoration(
-            label: const Text('Location'),
-            hintText: 'Enter Location',
+            label: Text(AppLocalizations.of(context)!.location),
+            hintText:
+                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.location}',
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),

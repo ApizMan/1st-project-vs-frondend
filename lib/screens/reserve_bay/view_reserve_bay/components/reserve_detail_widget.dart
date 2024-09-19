@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class ReserveDetailWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.companyName,
           decoration: InputDecoration(
-            label: const Text('Company Name'),
+            label: Text(AppLocalizations.of(context)!.companyName),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -46,7 +47,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.ssm,
           decoration: InputDecoration(
-            label: const Text('SSM Number'),
+            label: Text(AppLocalizations.of(context)!.ssmNumber),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -70,7 +71,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.businessType,
           decoration: InputDecoration(
-            label: const Text('Business Type'),
+            label: Text(AppLocalizations.of(context)!.businessType),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -98,7 +99,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.address1,
           decoration: InputDecoration(
-            label: const Text('Address 1'),
+            label: Text(AppLocalizations.of(context)!.address1),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -122,7 +123,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.address2,
           decoration: InputDecoration(
-            label: const Text('Address 2'),
+            label: Text(AppLocalizations.of(context)!.address2),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -146,7 +147,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.address3,
           decoration: InputDecoration(
-            label: const Text('Address 3'),
+            label: Text(AppLocalizations.of(context)!.address3),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -170,7 +171,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.postcode,
           decoration: InputDecoration(
-            label: const Text('Postcode'),
+            label: Text(AppLocalizations.of(context)!.postcode),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -194,7 +195,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.city,
           decoration: InputDecoration(
-            label: const Text('City'),
+            label: Text(AppLocalizations.of(context)!.city),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -218,7 +219,7 @@ class ReserveDetailWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.states,
           decoration: InputDecoration(
-            label: const Text('State'),
+            label: Text(AppLocalizations.of(context)!.state),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),

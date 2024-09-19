@@ -6,6 +6,7 @@ import 'package:project/screens/screens.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddReserveBayScreen extends StatefulWidget {
   const AddReserveBayScreen({super.key});
@@ -61,7 +62,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
               backgroundColor: Color(details['color']),
               centerTitle: true,
               title: Text(
-                'Add Reserve Bay',
+                AppLocalizations.of(context)!.addReserveBay,
                 style: textStyleNormal(
                   fontSize: 26,
                   color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -97,7 +98,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
                             borderRadius: 10.0,
                             buttonWidth: 0.35,
                             label: Text(
-                              'Back',
+                              AppLocalizations.of(context)!.back,
                               style: textStyleNormal(color: kWhite),
                             ),
                           ),
@@ -111,7 +112,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
                             onPressed: onStepContinue,
                             borderRadius: 10.0,
                             label: Text(
-                              'Next',
+                              AppLocalizations.of(context)!.next,
                               style: textStyleNormal(color: kWhite),
                             ),
                           ),
@@ -123,7 +124,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
                             onPressed: onStepContinue,
                             borderRadius: 10.0,
                             label: Text(
-                              'Next',
+                              AppLocalizations.of(context)!.next,
                               style: textStyleNormal(color: kWhite),
                             ),
                           ),
@@ -135,7 +136,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
                             onPressed: onStepContinue,
                             borderRadius: 10.0,
                             label: Text(
-                              'Next',
+                              AppLocalizations.of(context)!.next,
                               style: textStyleNormal(color: kWhite),
                             ),
                           ),
@@ -151,7 +152,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
                             },
                             borderRadius: 10.0,
                             label: Text(
-                              'Submit',
+                              AppLocalizations.of(context)!.submit,
                               style: textStyleNormal(color: kWhite),
                             ),
                           ),
@@ -170,7 +171,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
   FormBlocStep _reserveStep1(StoreReserveBayFormBloc reserveBayFormBloc) {
     return FormBlocStep(
       title: Text(
-        'Reserve\nDetails',
+        AppLocalizations.of(context)!.reserveDetails,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -196,7 +197,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
   FormBlocStep _reserveStep3(StoreReserveBayFormBloc reserveBayFormBloc) {
     return FormBlocStep(
       title: Text(
-        'Documents',
+        AppLocalizations.of(context)!.documents,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -209,7 +210,7 @@ class _AddReserveBayScreenState extends State<AddReserveBayScreen> {
   FormBlocStep _reserveStep4(StoreReserveBayFormBloc reserveBayFormBloc) {
     return FormBlocStep(
       title: Text(
-        'T&C',
+        AppLocalizations.of(context)!.tnc,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,

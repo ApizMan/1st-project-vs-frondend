@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class ReserveInChargeWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.picFirstName,
           decoration: InputDecoration(
-            label: const Text('First Name'),
+            label: Text(AppLocalizations.of(context)!.firstName),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -46,7 +47,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.picLastName,
           decoration: InputDecoration(
-            label: const Text('Last Name'),
+            label: Text(AppLocalizations.of(context)!.lastName),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -70,7 +71,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.phoneNumber,
           decoration: InputDecoration(
-            label: const Text('Phone Number'),
+            label: Text(AppLocalizations.of(context)!.phoneNumber),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -94,7 +95,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.email,
           decoration: InputDecoration(
-            label: const Text('Email'),
+            label: Text(AppLocalizations.of(context)!.email),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -118,7 +119,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.idNumber,
           decoration: InputDecoration(
-            label: const Text('ID Number'),
+            label: Text(AppLocalizations.of(context)!.idNumber),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -142,7 +143,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.totalLot,
           decoration: InputDecoration(
-            label: const Text('Total Lot'),
+            label: Text(AppLocalizations.of(context)!.totalLot),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -170,7 +171,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.reason,
           decoration: InputDecoration(
-            label: const Text('Reason'),
+            label: Text(AppLocalizations.of(context)!.reason),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -194,7 +195,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.lotNumber,
           decoration: InputDecoration(
-            label: const Text('Lot Number'),
+            label: Text(AppLocalizations.of(context)!.lotNumber),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),
@@ -218,7 +219,7 @@ class ReserveInChargeWidget extends StatelessWidget {
           readOnly: true,
           textFieldBloc: formBloc.location,
           decoration: InputDecoration(
-            label: const Text('Location'),
+            label: Text(AppLocalizations.of(context)!.location),
             hintStyle: const TextStyle(
               color: Colors.black26,
             ),

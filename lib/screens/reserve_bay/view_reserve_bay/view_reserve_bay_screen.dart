@@ -9,6 +9,7 @@ import 'package:project/screens/reserve_bay/view_reserve_bay/components/reserve_
 import 'package:project/screens/reserve_bay/view_reserve_bay/components/reserve_tnc_widget.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ViewReserveBayScreen extends StatefulWidget {
   const ViewReserveBayScreen({super.key});
@@ -69,13 +70,25 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
                     details['color'] == 4294961979 ? kBlack : kWhite,
                 backgroundColor: Color(details['color']),
                 centerTitle: true,
-                title: Text(
-                  'Add Reserve Bay',
-                  style: textStyleNormal(
-                    fontSize: 26,
-                    color: details['color'] == 4294961979 ? kBlack : kWhite,
-                    fontWeight: FontWeight.bold,
-                  ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.viewReserveBay,
+                      style: textStyleNormal(
+                        fontSize: 26,
+                        color: details['color'] == 4294961979 ? kBlack : kWhite,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    spaceVertical(height: 5.0),
+                    Text(
+                      '${AppLocalizations.of(context)!.company}: ${reserveBay.companyName!}',
+                      style: textStyleNormal(
+                        color: details['color'] == 4294961979 ? kBlack : kWhite,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               body: StepperFormBlocBuilder<UpdateReserveBayFormBloc>(
@@ -116,7 +129,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
       UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay) {
     return FormBlocStep(
       title: Text(
-        'Reserve\nDetails',
+        AppLocalizations.of(context)!.reserveDetails,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -150,7 +163,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
       UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay) {
     return FormBlocStep(
       title: Text(
-        'Documents',
+        AppLocalizations.of(context)!.documents,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -167,7 +180,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
       UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay) {
     return FormBlocStep(
       title: Text(
-        'T&C',
+        AppLocalizations.of(context)!.tnc,
         style: textStyleNormal(
           fontSize: 12,
           fontWeight: FontWeight.bold,

@@ -1,10 +1,10 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReserveDocumentWidget extends StatelessWidget {
   final UpdateReserveBayFormBloc formBloc;
@@ -76,7 +76,8 @@ class ReserveDocumentWidget extends StatelessWidget {
                       )
                     : const SizedBox(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: const Text('Intended Designated Bay'),
+                label:
+                    Text(AppLocalizations.of(context)!.intendedDesignatedBay),
                 border: InputBorder.none,
                 enabledBorder: formBloc.designatedBay.value != 'empty'
                     ? OutlineInputBorder(
@@ -156,7 +157,8 @@ class ReserveDocumentWidget extends StatelessWidget {
                       )
                     : const SizedBox(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: const Text('Company Registration Certificate'),
+                label: Text(AppLocalizations.of(context)!
+                    .companyRegistrationCertificate),
                 border: InputBorder.none,
                 enabledBorder: formBloc.certificate.value != 'empty'
                     ? OutlineInputBorder(
@@ -236,7 +238,7 @@ class ReserveDocumentWidget extends StatelessWidget {
                       )
                     : const SizedBox(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: const Text('Identification Card (Front & Back)'),
+                label: Text(AppLocalizations.of(context)!.identificationCard),
                 border: InputBorder.none,
                 enabledBorder: formBloc.idCard.value != 'empty'
                     ? OutlineInputBorder(
