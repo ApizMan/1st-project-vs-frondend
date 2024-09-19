@@ -13,6 +13,7 @@ import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 //import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ReloadScreen extends StatefulWidget {
@@ -198,7 +199,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
                 backgroundColor: Color(details['color']),
                 centerTitle: true,
                 title: Text(
-                  'Reload',
+                  AppLocalizations.of(context)!.reload,
                   style: textStyleNormal(
                     fontSize: 26,
                     color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -223,7 +224,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
                   );
                 },
                 label: Text(
-                  'Confirm',
+                  AppLocalizations.of(context)!.confirm,
                   style: textStyleNormal(
                     color: kWhite,
                     fontWeight: FontWeight.bold,
@@ -248,7 +249,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
                           _buildGridItem('RM 30.00'),
                           _buildGridItem('RM 40.00'),
                           _buildGridItem('RM 50.00'),
-                          _buildGridItem('Other'),
+                          _buildGridItem(AppLocalizations.of(context)!.other),
                         ],
                       ),
                     ),
@@ -272,8 +273,9 @@ class _ReloadScreenState extends State<ReloadScreen> {
                               }
                             },
                             decoration: InputDecoration(
-                              labelText: 'Enter Amount',
-                              hintText: 'Enter the amount',
+                              labelText: AppLocalizations.of(context)!.amount,
+                              hintText:
+                                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.amount}',
                               hintStyle: const TextStyle(
                                 color: Colors.black26,
                               ),
@@ -311,7 +313,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                            labelText: 'Token',
+                            labelText: AppLocalizations.of(context)!.token,
                             prefixStyle: textStyleNormal(),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             border: OutlineInputBorder(
@@ -350,7 +352,7 @@ class _ReloadScreenState extends State<ReloadScreen> {
         setState(() {
           _selectedLabel = label;
 
-          if (label != 'Other') {
+          if (label != AppLocalizations.of(context)!.other) {
             // Update token with value from label
             formBloc.token.updateValue(label.replaceAll('RM ', ''));
             formBloc.other.updateValue(label.replaceAll('RM ', ''));

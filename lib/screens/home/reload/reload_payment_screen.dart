@@ -8,6 +8,7 @@ import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReloadPaymentScreen extends StatefulWidget {
   const ReloadPaymentScreen({super.key});
@@ -51,7 +52,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Payment',
+          AppLocalizations.of(context)!.payment,
           style: textStyleNormal(
             fontSize: 26,
             color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -67,8 +68,8 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
           formBloc.submit();
         },
         label: Text(
-          'PAY',
-          style: GoogleFonts.nunitoSans(color: Colors.white),
+          AppLocalizations.of(context)!.pay,
+          style: textStyleNormal(color: kWhite, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -81,7 +82,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
                 children: [
                   const SizedBox(height: 20),
                   Text(
-                    'Name',
+                    AppLocalizations.of(context)!.name,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -98,7 +99,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Date',
+                    AppLocalizations.of(context)!.date,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -115,7 +116,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Email',
+                    AppLocalizations.of(context)!.email,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -132,13 +133,13 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Description',
+                    AppLocalizations.of(context)!.description,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
                   Expanded(
                     child: Text(
-                      'Token',
+                      AppLocalizations.of(context)!.token,
                       style: GoogleFonts.firaCode(),
                       textAlign: TextAlign.right, // Align text to the right
                     ),
@@ -149,7 +150,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
               Row(
                 children: [
                   Text(
-                    'Total',
+                    AppLocalizations.of(context)!.total,
                     style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 50),
@@ -165,7 +166,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
               const SizedBox(height: 40),
               Center(
                 child: Text(
-                  'Please Pay and Park Responsibly',
+                  AppLocalizations.of(context)!.paymentDesc,
                   style: GoogleFonts.firaCode(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -189,7 +190,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
                   ),
                   selectFieldBloc: formBloc.paymentMethod,
                   decoration: InputDecoration(
-                    labelText: 'Payment Method',
+                    labelText: AppLocalizations.of(context)!.paymentMethod,
                     labelStyle: textStyleNormal(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -232,7 +233,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
                     const SizedBox(width: 5), // Jarak antara ikon dan teks
                     Flexible(
                       child: Text(
-                        'You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate.',
+                        AppLocalizations.of(context)!.paymentDesc2,
                         style: GoogleFonts.firaCode(
                           color: Colors.red,
                           fontSize: 12,

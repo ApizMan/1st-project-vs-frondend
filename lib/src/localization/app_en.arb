@@ -103,5 +103,9 @@
   "personInCharge": "Person In Charge",
   "back": "Back",
   "next": "Next",
-  "submit": "Submit"
+  "submit": "Submit",
+  "reload": "Reload",
+  "other": "Other",
+  "token": "Token",
+  "paymentDesc2": "You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate."
 }

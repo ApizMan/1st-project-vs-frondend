@@ -103,5 +103,9 @@
   "personInCharge": "Orang Yang Bertanggungjawab",
   "back": "Belakang",
   "next": "Seterusnya",
-  "submit": "Hantar"
+  "submit": "Hantar",
+  "reload": "Tambah Nilai",
+  "other": "Lain-lain",
+  "token": "Token",
+  "paymentDesc2": "Anda akan dibawa ke laman web Pihak Ketiga untuk Tambah Nilai Token. Sila pastikan butiran di atas adalah tepat."
 }

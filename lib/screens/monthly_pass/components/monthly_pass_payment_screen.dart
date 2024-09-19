@@ -275,6 +275,30 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 15),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.error_outline, // Icon yang ingin Anda gunakan
+                        color: Colors.red, // Warna ikon
+                      ),
+                      const SizedBox(height: 50),
+                      const SizedBox(width: 5), // Jarak antara ikon dan teks
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context)!.paymentDesc2,
+                          style: GoogleFonts.firaCode(
+                            color: Colors.red,
+                            fontSize: 12,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
