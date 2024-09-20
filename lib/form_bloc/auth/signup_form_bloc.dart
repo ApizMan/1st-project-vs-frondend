@@ -50,11 +50,7 @@ class SignUpFormBloc extends FormBloc<String, String> {
     ],
   );
 
-  final confirmPassword = TextFieldBloc(
-    validators: [
-      InputValidator.required,
-    ],
-  );
+  final confirmPassword = TextFieldBloc();
 
   final address1 = TextFieldBloc(
     validators: [
@@ -97,6 +93,17 @@ class SignUpFormBloc extends FormBloc<String, String> {
   );
 
   SignUpFormBloc() {
+    // Add a validator for confirmPassword that compares it with password
+    confirmPassword.addValidators([
+      InputValidator.required,
+      (value) {
+        if (value != password.value) {
+          return 'Passwords do not match';
+        }
+        return null;
+      }
+    ]);
+
     addFieldBlocs(
       step: 0,
       fieldBlocs: [
@@ -122,10 +129,24 @@ class SignUpFormBloc extends FormBloc<String, String> {
         carPlateNumber,
       ],
     );
+
+    // Listen to changes in the password field and revalidate confirmPassword
+    password.onValueChanges(
+      onData: (previous, current) async* {
+        confirmPassword.updateValue(confirmPassword.value);
+      },
+    );
   }
 
   @override
   FutureOr<void> onSubmitting() async {
+    // Ensure confirmPassword matches password
+    if (password.value != confirmPassword.value) {
+      confirmPassword.addFieldError('Passwords do not match');
+      emitFailure(failureResponse: 'Passwords do not match');
+      return;
+    }
+
     await Future.delayed(const Duration(milliseconds: 1000));
 
     if (state.currentStep == 0) {

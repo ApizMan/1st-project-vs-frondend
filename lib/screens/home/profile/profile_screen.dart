@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -1025,6 +1026,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: <Widget>[
                   TextField(
                     controller: carplate,
+                    inputFormatters: [
+                      // This ensures that the input is displayed as uppercase
+                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+                      UpperCaseTextFormatter(),
+                    ],
                   ),
                   ElevatedButton(
                     onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -580,6 +581,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           TextFieldBlocBuilder(
             textFieldBloc: formBloc.carPlateNumber,
             textInputAction: TextInputAction.next,
+            inputFormatters: [
+              // This ensures that the input is displayed as uppercase
+              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+              UpperCaseTextFormatter(),
+            ],
             decoration: InputDecoration(
               label: Text(AppLocalizations.of(context)!.carPlateNumber),
               hintText:

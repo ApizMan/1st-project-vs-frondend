@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project/constant.dart';
 
 TextStyle textStyleNormal({
@@ -27,4 +28,17 @@ SizedBox spaceHorizontal({double width = 10}) {
   return SizedBox(
     width: width,
   );
+}
+
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    return newValue.copyWith(
+      text: newValue.text.toUpperCase(), // Convert text to uppercase
+      selection: newValue.selection, // Preserve cursor position
+    );
+  }
 }
