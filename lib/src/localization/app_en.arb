@@ -114,5 +114,10 @@
   "login": "Login",
   "loginDesc": "Don't have an account",
   "signUp": "Sign Up",
-  "createNewAccount": "Create New Account"
+  "createNewAccount": "Create New Account",
+  "account": "Account",
+  "accountDesc": "This section is for your\naccount information",
+  "confirmPassword": "Confirm Password",
+  "addressDesc": "This section is for your\naddress information",
+  "carPlateNumber": "Car Plate Number"
 }

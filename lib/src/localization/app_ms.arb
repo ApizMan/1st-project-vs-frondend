@@ -101,7 +101,7 @@
   "addReserveBay": "Tambah Petak Khas",
   "enter": "Masukkan",
   "personInCharge": "Orang Yang Bertanggungjawab",
-  "back": "Belakang",
+  "back": "Kebelakang",
   "next": "Seterusnya",
   "submit": "Hantar",
   "reload": "Tambah Nilai",
@@ -114,5 +114,10 @@
   "login": "Log Masuk",
   "loginDesc": "Masih Tiada Akaun",
   "signUp": "Daftar Masuk",
-  "createNewAccount": "Cipta Akaun Baru"
+  "createNewAccount": "Cipta Akaun Baru",
+  "account": "Akaun",
+  "accountDesc": "Bahagian ini adalah untuk\nmaklumat akaun anda",
+  "confirmPassword": "Pengesahan Kata Laluan",
+  "addressDesc": "Bahagian ini adalah untuk\nmaklumat alamat anda",
+  "carPlateNumber": "Nombor Plat Kereta"
 }

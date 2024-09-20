@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
+import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project/widget/loading_dialog.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -88,6 +90,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       await SharedPreferencesHelper.saveLanguage('en');
                       Get.updateLocale(const Locale('en'));
                     }
+
+                    // Show the loading dialog
+                    LoadingDialog.show(context);
+
+                    // Simulate a delay for processing
+                    await Future.delayed(const Duration(milliseconds: 500));
+
+                    // Hide the loading dialog
+                    LoadingDialog.hide(context);
+
+                    // Reload the screen with new settings
+                    Navigator.popAndPushNamed(
+                      context,
+                      AppRoute.settingsScreen,
+                      arguments: {
+                        'locationDetail': details,
+                      },
+                    );
                   },
                   leading: const SizedBox.shrink(),
                   title: Text(

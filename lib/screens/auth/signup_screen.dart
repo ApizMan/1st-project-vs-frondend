@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
@@ -18,6 +19,26 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   SignUpFormBloc? formBloc;
+  late bool showPassword;
+  late bool showConfirmPassword;
+  late ValueNotifier<bool> _showPasswordNotifier;
+  late ValueNotifier<bool> _showConfirmPasswordNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    showPassword = true;
+    _showPasswordNotifier = ValueNotifier<bool>(showPassword);
+    showConfirmPassword = true;
+    _showConfirmPasswordNotifier = ValueNotifier<bool>(showConfirmPassword);
+  }
+
+  @override
+  void dispose() {
+    _showPasswordNotifier.dispose();
+    _showConfirmPasswordNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,14 +173,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FormBlocStep _accountStep(SignUpFormBloc formBloc) {
     return FormBlocStep(
       title: Text(
-        'Account',
+        AppLocalizations.of(context)!.account,
         style: textStyleNormal(
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: formBloc.state.currentStep == 0
           ? Text(
-              'This section is for your\naccount information',
+              AppLocalizations.of(context)!.accountDesc,
               style: textStyleNormal(fontSize: 12),
             )
           : const SizedBox(),
@@ -169,8 +190,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.firstName,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('First Name'),
-              hintText: 'Enter First Name',
+              label: Text(AppLocalizations.of(context)!.firstName),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.firstName}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -194,8 +216,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.lastName,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Last Name'),
-              hintText: 'Enter Last Name',
+              label: Text(AppLocalizations.of(context)!.lastName),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.lastName}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -219,8 +242,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.email,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Email'),
-              hintText: 'Enter Email',
+              label: Text(AppLocalizations.of(context)!.email),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.email}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -244,8 +268,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.idNumber,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('ID Number'),
-              hintText: 'Enter ID Number',
+              label: Text(AppLocalizations.of(context)!.idNumber),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.idNumber}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -270,8 +295,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             keyboardType: TextInputType.phone,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Phone Number'),
-              hintText: 'Enter Phone Number',
+              label: Text(AppLocalizations.of(context)!.phoneNumber),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.phoneNumber}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -291,56 +317,88 @@ class _SignUpScreenState extends State<SignUpScreen> {
               fillColor: Colors.white.withOpacity(0.8),
             ),
           ),
-          TextFieldBlocBuilder(
-            textFieldBloc: formBloc.password,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              label: const Text('Password'),
-              hintText: 'Enter Password',
-              hintStyle: const TextStyle(
-                color: Colors.black26,
-              ),
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              filled: true,
-              fillColor: Colors.white.withOpacity(0.8),
-            ),
-          ),
-          TextFieldBlocBuilder(
-            textFieldBloc: formBloc.confirmPassword,
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-              label: const Text('Confirm Password'),
-              hintText: 'Enter Confirm Password',
-              hintStyle: const TextStyle(
-                color: Colors.black26,
-              ),
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: Colors.black12,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              filled: true,
-              fillColor: Colors.white.withOpacity(0.8),
-            ),
-          ),
+          ValueListenableBuilder(
+              valueListenable: _showPasswordNotifier,
+              builder: (context, value, child) {
+                return TextFieldBlocBuilder(
+                  textFieldBloc: formBloc.password,
+                  obscureText: value,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    label: Text(AppLocalizations.of(context)!.password),
+                    hintText:
+                        '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.password}',
+                    hintStyle: const TextStyle(
+                      color: Colors.black26,
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        _showPasswordNotifier.value =
+                            !_showPasswordNotifier.value;
+                      },
+                      child: Icon(
+                        value ? Icons.visibility : Icons.visibility_off,
+                        color: kGrey,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                  ),
+                );
+              }),
+          ValueListenableBuilder(
+              valueListenable: _showConfirmPasswordNotifier,
+              builder: (context, value, child) {
+                return TextFieldBlocBuilder(
+                  textFieldBloc: formBloc.confirmPassword,
+                  obscureText: value,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                    label: Text(AppLocalizations.of(context)!.confirmPassword),
+                    hintText:
+                        '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.confirmPassword}',
+                    hintStyle: const TextStyle(
+                      color: Colors.black26,
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        _showConfirmPasswordNotifier.value =
+                            !_showConfirmPasswordNotifier.value;
+                      },
+                      child: Icon(
+                        value ? Icons.visibility : Icons.visibility_off,
+                        color: kGrey,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black12,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                  ),
+                );
+              }),
         ],
       ),
     );
@@ -349,14 +407,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FormBlocStep _addressStep(SignUpFormBloc formBloc) {
     return FormBlocStep(
       title: Text(
-        'Address',
+        AppLocalizations.of(context)!.address,
         style: textStyleNormal(
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: formBloc.state.currentStep == 1
           ? Text(
-              'This section is for your\naddress information',
+              AppLocalizations.of(context)!.addressDesc,
               style: textStyleNormal(),
             )
           : const SizedBox(),
@@ -366,8 +424,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.address1,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Address 1'),
-              hintText: 'Enter Address 1',
+              label: Text(AppLocalizations.of(context)!.address1),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.address1}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -391,8 +450,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.address2,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Address 2'),
-              hintText: 'Enter Address 2',
+              label: Text(AppLocalizations.of(context)!.address2),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.address2}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -416,8 +476,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.address3,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Address 3'),
-              hintText: 'Enter Address 3',
+              label: Text(AppLocalizations.of(context)!.address3),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.address3}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -442,8 +503,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Postcode'),
-              hintText: 'Enter Postcode',
+              label: Text(AppLocalizations.of(context)!.postcode),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.postcode}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -467,8 +529,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.city,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('City'),
-              hintText: 'Enter City',
+              label: Text(AppLocalizations.of(context)!.city),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.city}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -492,8 +555,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.states,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('State'),
-              hintText: 'Enter State',
+              label: Text(AppLocalizations.of(context)!.state),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.state}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
@@ -517,8 +581,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             textFieldBloc: formBloc.carPlateNumber,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              label: const Text('Car Plate Number'),
-              hintText: 'Enter Car Plate Number',
+              label: Text(AppLocalizations.of(context)!.carPlateNumber),
+              hintText:
+                  '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.carPlateNumber}',
               hintStyle: const TextStyle(
                 color: Colors.black26,
               ),
