@@ -119,5 +119,11 @@
   "accountDesc": "Bahagian ini adalah untuk\nmaklumat akaun anda",
   "confirmPassword": "Pengesahan Kata Laluan",
   "addressDesc": "Bahagian ini adalah untuk\nmaklumat alamat anda",
-  "carPlateNumber": "Nombor Plat Kereta"
+  "carPlateNumber": "Nombor Plat Kereta",
+  "send": "Hantar",
+  "forgetPasswordDesc": "Masukkan alamat e-mel yang dikaitkan dengan akaun anda dan kami akan menghantar e-mel OTP untuk menetapkan semula e-mel anda.",
+  "resetPassword": "Set Semula Kata Laluan",
+  "resetPasswordDesc": "Masukkan OTP yang telah dihantar melalui e-mel anda. OTP akan tamat tempoh dalam masa 10 minit.",
+  "otp": "OTP",
+  "newPassword": "Kata Laluan Baharu"
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:project/constant.dart';
@@ -18,16 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  bool forgotpassword = false;
   late bool showPassword;
   late ValueNotifier<bool> _showPasswordNotifier;
   LoginFormBloc? formBloc;
-
-  void _forgotPassword() {
-    setState(() {
-      forgotpassword = !forgotpassword;
-    });
-  }
 
   @override
   void initState() {
@@ -176,7 +168,10 @@ class LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
-                              onTap: _forgotPassword,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, AppRoute.forgotPasswordScreen);
+                              },
                               child: Text(
                                 '${AppLocalizations.of(context)!.forgetPassword}?',
                                 style: textStyleNormal(

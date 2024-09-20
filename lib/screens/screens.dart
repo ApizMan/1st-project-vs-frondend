@@ -33,3 +33,5 @@ export 'transport_info/transport_info_screen.dart';
 export 'transport_info/components/transport_info_body.dart';
 export 'notification/notification_screen.dart';
 export 'home/profile/components/settings_screen.dart';
+export 'auth/components/forgot_password_screen.dart';
+export 'auth/components/reset_password_screen.dart';

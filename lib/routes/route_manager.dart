@@ -31,6 +31,9 @@ class AppRoute {
   static const notificationScreen = '/notificationScreen';
   static const settingsScreen = '/settingsScreen';
 
+  static const forgotPasswordScreen = '/forgotPasswordScreen';
+  static const resetPasswordScreen = '/resetPasswordScreen';
+
   static final routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
@@ -68,5 +71,8 @@ class AppRoute {
     GetPage(name: transportInfoScreen, page: () => const TransportInfoScreen()),
     GetPage(name: notificationScreen, page: () => const NotificationScreen()),
     GetPage(name: settingsScreen, page: () => const SettingsScreen()),
+    GetPage(
+        name: forgotPasswordScreen, page: () => const ForgotPasswordScreen()),
+    GetPage(name: resetPasswordScreen, page: () => const ResetPasswordScreen()),
   ];
 }

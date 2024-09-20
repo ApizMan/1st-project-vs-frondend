@@ -6,3 +6,4 @@ export 'reserve_bay/update_reserve_bay_form_bloc.dart';
 export 'reserve_bay/store_reserve_bay_form_bloc.dart';
 export 'compound/compound_form_bloc.dart';
 export 'monthly_pass/monthly_pass_form_bloc.dart';
+export 'auth/forgot_password_form_bloc.dart';

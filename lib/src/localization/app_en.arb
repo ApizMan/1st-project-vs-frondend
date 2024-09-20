@@ -119,5 +119,11 @@
   "accountDesc": "This section is for your\naccount information",
   "confirmPassword": "Confirm Password",
   "addressDesc": "This section is for your\naddress information",
-  "carPlateNumber": "Car Plate Number"
+  "carPlateNumber": "Car Plate Number",
+  "send": "Send",
+  "forgetPasswordDesc": "Enter email address associated with your account and we'll send email the OTP to reset your email.",
+  "resetPassword": "Reset Password",
+  "resetPasswordDesc": "Key-in the OTP that have been sent through your email. The OTP will expired in 10 minutes.",
+  "otp": "OTP",
+  "newPassword": "New Password"
 }

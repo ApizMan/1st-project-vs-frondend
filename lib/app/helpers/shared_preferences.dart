@@ -160,4 +160,16 @@ class SharedPreferencesHelper {
       'terminalId': terminalId,
     };
   }
+
+   static Future<void> setEmailResetPassword({required String email}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(emailResetPasswordKey, email);
+  }
+
+  static Future<String> getEmailResetPasswords() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? email = prefs.getString(emailResetPasswordKey);
+
+    return email ?? 'test@example.com';
+  }
 }
