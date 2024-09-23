@@ -69,7 +69,21 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
       if (response['error'] != null) {
         emitFailure(failureResponse: response['error'].toString());
       } else {
-        emitSuccess(successResponse: 'Payment Parking Successful!');
+        final responseParking = await ParkingResources.createParking(
+          prefix: '/parking/create',
+          body: jsonEncode({
+            'walletTransactionId': response['walletTransactionid'].toString(),
+            'plateNumber': carPlateNumber.value,
+            'pbt': pbt.value,
+            'location': location.value,
+          }),
+        );
+
+        if (responseParking['error'] != null) {
+          emitFailure(failureResponse: response['error'].toString());
+        } else {
+          emitSuccess(successResponse: 'Payment Parking Successful!');
+        }
       }
     } catch (e) {
       emitFailure(failureResponse: 'An error occurred: ${e.toString()}');
