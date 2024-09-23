@@ -111,4 +111,4 @@ flutter:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/Logo ccp.png" # Replace with the path to your custom logo
+  image_path: "assets/images/logo_ccp_small.png" # Replace with the path to your custom logo

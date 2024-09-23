@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-const String baseUrl =
-    'http://192.168.0.128:3000'; /* IP Address on Company Laptop */
+// const String baseUrl =
+//     'http://192.168.0.128:3000'; /* IP Address on Company Laptop */
 // const String baseUrl =
 //     'http://192.168.100.113:3000'; /* IP Address on Won Laptop */
 
 // const String baseUrl =
 //     'http://60.54.235.142:3000'; /* IP Address on Oneplus -> Win Laptop */
 
-// const String baseUrl = 'http://220.158.208.216:3000'; /* IP Address Server */
+const String baseUrl = 'http://220.158.208.216:3000'; /* IP Address Server */
 
 // Countdown
 Duration countDownDuration = const Duration();
@@ -54,7 +54,7 @@ const Color kYellow = Colors.yellow;
 const Color kRed = Color.fromARGB(255, 240, 108, 99);
 
 // image
-const String logo = 'assets/images/Logo ccp.png';
+const String logo = 'assets/images/logo_ccp.png';
 const String backgroundSignIn = 'assets/images/login_screen.png';
 const String backgroundSignUp = 'assets/images/signup_wall.png';
 
