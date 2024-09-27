@@ -173,39 +173,44 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "${AppLocalizations.of(context)!.companyName}: ${reserveBay.companyName}",
-                                          style: textStyleNormal(),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10.0),
-                                          decoration: BoxDecoration(
-                                            color: kPrimaryColor,
-                                            borderRadius:
-                                                BorderRadius.circular(30.0),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.1),
-                                                blurRadius: 4,
-                                                offset: const Offset(0, 2),
-                                              ),
-                                            ],
-                                            border: Border.all(
-                                              color:
-                                                  Colors.grey.withOpacity(0.3),
-                                              width: 1,
-                                            ),
-                                          ),
+                                        Expanded(
+                                          flex: 3,
                                           child: Text(
-                                            reserveBay.businessType!,
-                                            style: textStyleNormal(
-                                              color: kWhite,
-                                              fontSize: 10,
+                                            "${AppLocalizations.of(context)!.companyName}: ${reserveBay.companyName}",
+                                            style: textStyleNormal(),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            width: 100,
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10.0),
+                                            decoration: BoxDecoration(
+                                              color: kPrimaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.1),
+                                                  blurRadius: 4,
+                                                  offset: const Offset(0, 2),
+                                                ),
+                                              ],
+                                              border: Border.all(
+                                                color: Colors.grey
+                                                    .withOpacity(0.3),
+                                                width: 1,
+                                              ),
                                             ),
-                                            textAlign: TextAlign.center,
+                                            child: Text(
+                                              reserveBay.businessType!,
+                                              style: textStyleNormal(
+                                                color: kWhite,
+                                                fontSize: 8,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
                                           ),
                                         ),
                                       ],
