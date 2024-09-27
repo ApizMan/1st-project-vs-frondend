@@ -82,30 +82,75 @@ class _ReloadScreenState extends State<ReloadScreen> {
                       prefix: '/paymentfpx/callbackurl-fpx/',
                       body: jsonEncode({
                         'ActivityTag': "CheckPaymentStatus",
-                        'LanguageCode': 'en',
-                        'AppReleaseId': 34,
+                        'LanguageCode': "en",
+                        'AppReleaseId': "34",
                         'GMTTimeDifference': 8,
                         'PaymentTxnRef': null,
                         'BillId': order['orderNo'],
-                        'BillReference': "Reload${order['terminalId']}",
+                        'BillReference': null,
                       }),
                     );
 
                     if (response['SFM']['Constant'] ==
                         'SFM_EXECUTE_PAYMENT_SUCCESS') {
-                      Navigator.pushNamed(
-                        context,
-                        AppRoute.reloadReceiptScreen,
-                        arguments: {
-                          'locationDetail': details,
-                          'userModel': userModel,
-                          'amount': double.parse(order['amount']),
-                        },
+                      final response = await ReloadResources.reloadSuccessful(
+                        prefix: '/payment/callbackUrl/pegeypay',
+                        body: jsonEncode({
+                          'order_no': order['orderNo'],
+                          'order_amount': double.parse(order['amount']),
+                          'order_status': order['status'],
+                          'store_id': order['storeId'],
+                          'shift_id': order['shiftId'],
+                          'terminal_id': order['terminalId'],
+                        }),
                       );
-                    } else {
+
+                      if (response['order_status'] == 'paid') {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoute.reloadReceiptScreen,
+                          arguments: {
+                            'locationDetail': details,
+                            'userModel': userModel,
+                            'amount': double.parse(order['amount']),
+                          },
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('UnSuccessful Reload'),
+                          ),
+                        );
+                      }
+                    } else if (response['SFM']['Constant'] ==
+                        "SFM_EXECUTE_PAYMENT_FAILED") {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Payment FPX Unseccessful'),
+                          content: Text('Payment FPX Unsuccessful'),
+                        ),
+                      );
+                    } else if (response['SFM']['Constant'] ==
+                        "SFM_EXECUTE_PAYMENT_CANCELLED") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('You have Cancel Payment'),
+                        ),
+                      );
+                    } else if (response['SFM']['Constant'] ==
+                        "SFM_EXECUTE_PAYMENT_UNCONFIRMED") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Payment execution is unconfirmed. please contact Customer Support.'),
+                        ),
+                      );
+                    } else if (response['SFM']['Constant'] ==
+                        "SFM_EXECUTE_PAYMENT_IN_PREP" || response['SFM']['Constant'] ==
+                        "SFM_EXECUTE_PAYMENT_PENDING_AUTH") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Payment execution is pending. Please wait.'),
                         ),
                       );
                     }

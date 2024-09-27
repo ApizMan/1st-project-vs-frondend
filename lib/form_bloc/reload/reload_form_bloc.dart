@@ -94,7 +94,10 @@ class ReloadFormBloc extends FormBloc<String, String> {
         await SharedPreferencesHelper.setOrderDetails(
           orderNo: response['BillId'].toString(),
           amount: amount.value.toString(),
+          storeId: "Token",
+          shiftId: model.email!,
           terminalId: response['BatchName'].toString(),
+          status: "paid",
         );
 
         if (response['error'] != null) {
