@@ -157,7 +157,7 @@ class UpdateReserveBayFormBloc extends FormBloc<String, String> {
     businessType.updateValue(model.businessType!);
     address1.updateValue(model.address1!);
     address2.updateValue(model.address2!);
-    address3.updateValue(model.address3!);
+    address3.updateValue(model.address3 ?? '');
     postcode.updateValue(model.postcode!);
     city.updateValue(model.city!);
     states.updateValue(model.state ?? '');
