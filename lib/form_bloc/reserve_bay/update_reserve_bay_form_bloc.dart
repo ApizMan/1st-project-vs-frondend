@@ -152,14 +152,14 @@ class UpdateReserveBayFormBloc extends FormBloc<String, String> {
   UpdateReserveBayFormBloc({
     required this.model,
   }) {
-    companyName.updateValue(model.companyName!);
-    ssm.updateValue(model.companyRegistration!);
-    businessType.updateValue(model.businessType!);
-    address1.updateValue(model.address1!);
-    address2.updateValue(model.address2!);
+    companyName.updateValue(model.companyName ?? '');
+    ssm.updateValue(model.companyRegistration ?? '');
+    businessType.updateValue(model.businessType ?? '');
+    address1.updateValue(model.address1 ?? '');
+    address2.updateValue(model.address2 ?? '');
     address3.updateValue(model.address3 ?? '');
-    postcode.updateValue(model.postcode!);
-    city.updateValue(model.city!);
+    postcode.updateValue(model.postcode ?? '');
+    city.updateValue(model.city ?? '');
     states.updateValue(model.state ?? '');
 
     addFieldBlocs(
@@ -177,19 +177,19 @@ class UpdateReserveBayFormBloc extends FormBloc<String, String> {
       ],
     );
 
-    picFirstName.updateValue(model.picFirstName!);
-    picLastName.updateValue(model.picLastName!);
-    phoneNumber.updateValue(model.phoneNumber!);
-    email.updateValue(model.email!);
-    idNumber.updateValue(model.idNumber!);
+    picFirstName.updateValue(model.picFirstName ?? '');
+    picLastName.updateValue(model.picLastName ?? '');
+    phoneNumber.updateValue(model.phoneNumber ?? '');
+    email.updateValue(model.email ?? '');
+    idNumber.updateValue(model.idNumber ?? '');
     totalLot.updateValue(model.totalLotRequired == 300
         ? '3 Bulan: RM 300'
         : model.totalLotRequired == 600
             ? '6 Bulan: RM 600'
             : '12 Bulan: RM 1,200');
-    reason.updateValue(model.reason!);
-    lotNumber.updateValue(model.lotNumber!);
-    location.updateValue(model.location!);
+    reason.updateValue(model.reason ?? '');
+    lotNumber.updateValue(model.lotNumber ?? '');
+    location.updateValue(model.location ?? '');
 
     addFieldBlocs(
       step: 1,
