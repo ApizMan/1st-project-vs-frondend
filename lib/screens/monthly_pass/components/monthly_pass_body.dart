@@ -198,10 +198,37 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                         ),
                       );
                     }
-                  } else {
+                  } else if (response['SFM']['Constant'] ==
+                      "SFM_EXECUTE_PAYMENT_FAILED") {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Payment FPX Unseccessful'),
+                        content: Text('Payment FPX Unsuccessful'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_CANCELLED" ||
+                      response['SFM']['Constant'] == "SFM_TXN_NOT_FOUND") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('You have Cancel Payment'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                      "SFM_EXECUTE_PAYMENT_UNCONFIRMED") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                            'Payment execution is unconfirmed. please contact Customer Support.'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_IN_PREP" ||
+                      response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_PENDING_AUTH") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content:
+                            Text('Payment execution is pending. Please wait.'),
                       ),
                     );
                   }

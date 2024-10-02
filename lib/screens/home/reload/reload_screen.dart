@@ -130,7 +130,8 @@ class _ReloadScreenState extends State<ReloadScreen> {
                         ),
                       );
                     } else if (response['SFM']['Constant'] ==
-                        "SFM_EXECUTE_PAYMENT_CANCELLED") {
+                            "SFM_EXECUTE_PAYMENT_CANCELLED" ||
+                        response['SFM']['Constant'] == "SFM_TXN_NOT_FOUND") {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('You have Cancel Payment'),
@@ -145,8 +146,9 @@ class _ReloadScreenState extends State<ReloadScreen> {
                         ),
                       );
                     } else if (response['SFM']['Constant'] ==
-                        "SFM_EXECUTE_PAYMENT_IN_PREP" || response['SFM']['Constant'] ==
-                        "SFM_EXECUTE_PAYMENT_PENDING_AUTH") {
+                            "SFM_EXECUTE_PAYMENT_IN_PREP" ||
+                        response['SFM']['Constant'] ==
+                            "SFM_EXECUTE_PAYMENT_PENDING_AUTH") {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
