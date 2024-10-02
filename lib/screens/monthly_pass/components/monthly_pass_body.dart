@@ -160,7 +160,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                       'GMTTimeDifference': 8,
                       'PaymentTxnRef': null,
                       'BillId': order['orderNo'],
-                      'BillReference': "Reload${order['terminalId']}",
+                      'BillReference': null,
                     }),
                   );
 
