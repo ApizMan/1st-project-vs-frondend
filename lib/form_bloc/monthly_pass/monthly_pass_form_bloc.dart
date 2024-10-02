@@ -75,7 +75,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
           'order_amount': double.parse(amount.value),
           'store_id': 'Monthly Pass', //description
           'terminal_id': details['location'], //email
-          'shift_id': model.email, //city
+          'shift_id': model.idNumber, //city
         }),
       );
 
