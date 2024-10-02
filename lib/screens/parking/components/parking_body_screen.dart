@@ -71,7 +71,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
         selectedCarPlate = null;
       }
     } catch (e) {
-      print('Error selecting car plate: $e');
+      e.toString();
     }
   }
 
@@ -231,7 +231,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                           );
                         } else {
                           return const FieldItem(
-                              child: const Text("No car plate selected"));
+                              child: Text("No car plate selected"));
                         }
                       },
                     ),

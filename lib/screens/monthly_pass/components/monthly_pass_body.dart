@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -38,7 +40,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   late DateTime _focusedDay;
   String selectedLocation = 'Kuantan';
   int _selectedMonth = 1;
-  DateTime _dateTime = DateTime.now();
+  final DateTime _dateTime = DateTime.now();
   MonthlyPassFormBloc? formBloc;
   late double amountReload;
   late MonthlyPassModel monthlyPassModel;

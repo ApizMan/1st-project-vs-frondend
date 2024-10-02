@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
 import 'package:project/models/models.dart';
-import 'package:project/resources/reload/reload_resources.dart';
 
 class CompoundFormBloc extends FormBloc<String, String> {
   final UserModel model;

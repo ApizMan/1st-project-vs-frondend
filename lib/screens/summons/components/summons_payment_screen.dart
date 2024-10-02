@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 //import 'package:project/component/generate_qr.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -132,7 +131,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
               },
               label: Text(
                 'PAY',
-                style: GoogleFonts.nunitoSans(color: Colors.white),
+                style: textStyleNormal(color: Colors.white),
               ),
             ),
             body: SingleChildScrollView(
@@ -146,13 +145,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           "Date",
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             _currentDate,
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -165,13 +164,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Time',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             _currentTime,
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -184,13 +183,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Notice Number',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             'KH14680548983',
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -203,13 +202,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Type of Offences',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             'Double Park',
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -222,13 +221,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Number Plate',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             'ABC1234',
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -241,13 +240,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Compound Rate',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             'RM 100',
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -260,13 +259,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         Text(
                           'Issued By',
                           style:
-                              GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                              textStyleNormal(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 50),
                         Expanded(
                           child: Text(
                             '${userModel!.firstName!} ${userModel.secondName!}',
-                            style: GoogleFonts.firaCode(),
+                            style: textStyleNormal(),
                             textAlign:
                                 TextAlign.right, // Align text to the right
                           ),
@@ -277,7 +276,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                     Center(
                       child: Text(
                         'Please make payment before this date',
-                        style: GoogleFonts.firaCode(
+                        style: textStyleNormal(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
                         ),
@@ -337,16 +336,16 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.error_outline, // Icon yang ingin Anda gunakan
-                            color: Colors.red, // Warna ikon
+                            Icons.error_outline, 
+                            color: Colors.red, 
                           ),
                           const SizedBox(height: 50),
                           const SizedBox(
-                              width: 5), // Jarak antara ikon dan teks
+                              width: 5), 
                           Flexible(
                             child: Text(
                               'You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate.',
-                              style: GoogleFonts.firaCode(
+                              style: textStyleNormal(
                                 color: Colors.red,
                                 fontSize: 12,
                               ),

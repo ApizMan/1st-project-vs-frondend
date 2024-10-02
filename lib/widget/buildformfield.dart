@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class LabeledText extends StatelessWidget {
   final String label;
 
-  LabeledText(this.label);
+  const LabeledText(this.label, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,8 @@ class LabeledText extends StatelessWidget {
 }
 
 class FormFieldContainer extends StatelessWidget {
+  const FormFieldContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(      
@@ -39,7 +41,7 @@ Widget buildFormField(String label) {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       LabeledText(label),           
-      FormFieldContainer(),
+      const FormFieldContainer(),
     ],
   );
 }

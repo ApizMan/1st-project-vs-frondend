@@ -60,7 +60,7 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
         });
       }
     } catch (e) {
-      print(e);
+      e.toString();
     }
   }
 
@@ -135,7 +135,7 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                     const SizedBox(width: 15),
                     Text(
                       '${AppLocalizations.of(context)!.successful}!',
-                      style: GoogleFonts.firaCode(
+                      style: textStyleNormal(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
@@ -148,13 +148,13 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                     const SizedBox(height: 20),
                     Text(
                       AppLocalizations.of(context)!.name,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         '${userModel!.firstName} ${userModel.secondName}',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     )
@@ -165,13 +165,13 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.date,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         _currentDate,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -182,13 +182,13 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.email,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         userModel.email!,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -199,13 +199,13 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.description,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         AppLocalizations.of(context)!.reload,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -216,14 +216,14 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.total,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         amount.toStringAsFixed(2),
                         style:
-                            GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                            textStyleNormal(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),

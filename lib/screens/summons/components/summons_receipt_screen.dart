@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/constant.dart';
-import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'dart:ui' as ui;
@@ -21,10 +20,10 @@ class SummonsReceiptScreen extends StatefulWidget {
   });
 
   @override
-  State<SummonsReceiptScreen> createState() => _ReloadReceiptScreenState();
+  State<SummonsReceiptScreen> createState() => _SummonsReceiptScreenState();
 }
 
-class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
+class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
   String _currentDate = ''; // Initialize variable for date
   String _currentTime = '';
   final GlobalKey _printKey = GlobalKey(); // Key to capture the part to print
@@ -62,7 +61,7 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
         });
       }
     } catch (e) {
-      print(e);
+      e.toString();
     }
   }
 
@@ -73,7 +72,7 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
 
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
-    UserModel? userModel = arguments['userModel'] as UserModel?;
+    // UserModel? userModel = arguments['userModel'] as UserModel?;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -136,7 +135,7 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                     const SizedBox(width: 15),
                     Text(
                       'Successful!',
-                      style: GoogleFonts.firaCode(
+                      style: textStyleNormal(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
@@ -148,13 +147,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Date',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         _currentDate,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -165,13 +164,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Time',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         _currentTime,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -182,13 +181,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Notice Number',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         'KH14680548983',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -199,13 +198,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Receipt No.',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         'KH198202',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -216,13 +215,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Plate Number',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         'ABC1234',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -233,13 +232,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Summons Rate',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         'RM 100',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -250,13 +249,13 @@ class _ReloadReceiptScreenState extends State<SummonsReceiptScreen> {
                   children: [
                     Text(
                       'Total',
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         'RM 100',
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),

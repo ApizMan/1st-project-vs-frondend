@@ -63,7 +63,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
         });
       }
     } catch (e) {
-      print(e);
+      e.toString();
     }
   }
 
@@ -152,7 +152,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                     const SizedBox(width: 15),
                     Text(
                       '${AppLocalizations.of(context)!.successful}!',
-                      style: GoogleFonts.firaCode(
+                      style: textStyleNormal(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
@@ -164,13 +164,13 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.date,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         _currentDate,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -181,13 +181,13 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.time,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         _currentTime,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -198,13 +198,13 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.location,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         details['location'],
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -215,13 +215,13 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.plateNumber,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         parkingCar!,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -232,13 +232,13 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.duration,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         duration!,
-                        style: GoogleFonts.firaCode(),
+                        style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -249,14 +249,14 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.total,
-                      style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
                         amount!.toStringAsFixed(2),
                         style:
-                            GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                            textStyleNormal(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),

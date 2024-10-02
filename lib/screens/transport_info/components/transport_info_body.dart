@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart'
@@ -33,9 +31,9 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
-  LatLng? _currentPosition = null;
+  LatLng? _currentPosition;
 
-  Set<Marker> markers = Set();
+  Set<Marker> markers = {};
 
   late List<MeterModel> model = [];
 
@@ -84,7 +82,7 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
         allMeters.addAll(meters);
       } catch (e) {
         // Handle any errors during loading or parsing
-        print("Error loading meter data from $filePath: $e");
+        e.toString();
       }
     }
 
@@ -93,34 +91,34 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
 
   Future<void> _cameraToPosition(LatLng position) async {
     final GoogleMapController controller = await _mapController.future;
-    CameraPosition _newCameraPosition = CameraPosition(
+    CameraPosition newCameraPosition = CameraPosition(
       target: position,
       zoom: 18,
     );
 
     await controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        _newCameraPosition,
+        newCameraPosition,
       ),
     );
   }
 
   Future<void> getLocationUpdate() async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
 
-    _serviceEnabled = await locationController.serviceEnabled();
-    if (_serviceEnabled) {
-      _serviceEnabled = await locationController.requestService();
+    serviceEnabled = await locationController.serviceEnabled();
+    if (serviceEnabled) {
+      serviceEnabled = await locationController.requestService();
     } else {
       return;
     }
 
-    _permissionGranted = await locationController.hasPermission();
+    permissionGranted = await locationController.hasPermission();
 
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await locationController.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await locationController.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
         return;
       }
     }
@@ -145,7 +143,6 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
   }
 
   void _updateMarkers(Set<Marker> markers) {
-    print('Updated ${markers.length} markers');
     setState(() {
       this.markers = markers;
     });
@@ -207,8 +204,9 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
               markerId: MarkerId(cluster.getId()),
               position: cluster.location,
               onTap: () {
-                print('---- $cluster');
-                cluster.items.forEach((p) => print(p));
+                for (var p in cluster.items) {
+                  p.toString();
+                }
               },
               // icon: await _getMarkerBitmap(cluster.isMultiple ? 125 : 75,
               //     text: cluster.isMultiple ? cluster.count.toString() : null),
@@ -220,37 +218,4 @@ class _TransportInfoBodyState extends State<TransportInfoBody> {
             );
           };
 
-  Future<BitmapDescriptor> _getMarkerBitmap(int size, {String? text}) async {
-    if (kIsWeb) size = (size / 2).floor();
-
-    final PictureRecorder pictureRecorder = PictureRecorder();
-    final Canvas canvas = Canvas(pictureRecorder);
-    final Paint paint1 = Paint()..color = Colors.orange;
-    final Paint paint2 = Paint()..color = Colors.white;
-
-    canvas.drawCircle(Offset(size / 2, size / 2), size / 2.0, paint1);
-    canvas.drawCircle(Offset(size / 2, size / 2), size / 2.2, paint2);
-    canvas.drawCircle(Offset(size / 2, size / 2), size / 2.8, paint1);
-
-    if (text != null) {
-      TextPainter painter = TextPainter(textDirection: TextDirection.ltr);
-      painter.text = TextSpan(
-        text: text,
-        style: TextStyle(
-            fontSize: size / 3,
-            color: Colors.white,
-            fontWeight: FontWeight.normal),
-      );
-      painter.layout();
-      painter.paint(
-        canvas,
-        Offset(size / 2 - painter.width / 2, size / 2 - painter.height / 2),
-      );
-    }
-
-    final img = await pictureRecorder.endRecording().toImage(size, size);
-    final data = await img.toByteData(format: ImageByteFormat.png) as ByteData;
-
-    return BitmapDescriptor.fromBytes(data.buffer.asUint8List());
-  }
 }

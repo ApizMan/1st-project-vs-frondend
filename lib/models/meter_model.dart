@@ -13,7 +13,7 @@ class MeterModel with ClusterItem {
   }
 
   @override
-  LatLng get location => latLng ?? LatLng(0, 0); // Return default location if latLng is null
+  LatLng get location => latLng ?? const LatLng(0, 0); // Return default location if latLng is null
 }
 
 // Function to create a Place object from JSON data

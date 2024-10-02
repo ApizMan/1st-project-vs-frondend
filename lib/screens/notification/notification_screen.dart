@@ -29,7 +29,7 @@ class NotificationScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: const Column(
         children: [],
       ),
     );

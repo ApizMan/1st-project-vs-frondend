@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -127,11 +129,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getLocation() async {
-    PermissionStatus _permissionGranted;
+    PermissionStatus permissionGranted;
 
-    _permissionGranted = await locationController.hasPermission();
+    permissionGranted = await locationController.hasPermission();
 
-    if (_permissionGranted == PermissionStatus.denied) {
+    if (permissionGranted == PermissionStatus.denied) {
       await CustomDialog.show(
         context,
         icon: Icons.location_on,
@@ -140,9 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
             'Our GPS detect you in Kuantan specifically in Jalan Woh Ah Jang. Please confirm if this is accurate or inaccurate.',
         btnOkText: 'Yes',
         btnOkOnPress: () async {
-          _permissionGranted = await locationController.requestPermission();
+          permissionGranted = await locationController.requestPermission();
           await permission.Permission.notification.request();
-          if (_permissionGranted != PermissionStatus.granted) {
+          if (permissionGranted != PermissionStatus.granted) {
             return;
           } else {
             Navigator.pop(context);

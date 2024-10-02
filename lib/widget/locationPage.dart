@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class LocationPage extends StatelessWidget {
   final String location;
 
-  LocationPage({required this.location});
+  const LocationPage({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {

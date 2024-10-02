@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
@@ -6,9 +8,10 @@ import 'package:project/constant.dart';
 import 'package:project/routes/route_manager.dart';
 
 class SliderScreen extends StatefulWidget {
-  const SliderScreen({Key? key}) : super(key: key);
+  const SliderScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SliderScreenState createState() => _SliderScreenState();
 }
 
@@ -41,7 +44,7 @@ class _SliderScreenState extends State<SliderScreen> {
       final image = item.value;
 
       // Helper method to get the color based on index
-      int _getColorForIndex(int index) {
+      int getColorForIndex(int index) {
         switch (index) {
           case 0:
             return kPrimaryColor.value;
@@ -61,7 +64,7 @@ class _SliderScreenState extends State<SliderScreen> {
             location: imgName[index],
             state: imgState[index],
             logo: imgList[index],
-            color: _getColorForIndex(index),
+            color: getColorForIndex(index),
           );
 
           final details = await SharedPreferencesHelper.getLocationDetails();

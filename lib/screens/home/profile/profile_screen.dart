@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -216,11 +218,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     String? token = prefs.getString('token');
     String? pbtId = pbtMap[selectedPBT];
 
-    print('Selected PBT: $selectedPBT');
-    print('Mapped PBT ID: $pbtId');
 
     if (pbtId == null) {
-      print('PBT ID is null. Please select a PBT.');
       return false;
     }
 
@@ -238,11 +237,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
 
     if (response.statusCode == 200) {
-      print('Help Center Successfully Sent!');
       return true;
     } else {
-      print('Helpdesk creation failed: ${response.statusCode}');
-      print('Response: ${response.body}');
       return false;
     }
   }
@@ -346,8 +342,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     const CircleAvatar(
                       backgroundImage: AssetImage(
-                          'assets/images/account.png'), // Ganti dengan path gambar Anda
-                      radius: 40, // Sesuaikan ukuran radius sesuai kebutuhan
+                          'assets/images/account.png'), 
+                      radius: 40, 
                     ),
                     const SizedBox(width: 10),
                     Text(
@@ -841,7 +837,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       setState(() {
                         selectedPBT = newValue;
                       });
-                      print('Selected PBT: $selectedPBT');
                     },
                     decoration: InputDecoration(
                       hintText: 'PBT',
@@ -908,7 +903,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void showListOfVehicle() {
-    print('tolong tgk sini carPlates: $carPlates');
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1049,8 +1043,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          print(
-                              'Sending request with isMain: ${isMain ? 1 : 0}'); // Debugging
+                          // Debugging
                           carplatereg(isMain: isMain);
                           Navigator.of(context).pop();
                           showListOfVehicle();

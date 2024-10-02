@@ -87,8 +87,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
       }
     } catch (e) {
       emitFailure(failureResponse: 'An error occurred: ${e.toString()}');
-      print(
-          'Error during payment submission: ${e.toString()}'); // Log for debugging
+      // Log for debugging
     }
   }
 }

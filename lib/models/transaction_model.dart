@@ -10,16 +10,16 @@ class TransactionModel {
     description = json['description'];
     amount = json['amount'];
     createdAt = json['createdAt'];
-    pbt = json['pbt'] != null ? new Pbt.fromJson(json['pbt']) : null;
+    pbt = json['pbt'] != null ? Pbt.fromJson(json['pbt']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['description'] = this.description;
-    data['amount'] = this.amount;
-    data['createdAt'] = this.createdAt;
-    if (this.pbt != null) {
-      data['pbt'] = this.pbt!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['description'] = description;
+    data['amount'] = amount;
+    data['createdAt'] = createdAt;
+    if (pbt != null) {
+      data['pbt'] = pbt!.toJson();
     }
     return data;
   }
@@ -35,8 +35,8 @@ class Pbt {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
     return data;
   }
 }

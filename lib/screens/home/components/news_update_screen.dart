@@ -23,15 +23,13 @@ class _NewsUpdateScreenState extends State<NewsUpdateScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = myNews
-        .map((item) => Container(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(item, fit: BoxFit.contain, width: 1000.0),
-                ),
-              ),
-            ))
+        .map((item) => ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(item, fit: BoxFit.contain, width: 1000.0),
+          ),
+        ))
         .toList();
 
     return Padding(

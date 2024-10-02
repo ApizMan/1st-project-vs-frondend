@@ -1,4 +1,6 @@
 // pbt_screen.dart
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';

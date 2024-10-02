@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldDesign extends StatelessWidget {
-  const TextFormFieldDesign({Key? key, required this.label}) : super(key: key);
+  const TextFormFieldDesign({super.key, required this.label});
 
   final String label;
 
@@ -14,13 +14,13 @@ class TextFormFieldDesign extends StatelessWidget {
         children: [
           Text(
             '$label:  ',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 15,
               color: Colors.black,
             ),
           ),
           const SizedBox(width: 10),
-          Container(
+          SizedBox(
             width: 200,
             height: 50.0,
             child: TextFormField(

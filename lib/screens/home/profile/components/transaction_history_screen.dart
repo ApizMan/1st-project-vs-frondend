@@ -37,7 +37,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+    final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
         GlobalKey<RefreshIndicatorState>();
 
     final arguments =
@@ -61,7 +61,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         ),
       ),
       body: RefreshIndicator(
-        key: _refreshIndicatorKey,
+        key: refreshIndicatorKey,
         onRefresh: () async {
           setState(() {
             _transactionFuture = _getTransaction();

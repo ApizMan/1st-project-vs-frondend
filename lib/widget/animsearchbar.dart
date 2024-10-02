@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, library_private_types_in_public_api
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,20 +46,21 @@ class AnimSearchBar extends StatefulWidget {
   final TextInputAction textInputAction;
   final Function(int) searchBarOpen;
   const AnimSearchBar({
-    Key? key,
+    super.key,
 
     /// The width cannot be null
     required this.width,
     required this.searchBarOpen,
+
     /// The textController cannot be null
     required this.textController,
     this.suffixIcon,
     this.prefixIcon,
     this.helpText = "Search...",
-    
+
     /// Height of wrapper container
     this.height = 100,
-    
+
     /// choose your custom color
     this.color = Colors.white,
 
@@ -77,7 +80,7 @@ class AnimSearchBar extends StatefulWidget {
 
     /// The onSubmitted cannot be null
     required this.onSubmitted,
-    
+
     /// make the search bar to open from right to left
     this.rtl = false,
 
@@ -93,9 +96,9 @@ class AnimSearchBar extends StatefulWidget {
     /// enable/disable the box shadow decoration
     this.boxShadow = true,
 
-    /// can add list of inputformatters to control the input
+    /// can add list of input formatters to control the input
     this.inputFormatters,
-  }) : super(key: key);
+  });
 
   @override
   _AnimSearchBarState createState() => _AnimSearchBarState();
@@ -175,9 +178,9 @@ class _AnimSearchBarState extends State<AnimSearchBar>
               curve: Curves.easeOut,
               child: AnimatedOpacity(
                 opacity: (toggle == 0) ? 0.0 : 1.0,
-                duration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
                 child: Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     /// can add custom color or the color will be white
                     color: widget.color,
@@ -222,18 +225,17 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                           }
                         } catch (e) {
                           ///print the error if the try block fails
-                          print(e);
+                          e.toString();
                         }
                       },
 
                       ///suffixIcon is of type Icon
-                      child: widget.suffixIcon != null
-                          ? widget.suffixIcon
-                          : Icon(
-                              Icons.close,
-                              size: 20.0,
-                              color: widget.textFieldIconColor,
-                            ),
+                      child: widget.suffixIcon ??
+                          Icon(
+                            Icons.close,
+                            size: 20.0,
+                            color: widget.textFieldIconColor,
+                          ),
                     ),
                   ),
                 ),
@@ -281,7 +283,7 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                     },
 
                     ///style is of type TextStyle, the default is just a color black
-                    style: widget.style ?? TextStyle(color: Colors.black),
+                    style: widget.style ?? const TextStyle(color: Colors.black),
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(bottom: 5),
@@ -359,7 +361,6 @@ class _AnimSearchBarState extends State<AnimSearchBar>
                         _con.reverse();
                       }
                     },
-
                   );
                   widget.searchBarOpen(toggle);
                 },

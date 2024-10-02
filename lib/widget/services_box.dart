@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,6 +7,7 @@ class ServiceBox extends StatelessWidget {
   final String image;
   final String label;
   final VoidCallback onPressed;
+  @override
   final Key? key;
 
   // ignore: use_key_in_widget_constructors

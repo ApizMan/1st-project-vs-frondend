@@ -1,6 +1,7 @@
 // Base URL
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // const String baseUrl =
 //     'http://192.168.0.128:3000'; /* IP Address on Company Laptop */
