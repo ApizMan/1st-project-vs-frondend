@@ -152,7 +152,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                       ),
                     );
                   } else if (item['type'] == 'wallet') {
-                    _walletModel.amount = item["amount"];
+                    _walletModel.amount = item["amount"].toDouble();
                     _walletModel.status = item["status"];
 
                     // Parse the ISO 8601 timestamp to DateTime
