@@ -191,6 +191,10 @@ class UpdateReserveBayFormBloc extends FormBloc<String, String> {
     lotNumber.updateValue(model.lotNumber ?? '');
     location.updateValue(model.location ?? '');
 
+    designatedBay.updateValue(model.designatedBayPicture ?? '');
+    certificate.updateValue(model.registerNumberPicture ?? '');
+    idCard.updateValue(model.idCardPicture ?? '');
+
     addFieldBlocs(
       step: 1,
       fieldBlocs: [

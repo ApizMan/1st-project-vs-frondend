@@ -125,5 +125,6 @@
   "resetPassword": "Reset Password",
   "resetPasswordDesc": "Key-in the OTP that have been sent through your email. The OTP will expired in 10 minutes.",
   "otp": "OTP",
-  "newPassword": "New Password"
+  "newPassword": "New Password",
+  "viewPDF": "View PDF"
 }

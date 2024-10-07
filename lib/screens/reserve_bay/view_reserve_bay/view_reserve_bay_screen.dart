@@ -99,7 +99,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
                   return [
                     _reserveStep1(formBloc!, reserveBay),
                     _reserveStep2(formBloc, reserveBay),
-                    _reserveStep3(formBloc, reserveBay),
+                    _reserveStep3(formBloc, reserveBay, details),
                     _reserveStep4(formBloc, reserveBay),
                   ];
                 },
@@ -160,7 +160,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
   }
 
   FormBlocStep _reserveStep3(
-      UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay) {
+      UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay, Map<String, dynamic> details) {
     return FormBlocStep(
       title: Text(
         AppLocalizations.of(context)!.documents,
@@ -171,6 +171,7 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
       ),
       content: ReserveDocumentWidget(
         formBloc: reserveBayFormBloc,
+        details: details,
         reserveBay: reserveBay,
       ),
     );

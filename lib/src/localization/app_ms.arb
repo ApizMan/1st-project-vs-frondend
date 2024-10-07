@@ -125,5 +125,6 @@
   "resetPassword": "Set Semula Kata Laluan",
   "resetPasswordDesc": "Masukkan OTP yang telah dihantar melalui e-mel anda. OTP akan tamat tempoh dalam masa 10 minit.",
   "otp": "OTP",
-  "newPassword": "Kata Laluan Baharu"
+  "newPassword": "Kata Laluan Baharu",
+  "viewPDF": "Lihat PDF"
 }

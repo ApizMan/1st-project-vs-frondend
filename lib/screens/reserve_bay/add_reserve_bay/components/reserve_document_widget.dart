@@ -1,3 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart'; // Import Firebase Storage
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
@@ -15,249 +19,153 @@ class ReserveDocumentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        StreamBuilder<TextFieldBlocState?>(
-          stream: formBloc.designatedBayName.stream,
-          builder: (context, snapshot) {
-            return TextFieldBlocBuilder(
-              readOnly: true,
-              textFieldBloc: formBloc.designatedBayName,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                prefix: ScaleTap(
-                  onPressed: () async {
-                    FilePickerResult? result =
-                        await FilePicker.platform.pickFiles(
-                      type: FileType.custom,
-                      allowedExtensions: ['pdf'],
-                    );
-
-                    if (result != null) {
-                      final file = result.files.single;
-                      formBloc.designatedBayName.updateValue(file.name);
-                      formBloc.designatedBay.updateValue(file.path ?? '');
-                    }
-                  },
-                  child: formBloc.designatedBay.value != 'empty'
-                      ? const SizedBox()
-                      : Container(
-                          width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          decoration: BoxDecoration(
-                            color: kWhite.withOpacity(0.7),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(Icons.upload_file,
-                              color: kPrimaryColor),
-                        ),
-                ),
-                suffixIcon: formBloc.designatedBay.value != 'empty'
-                    ? GestureDetector(
-                        onTap: () {
-                          formBloc.designatedBay.updateValue('empty');
-                          formBloc.designatedBayName.updateValue('');
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          color: kRed,
-                        ),
-                      )
-                    : const SizedBox(),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label:
-                    Text(AppLocalizations.of(context)!.intendedDesignatedBay),
-                border: InputBorder.none,
-                enabledBorder: formBloc.designatedBay.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                focusedBorder: formBloc.designatedBay.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                filled: true,
-                fillColor: kBackgroundColor,
-              ),
-            );
-          },
+        _buildDocumentField(
+          context,
+          label: AppLocalizations.of(context)!.intendedDesignatedBay,
+          textFieldBloc: formBloc.designatedBayName,
+          fileTypeBloc: formBloc.designatedBay,
+          allowedExtensions: ['pdf'],
         ),
-        StreamBuilder<TextFieldBlocState?>(
-          stream: formBloc.certificateName.stream,
-          builder: (context, snapshot) {
-            return TextFieldBlocBuilder(
-              readOnly: true,
-              textFieldBloc: formBloc.certificateName,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                prefix: ScaleTap(
-                  onPressed: () async {
-                    FilePickerResult? result =
-                        await FilePicker.platform.pickFiles(
-                      type: FileType.custom,
-                      allowedExtensions: ['pdf'],
-                    );
-
-                    if (result != null) {
-                      final file = result.files.single;
-                      formBloc.certificateName.updateValue(file.name);
-                      formBloc.certificate.updateValue(file.path ?? '');
-                    }
-                  },
-                  child: formBloc.certificate.value != 'empty'
-                      ? const SizedBox()
-                      : Container(
-                          width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          decoration: BoxDecoration(
-                            color: kWhite.withOpacity(0.7),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(Icons.upload_file,
-                              color: kPrimaryColor),
-                        ),
-                ),
-                suffixIcon: formBloc.certificate.value != 'empty'
-                    ? GestureDetector(
-                        onTap: () {
-                          formBloc.certificate.updateValue('empty');
-                          formBloc.certificateName.updateValue('');
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          color: kRed,
-                        ),
-                      )
-                    : const SizedBox(),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(AppLocalizations.of(context)!
-                    .companyRegistrationCertificate),
-                border: InputBorder.none,
-                enabledBorder: formBloc.certificate.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                focusedBorder: formBloc.designatedBay.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                filled: true,
-                fillColor: kBackgroundColor,
-              ),
-            );
-          },
+        _buildDocumentField(
+          context,
+          label: AppLocalizations.of(context)!.companyRegistrationCertificate,
+          textFieldBloc: formBloc.certificateName,
+          fileTypeBloc: formBloc.certificate,
+          allowedExtensions: ['pdf'],
         ),
-        StreamBuilder<TextFieldBlocState?>(
-          stream: formBloc.idCardName.stream,
-          builder: (context, snapshot) {
-            return TextFieldBlocBuilder(
-              readOnly: true,
-              textFieldBloc: formBloc.idCardName,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                prefix: ScaleTap(
-                  onPressed: () async {
-                    FilePickerResult? result =
-                        await FilePicker.platform.pickFiles(
-                      type: FileType.custom,
-                      allowedExtensions: ['pdf'],
-                    );
-
-                    if (result != null) {
-                      final file = result.files.single;
-                      formBloc.idCardName.updateValue(file.name);
-                      formBloc.idCard.updateValue(file.path ?? '');
-                    }
-                  },
-                  child: formBloc.idCard.value != 'empty'
-                      ? const SizedBox()
-                      : Container(
-                          width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          decoration: BoxDecoration(
-                            color: kWhite.withOpacity(0.7),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(Icons.upload_file,
-                              color: kPrimaryColor),
-                        ),
-                ),
-                suffixIcon: formBloc.idCard.value != 'empty'
-                    ? GestureDetector(
-                        onTap: () {
-                          formBloc.idCard.updateValue('empty');
-                          formBloc.idCardName.updateValue('');
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          color: kRed,
-                        ),
-                      )
-                    : const SizedBox(),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(AppLocalizations.of(context)!.identificationCard),
-                border: InputBorder.none,
-                enabledBorder: formBloc.idCard.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                focusedBorder: formBloc.designatedBay.value != 'empty'
-                    ? OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : InputBorder.none,
-                filled: true,
-                fillColor: kBackgroundColor,
-              ),
-            );
-          },
+        _buildDocumentField(
+          context,
+          label: AppLocalizations.of(context)!.identificationCard,
+          textFieldBloc: formBloc.idCardName,
+          fileTypeBloc: formBloc.idCard,
+          allowedExtensions: ['pdf'],
         ),
       ],
     );
+  }
+
+  Widget _buildDocumentField(
+    BuildContext context, {
+    required String label,
+    required TextFieldBloc textFieldBloc,
+    required TextFieldBloc fileTypeBloc,
+    required List<String> allowedExtensions,
+  }) {
+    return StreamBuilder<TextFieldBlocState?>(
+      stream: textFieldBloc.stream,
+      builder: (context, snapshot) {
+        return TextFieldBlocBuilder(
+          readOnly: true,
+          textFieldBloc: textFieldBloc,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefix: ScaleTap(
+              onPressed: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: allowedExtensions,
+                );
+
+                if (result != null) {
+                  final file = File(result.files.single.path!);
+
+                  // Show a loading indicator while uploading
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+
+                  // Upload file to Firebase and get the URL
+                  String url = await _uploadFileToFirebase(file);
+
+                  // Remove the loading indicator
+                  Navigator.pop(context);
+
+                  if (url.isNotEmpty) {
+                    // Update the TextFieldBloc with the file name and URL
+                    textFieldBloc.updateValue(file.path.split('/').last);
+                    fileTypeBloc.updateValue(url);
+                  }
+                }
+              },
+              child: fileTypeBloc.value != 'empty'
+                  ? const SizedBox()
+                  : Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      decoration: BoxDecoration(
+                        color: kWhite.withOpacity(0.7),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 4,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child:
+                          const Icon(Icons.upload_file, color: kPrimaryColor),
+                    ),
+            ),
+            suffixIcon: fileTypeBloc.value != 'empty'
+                ? GestureDetector(
+                    onTap: () {
+                      fileTypeBloc.updateValue('empty');
+                      textFieldBloc.updateValue('');
+                    },
+                    child: const Icon(
+                      Icons.close,
+                      color: kRed,
+                    ),
+                  )
+                : const SizedBox(),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            label: Text(label),
+            border: InputBorder.none,
+            enabledBorder: fileTypeBloc.value != 'empty'
+                ? OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black12,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  )
+                : InputBorder.none,
+            focusedBorder: fileTypeBloc.value != 'empty'
+                ? OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black12,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  )
+                : InputBorder.none,
+            filled: true,
+            fillColor: kBackgroundColor,
+          ),
+        );
+      },
+    );
+  }
+
+  // Helper function to upload file to Firebase and get the download URL
+  Future<String> _uploadFileToFirebase(File file) async {
+    try {
+      // Create a reference to the Firebase Storage location
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('uploads/${file.path.split('/').last}');
+
+      // Upload the file
+      final uploadTask = storageRef.putFile(file);
+
+      // Wait for the upload to complete and get the download URL
+      final snapshot = await uploadTask;
+      return await snapshot.ref.getDownloadURL();
+    } catch (e) {
+      return e.toString();
+    }
   }
 }
