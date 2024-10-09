@@ -126,5 +126,10 @@
   "resetPasswordDesc": "Masukkan OTP yang telah dihantar melalui e-mel anda. OTP akan tamat tempoh dalam masa 10 minit.",
   "otp": "OTP",
   "newPassword": "Kata Laluan Baharu",
-  "viewPDF": "Lihat PDF"
+  "viewPDF": "Lihat PDF",
+  "exit": "Keluar",
+  "exitApp": "Keluar Aplikasi",
+  "exitAppDesc": "Adakah anda pasti mahu menutup aplikasi ini? Tindakan ini tidak boleh dibuat semula.",
+  "closeReceipt": "Tutup Resit",
+  "closeReceiptDesc": "Adakah anda pasti mahu menutup resit? Tindakan ini tidak boleh dibuat semula."
 }

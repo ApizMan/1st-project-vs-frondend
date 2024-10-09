@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -231,86 +232,103 @@ class _HomeScreenState extends State<HomeScreen> {
       paymentStatus = false;
     }
 
-    return FutureBuilder<void>(
-      future: _initData,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: LoadingDialog(),
-          );
-        } else if (snapshot.hasError) {
-          Future.delayed(const Duration(milliseconds: 500), () async {
-            await logout();
-          });
-          return const Scaffold(body: LoadingDialog());
-        } else {
-          return RefreshIndicator(
-            key: _refreshIndicatorKey,
-            onRefresh: _getUserDetails,
-            child: Scaffold(
-              backgroundColor: kBackgroundColor,
-              extendBodyBehindAppBar: true,
-              appBar: _appBarBuilder(context),
-              body: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Wrap Stack inside a Container or SizedBox with specific height
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.45, // You can adjust this based on your layout
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          double screenHeight = constraints.maxHeight;
-                          double screenWidth = constraints.maxWidth;
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        CustomDialog.show(
+          context,
+          title: AppLocalizations.of(context)!.exitApp,
+          description: AppLocalizations.of(context)!.exitAppDesc,
+          btnOkText: AppLocalizations.of(context)!.exit,
+          btnCancelText: AppLocalizations.of(context)!.cancel,
+          btnOkOnPress: () {
+            exit(0);
+          },
+          btnCancelOnPress: () => Navigator.pop(context),
+        );
+        return Future.value(false);
+      },
+      child: FutureBuilder<void>(
+        future: _initData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: LoadingDialog(),
+            );
+          } else if (snapshot.hasError) {
+            Future.delayed(const Duration(milliseconds: 500), () async {
+              await logout();
+            });
+            return const Scaffold(body: LoadingDialog());
+          } else {
+            return RefreshIndicator(
+              key: _refreshIndicatorKey,
+              onRefresh: _getUserDetails,
+              child: Scaffold(
+                backgroundColor: kBackgroundColor,
+                extendBodyBehindAppBar: true,
+                appBar: _appBarBuilder(context),
+                body: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Wrap Stack inside a Container or SizedBox with specific height
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height *
+                            0.45, // You can adjust this based on your layout
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            double screenHeight = constraints.maxHeight;
+                            double screenWidth = constraints.maxWidth;
 
-                          return Stack(
-                            children: [
-                              // Position the countdown at the top or any desired position
-                              Positioned(
-                                top: screenHeight *
-                                    0.0, // Adjust the top position based on screen size
-                                left: screenWidth *
-                                    0.0, // Adjust left position if necessary
-                                right: screenWidth *
-                                    0.0, // Adjust right position if necessary
-                                child: Visibility(
-                                  visible: paymentStatus,
-                                  child: _clockingCountdown(
-                                      context, countDownDuration),
+                            return Stack(
+                              children: [
+                                // Position the countdown at the top or any desired position
+                                Positioned(
+                                  top: screenHeight *
+                                      0.0, // Adjust the top position based on screen size
+                                  left: screenWidth *
+                                      0.0, // Adjust left position if necessary
+                                  right: screenWidth *
+                                      0.0, // Adjust right position if necessary
+                                  child: Visibility(
+                                    visible: paymentStatus,
+                                    child: _clockingCountdown(
+                                        context, countDownDuration),
+                                  ),
                                 ),
-                              ),
-                              // Position the top widget
-                              Positioned(
-                                top:
-                                    0, // You can adjust this value based on screen height
-                                left: 0,
-                                right: 0,
-                                child: _topWidget(context, userModel),
-                              ),
-                            ],
-                          );
-                        },
+                                // Position the top widget
+                                Positioned(
+                                  top:
+                                      0, // You can adjust this value based on screen height
+                                  left: 0,
+                                  right: 0,
+                                  child: _topWidget(context, userModel),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    const SliderScreen(),
-                    spaceVertical(height: 20.0),
-                    ServiceScreen(
-                      details: details,
-                      userModel: userModel,
-                      plateNumbers: userModel.plateNumbers,
-                    ),
-                    spaceVertical(height: 20.0),
-                    const NewsUpdateScreen(),
-                    spaceVertical(height: 20.0),
-                  ],
+                      const SliderScreen(),
+                      spaceVertical(height: 20.0),
+                      ServiceScreen(
+                        details: details,
+                        userModel: userModel,
+                        plateNumbers: userModel.plateNumbers,
+                      ),
+                      spaceVertical(height: 20.0),
+                      const NewsUpdateScreen(),
+                      spaceVertical(height: 20.0),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     );
   }
 

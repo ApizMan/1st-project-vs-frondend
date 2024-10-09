@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/widget/custom_dialog.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WebViewPage extends StatefulWidget {
   final String url;
@@ -23,9 +25,26 @@ class _WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      body: WebViewWidget(controller: controller),
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        CustomDialog.show(
+          context,
+          title: AppLocalizations.of(context)!.closeReceipt,
+          description: AppLocalizations.of(context)!.closeReceiptDesc,
+          btnOkText: AppLocalizations.of(context)!.exit,
+          btnCancelText: AppLocalizations.of(context)!.cancel,
+          btnOkOnPress: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          btnCancelOnPress: () => Navigator.pop(context),
+        );
+        return Future.value(false);
+      },
+      child: Scaffold(
+        body: WebViewWidget(controller: controller),
+      ),
     );
   }
 }

@@ -126,5 +126,10 @@
   "resetPasswordDesc": "Key-in the OTP that have been sent through your email. The OTP will expired in 10 minutes.",
   "otp": "OTP",
   "newPassword": "New Password",
-  "viewPDF": "View PDF"
+  "viewPDF": "View PDF",
+  "exit": "Exit",
+  "exitApp": "Exit Application",
+  "exitAppDesc": "Are you sure you want to close this application? This action cannot be undone.",
+  "closeReceipt": "Close Receipt",
+  "closeReceiptDesc": "Are you sure you want to close the receipt? This action cannot be undone."
 }
