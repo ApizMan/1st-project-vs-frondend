@@ -14,6 +14,7 @@ import 'package:project/theme.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummonsReceiptScreen extends StatefulWidget {
   const SummonsReceiptScreen({
@@ -84,7 +85,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
         backgroundColor: Color(details['color']),
         centerTitle: true,
         title: Text(
-          'Receipt',
+          AppLocalizations.of(context)!.receipt,
           style: textStyleNormal(
             fontSize: 26,
             color: kWhite,
@@ -111,7 +112,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
               context, AppRoute.homeScreen, (context) => false);
         },
         label: Text(
-          'Back To Home',
+          AppLocalizations.of(context)!.backToHome,
           style: textStyleNormal(
             color: kWhite,
             fontWeight: FontWeight.bold,
@@ -138,7 +139,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                       ),
                       const SizedBox(width: 15),
                       Text(
-                        'Successful!',
+                        '${AppLocalizations.of(context)!.successful}!',
                         style: textStyleNormal(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
@@ -176,7 +177,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Receipt No.',
+                                    AppLocalizations.of(context)!.receiptNo,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -198,7 +199,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Date',
+                                    AppLocalizations.of(context)!.date,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -217,7 +218,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Time',
+                                    AppLocalizations.of(context)!.time,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -236,7 +237,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Notice Number',
+                                    AppLocalizations.of(context)!.noticeNo,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -255,7 +256,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Plate Number',
+                                    AppLocalizations.of(context)!.plateNumber,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -275,7 +276,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Summons Rate',
+                                    AppLocalizations.of(context)!.compoundRate,
                                     style: textStyleNormal(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -299,7 +300,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Total',
+                        AppLocalizations.of(context)!.total,
                         style: textStyleNormal(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -318,7 +319,7 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
                   const SizedBox(height: 40),
                   Center(
                     child: Text(
-                      'THANK YOU',
+                      AppLocalizations.of(context)!.thankYou,
                       style: GoogleFonts.dmSans(
                         fontSize: 20,
                       ),

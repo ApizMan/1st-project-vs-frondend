@@ -12,6 +12,7 @@ import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummonsPaymentScreen extends StatefulWidget {
   const SummonsPaymentScreen({super.key});
@@ -358,7 +359,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
               backgroundColor: Color(details['color']),
               centerTitle: true,
               title: Text(
-                'Payment',
+                AppLocalizations.of(context)!.payment,
                 style: textStyleNormal(
                   fontSize: 26,
                   color: details['color'] == 4294961979 ? kBlack : kWhite,
@@ -375,7 +376,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                 formBloc!.submit();
               },
               label: Text(
-                'PAY',
+                AppLocalizations.of(context)!.pay,
                 style: textStyleNormal(color: Colors.white),
               ),
             ),
@@ -427,7 +428,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Date",
+                                      AppLocalizations.of(context)!.date,
                                       style: textStyleNormal(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -448,7 +449,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Notice Number',
+                                      AppLocalizations.of(context)!.noticeNo,
                                       style: textStyleNormal(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -470,7 +471,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Type of Offences',
+                                        AppLocalizations.of(context)!
+                                            .typeOfOffences,
                                         style: textStyleNormal(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -493,7 +495,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Description',
+                                        AppLocalizations.of(context)!
+                                            .description,
                                         style: textStyleNormal(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -517,7 +520,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'Location',
+                                        AppLocalizations.of(context)!.location,
                                         style: textStyleNormal(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -537,7 +540,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Number Plate',
+                                      AppLocalizations.of(context)!.plateNumber,
                                       style: textStyleNormal(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -557,7 +560,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Compound Rate',
+                                      AppLocalizations.of(context)!
+                                          .compoundRate,
                                       style: textStyleNormal(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -579,7 +583,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                     const SizedBox(height: 40),
                     Center(
                       child: Text(
-                        'Please make payment before this date',
+                        AppLocalizations.of(context)!.compountPaymentDesc,
                         style: textStyleNormal(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -603,7 +607,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         ),
                         selectFieldBloc: formBloc!.paymentMethod,
                         decoration: InputDecoration(
-                          labelText: 'Payment Method',
+                          labelText:
+                              AppLocalizations.of(context)!.paymentMethod,
                           labelStyle: textStyleNormal(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -647,7 +652,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                           const SizedBox(width: 5),
                           Flexible(
                             child: Text(
-                              'You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate.',
+                              AppLocalizations.of(context)!.paymentDesc2,
                               style: textStyleNormal(
                                 color: Colors.red,
                                 fontSize: 12,

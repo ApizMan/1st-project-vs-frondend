@@ -131,5 +131,16 @@
   "exitApp": "Keluar Aplikasi",
   "exitAppDesc": "Adakah anda pasti mahu menutup aplikasi ini? Tindakan ini tidak boleh dibuat semula.",
   "closeReceipt": "Tutup Resit",
-  "closeReceiptDesc": "Adakah anda pasti mahu menutup resit? Tindakan ini tidak boleh dibuat semula."
+  "closeReceiptDesc": "Adakah anda pasti mahu menutup resit? Tindakan ini tidak boleh dibuat semula.",
+  "offenderIdNo": "No. ID Pesalah",
+  "noticeNo": "No. Notis",
+  "enterSearchTerm": "Masukkan Pencarian",
+  "vehicleNo": "No. Kenderaan",
+  "offencesAct": "Akta Kesalahan",
+  "offencesDate": "Tarikh Kesalahan",
+  "compoundDesc": "Tiada rekod Kompaun.",
+  "typeOfOffences": "Jenis Kesalahan",
+  "compoundRate": "Kadar Kompaun",
+  "compountPaymentDesc": "Sila buat pembayaran sebelum tarikh ini",
+  "receiptNo": "No. Resit"
 }

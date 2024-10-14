@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:get/get.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/resources/resources.dart';
@@ -32,13 +33,9 @@ class _SummonsScreenState extends State<SummonsScreen> {
   List<SummonModel> _selectedSummons =
       []; // Temporary list to store selected summons
 
-  List<String> inputType = [
-    'Offender ID No',
-    'Notice No',
-    'Plate Number',
-  ];
-
-  String _selectedInputType = 'Notice No'; // Default selected dropdown value
+  String _selectedInputType = Get.locale!.languageCode == "en"
+      ? 'Notice No.'
+      : 'No. Notis'; // Default selected dropdown value
 
   @override
   void initState() {
@@ -90,11 +87,14 @@ class _SummonsScreenState extends State<SummonsScreen> {
         'VehicleRegistrationNumber': null,
       };
 
-      if (_selectedInputType == 'Offender ID No') {
+      if (_selectedInputType == 'Offender ID No.' ||
+          _selectedInputType == 'No. ID Pesalah') {
         searchParams['OffenderIDNo'] = query;
-      } else if (_selectedInputType == 'Notice No') {
+      } else if (_selectedInputType == 'Notice No.' ||
+          _selectedInputType == 'No. Notis') {
         searchParams['NoticeNo'] = query;
-      } else if (_selectedInputType == 'Plate Number') {
+      } else if (_selectedInputType == 'Plate Number' ||
+          _selectedInputType == 'Nombor Plat') {
         searchParams['VehicleRegistrationNumber'] = query;
       }
 
@@ -135,6 +135,12 @@ class _SummonsScreenState extends State<SummonsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> inputType = [
+      AppLocalizations.of(context)!.offenderIdNo,
+      AppLocalizations.of(context)!.noticeNo,
+      AppLocalizations.of(context)!.plateNumber,
+    ];
+
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
@@ -180,7 +186,8 @@ class _SummonsScreenState extends State<SummonsScreen> {
                         controller: _searchController,
                         decoration: InputDecoration(
                           label: Text(AppLocalizations.of(context)!.search),
-                          hintText: 'Enter Search Term',
+                          hintText:
+                              AppLocalizations.of(context)!.enterSearchTerm,
                           hintStyle: const TextStyle(
                             color: Colors.black26,
                           ),
@@ -269,7 +276,7 @@ class _SummonsScreenState extends State<SummonsScreen> {
                                         : kWhite, // Change background color when selected
                                     child: ListTile(
                                       title: Text(
-                                        'Notice No: ${notice.noticeNo}',
+                                        '${AppLocalizations.of(context)!.noticeNo}: ${notice.noticeNo}',
                                         style: textStyleNormal(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -281,19 +288,19 @@ class _SummonsScreenState extends State<SummonsScreen> {
                                         children: [
                                           spaceVertical(height: 10.0),
                                           Text(
-                                            'Vehicle No: ${notice.vehicleRegistrationNo}',
+                                            '${AppLocalizations.of(context)!.vehicleNo}: ${notice.vehicleRegistrationNo}',
                                             style: textStyleNormal(),
                                           ),
                                           Text(
-                                            'Offences Act: ${notice.offenceAct}',
+                                            '${AppLocalizations.of(context)!.offencesAct}: ${notice.offenceAct}',
                                             style: textStyleNormal(),
                                           ),
                                           Text(
-                                            'Offences Date: ${notice.offenceDate}',
+                                            '${AppLocalizations.of(context)!.offencesDate}: ${notice.offenceDate}',
                                             style: textStyleNormal(),
                                           ),
                                           Text(
-                                            'Amount: RM ${double.parse(notice.amount!).toStringAsFixed(2)}',
+                                            '${AppLocalizations.of(context)!.amount}: RM ${double.parse(notice.amount!).toStringAsFixed(2)}',
                                             style: textStyleNormal(),
                                           ),
                                         ],
@@ -319,7 +326,8 @@ class _SummonsScreenState extends State<SummonsScreen> {
                                     ),
                                     spaceVertical(height: 10.0),
                                     Text(
-                                      'There no records of Compound.',
+                                      AppLocalizations.of(context)!
+                                          .compoundDesc,
                                       style: textStyleNormal(
                                         color: kGrey,
                                         fontWeight: FontWeight.bold,
@@ -334,27 +342,30 @@ class _SummonsScreenState extends State<SummonsScreen> {
                   ),
                 ),
               ),
-              bottomNavigationBar: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: PrimaryButton(
-                  buttonWidth: 0.8,
-                  borderRadius: 10.0,
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoute.summonsPaymentScreen,
-                      arguments: {
-                        'locationDetail': details,
-                        'userModel': userModel,
-                        'selectedSummons':
-                            _selectedSummons, // Pass the temporary list
-                      },
-                    );
-                  },
-                  label: Text(
-                    AppLocalizations.of(context)!.pay,
-                    style: textStyleNormal(
-                      color: kWhite,
+              bottomNavigationBar: Visibility(
+                visible: _selectedIds.isNotEmpty ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: PrimaryButton(
+                    buttonWidth: 0.8,
+                    borderRadius: 10.0,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.summonsPaymentScreen,
+                        arguments: {
+                          'locationDetail': details,
+                          'userModel': userModel,
+                          'selectedSummons':
+                              _selectedSummons, // Pass the temporary list
+                        },
+                      );
+                    },
+                    label: Text(
+                      AppLocalizations.of(context)!.pay,
+                      style: textStyleNormal(
+                        color: kWhite,
+                      ),
                     ),
                   ),
                 ),

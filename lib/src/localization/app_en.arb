@@ -131,5 +131,16 @@
   "exitApp": "Exit Application",
   "exitAppDesc": "Are you sure you want to close this application? This action cannot be undone.",
   "closeReceipt": "Close Receipt",
-  "closeReceiptDesc": "Are you sure you want to close the receipt? This action cannot be undone."
+  "closeReceiptDesc": "Are you sure you want to close the receipt? This action cannot be undone.",
+  "offenderIdNo": "Offender ID No.",
+  "noticeNo": "Notice No.",
+  "enterSearchTerm": "Enter Search Term",
+  "vehicleNo": "Vehicle No.",
+  "offencesAct": "Offences Act",
+  "offencesDate": "Offences Date",
+  "compoundDesc": "There no records of Compound.",
+  "typeOfOffences": "Type Of Offences",
+  "compoundRate": "Compound Rate",
+  "compountPaymentDesc": "Please make payment before this date",
+  "receiptNo": "Receipt No."
 }
