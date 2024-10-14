@@ -1,18 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
+import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
+import 'package:project/resources/resources.dart';
 
 class CompoundFormBloc extends FormBloc<String, String> {
   final UserModel model;
-  final other = TextFieldBloc();
-
-  final token = TextFieldBloc(
-    validators: [
-      InputValidator.required,
-    ],
-  );
+  final Map<String, dynamic> details;
 
   final amount = TextFieldBloc(
     validators: [
@@ -29,11 +27,10 @@ class CompoundFormBloc extends FormBloc<String, String> {
 
   CompoundFormBloc({
     required this.model,
+    required this.details,
   }) {
     addFieldBlocs(
       fieldBlocs: [
-        other,
-        token,
         amount,
         paymentMethod,
       ],
@@ -42,58 +39,58 @@ class CompoundFormBloc extends FormBloc<String, String> {
 
   @override
   FutureOr<void> onSubmitting() async {
-    // Check if "Other" is selected and if so, validate the 'other' field
+    await Future.delayed(const Duration(milliseconds: 1000));
 
-    if (token.value.isNotEmpty || other.value.isNotEmpty) {
-      // if (paymentMethod.value == 'QR') {
-      //   final response = await ReloadResources.reloadMoneyPageypay(
-      //     prefix: '/payment/generate-qr',
-      //     body: jsonEncode({
-      //       'order_amount': double.parse(amount.value),
-      //       'store_id': 'Token', //description
-      //       'terminal_id': model.firstName, //email
-      //       'shift_id': model.email, //city
-      //     }),
-      //   );
+    if (paymentMethod.value == 'QR') {
+      final response = await ReloadResources.reloadMoneyPageypay(
+        prefix: '/payment/generate-qr',
+        body: jsonEncode({
+          'order_amount': double.parse(amount.value),
+          'store_id': 'Compound', //description
+          'terminal_id': details['location'], //email
+          'shift_id': model.idNumber, //city
+        }),
+      );
 
-      //   await SharedPreferencesHelper.setPayment('QR');
+      GlobalState.paymentMethod = 'QR';
 
-      //   if (response['error'] != null) {
-      //     emitFailure(failureResponse: response['error'].toString());
-      //   } else {
-      //     emitSuccess(successResponse: response['content']['qr']);
-      //   }
-      // } else {
-      //   final response = await ReloadResources.reloadMoneyFPX(
-      //     prefix: '/paymentfpx/recordBill-token/',
-      //     body: jsonEncode({
-      //       'NetAmount': double.parse(amount.value),
-      //     }),
-      //   );
+      if (response['error'] != null) {
+        emitFailure(failureResponse: response['error'].toString());
+      } else {
+        await SharedPreferencesHelper.setOrderDetails(
+          orderNo: response['order']['order_no'],
+          amount: response['order']['order_amount'].toString(),
+          shiftId: response['order']['shift_id'],
+          terminalId: response['order']['terminal_id'],
+          storeId: response['order']['store_id'],
+          status: 'paid',
+        );
 
-      //   await SharedPreferencesHelper.setPayment('FPX');
-
-      //   if (response['error'] != null) {
-      //     emitFailure(failureResponse: response['error'].toString());
-      //   } else {
-      //     emitSuccess(successResponse: response['ShortcutLink']);
-      //   }
-      // }
-
-      emitSuccess();
-    } else {
-      if (token.value.isEmpty) {
-        // Assuming token holds 'Other'
-        token.addFieldError('Select the Amount First');
-        emitFailure();
-        return;
+        emitSuccess(successResponse: response['data']['content']['qr']);
       }
+    } else {
+      final response = await ReloadResources.reloadMoneyFPX(
+        prefix: '/paymentfpx/recordBill-token/',
+        body: jsonEncode({
+          'NetAmount': double.parse(amount.value),
+        }),
+      );
 
-      if (other.value.isEmpty) {
-        // Assuming token holds 'Other'
-        other.addFieldError('Amount is required');
-        emitFailure();
-        return;
+      GlobalState.paymentMethod = 'FPX';
+
+      await SharedPreferencesHelper.setOrderDetails(
+        orderNo: response['BillId'].toString(),
+        amount: amount.value.toString(),
+        storeId: "Compound",
+        shiftId: model.email!,
+        terminalId: response['BatchName'].toString(),
+        status: "paid",
+      );
+
+      if (response['error'] != null) {
+        emitFailure(failureResponse: response['error'].toString());
+      } else {
+        emitSuccess(successResponse: response['ShortcutLink']);
       }
     }
   }

@@ -1,32 +1,37 @@
+import 'package:project/models/models.dart';
+
 class CompoundModel {
-  int? compoundAmount;
-  String? noticeNo;
-  String? vehicleMakeModel;
-  String? vehicleNo;
-  String? vehicleType;
+  String? actionCode;
+  String? responseCode;
+  String? responseMessage;
+  List<SummonModel>? summonses;
 
   CompoundModel(
-      {this.compoundAmount,
-      this.noticeNo,
-      this.vehicleMakeModel,
-      this.vehicleNo,
-      this.vehicleType});
+      {this.actionCode,
+      this.responseCode,
+      this.responseMessage,
+      this.summonses});
 
   CompoundModel.fromJson(Map<String, dynamic> json) {
-    compoundAmount = json['CompoundAmount'];
-    noticeNo = json['NoticeNo'];
-    vehicleMakeModel = json['VehicleMakeModel'];
-    vehicleNo = json['VehicleNo'];
-    vehicleType = json['VehicleType'];
+    actionCode = json['actionCode'];
+    responseCode = json['responseCode'];
+    responseMessage = json['responseMessage'];
+    if (json['summonses'] != null) {
+      summonses = <SummonModel>[];
+      json['summonses'].forEach((v) {
+        summonses!.add(new SummonModel.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['CompoundAmount'] = compoundAmount;
-    data['NoticeNo'] = noticeNo;
-    data['VehicleMakeModel'] = vehicleMakeModel;
-    data['VehicleNo'] = vehicleNo;
-    data['VehicleType'] = vehicleType;
+    data['actionCode'] = actionCode;
+    data['responseCode'] = responseCode;
+    data['responseMessage'] = responseMessage;
+    if (summonses != null) {
+      data['summonses'] = summonses!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

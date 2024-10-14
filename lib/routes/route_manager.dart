@@ -61,6 +61,8 @@ class AppRoute {
     GetPage(name: summonsScreen, page: () => const SummonsScreen()),
     GetPage(
         name: summonsPaymentScreen, page: () => const SummonsPaymentScreen()),
+    GetPage(
+        name: summonsReceiptScreen, page: () => const SummonsReceiptScreen()),
     GetPage(name: monthlyPassScreen, page: () => const MonthlyPassScreen()),
     GetPage(
         name: monthlyPassPaymentScreen,

@@ -1,10 +1,13 @@
-import 'dart:async';
+import 'dart:convert';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
+import 'package:project/component/webview.dart';
 //import 'package:project/component/generate_qr.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
+import 'package:project/resources/resources.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/loading_dialog.dart';
@@ -18,26 +21,10 @@ class SummonsPaymentScreen extends StatefulWidget {
 }
 
 class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
-  String _currentDate = ''; // Initialize variable for date
-  String _currentTime = '';
   // ignore: unused_field
   String? _qrCodeUrl;
   String? shortcutLink;
   CompoundFormBloc? formBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
-  }
-
-  void updateDateTime() {
-    setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm:ss a').format(DateTime.now());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +33,13 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
     UserModel? userModel = arguments['userModel'] as UserModel?;
+    List<SummonModel>? selectedSummons =
+        arguments['selectedSummons'] as List<SummonModel>?;
+    double totalAmount = 0.0;
     return BlocProvider(
       create: (context) => CompoundFormBloc(
         model: userModel!,
+        details: details,
       ),
       child: Builder(builder: (context) {
         formBloc = BlocProvider.of<CompoundFormBloc>(context);
@@ -57,42 +48,301 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
             LoadingDialog.show(context);
           },
           onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
-          onSuccess: (context, state) async {
+          onSuccess: (context, state) {
             LoadingDialog.hide(context);
 
-            // final payment = await SharedPreferencesHelper.getPayment();
+            final payment = GlobalState.paymentMethod;
 
-            // if (payment == 'FPX') {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) =>
-            //           WebViewPage(url: state.successResponse!),
-            //     ),
-            //   );
-            // } else {
-            //   Navigator.of(context).push(
-            //     MaterialPageRoute(
-            //       builder: (context) =>
-            //           QrCodeScreen(qrCodeUrl: state.successResponse!),
-            //     ),
-            //   );
-            // }
+            try {
+              if (payment == 'FPX') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        WebViewPage(url: state.successResponse!),
+                  ),
+                ).then((value) async {
+                  final order = await SharedPreferencesHelper.getOrderDetails();
 
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.successResponse!),
-              ),
-            );
+                  final response = await ReloadResources.reloadProcess(
+                    prefix: '/paymentfpx/callbackurl-fpx/',
+                    body: jsonEncode({
+                      'ActivityTag': "CheckPaymentStatus",
+                      'LanguageCode': 'en',
+                      'AppReleaseId': 34,
+                      'GMTTimeDifference': 8,
+                      'PaymentTxnRef': null,
+                      'BillId': order['orderNo'],
+                      'BillReference': null,
+                    }),
+                  );
+
+                  if (response['SFM']['Constant'] ==
+                      'SFM_EXECUTE_PAYMENT_SUCCESS') {
+                    for (var i = 0; i < selectedSummons.length; i++) {
+                      final response = await CompoundResources.pay(
+                        prefix: '/compound/payCompound',
+                        body: jsonEncode(
+                          {
+                            'OwnerIDNo': "111111111111",
+                            'OwnerCategoryID': "1",
+                            'VehicleRegistrationNumber': selectedSummons[i]
+                                .vehicleRegistrationNo
+                                .toString(),
+                            'NoticeNo': selectedSummons[i].noticeNo.toString(),
+                            'ReceiptNo': 'RC-${selectedSummons[i].noticeNo}',
+                            'PaymentTransactionType': null,
+                            'PaymentDate':
+                                '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                            'PaidAmount': selectedSummons[i].amount.toString(),
+                            'ChannelType': null,
+                            'PaymentStatus': null,
+                            'PaymentMode': null,
+                            'PaymentLocation': 'FPX',
+                            'Notes': selectedSummons[i]
+                                .offenceDescription
+                                .toString(),
+                          },
+                        ),
+                      );
+
+                      if (response['data']['responseMessage'] == 'SUCCESS') {
+                        DateTime now = DateTime.now();
+                        String isoTimestamp = now.toUtc().toIso8601String();
+
+                        final response = await CompoundResources.store(
+                          prefix: '/compound/store',
+                          body: jsonEncode({
+                            'OwnerIdNo': "111111111111",
+                            'OwnerCategoryId': "1",
+                            'VehicleRegistrationNumber': selectedSummons[i]
+                                .vehicleRegistrationNo
+                                .toString(),
+                            'NoticeNo': selectedSummons[i].noticeNo.toString(),
+                            'ReceiptNo': 'RC-${selectedSummons[i].noticeNo}',
+                            'PaymentTransactionType': null,
+                            'PaymentDate': isoTimestamp.toString(),
+                            'PaidAmount': selectedSummons[i].amount.toString(),
+                            'ChannelType': null,
+                            'PaymentStatus': null,
+                            'PaymentMode': null,
+                            'PaymentLocation': 'FPX',
+                            'Notes': selectedSummons[i]
+                                .offenceDescription
+                                .toString(),
+                          }),
+                        );
+
+                        if (response['status'] == 'success') {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoute.summonsReceiptScreen,
+                            arguments: {
+                              'locationDetail': details,
+                              'selectedSummons': selectedSummons,
+                              'totalAmount': totalAmount,
+                            },
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Compound Unsuccessful Store to Database'),
+                            ),
+                          );
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Compound Unsuccessful To Pay'),
+                          ),
+                        );
+                      }
+                    }
+                  } else if (response['SFM']['Constant'] ==
+                      "SFM_EXECUTE_PAYMENT_FAILED") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Payment FPX Unsuccessful'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_CANCELLED" ||
+                      response['SFM']['Constant'] == "SFM_TXN_NOT_FOUND") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('You have Cancel Payment'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                      "SFM_EXECUTE_PAYMENT_UNCONFIRMED") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                            'Payment execution is unconfirmed. please contact Customer Support.'),
+                      ),
+                    );
+                  } else if (response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_IN_PREP" ||
+                      response['SFM']['Constant'] ==
+                          "SFM_EXECUTE_PAYMENT_PENDING_AUTH") {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content:
+                            Text('Payment execution is pending. Please wait.'),
+                      ),
+                    );
+                  }
+                });
+              } else {
+                Navigator.pushNamed(
+                  context,
+                  AppRoute.reloadQRScreen,
+                  arguments: {
+                    'locationDetail': details,
+                    'qrCodeUrl': state.successResponse!,
+                  },
+                ).then((value) async {
+                  final order = await SharedPreferencesHelper.getOrderDetails();
+
+                  final response = await ReloadResources.reloadProcess(
+                    prefix: '/payment/transaction-details',
+                    body: jsonEncode({
+                      'order_no': order['orderNo'],
+                    }),
+                  );
+
+                  if (response['status'] == 'success') {
+                    if (response['content']['order_status'] == 'successful') {
+                      final response = await ReloadResources.reloadSuccessful(
+                        prefix: '/payment/callbackUrl/pegeypay',
+                        body: jsonEncode({
+                          'order_no': order['orderNo'],
+                          'order_amount': double.parse(order['amount']),
+                          'order_status': order['status'],
+                          'store_id': order['storeId'],
+                          'shift_id': order['shiftId'],
+                          'terminal_id': order['terminalId'],
+                        }),
+                      );
+
+                      if (response['order_status'] == 'paid') {
+                        for (var i = 0; i < selectedSummons.length; i++) {
+                          final response = await CompoundResources.pay(
+                            prefix: '/compound/payCompound',
+                            body: jsonEncode(
+                              {
+                                'OwnerIDNo': "111111111111",
+                                'OwnerCategoryID': "1",
+                                'VehicleRegistrationNumber': selectedSummons[i]
+                                    .vehicleRegistrationNo
+                                    .toString(),
+                                'NoticeNo':
+                                    selectedSummons[i].noticeNo.toString(),
+                                'ReceiptNo':
+                                    'RC-${selectedSummons[i].noticeNo}',
+                                'PaymentTransactionType': null,
+                                'PaymentDate':
+                                    '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                                'PaidAmount':
+                                    selectedSummons[i].amount.toString(),
+                                'ChannelType': null,
+                                'PaymentStatus': null,
+                                'PaymentMode': null,
+                                'PaymentLocation': 'QR Code',
+                                'Notes': selectedSummons[i]
+                                    .offenceDescription
+                                    .toString(),
+                              },
+                            ),
+                          );
+
+                          if (response['data']['responseMessage'] ==
+                              'SUCCESS') {
+                            DateTime now = DateTime.now();
+                            String isoTimestamp = now.toUtc().toIso8601String();
+
+                            final response = await CompoundResources.store(
+                              prefix: '/compound/store',
+                              body: jsonEncode({
+                                'OwnerIDNo': "111111111111",
+                                'OwnerCategoryID': "1",
+                                'VehicleRegistrationNumber': selectedSummons[i]
+                                    .vehicleRegistrationNo
+                                    .toString(),
+                                'NoticeNo':
+                                    selectedSummons[i].noticeNo.toString(),
+                                'ReceiptNo':
+                                    'RC-${selectedSummons[i].noticeNo}',
+                                'PaymentTransactionType': null,
+                                'PaymentDate': isoTimestamp.toString(),
+                                'PaidAmount':
+                                    selectedSummons[i].amount.toString(),
+                                'ChannelType': null,
+                                'PaymentStatus': null,
+                                'PaymentMode': null,
+                                'PaymentLocation': 'QR Code',
+                                'Notes': selectedSummons[i]
+                                    .offenceDescription
+                                    .toString(),
+                              }),
+                            );
+
+                            if (response['status'] == 'success') {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoute.summonsReceiptScreen,
+                                arguments: {
+                                  'locationDetail': details,
+                                  'selectedSummons': selectedSummons,
+                                  'totalAmount': totalAmount,
+                                },
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'Compound Unsuccessful Store to Database'),
+                                ),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Compound Unsuccessful To Pay'),
+                              ),
+                            );
+                          }
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('UnSuccessful Reload'),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(response['content']['order_status']),
+                        ),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(response['status']),
+                      ),
+                    );
+                  }
+                });
+              }
+            } catch (e) {
+              e.toString();
+            }
           },
           onFailure: (context, state) {
             LoadingDialog.hide(context);
-
-            Navigator.pushNamed(context, AppRoute.reloadReceiptScreen,
-                arguments: {
-                  'locationDetail': details,
-                  'userModel': userModel,
-                });
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -123,11 +373,6 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
               buttonWidth: 0.8,
               onPressed: () {
                 formBloc!.submit();
-                Navigator.pushNamed(context, AppRoute.summonsReceiptScreen,
-                    arguments: {
-                      'locationDetail': details,
-                      'userModel': userModel,
-                    });
               },
               label: Text(
                 'PAY',
@@ -136,142 +381,201 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  bottom: 150,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Date",
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            _currentDate,
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Time',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            _currentTime,
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Notice Number',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            'KH14680548983',
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Type of Offences',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            'Double Park',
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Number Plate',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            'ABC1234',
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Compound Rate',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            'RM 100',
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          'Issued By',
-                          style:
-                              textStyleNormal(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 50),
-                        Expanded(
-                          child: Text(
-                            '${userModel!.firstName!} ${userModel.secondName!}',
-                            style: textStyleNormal(),
-                            textAlign:
-                                TextAlign.right, // Align text to the right
-                          ),
-                        ),
-                      ],
-                    ),
+                    ListView.builder(
+                        itemCount: selectedSummons!.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          double amount =
+                              double.parse(selectedSummons[index].amount!);
+                          totalAmount += amount; // Accumulate the total amount
+
+                          // Update the value in the formBloc
+                          formBloc!.amount.updateValue(totalAmount.toString());
+
+                          return Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 20.0),
+                            decoration: BoxDecoration(
+                              color: kWhite,
+                              borderRadius: BorderRadius.circular(8.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                              border: Border.all(
+                                color: Colors.grey.withOpacity(0.3),
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Date",
+                                      style: textStyleNormal(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      child: Text(
+                                        selectedSummons[index].offenceDate!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign
+                                            .right, // Align text to the right
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Notice Number',
+                                      style: textStyleNormal(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      child: Text(
+                                        selectedSummons[index].noticeNo!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign
+                                            .right, // Align text to the right
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Type of Offences',
+                                        style: textStyleNormal(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        selectedSummons[index].offenceAct!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Description',
+                                        style: textStyleNormal(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        selectedSummons[index]
+                                            .offenceDescription!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Location',
+                                        style: textStyleNormal(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        selectedSummons[index].offenceLocation!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign.right,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Number Plate',
+                                      style: textStyleNormal(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      child: Text(
+                                        selectedSummons[index]
+                                            .vehicleRegistrationNo!,
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign
+                                            .right, // Align text to the right
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Compound Rate',
+                                      style: textStyleNormal(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(width: 50),
+                                    Expanded(
+                                      child: Text(
+                                        'RM ${double.parse(selectedSummons[index].amount!).toStringAsFixed(2)}',
+                                        style: textStyleNormal(),
+                                        textAlign: TextAlign
+                                            .right, // Align text to the right
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
                     const SizedBox(height: 40),
                     Center(
                       child: Text(
@@ -336,12 +640,11 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
-                            Icons.error_outline, 
-                            color: Colors.red, 
+                            Icons.error_outline,
+                            color: Colors.red,
                           ),
                           const SizedBox(height: 50),
-                          const SizedBox(
-                              width: 5), 
+                          const SizedBox(width: 5),
                           Flexible(
                             child: Text(
                               'You will be bring to 3rd Party website for Reload Token. Please ensure the detail above is accurate.',

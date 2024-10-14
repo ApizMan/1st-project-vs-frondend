@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/constant.dart';
+import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'dart:ui' as ui;
@@ -72,7 +73,9 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
 
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
-    // UserModel? userModel = arguments['userModel'] as UserModel?;
+    List<SummonModel>? selectedSummons =
+        arguments['selectedSummons'] as List<SummonModel>?;
+    double? totalAmount = arguments['totalAmount'] as double?;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -119,158 +122,210 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
       body: SingleChildScrollView(
         child: RepaintBoundary(
           key: _printKey,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                    child: Column(
-                  children: [
-                    const Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                      size: 30,
-                    ),
-                    const SizedBox(width: 15),
-                    Text(
-                      'Successful!',
-                      style: textStyleNormal(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                      child: Column(
+                    children: [
+                      const Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 30,
                       ),
-                    ),
-                  ],
-                )),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Date',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        _currentDate,
-                        style: textStyleNormal(),
+                      const SizedBox(width: 15),
+                      Text(
+                        'Successful!',
+                        style: textStyleNormal(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
+                      ),
+                    ],
+                  )),
+                  const SizedBox(height: 10),
+                  ListView.builder(
+                      itemCount: selectedSummons!.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 20.0),
+                          decoration: BoxDecoration(
+                            color: kWhite,
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                            border: Border.all(
+                              color: Colors.grey.withOpacity(0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Receipt No.',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      'RC-${selectedSummons[index].noticeNo}',
+                                      style: textStyleNormal(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Date',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      _currentDate,
+                                      style: textStyleNormal(),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Time',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      _currentTime,
+                                      style: textStyleNormal(),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Notice Number',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      selectedSummons[index].noticeNo!,
+                                      style: textStyleNormal(),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Plate Number',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      selectedSummons[index]
+                                          .vehicleRegistrationNo!,
+                                      style: textStyleNormal(),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Summons Rate',
+                                    style: textStyleNormal(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Expanded(
+                                    child: Text(
+                                      'RM ${double.parse(selectedSummons[index].amount!).toStringAsFixed(2)}',
+                                      style: textStyleNormal(),
+                                      textAlign: TextAlign
+                                          .right, // Align text to the right
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Total',
+                        style: textStyleNormal(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                      Text(
+                        'RM ${totalAmount!.toStringAsFixed(2)}',
+                        style: textStyleNormal(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Time',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        _currentTime,
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  Center(
+                    child: Text(
+                      'THANK YOU',
+                      style: GoogleFonts.dmSans(
+                        fontSize: 20,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Notice Number',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        'KH14680548983',
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Receipt No.',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        'KH198202',
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Plate Number',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        'ABC1234',
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Summons Rate',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        'RM 100',
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                Row(
-                  children: [
-                    Text(
-                      'Total',
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        'RM 100',
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: Text(
-                    'THANK YOU',
-                    style: GoogleFonts.dmSans(
-                      fontSize: 20,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
