@@ -12,3 +12,5 @@ export 'transaction_wallet_model.dart';
 export 'meter_model.dart';
 export 'monthly_pass_model.dart';
 export 'summon_model.dart';
+export 'promotions/monthly_pass_model.dart';
+export 'promotions/monthly_pass_history_model.dart';

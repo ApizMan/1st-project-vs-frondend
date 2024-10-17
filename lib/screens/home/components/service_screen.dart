@@ -24,13 +24,23 @@ class ServiceScreen extends StatefulWidget {
 
 class _ServiceScreenState extends State<ServiceScreen> {
   late final List<PBTModel> pbtModel;
-  late Future<void> _initDataPBT;
+  late final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
+  late final List<PromotionMonthlyPassHistoryModel>
+      promotionMonthlyPassHistoryModel;
+  late Future<void> _initData;
 
   @override
   void initState() {
-    _initDataPBT = _getPBT();
+    _initData = _initDataCombined(); // Initialize both data fetching methods
     pbtModel = [];
+    promotionMonthlyPassModel = [];
+    _getPromotionMonthlyPassHistory();
+    promotionMonthlyPassHistoryModel = [];
     super.initState();
+  }
+
+  Future<void> _initDataCombined() async {
+    await Future.wait([_getPBT(), _getPromotionMonthlyPass()]);
   }
 
   Future<void> _getPBT() async {
@@ -45,6 +55,57 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     name: item['name'],
                     description: item['description'],
                   ))
+              .toList(),
+        ); // Add new data
+      });
+    }
+  }
+
+  Future<void> _getPromotionMonthlyPass() async {
+    final data = await PromotionsResources.getPromotionMonthlyPass(
+        prefix: '/promotion/public');
+
+    if (data != null && mounted) {
+      setState(() {
+        promotionMonthlyPassModel.addAll(
+          data
+              .map<PromotionMonthlyPassModel>(
+                  (item) => PromotionMonthlyPassModel(
+                        id: item['id'],
+                        title: item['title'],
+                        description: item['description'],
+                        type: item['type'],
+                        rate: item['rate'],
+                        date: item['date'],
+                        expiredDate: item['expiredDate'],
+                        image: item['image'],
+                        timeUse: item['timeUse'],
+                        createdAt: item['createdAt'],
+                        updatedAt: item['updatedAt'],
+                      ))
+              .toList(),
+        ); // Add new data
+      });
+    }
+  }
+
+  Future<void> _getPromotionMonthlyPassHistory() async {
+    final data = await PromotionsResources.getPromotionHistory(
+        prefix: '/monthlyPass/all/promotion');
+
+    if (data != null && mounted) {
+      setState(() {
+        promotionMonthlyPassHistoryModel.addAll(
+          data
+              .map<PromotionMonthlyPassHistoryModel>(
+                  (item) => PromotionMonthlyPassHistoryModel(
+                        id: item['id'],
+                        promotionId: item['promotionId'],
+                        userId: item['userId'],
+                        timeUse: item['timeUse'],
+                        createdAt: item['createdAt'],
+                        updatedAt: item['updatedAt'],
+                      ))
               .toList(),
         ); // Add new data
       });
@@ -75,7 +136,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FutureBuilder(
-                      future: _initDataPBT,
+                      future: _initData,
                       builder: (context, snapshot) {
                         return ServiceCard(
                           onPressed: () {
@@ -132,6 +193,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           'userModel': widget.userModel,
                           'plateNumbers': widget.plateNumbers ?? [],
                           'pbtModel': pbtModel,
+                          'promotions': promotionMonthlyPassModel,
+                          'history': promotionMonthlyPassHistoryModel,
                         },
                       );
                     },

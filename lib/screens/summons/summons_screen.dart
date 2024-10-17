@@ -60,14 +60,13 @@ class _SummonsScreenState extends State<SummonsScreen> {
 
     try {
       // Parse the response to update the compound model
-      compoundModel.actionCode = response['data']['actionCode'].toString();
-      compoundModel.responseCode = response['data']['responseCode'].toString();
-      compoundModel.responseMessage =
-          response['data']['responseMessage'].toString();
+      compoundModel.actionCode = response['actionCode'].toString();
+      compoundModel.responseCode = response['responseCode'].toString();
+      compoundModel.responseMessage = response['responseMessage'].toString();
 
       if (compoundModel.responseMessage == 'SUCCESS') {
         // Map the summonses data to SummonModel objects
-        summonsList = (response['data']['summonses'] as List)
+        summonsList = (response['summonses'] as List)
             .map((json) => SummonModel.fromJson(json))
             .toList();
       }
@@ -77,55 +76,54 @@ class _SummonsScreenState extends State<SummonsScreen> {
   }
 
   Future<void> _onSearchChanged() async {
-    String query = _searchController.text;
+    String query = _searchController.text.toLowerCase();
 
     if (query.isNotEmpty) {
-      // Create the search parameters based on the selected dropdown value
-      Map<String, dynamic> searchParams = {
-        'OffenderIDNo': null,
-        'NoticeNo': null,
-        'VehicleRegistrationNumber': null,
-      };
+      // Filter the summonsList based on the selected input type
+      setState(() {
+        summonsList = summonsList?.where((summon) {
+          if (_selectedInputType == 'Notice No.' ||
+              _selectedInputType == 'No. Notis') {
+            return summon.noticeNo?.toLowerCase().contains(query) ?? false;
+          } else if (_selectedInputType == 'Plate Number' ||
+              _selectedInputType == 'Nombor Plat') {
+            return summon.vehicleRegistrationNo
+                    ?.toLowerCase()
+                    .contains(query) ??
+                false;
+          }
+          return false;
+        }).toList();
+      });
 
-      if (_selectedInputType == 'Offender ID No.' ||
-          _selectedInputType == 'No. ID Pesalah') {
-        searchParams['OffenderIDNo'] = query;
-      } else if (_selectedInputType == 'Notice No.' ||
-          _selectedInputType == 'No. Notis') {
-        searchParams['NoticeNo'] = query;
-      } else if (_selectedInputType == 'Plate Number' ||
-          _selectedInputType == 'Nombor Plat') {
-        searchParams['VehicleRegistrationNumber'] = query;
-      }
+      // final response = await CompoundResources.search(
+      //   prefix: '/compound/search',
+      //   body: jsonEncode(searchParams), // Send search parameters
+      // );
 
-      final response = await CompoundResources.search(
-        prefix: '/compound/search',
-        body: jsonEncode(searchParams), // Send search parameters
-      );
+      // try {
+      //   // Parse the response to update the compound model
+      //   compoundModel.actionCode = response['data']['actionCode'].toString();
+      //   compoundModel.responseCode =
+      //       response['data']['responseCode'].toString();
+      //   compoundModel.responseMessage =
+      //       response['data']['responseMessage'].toString();
 
-      try {
-        // Parse the response to update the compound model
-        compoundModel.actionCode = response['data']['actionCode'].toString();
-        compoundModel.responseCode =
-            response['data']['responseCode'].toString();
-        compoundModel.responseMessage =
-            response['data']['responseMessage'].toString();
-
-        if (compoundModel.responseMessage == 'SUCCESS') {
-          // Map the summonses data to SummonModel objects and display in the ListView
-          setState(() {
-            summonsList = (response['data']['summonses'] as List)
-                .map((json) => SummonModel.fromJson(json))
-                .toList();
-          });
-        } else {
-          setState(() {
-            summonsList = [];
-          });
-        }
-      } catch (e) {
-        print('Error: $e');
-      }
+      //   if (compoundModel.responseMessage == 'SUCCESS') {
+      //     // Map the summonses data to SummonModel objects and display in the ListView
+      //     setState(() {
+      //       summonsList = (response['data']['summonses'] as List)
+      //           .map((json) => SummonModel.fromJson(json))
+      //           .toList();
+      //     });
+      //   } else {
+      //     setState(() {
+      //       summonsList = [];
+      //     });
+      //   }
+      // } catch (e) {
+      //   print('Error: $e');
+      // }
     } else {
       // If the query is empty, reload the original summons list
       await _getSummons();
@@ -136,7 +134,6 @@ class _SummonsScreenState extends State<SummonsScreen> {
   @override
   Widget build(BuildContext context) {
     List<String> inputType = [
-      AppLocalizations.of(context)!.offenderIdNo,
       AppLocalizations.of(context)!.noticeNo,
       AppLocalizations.of(context)!.plateNumber,
     ];

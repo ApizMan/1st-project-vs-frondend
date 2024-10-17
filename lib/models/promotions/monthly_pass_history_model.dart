@@ -1,36 +1,24 @@
-class MonthlyPassModel {
+class PromotionMonthlyPassHistoryModel {
   String? id;
   String? userId;
-  String? plateNumber;
-  String? pbt;
-  String? location;
-  String? amount;
-  String? duration;
   String? promotionId;
+  int? timeUse;
   String? createdAt;
   String? updatedAt;
 
-  MonthlyPassModel(
+  PromotionMonthlyPassHistoryModel(
       {this.id,
       this.userId,
-      this.plateNumber,
-      this.pbt,
-      this.location,
-      this.amount,
-      this.duration,
       this.promotionId,
+      this.timeUse,
       this.createdAt,
       this.updatedAt});
 
-  MonthlyPassModel.fromJson(Map<String, dynamic> json) {
+  PromotionMonthlyPassHistoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['userId'];
-    plateNumber = json['plateNumber'];
-    pbt = json['pbt'];
-    location = json['location'];
-    amount = json['amount'];
-    duration = json['duration'];
     promotionId = json['promotionId'];
+    timeUse = json['timeUse'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
   }
@@ -39,12 +27,8 @@ class MonthlyPassModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['userId'] = userId;
-    data['plateNumber'] = plateNumber;
-    data['pbt'] = pbt;
-    data['location'] = location;
-    data['amount'] = amount;
-    data['duration'] = duration;
     data['promotionId'] = promotionId;
+    data['timeUse'] = timeUse;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
     return data;

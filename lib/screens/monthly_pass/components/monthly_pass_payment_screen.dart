@@ -52,6 +52,8 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
         arguments['formBloc'] as MonthlyPassFormBloc;
     MonthlyPassModel? model =
         arguments['monthlyPassModel'] as MonthlyPassModel?;
+    PromotionMonthlyPassModel? promotionModel =
+        arguments['promotionModel'] as PromotionMonthlyPassModel?;
 
     return Scaffold(
         appBar: AppBar(
@@ -80,6 +82,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
             model.location = formBloc.location.value;
             model.pbt = formBloc.pbt.value;
             model.plateNumber = parkingCar;
+            model.promotionId = promotionModel!.id;
 
             await SharedPreferencesHelper.setReloadAmount(
               amount: amount,

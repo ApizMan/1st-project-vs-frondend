@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late bool paymentStatus;
   late bool isUpdate;
   Location locationController = Location();
+  late final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
 
   Timer? _countdownTimer;
   // ignore: unused_field
@@ -56,6 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _initData = _getUserDetails();
     _startCountdown();
     initializeNotifications(); // Initialize notifications on start
+    promotionMonthlyPassModel = [];
+    _getPromotionMonthlyPass();
   }
 
   // Initialize notifications
@@ -225,6 +228,34 @@ class _HomeScreenState extends State<HomeScreen> {
         context, AppRoute.loginScreen, (context) => false);
   }
 
+  Future<void> _getPromotionMonthlyPass() async {
+    final data = await PromotionsResources.getPromotionMonthlyPass(
+        prefix: '/promotion/public');
+
+    if (data != null && mounted) {
+      setState(() {
+        promotionMonthlyPassModel.addAll(
+          data
+              .map<PromotionMonthlyPassModel>(
+                  (item) => PromotionMonthlyPassModel(
+                        id: item['id'],
+                        title: item['title'],
+                        description: item['description'],
+                        type: item['type'],
+                        rate: item['rate'],
+                        date: item['date'],
+                        expiredDate: item['expiredDate'],
+                        image: item['image'],
+                        timeUse: item['timeUse'],
+                        createdAt: item['createdAt'],
+                        updatedAt: item['updatedAt'],
+                      ))
+              .toList(),
+        ); // Add new data
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Trigger countdown timer is 0
@@ -319,7 +350,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         plateNumbers: userModel.plateNumbers,
                       ),
                       spaceVertical(height: 20.0),
-                      const NewsUpdateScreen(),
+                      NewsUpdateScreen(
+                        promotionMonthlyPassModel: promotionMonthlyPassModel,
+                      ),
                       spaceVertical(height: 20.0),
                     ],
                   ),

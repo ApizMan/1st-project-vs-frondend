@@ -66,11 +66,6 @@ const String reserveBayImage = 'assets/images/ss_3.png';
 const String monthlyPassImage = 'assets/images/ss_4.png';
 const String transportInfoImage = 'assets/images/ss_5.png';
 
-// News Image
-const String newsImage1 = 'assets/images/news_1.png';
-const String newsImage2 = 'assets/images/news_2.png';
-const String newsImage3 = 'assets/images/news_3.png';
-
 const String kuantanLogo = 'assets/images/pbtlogo_kuantan-removebg-preview.png';
 const String terengganuLogo = 'assets/images/pbkk_kt-removebg-preview.png';
 const String machangLogo = 'assets/images/PBT_machang-removebg-preview.png';

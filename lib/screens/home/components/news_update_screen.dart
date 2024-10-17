@@ -1,11 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project/constant.dart';
+import 'package:project/models/models.dart';
 import 'package:project/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewsUpdateScreen extends StatefulWidget {
-  const NewsUpdateScreen({super.key});
+  final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
+  const NewsUpdateScreen({
+    super.key,
+    required this.promotionMonthlyPassModel,
+  });
 
   @override
   State<NewsUpdateScreen> createState() => _NewsUpdateScreenState();
@@ -15,21 +20,17 @@ class _NewsUpdateScreenState extends State<NewsUpdateScreen> {
   int _current = 0;
   final CarouselSliderController _controller = CarouselSliderController();
 
-  final List<String> myNews = [
-    newsImage1,
-    newsImage2,
-    newsImage3,
-  ];
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = myNews
+    final List<Widget> imageSliders = widget.promotionMonthlyPassModel
         .map((item) => ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(item, fit: BoxFit.contain, width: 1000.0),
-          ),
-        ))
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.network(item.image!,
+                    fit: BoxFit.contain, width: 1000.0),
+              ),
+            ))
         .toList();
 
     return Padding(
@@ -79,7 +80,10 @@ class _NewsUpdateScreenState extends State<NewsUpdateScreen> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: myNews.asMap().entries.map((entry) {
+                  children: widget.promotionMonthlyPassModel
+                      .asMap()
+                      .entries
+                      .map((entry) {
                     return GestureDetector(
                       onTap: () => _controller.animateToPage(entry.key),
                       child: Container(

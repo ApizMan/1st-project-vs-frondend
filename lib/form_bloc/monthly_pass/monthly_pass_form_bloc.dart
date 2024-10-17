@@ -11,11 +11,13 @@ import 'package:project/resources/resources.dart';
 class MonthlyPassFormBloc extends FormBloc<String, String> {
   final UserModel model;
   final List<PlateNumberModel>? platModel;
+  final List<PromotionMonthlyPassModel> promotionModel;
   final List<PBTModel> pbtModel;
   final Map<String, dynamic> details;
 
   final SelectFieldBloc<String?, dynamic> carPlateNumber;
   final SelectFieldBloc<String?, dynamic> pbt;
+  final SelectFieldBloc<String?, dynamic> promotion;
   final SelectFieldBloc<String?, dynamic> location;
 
   final TextFieldBloc amount;
@@ -30,10 +32,14 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
   MonthlyPassFormBloc({
     required this.platModel,
     required this.pbtModel,
+    required this.promotionModel,
     required this.details,
     required this.model,
   })  : pbt = SelectFieldBloc(
           items: pbtModel.map((pbt) => pbt.name).toList(),
+        ),
+        promotion = SelectFieldBloc(
+          items: promotionModel.map((promotion) => promotion.title).toList(),
         ),
         carPlateNumber = SelectFieldBloc(
           items: (platModel?.isNotEmpty ?? false)
@@ -57,6 +63,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
       fieldBlocs: [
         carPlateNumber,
         pbt,
+        promotion,
         location,
         amount,
         paymentMethod,

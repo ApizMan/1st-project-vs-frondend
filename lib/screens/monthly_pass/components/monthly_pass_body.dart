@@ -24,12 +24,16 @@ class MonthlyPassBody extends StatefulWidget {
   final List<PlateNumberModel> carPlates;
   final List<PBTModel> pbtModel;
   final Map<String, dynamic> details;
+  final List<PromotionMonthlyPassModel> promotions;
+  final List<PromotionMonthlyPassHistoryModel> history;
   const MonthlyPassBody({
     super.key,
     required this.carPlates,
     required this.userModel,
     required this.pbtModel,
     required this.details,
+    required this.promotions,
+    required this.history,
   });
 
   @override
@@ -44,6 +48,8 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   MonthlyPassFormBloc? formBloc;
   late double amountReload;
   late MonthlyPassModel monthlyPassModel;
+  late PromotionMonthlyPassModel promotionModel;
+  double totalPrice = 0.0;
 
   @override
   void initState() {
@@ -51,6 +57,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
     _focusedDay = DateTime.now(); // Initialize _focusedDay with current date
     getReloadAmount();
     monthlyPassModel = MonthlyPassModel();
+    promotionModel = PromotionMonthlyPassModel();
   }
 
   Future<void> getReloadAmount() async {
@@ -115,10 +122,12 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   @override
   Widget build(BuildContext context) {
     List<int> availableMonths = pricesPerMonth[selectedLocation]!;
+    double discountPrice = 0.0;
     return BlocProvider(
       create: (context) => MonthlyPassFormBloc(
         platModel: widget.carPlates.isNotEmpty ? widget.carPlates : [],
         pbtModel: widget.pbtModel,
+        promotionModel: widget.promotions,
         details: widget.details,
         model: widget.userModel,
       ),
@@ -171,12 +180,14 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                       prefix: '/monthlyPass/create',
                       body: jsonEncode(
                         {
-                          'plateNumberId':
+                          'plateNumber':
                               monthlyPassModel.plateNumber.toString(),
-                          'pbtId': monthlyPassModel.pbt.toString(),
+                          'pbt': monthlyPassModel.pbt.toString(),
                           'amount': double.parse(monthlyPassModel.amount!),
                           'duration': monthlyPassModel.duration.toString(),
                           'location': monthlyPassModel.location.toString(),
+                          'promotionId':
+                              monthlyPassModel.promotionId.toString(),
                         },
                       ),
                     );
@@ -285,6 +296,8 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                               'amount': double.parse(monthlyPassModel.amount!),
                               'duration': monthlyPassModel.duration.toString(),
                               'location': monthlyPassModel.location.toString(),
+                              'promotionId':
+                                  monthlyPassModel.promotionId.toString(),
                             },
                           ),
                         );
@@ -558,6 +571,104 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                     },
                   ),
                 ),
+                if (widget.promotions.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: DropdownFieldBlocBuilder<String?>(
+                      selectFieldBloc:
+                          formBloc!.promotion, // Bind to PBT field bloc
+                      decoration: InputDecoration(
+                        label: const Text('Promotion'),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Colors.black12,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Colors.black12,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.8),
+                      ),
+                      itemBuilder: (context, value) {
+                        // Find the selected promotion
+                        final promotionValue = widget.promotions.firstWhere(
+                          (promotion) => promotion.title == value,
+                          orElse: () => widget.promotions.first,
+                        );
+                        // Check if it's a single-use promotion or reusable
+                        bool canUsePromotion = true;
+
+                        for (var history in widget.history) {
+                          // If the promotion exists in history and timeUse is 0 (single-use)
+                          if (promotionValue.timeUse == 0 &&
+                              history.timeUse != 0 &&
+                              promotionValue.id == history.promotionId) {
+                            // Promotion was already used once, so mark it as unusable
+                            canUsePromotion = false;
+                          }
+                        }
+
+                        return FieldItem(
+                          onTap: canUsePromotion
+                              ? () {
+                                  double promotionRate = double.tryParse(
+                                          promotionValue.rate ?? '0') ??
+                                      0.0;
+
+                                  // Calculate discount and total price
+                                  discountPrice =
+                                      calculatePrice() * (promotionRate / 100);
+                                  totalPrice = calculatePrice() - discountPrice;
+
+                                  // Update the promotion model
+                                  setState(() {
+                                    promotionModel.id = promotionValue.id;
+                                    promotionModel.title = promotionValue.title;
+                                    promotionModel.description =
+                                        promotionValue.description;
+                                    promotionModel.type = promotionValue.type;
+                                    promotionModel.rate = promotionValue.rate;
+                                    promotionModel.date = promotionValue.date;
+                                    promotionModel.expiredDate =
+                                        promotionValue.expiredDate;
+                                    promotionModel.image = promotionValue.image;
+                                    promotionModel.createdAt =
+                                        promotionValue.createdAt;
+                                    promotionModel.updatedAt =
+                                        promotionValue.updatedAt;
+                                  });
+                                }
+                              : () {
+                                  // Clear the promotion and reset the totalPrice to the original calculated price
+                                  setState(() {
+                                    formBloc!.promotion.updateValue(null);
+                                    totalPrice =
+                                        calculatePrice(); // Reset to the original price
+                                  });
+                                },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Text(
+                              promotionValue.title!,
+                              style: canUsePromotion
+                                  ? textStyleNormal(fontSize: 16)
+                                  : textStyleNormal(
+                                      fontSize: 16,
+                                      color: kGrey,
+                                      decoration: TextDecoration.lineThrough,
+                                      decorationColor: kGrey),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisSize:
@@ -618,12 +729,30 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          const SizedBox(height: 30),
+                          SizedBox(
+                              height:
+                                  formBloc!.promotion.value != null ? 5 : 30),
+                          if (formBloc!.promotion.value != null)
+                            Text(
+                              'RM ${totalPrice.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 31, 36, 132),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
                           Text(
                             'RM ${calculatePrice().toStringAsFixed(2)}',
-                            style: GoogleFonts.oswald(
-                              color: const Color.fromARGB(255, 31, 36, 132),
+                            style: textStyleNormal(
+                              color: formBloc!.promotion.value != null
+                                  ? kGrey
+                                  : const Color.fromARGB(255, 31, 36, 132),
                               fontSize: 38,
+                              decorationColor: kPrimaryColor,
+                              decoration: formBloc!.promotion.value != null
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
                             ),
                           ),
                         ],
@@ -656,7 +785,32 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             availableMonths.indexOf(_selectedMonth).toDouble(),
                         onChanged: (double value) {
                           setState(() {
+                            // Update the selected month
                             _selectedMonth = availableMonths[value.toInt()];
+
+                            // Calculate the new price after updating the month
+                            double basePrice = calculatePrice();
+
+                            // Get the promotion rate and calculate discount
+                            double promotionRate =
+                                formBloc!.promotion.value != null
+                                    ? double.tryParse(widget.promotions
+                                                .firstWhere(
+                                                  (promotion) =>
+                                                      promotion.title ==
+                                                      formBloc!.promotion.value,
+                                                  orElse: () =>
+                                                      PromotionMonthlyPassModel(),
+                                                )
+                                                .rate ??
+                                            '0') ??
+                                        0.0
+                                    : 0.0;
+
+                            // Calculate the discount price and total price
+                            double discountPrice =
+                                basePrice * (promotionRate / 100);
+                            totalPrice = basePrice - discountPrice;
                           });
                         },
                         label: getDurationLabel(_selectedMonth),
@@ -674,15 +828,20 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                       AppRoute.monthlyPassPaymentScreen,
                       arguments: {
                         'selectedCarPlate': formBloc?.carPlateNumber.value!,
-                        'amount': calculatePrice().toStringAsFixed(2),
+                        'amount': formBloc!.promotion.value != null
+                            ? totalPrice.toStringAsFixed(2)
+                            : calculatePrice().toStringAsFixed(2),
                         'duration': getDurationLabel(_selectedMonth),
                         'locationDetail': widget.details,
                         'formBloc': formBloc,
                         'monthlyPassModel': monthlyPassModel,
+                        'promotionModel': promotionModel,
                       },
                     );
-                    formBloc!.amount
-                        .updateValue(calculatePrice().toStringAsFixed(2));
+                    formBloc!.amount.updateValue(
+                        formBloc!.promotion.value != null
+                            ? totalPrice.toStringAsFixed(2)
+                            : calculatePrice().toStringAsFixed(2));
                   },
                   label: Text(
                     AppLocalizations.of(context)!.confirm,

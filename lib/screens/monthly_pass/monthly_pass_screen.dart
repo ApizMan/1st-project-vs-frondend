@@ -19,6 +19,10 @@ class MonthlyPassScreen extends StatelessWidget {
     List<PlateNumberModel>? plateNumbers =
         arguments['plateNumbers'] as List<PlateNumberModel>?;
     List<PBTModel>? pbtModel = arguments['pbtModel'] as List<PBTModel>?;
+    List<PromotionMonthlyPassModel>? promotions =
+        arguments['promotions'] as List<PromotionMonthlyPassModel>?;
+    List<PromotionMonthlyPassHistoryModel>? history =
+        arguments['history'] as List<PromotionMonthlyPassHistoryModel>?;
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -52,6 +56,8 @@ class MonthlyPassScreen extends StatelessWidget {
         details: details,
         pbtModel: pbtModel!,
         userModel: userModel!,
+        promotions: promotions!,
+        history: history!,
       ),
     );
   }
