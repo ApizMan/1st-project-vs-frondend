@@ -227,8 +227,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       // Wrap Stack inside a Container or SizedBox with specific height
                       SizedBox(
-                        height: MediaQuery.of(context).size.height *
-                            0.48, // You can adjust this based on your layout
+                        height: isStart
+                            ? MediaQuery.of(context).size.height * 0.48
+                            : MediaQuery.of(context).size.height *
+                                0.42, // You can adjust this based on your layout
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             double screenHeight = constraints.maxHeight;
