@@ -6,7 +6,7 @@ class SharedPreferencesHelper {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString(keyLanguage, defaultLanguage);
   }
-  
+
   static Future<void> saveToken(String token) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(keyToken, token);
@@ -66,18 +66,16 @@ class SharedPreferencesHelper {
     return paymentStatus;
   }
 
-  static Future<void> setParkingDuration(
-      {required String duration, required bool isUpdate}) async {
+  static Future<void> setParkingDuration({required String duration}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(durationKey, duration);
-    await prefs.setBool(isUpdateKey, isUpdate);
   }
 
   static Future<String> getParkingDuration() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? duration = prefs.getString(durationKey);
 
-    return duration ?? '00:00:00';
+    return duration ?? '';
   }
 
   static Future<bool> getDurationUpdate() async {
@@ -161,7 +159,7 @@ class SharedPreferencesHelper {
     };
   }
 
-   static Future<void> setEmailResetPassword({required String email}) async {
+  static Future<void> setEmailResetPassword({required String email}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(emailResetPasswordKey, email);
   }
@@ -171,5 +169,26 @@ class SharedPreferencesHelper {
     String? email = prefs.getString(emailResetPasswordKey);
 
     return email ?? 'test@example.com';
+  }
+
+  static Future<void> setParkingExpired(
+      {String? duration, bool? isStart}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(expiredKey, duration!);
+    await prefs.setBool(isStartKey, isStart!);
+  }
+
+  static Future<String> getParkingExpired() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String duration = prefs.getString(expiredKey) ?? '';
+
+    return duration;
+  }
+
+  static Future<bool> getParkingExpiredStatus() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? duration = prefs.getBool(isStartKey);
+
+    return duration ?? false;
   }
 }

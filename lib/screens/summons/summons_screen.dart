@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
@@ -30,7 +29,7 @@ class _SummonsScreenState extends State<SummonsScreen> {
   // Use a Set to keep track of selected notices
   final Set<String> _selectedIds =
       <String>{}; // Change to String if you want to store other IDs like offenderIDNo or vehicleRegistrationNumber
-  List<SummonModel> _selectedSummons =
+  final List<SummonModel> _selectedSummons =
       []; // Temporary list to store selected summons
 
   String _selectedInputType = Get.locale!.languageCode == "en"

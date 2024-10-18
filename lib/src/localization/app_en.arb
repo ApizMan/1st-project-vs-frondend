@@ -142,5 +142,6 @@
   "typeOfOffences": "Type Of Offences",
   "compoundRate": "Compound Rate",
   "compountPaymentDesc": "Please make payment before this date",
-  "receiptNo": "Receipt No."
+  "receiptNo": "Receipt No.",
+  "expiredDate": "Expired Date"
 }

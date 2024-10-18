@@ -19,12 +19,16 @@ class CityCarPark extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
+    // Ensure a non-null locale
+    String languageCode = defaultLanguage ?? 'ms';
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoute.splashScreen,
       getPages: AppRoute.routes,
       supportedLocales: L10n.all,
-      locale: Locale(defaultLanguage != null ? defaultLanguage! : 'ms'),
+      locale: Locale(languageCode),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

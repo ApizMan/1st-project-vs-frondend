@@ -15,6 +15,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
   final SelectFieldBloc<String?, dynamic> location;
 
   final TextFieldBloc amount;
+  final TextFieldBloc expiredAt;
 
   StoreParkingFormBloc({
     required this.platModel,
@@ -38,7 +39,8 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
         location = SelectFieldBloc(
           items: ['Kelantan', 'Terengganu', 'Pahang'],
         ),
-        amount = TextFieldBloc() {
+        amount = TextFieldBloc(),
+        expiredAt = TextFieldBloc() {
     pbt.updateInitialValue(details['location'] ?? '');
     location.updateInitialValue(details['state'] ?? '');
     addFieldBlocs(
@@ -47,6 +49,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
         pbt,
         location,
         amount,
+        expiredAt,
       ],
     );
   }
@@ -76,6 +79,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
             'plateNumber': carPlateNumber.value,
             'pbt': pbt.value,
             'location': location.value,
+            'expiredAt': expiredAt.value,
           }),
         );
 

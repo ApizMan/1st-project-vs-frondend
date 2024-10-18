@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project/app/app.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
-import 'package:project/constant.dart';
 import 'package:project/resources/resources.dart';
 import 'firebase_options.dart';
 
@@ -14,10 +13,6 @@ Future<void> main() async {
 
   // Check if it's the first time the app is launched
   final isFirstRun = await SharedPreferencesHelper.getDefaultSetting();
-
-// Get Duration if the apps been killed.
-  final String duration = await SharedPreferencesHelper.getParkingDuration();
-  countDownDuration = parseDuration(duration);
 
   final defaultLanguage = await LanguageResources.getLanguage();
 

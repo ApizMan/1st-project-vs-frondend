@@ -24,12 +24,13 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
   String _currentTime = '';
   bool isCountdownActive = false;
   late String currentDuration;
+  late String expiredDuration;
 
   @override
   void initState() {
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
-    analyzeParkingDuration();
+    analyzeParkingExpired();
   }
 
   void updateDateTime() {
@@ -40,8 +41,9 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
     });
   }
 
-  Future<void> analyzeParkingDuration() async {
+  Future<void> analyzeParkingExpired() async {
     currentDuration = await SharedPreferencesHelper.getParkingDuration();
+    expiredDuration = await SharedPreferencesHelper.getParkingExpired();
   }
 
   @override
@@ -213,20 +215,46 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
                   onPressed: () {
                     setState(() {
                       formBloc.amount.updateValue(amount.toStringAsFixed(2));
+
+                      // Get current date and time
+                      DateTime now = DateTime.now();
+
+                      if (expiredDuration != '') {
+                        // Add duration to current time
+                        DateTime newTime = now
+                            .add(parseDuration(duration))
+                            .add(parseDuration(currentDuration));
+
+                        // Format the new time as an ISO 8601 timestamp
+                        String formattedTimestamp =
+                            newTime.toUtc().toIso8601String();
+
+                        formBloc.expiredAt.updateValue(formattedTimestamp);
+
+                        SharedPreferencesHelper.setParkingExpired(
+                          duration: formattedTimestamp,
+                          isStart: true,
+                        );
+                      } else {
+                        // Add duration to current time
+                        DateTime newTime = now.add(parseDuration(duration));
+
+                        // Format the new time as an ISO 8601 timestamp
+                        String formattedTimestamp =
+                            newTime.toUtc().toIso8601String();
+
+                        formBloc.expiredAt.updateValue(formattedTimestamp);
+
+                        SharedPreferencesHelper.setParkingExpired(
+                          duration: formattedTimestamp,
+                          isStart: true,
+                        );
+
+                        SharedPreferencesHelper.setParkingDuration(
+                            duration: duration);
+                      }
+
                       formBloc.submit();
-                      isCountdownActive = true;
-
-                      final newDuration = formatDuration(
-                          parseDuration(duration) +
-                              parseDuration(currentDuration));
-
-                      SharedPreferencesHelper.setParkingDuration(
-                        duration: newDuration,
-                        isUpdate: true,
-                      );
-
-                      SharedPreferencesHelper.setPaymentStatus(
-                          paymentStatus: isCountdownActive);
                     });
                   },
                   label: Text(

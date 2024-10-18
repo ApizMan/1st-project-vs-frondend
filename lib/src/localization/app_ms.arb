@@ -142,5 +142,6 @@
   "typeOfOffences": "Jenis Kesalahan",
   "compoundRate": "Kadar Kompaun",
   "compountPaymentDesc": "Sila buat pembayaran sebelum tarikh ini",
-  "receiptNo": "No. Resit"
+  "receiptNo": "No. Resit",
+  "expiredDate": "Tarikh Tamat"
 }

@@ -19,7 +19,7 @@ class CompoundModel {
     if (json['summonses'] != null) {
       summonses = <SummonModel>[];
       json['summonses'].forEach((v) {
-        summonses!.add(new SummonModel.fromJson(v));
+        summonses!.add(SummonModel.fromJson(v));
       });
     }
   }

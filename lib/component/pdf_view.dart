@@ -9,10 +9,10 @@ class PdfViewerScreen extends StatelessWidget {
   final String pdfUrl;
 
   const PdfViewerScreen({
-    Key? key,
+    super.key,
     required this.pdfUrl,
     required this.details,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
