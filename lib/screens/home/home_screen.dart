@@ -227,10 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       // Wrap Stack inside a Container or SizedBox with specific height
                       SizedBox(
-                        height: isStart
-                            ? MediaQuery.of(context).size.height * 0.48
-                            : MediaQuery.of(context).size.height *
-                                0.42, // You can adjust this based on your layout
+                        height: MediaQuery.of(context).size.height *
+                            0.48, // You can adjust this based on your layout
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             double screenHeight = constraints.maxHeight;
@@ -246,10 +244,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       0.0, // Adjust left position if necessary
                                   right: screenWidth *
                                       0.0, // Adjust right position if necessary
-                                  child: Visibility(
-                                    visible: isStart,
-                                    child: _clockingCountdown(
-                                        context, countDownDuration),
+                                  child: CountdownScreen(
+                                    details: details,
+                                    expiredAt: expiredAt!,
+                                    // expiredAt: DateTime.now().add(Duration(
+                                    //   seconds: 0,
+                                    // )),
                                   ),
                                 ),
                                 // Position the top widget
@@ -517,69 +517,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _clockingCountdown(BuildContext context, Duration countdownDuration) {
-    return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.46,
-      padding: const EdgeInsets.only(bottom: 10.0),
-      decoration: BoxDecoration(
-        color: Color(details['color']).withOpacity(0.5),
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(40.0),
-          bottomRight: Radius.circular(40.0),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                '${AppLocalizations.of(context)!.expiredDate}: ',
-                style: textStyleNormal(
-                  fontSize: 18,
-                  color: details['color'] == 4294961979 ? kBlack : kWhite,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                DateFormat('dd-MM-yyyy HH:mm')
-                    .format(expiredAt!.add(const Duration(hours: 8))),
-                style: textStyleNormal(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: details['color'] == 4294961979 ? kBlack : kWhite),
-              ), // Show loading while retrieving the time
-            ],
-          ),
-          spaceVertical(height: 10.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                '${AppLocalizations.of(context)!.parkingTimeRemaining}: ',
-                style: textStyleNormal(
-                  color: details['color'] == 4294961979 ? kBlack : kWhite,
-                ),
-              ),
-              const SizedBox(height: 10),
-              expiredAt != null
-                  ? CountdownScreen(
-                      details: details,
-                      expiredAt: expiredAt!,
-                    )
-                  : const Text(
-                      'Loading...'), // Show loading while retrieving the time
-            ],
-          ),
-        ],
       ),
     );
   }

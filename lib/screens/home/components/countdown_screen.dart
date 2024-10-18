@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CountdownScreen extends StatefulWidget {
   final DateTime expiredAt;
@@ -27,8 +29,8 @@ class _CountdownScreenState extends State<CountdownScreen> {
   @override
   void initState() {
     super.initState();
-    startCountdown();
     initializeNotifications();
+    startCountdown();
   }
 
   @override
@@ -68,7 +70,9 @@ class _CountdownScreenState extends State<CountdownScreen> {
               duration: formatDuration(remainingTime));
 
           // Trigger notification when there are 5 minutes left
-          if (remainingTime == const Duration(minutes: 5)) {
+          if (remainingTime.inMinutes <= 5 &&
+              remainingTime.inSeconds >= 270 &&
+              remainingTime.inSeconds < 300) {
             _showNotification();
           }
         } else {
@@ -100,11 +104,76 @@ class _CountdownScreenState extends State<CountdownScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      formatDuration(remainingTime),
-      style: textStyleNormal(
-        color: widget.details['color'] == 4294961979 ? kBlack : kWhite,
-        fontWeight: FontWeight.bold,
+    return Visibility(
+      visible: widget.expiredAt.isAfter(DateTime.now()) ? true : false,
+      child: Container(
+        width: double.infinity,
+        height: MediaQuery.of(context).size.height * 0.46,
+        padding: const EdgeInsets.only(bottom: 10.0),
+        decoration: BoxDecoration(
+          color: Color(widget.details['color']).withOpacity(0.5),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(40.0),
+            bottomRight: Radius.circular(40.0),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${AppLocalizations.of(context)!.expiredDate}: ',
+                  style: textStyleNormal(
+                    fontSize: 18,
+                    color:
+                        widget.details['color'] == 4294961979 ? kBlack : kWhite,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  DateFormat('dd-MM-yyyy HH:mm')
+                      .format(widget.expiredAt.add(const Duration(hours: 8))),
+                  style: textStyleNormal(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: widget.details['color'] == 4294961979
+                          ? kBlack
+                          : kWhite),
+                ), // Show loading while retrieving the time
+              ],
+            ),
+            spaceVertical(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${AppLocalizations.of(context)!.parkingTimeRemaining}: ',
+                  style: textStyleNormal(
+                    color:
+                        widget.details['color'] == 4294961979 ? kBlack : kWhite,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                widget.expiredAt != null
+                    ? Text(
+                        formatDuration(remainingTime),
+                        style: textStyleNormal(
+                          color: widget.details['color'] == 4294961979
+                              ? kBlack
+                              : kWhite,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : const Text(
+                        'Loading...'), // Show loading while retrieving the time
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
