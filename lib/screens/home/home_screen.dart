@@ -38,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late Map<String, dynamic> details;
   late bool isUpdate;
   late String durationParking;
-  late bool isStart;
   Location locationController = Location();
   late final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
 
@@ -92,10 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> analyzeParkingExpired() async {
     durationParking = await SharedPreferencesHelper.getParkingExpired();
-    isStart = await SharedPreferencesHelper.getParkingExpiredStatus();
 
     setState(() {
       expiredAt = DateTime.parse(durationParking);
+      // expiredAt = DateTime.now().add(Duration(seconds: 0));
     });
   }
 
@@ -174,14 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  String formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String hours = twoDigits(duration.inHours);
-    String minutes = twoDigits(duration.inMinutes.remainder(60));
-    String seconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$hours:$minutes:$seconds";
-  }
-
   @override
   Widget build(BuildContext context) {
     // ignore: deprecated_member_use
@@ -258,7 +249,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       0, // You can adjust this value based on screen height
                                   left: 0,
                                   right: 0,
-                                  child: _topWidget(context, userModel),
+                                  child: _topWidget(
+                                      context, userModel, expiredAt!),
                                 ),
                               ],
                             );
@@ -376,9 +368,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _topWidget(BuildContext context, UserModel userModel) {
+  Widget _topWidget(
+      BuildContext context, UserModel userModel, DateTime expiredAt) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.37,
+      height: expiredAt.isAfter(DateTime.now())
+          ? MediaQuery.of(context).size.height * 0.37
+          : MediaQuery.of(context).size.height * 0.45,
       decoration: BoxDecoration(
         color: Color(details['color']),
         borderRadius: const BorderRadius.only(

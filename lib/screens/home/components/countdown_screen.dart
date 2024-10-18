@@ -158,18 +158,14 @@ class _CountdownScreenState extends State<CountdownScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                widget.expiredAt != null
-                    ? Text(
-                        formatDuration(remainingTime),
-                        style: textStyleNormal(
-                          color: widget.details['color'] == 4294961979
-                              ? kBlack
-                              : kWhite,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : const Text(
-                        'Loading...'), // Show loading while retrieving the time
+                Text(
+                  formatDuration(remainingTime),
+                  style: textStyleNormal(
+                    color:
+                        widget.details['color'] == 4294961979 ? kBlack : kWhite,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ), // Show loading while retrieving the time
               ],
             ),
           ],
