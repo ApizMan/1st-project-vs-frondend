@@ -748,7 +748,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                               color: formBloc!.promotion.value != null
                                   ? kGrey
                                   : const Color.fromARGB(255, 31, 36, 132),
-                              fontSize: 38,
+                              fontSize: 32,
                               decorationColor: kPrimaryColor,
                               decoration: formBloc!.promotion.value != null
                                   ? TextDecoration.lineThrough
