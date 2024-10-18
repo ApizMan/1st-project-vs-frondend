@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late String durationParking;
   Location locationController = Location();
   late final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
+  List<NotificationModel> notificationList = []; // List to store models
 
   DateTime? expiredAt = DateTime.now();
 
@@ -53,6 +54,25 @@ class _HomeScreenState extends State<HomeScreen> {
     _initData = _getUserDetails();
     promotionMonthlyPassModel = [];
     _getPromotionMonthlyPass();
+    _getNotification();
+  }
+
+  Future<void> _getNotification() async {
+    final data = await NotificationsResources.getNotifications(
+      prefix: '/notification/public',
+    );
+
+    if (data != null && mounted) {
+      if (data is List) {
+        setState(() {
+          notificationList = data
+              .map((item) => NotificationModel.fromJson(item))
+              .toList(); // Populate list with models
+        });
+      } else {
+        const LoadingDialog();
+      }
+    }
   }
 
   Future<void> getLocation() async {
@@ -353,6 +373,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     AppRoute.notificationScreen,
                     arguments: {
                       'locationDetail': details,
+                      'notificationList': notificationList,
                     },
                   );
                 },
