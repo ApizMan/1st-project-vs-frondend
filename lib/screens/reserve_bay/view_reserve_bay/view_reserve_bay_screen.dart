@@ -90,6 +90,39 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
                     ),
                   ],
                 ),
+                actions: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    decoration: BoxDecoration(
+                      color: reserveBay.status == "PENDING"
+                          ? kGrey
+                          : reserveBay.status == "APPROVED"
+                              ? kBgSuccess
+                              : kRed,
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1,
+                      ),
+                    ),
+                    child: Text(
+                      reserveBay.status!,
+                      style: textStyleNormal(
+                        color: kWhite,
+                        fontSize: 10,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
               body: StepperFormBlocBuilder<UpdateReserveBayFormBloc>(
                 formBloc: context.read<UpdateReserveBayFormBloc>(),
@@ -159,8 +192,8 @@ class _ViewReserveBayScreenState extends State<ViewReserveBayScreen> {
     );
   }
 
-  FormBlocStep _reserveStep3(
-      UpdateReserveBayFormBloc reserveBayFormBloc, ReserveBayModel reserveBay, Map<String, dynamic> details) {
+  FormBlocStep _reserveStep3(UpdateReserveBayFormBloc reserveBayFormBloc,
+      ReserveBayModel reserveBay, Map<String, dynamic> details) {
     return FormBlocStep(
       title: Text(
         AppLocalizations.of(context)!.documents,

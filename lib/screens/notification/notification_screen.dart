@@ -55,7 +55,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                   spaceVertical(height: 10.0),
                   Text(
-                    'You have no notifications.',
+                    AppLocalizations.of(context)!.notificationDesc,
                     style: textStyleNormal(
                       color: kGrey,
                       fontWeight: FontWeight.bold,
@@ -97,33 +97,36 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.asset(reserveBayImage),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                notification.title!,
-                                style: textStyleNormal(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                          spaceHorizontal(width: 10.0),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  notification.title!,
+                                  style: textStyleNormal(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
-                              spaceVertical(height: 5.0),
-                              Expanded(
-                                child: Text(
+                                spaceVertical(height: 2.0),
+                                const Divider(),
+                                spaceVertical(height: 2.0),
+                                Text(
                                   notification.description!,
                                   style: textStyleNormal(),
                                 ),
-                              ),
-                              // Text(
-                              //   reserveBay.id != null
-                              //       ? 'Reserve Bay ID: ${reserveBay.id}'
-                              //       : 'Reserve Bay not found',
-                              //   style: textStyleNormal(
-                              //     color: kGrey,
-                              //     fontSize: 16,
-                              //   ),
-                              // ),
-                            ],
+                                // Text(
+                                //   reserveBay.id != null
+                                //       ? 'Reserve Bay ID: ${reserveBay.id}'
+                                //       : 'Reserve Bay not found',
+                                //   style: textStyleNormal(
+                                //     color: kGrey,
+                                //     fontSize: 16,
+                                //   ),
+                                // ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

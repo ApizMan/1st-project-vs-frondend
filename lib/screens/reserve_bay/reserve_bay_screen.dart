@@ -175,9 +175,26 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                       children: [
                                         Expanded(
                                           flex: 3,
-                                          child: Text(
-                                            "${AppLocalizations.of(context)!.companyName}: ${reserveBay.companyName}",
-                                            style: textStyleNormal(),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                "${AppLocalizations.of(context)!.companyName}: ",
+                                                style: textStyleNormal(
+                                                    color: kBlack),
+                                              ),
+                                              Text(
+                                                "${reserveBay.companyName}",
+                                                style: textStyleNormal(
+                                                  color: reserveBay.status ==
+                                                          "PENDING"
+                                                      ? kBlack
+                                                      : reserveBay.status ==
+                                                              "APPROVED"
+                                                          ? kBgSuccess
+                                                          : kRed,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         Expanded(
@@ -215,17 +232,65 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                         ),
                                       ],
                                     ),
-                                    Text(
-                                      "${AppLocalizations.of(context)!.companyRegistration}: ${reserveBay.companyRegistration}",
-                                      style: textStyleNormal(),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "${AppLocalizations.of(context)!.companyRegistration}: ",
+                                          style: textStyleNormal(),
+                                        ),
+                                        Text(
+                                          "${reserveBay.companyRegistration}",
+                                          style: textStyleNormal(
+                                            color:
+                                                reserveBay.status == "PENDING"
+                                                    ? kBlack
+                                                    : reserveBay.status ==
+                                                            "APPROVED"
+                                                        ? kBgSuccess
+                                                        : kRed,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "${AppLocalizations.of(context)!.totalLotRequired}: $reserveBayTotalLot",
-                                      style: textStyleNormal(),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "${AppLocalizations.of(context)!.totalLotRequired}: ",
+                                          style: textStyleNormal(),
+                                        ),
+                                        Text(
+                                          reserveBayTotalLot,
+                                          style: textStyleNormal(
+                                            color:
+                                                reserveBay.status == "PENDING"
+                                                    ? kBlack
+                                                    : reserveBay.status ==
+                                                            "APPROVED"
+                                                        ? kBgSuccess
+                                                        : kRed,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "${AppLocalizations.of(context)!.reason}: ${reserveBay.reason}",
-                                      style: textStyleNormal(),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "${AppLocalizations.of(context)!.reason}: ",
+                                          style: textStyleNormal(),
+                                        ),
+                                        Text(
+                                          "${reserveBay.reason}",
+                                          style: textStyleNormal(
+                                            color:
+                                                reserveBay.status == "PENDING"
+                                                    ? kBlack
+                                                    : reserveBay.status ==
+                                                            "APPROVED"
+                                                        ? kBgSuccess
+                                                        : kRed,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

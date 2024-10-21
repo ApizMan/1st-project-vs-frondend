@@ -143,5 +143,7 @@
   "compoundRate": "Kadar Kompaun",
   "compountPaymentDesc": "Sila buat pembayaran sebelum tarikh ini",
   "receiptNo": "No. Resit",
-  "expiredDate": "Tarikh Tamat"
+  "expiredDate": "Tarikh Tamat",
+  "newsDesc": "Tiada promo untuk sekarang.",
+  "notificationDesc": "Tiada rekod pemberitahuan."
 }

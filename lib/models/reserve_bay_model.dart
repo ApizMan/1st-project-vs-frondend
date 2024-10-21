@@ -22,6 +22,7 @@ class ReserveBayModel {
   String? designatedBayPicture;
   String? registerNumberPicture;
   String? idCardPicture;
+  String? status;
   String? createdAt;
   String? updatedAt;
 
@@ -49,6 +50,7 @@ class ReserveBayModel {
       this.designatedBayPicture,
       this.registerNumberPicture,
       this.idCardPicture,
+      this.status,
       this.createdAt,
       this.updatedAt});
 
@@ -76,6 +78,7 @@ class ReserveBayModel {
     designatedBayPicture = json['designatedBayPicture'];
     registerNumberPicture = json['registerNumberPicture'];
     idCardPicture = json['idCardPicture'];
+    status = json['status'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
   }
@@ -105,6 +108,7 @@ class ReserveBayModel {
     data['designatedBayPicture'] = designatedBayPicture;
     data['registerNumberPicture'] = registerNumberPicture;
     data['idCardPicture'] = idCardPicture;
+    data['status'] = status;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
     return data;

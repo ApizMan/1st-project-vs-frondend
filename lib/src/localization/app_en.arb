@@ -143,5 +143,7 @@
   "compoundRate": "Compound Rate",
   "compountPaymentDesc": "Please make payment before this date",
   "receiptNo": "Receipt No.",
-  "expiredDate": "Expired Date"
+  "expiredDate": "Expired Date",
+  "newsDesc": "There no promotion for now.",
+  "notificationDesc": "You have no notifications."
 }
