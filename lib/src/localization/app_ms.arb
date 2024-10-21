@@ -145,5 +145,9 @@
   "receiptNo": "No. Resit",
   "expiredDate": "Tarikh Tamat",
   "newsDesc": "Tiada promo untuk sekarang.",
-  "notificationDesc": "Tiada rekod pemberitahuan."
+  "notificationDesc": "Tiada rekod pemberitahuan.",
+  "close": "Tutup",
+  "edit": "Ubah",
+  "update": "Kemas kini",
+  "setAsMain": "Tetapkan sebagai Utama"
 }

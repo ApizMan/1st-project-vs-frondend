@@ -33,6 +33,22 @@ class AuthResources {
     return json.decode(response.body);
   }
 
+  static Future editProfile({
+    required String prefix,
+    required Object body,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.put(
+      Uri.parse('$baseUrl$prefix'),
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
+
   static Future carPlate({
     required String prefix,
     required Object body,
@@ -41,6 +57,36 @@ class AuthResources {
     var response = await http.post(
       Uri.parse('$baseUrl$prefix'),
       body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
+
+  static Future updateCarPlate({
+    required String prefix,
+    required Object body,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.put(
+      Uri.parse('$baseUrl$prefix'),
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
+
+  static Future deleteCarPlate({
+    required String prefix,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.post(
+      Uri.parse('$baseUrl$prefix'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
@@ -72,6 +118,22 @@ class AuthResources {
       body: body,
       headers: {
         'Content-Type': 'application/json',
+      },
+    );
+    return json.decode(response.body);
+  }
+
+  static Future helpDesk({
+    required String prefix,
+    required Object body,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.post(
+      Uri.parse('$baseUrl$prefix'),
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
       },
     );
     return json.decode(response.body);

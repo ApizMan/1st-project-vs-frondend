@@ -145,5 +145,9 @@
   "receiptNo": "Receipt No.",
   "expiredDate": "Expired Date",
   "newsDesc": "There no promotion for now.",
-  "notificationDesc": "You have no notifications."
+  "notificationDesc": "You have no notifications.",
+  "close": "Close",
+  "edit": "Edit",
+  "update": "Update",
+  "setAsMain": "Set As Main"
 }
