@@ -2,7 +2,6 @@ buildscript {
     ext.kotlin_version = '1.9.22'
     ext.gradle_version = '8.0.2' // Check for the latest stable version
 
-    
     repositories {
         google()
         mavenCentral()
