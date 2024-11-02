@@ -39,6 +39,7 @@ class QrCodeScreen extends StatelessWidget {
             const SizedBox(height: 100),
             Center(
               child: Container(
+                padding: const EdgeInsets.all(10.0),
                 width: 300,
                 height: 300,
                 decoration: BoxDecoration(
