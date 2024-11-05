@@ -262,15 +262,18 @@ class _ReloadScreenState extends State<ReloadScreen> {
                 buttonWidth: 0.8,
                 borderRadius: 10.0,
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRoute.reloadPaymentScreen,
-                    arguments: {
-                      'locationDetail': details,
-                      'userModel': userModel,
-                      'formBloc': formBloc,
-                    },
-                  );
+                  formBloc.token.validate();
+                  if (formBloc.token.value.isNotEmpty) {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoute.reloadPaymentScreen,
+                      arguments: {
+                        'locationDetail': details,
+                        'userModel': userModel,
+                        'formBloc': formBloc,
+                      },
+                    );
+                  }
                 },
                 label: Text(
                   AppLocalizations.of(context)!.confirm,

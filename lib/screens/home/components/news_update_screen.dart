@@ -94,7 +94,7 @@ class _NewsUpdateScreenState extends State<NewsUpdateScreen> {
                           options: CarouselOptions(
                             autoPlay: true,
                             enlargeCenterPage: true,
-                            aspectRatio: 2.0,
+                            enlargeFactor: 0.5,
                             onPageChanged: (index, reason) {
                               setState(() {
                                 _current = index;

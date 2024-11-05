@@ -44,97 +44,99 @@ Future<void> vehicleList(BuildContext context, UserModel userModel) {
                       ),
                     ),
                   ),
-                  for (int i = 0; i < userModel.plateNumbers!.length; i++)
-                    Column(
-                      children: [
-                        const SizedBox(height: 10), // Spacer
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${AppLocalizations.of(context)!.carPlate} ${i + 1}',
-                                  style: textStyleNormal(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
+                  if (userModel.plateNumbers != null)
+                    for (int i = 0; i < userModel.plateNumbers!.length; i++)
+                      Column(
+                        children: [
+                          const SizedBox(height: 10), // Spacer
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '${AppLocalizations.of(context)!.carPlate} ${i + 1}',
+                                    style: textStyleNormal(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  userModel.plateNumbers![i].plateNumber!,
-                                  style: textStyleNormal(
-                                    fontSize: 15,
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    userModel.plateNumbers![i].plateNumber!,
+                                    style: textStyleNormal(
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                userModel.plateNumbers![i].isMain != true
-                                    ? PrimaryButton(
-                                        label: Text(
-                                          AppLocalizations.of(context)!
-                                              .setAsMain,
-                                          style: textStyleNormal(
-                                            color: kWhite,
-                                            fontSize: 8,
-                                          ),
-                                        ),
-                                        borderRadius: 10.0,
-                                        buttonWidth: 0.3,
-                                        onPressed: () async {
-                                          // Call the updateCarPlate function to set the selected plate as the main one
-                                          await updatePlate(context,
-                                              userModel.plateNumbers![i].id!);
-                                        },
-                                      )
-                                    : Container(
-                                        width: 120,
-                                        height: 20,
-                                        padding:
-                                            const EdgeInsets.only(top: 3.0),
-                                        decoration: BoxDecoration(
-                                          color: kGrey.withOpacity(0.3),
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.black.withOpacity(0.1),
-                                              blurRadius: 4,
-                                              offset: const Offset(0, 2),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  userModel.plateNumbers![i].isMain != true
+                                      ? PrimaryButton(
+                                          label: Text(
+                                            AppLocalizations.of(context)!
+                                                .setAsMain,
+                                            style: textStyleNormal(
+                                              color: kWhite,
+                                              fontSize: 8,
                                             ),
-                                          ],
-                                          border: Border.all(
-                                            color: Colors.grey.withOpacity(0.3),
-                                            width: 1,
+                                          ),
+                                          borderRadius: 10.0,
+                                          buttonWidth: 0.3,
+                                          onPressed: () async {
+                                            // Call the updateCarPlate function to set the selected plate as the main one
+                                            await updatePlate(context,
+                                                userModel.plateNumbers![i].id!);
+                                          },
+                                        )
+                                      : Container(
+                                          width: 120,
+                                          height: 20,
+                                          padding:
+                                              const EdgeInsets.only(top: 3.0),
+                                          decoration: BoxDecoration(
+                                            color: kGrey.withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(30.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                                blurRadius: 4,
+                                                offset: const Offset(0, 2),
+                                              ),
+                                            ],
+                                            border: Border.all(
+                                              color:
+                                                  Colors.grey.withOpacity(0.3),
+                                              width: 1,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            "Default",
+                                            style: textStyleNormal(
+                                                color: kWhite, fontSize: 8),
+                                            textAlign: TextAlign.center,
                                           ),
                                         ),
-                                        child: Text(
-                                          "Default",
-                                          style: textStyleNormal(
-                                              color: kWhite, fontSize: 8),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    size: 20,
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      size: 20,
+                                    ),
+                                    onPressed: () async {
+                                      _showDeleteConfirmationDialog(
+                                          context, userModel.plateNumbers![i]);
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    _showDeleteConfirmationDialog(
-                                        context, userModel.plateNumbers![i]);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                   spaceVertical(height: 50.0),
                   Center(
                     child: PrimaryButton(
@@ -148,11 +150,15 @@ Future<void> vehicleList(BuildContext context, UserModel userModel) {
                       ),
                       borderRadius: 20.0,
                       onPressed: () async {
-                        if (userModel.plateNumbers!.length >= 2) {
-                          _showErrorDialog(
-                              context,
-                              AppLocalizations.of(context)!.error,
-                              AppLocalizations.of(context)!.errorDesc);
+                        if (userModel.plateNumbers != null) {
+                          if (userModel.plateNumbers!.length >= 2) {
+                            _showErrorDialog(
+                                context,
+                                AppLocalizations.of(context)!.error,
+                                AppLocalizations.of(context)!.errorDesc);
+                          } else {
+                            _showAddVehicleDialog(context, userModel);
+                          }
                         } else {
                           _showAddVehicleDialog(context, userModel);
                         }
