@@ -121,15 +121,23 @@ Future<void> vehicleList(BuildContext context, UserModel userModel) {
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      size: 20,
+                                  Visibility(
+                                    visible: userModel.plateNumbers!.isNotEmpty,
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        size: 20,
+                                      ),
+                                      onPressed: userModel
+                                                  .plateNumbers!.length >
+                                              1
+                                          ? () async {
+                                              _showDeleteConfirmationDialog(
+                                                  context,
+                                                  userModel.plateNumbers![i]);
+                                            }
+                                          : null, // Disable button if only 1 plate number
                                     ),
-                                    onPressed: () async {
-                                      _showDeleteConfirmationDialog(
-                                          context, userModel.plateNumbers![i]);
-                                    },
                                   ),
                                 ],
                               ),
