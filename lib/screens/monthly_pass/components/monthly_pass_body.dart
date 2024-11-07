@@ -186,8 +186,9 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                           'amount': double.parse(monthlyPassModel.amount!),
                           'duration': monthlyPassModel.duration.toString(),
                           'location': monthlyPassModel.location.toString(),
-                          'promotionId':
-                              monthlyPassModel.promotionId.toString(),
+                          'promotionId': monthlyPassModel.promotionId != null
+                              ? monthlyPassModel.promotionId
+                              : null,
                         },
                       ),
                     );
