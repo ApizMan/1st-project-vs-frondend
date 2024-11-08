@@ -254,28 +254,34 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                         fontSize: 18,
                       ),
                     ),
-                    itemBuilder: (context, item) => FieldItem(
-                      child: item == 'QR'
-                          ? Container(
-                              width: 80,
-                              height: 80,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/duitnow.png'),
-                                    fit: BoxFit.contain),
-                              ),
-                            )
-                          : Container(
-                              width: 120,
-                              height: 80,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('assets/images/fpx.png'),
-                                    fit: BoxFit.contain),
+                    itemBuilder: (context, item) {
+                      bool isSelected = formBloc.paymentMethod.value == item;
+                      return FieldItem(
+                        child: GestureDetector(
+                          onTap: () => formBloc.paymentMethod.updateValue(item),
+                          child: Container(
+                            width: item == 'QR' ? 80 : 120,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? Colors.blue.withOpacity(0.2)
+                                  : Colors.transparent,
+                              border: isSelected
+                                  ? Border.all(color: Colors.blue, width: 2)
+                                  : null,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  item == 'QR'
+                                      ? 'assets/images/duitnow.png'
+                                      : 'assets/images/fpx.png',
+                                ),
+                                fit: BoxFit.contain,
                               ),
                             ),
-                    ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(height: 15),

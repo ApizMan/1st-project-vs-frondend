@@ -49,6 +49,7 @@ class CompoundFormBloc extends FormBloc<String, String> {
           'store_id': 'Compound', //description
           'terminal_id': details['location'], //email
           'shift_id': model.idNumber, //city
+          'to_whatsapp_no': model.phoneNumber,
         }),
       );
 

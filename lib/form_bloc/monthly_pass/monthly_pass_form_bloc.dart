@@ -83,6 +83,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
           'store_id': 'Monthly Pass', //description
           'terminal_id': details['location'], //email
           'shift_id': model.idNumber, //city
+          'to_whatsapp_no': model.phoneNumber,
         }),
       );
 
