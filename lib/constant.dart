@@ -96,6 +96,7 @@ const String orderStatusKey = 'orderStatusKey';
 const String orderStoreIdKey = 'orderStoreIdKey';
 const String orderShiftIdKey = 'orderShiftIdKey';
 const String orderTerminalIdKey = 'orderTerminalIdKey';
+const String toWhatsappNoKey = 'toWhatsappNoKey';
 const String keyLanguage = 'language';
 const String emailResetPasswordKey = 'emailResetPasswordKey';
 

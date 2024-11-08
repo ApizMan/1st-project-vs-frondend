@@ -64,6 +64,7 @@ class CompoundFormBloc extends FormBloc<String, String> {
           shiftId: response['order']['shift_id'],
           terminalId: response['order']['terminal_id'],
           storeId: response['order']['store_id'],
+          toWhatsappNo: response['order']['to_whatsapp_no'],
           status: 'paid',
         );
 

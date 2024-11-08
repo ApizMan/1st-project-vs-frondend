@@ -82,6 +82,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
 
                   if (response['SFM']['Constant'] ==
                       'SFM_EXECUTE_PAYMENT_SUCCESS') {
+                    String formattedDate =
+                        DateFormat('yyyy-MM-dd').format(DateTime.now());
                     for (var i = 0; i < selectedSummons.length; i++) {
                       final response = await CompoundResources.pay(
                         prefix: '/compound/payCompound',
@@ -95,8 +97,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                             'NoticeNo': selectedSummons[i].noticeNo.toString(),
                             'ReceiptNo': 'RC-${selectedSummons[i].noticeNo}',
                             'PaymentTransactionType': null,
-                            'PaymentDate':
-                                '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                            'PaymentDate': formattedDate,
                             'PaidAmount': selectedSummons[i].amount.toString(),
                             'ChannelType': null,
                             'PaymentStatus': null,
@@ -230,6 +231,8 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                       );
 
                       if (response['order_status'] == 'paid') {
+                        String formattedDate =
+                            DateFormat('yyyy-MM-dd').format(DateTime.now());
                         for (var i = 0; i < selectedSummons.length; i++) {
                           final response = await CompoundResources.pay(
                             prefix: '/compound/payCompound',
@@ -245,8 +248,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                                 'ReceiptNo':
                                     'RC-${selectedSummons[i].noticeNo}',
                                 'PaymentTransactionType': null,
-                                'PaymentDate':
-                                    '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                                'PaymentDate': formattedDate,
                                 'PaidAmount':
                                     selectedSummons[i].amount.toString(),
                                 'ChannelType': null,

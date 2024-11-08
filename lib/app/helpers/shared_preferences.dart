@@ -124,6 +124,7 @@ class SharedPreferencesHelper {
     String storeId = '',
     String shiftId = '',
     String terminalId = '',
+    String toWhatsappNo = '',
   }) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -134,6 +135,7 @@ class SharedPreferencesHelper {
     prefs.setString(orderStoreIdKey, storeId);
     prefs.setString(orderShiftIdKey, shiftId);
     prefs.setString(orderTerminalIdKey, terminalId);
+    prefs.setString(toWhatsappNoKey, toWhatsappNo);
   }
 
 // Method to get order details
