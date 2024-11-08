@@ -203,7 +203,13 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 10.0),
                                             decoration: BoxDecoration(
-                                              color: kPrimaryColor,
+                                              color:
+                                                  reserveBay.status == "PENDING"
+                                                      ? kGrey
+                                                      : reserveBay.status ==
+                                                              "APPROVED"
+                                                          ? kBgSuccess
+                                                          : kRed,
                                               borderRadius:
                                                   BorderRadius.circular(30.0),
                                               boxShadow: [
@@ -221,9 +227,20 @@ class _ReserveBayScreenState extends State<ReserveBayScreen> {
                                               ),
                                             ),
                                             child: Text(
-                                              reserveBay.businessType!,
+                                              reserveBay.status == "PENDING"
+                                                  ? reserveBay.status!
+                                                  : reserveBay.status ==
+                                                          "APPROVED"
+                                                      ? reserveBay.status!
+                                                      : reserveBay.status!,
                                               style: textStyleNormal(
-                                                color: kWhite,
+                                                color: reserveBay.status ==
+                                                        "PENDING"
+                                                    ? kBlack
+                                                    : reserveBay.status ==
+                                                            "APPROVED"
+                                                        ? kWhite
+                                                        : kWhite,
                                                 fontSize: 8,
                                               ),
                                               textAlign: TextAlign.center,
