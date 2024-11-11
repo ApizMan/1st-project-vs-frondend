@@ -143,6 +143,8 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
           }
 
           if (snapshot.hasData) {
+            Map receipt = snapshot.data!;
+
             return BlocProvider(
               create: (context) => MonthlyPassFormBloc(
                 platModel: widget.carPlates.isNotEmpty ? widget.carPlates : [],
@@ -209,6 +211,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                                       monthlyPassModel.promotionId != null
                                           ? monthlyPassModel.promotionId
                                           : null,
+                                  'noReceipt': receipt['noReceipt'],
                                 },
                               ),
                             );
@@ -321,6 +324,7 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                                       'promotionId': monthlyPassModel
                                           .promotionId
                                           .toString(),
+                                      'noReceipt': receipt['noReceipt'],
                                     },
                                   ),
                                 );
