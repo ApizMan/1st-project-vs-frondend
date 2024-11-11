@@ -193,4 +193,67 @@ class SharedPreferencesHelper {
 
     return duration ?? false;
   }
+
+  static Future<void> setTime({String? startTime, String? endTime}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(keyStartTime, startTime!);
+    await prefs.setString(keyEndTime, endTime!);
+  }
+
+  static Future<String?> getStartTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? time = prefs.getString(keyStartTime);
+
+    return time;
+  }
+
+  static Future<String?> getEndTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? time = prefs.getString(keyEndTime);
+
+    return time;
+  }
+
+  static Future<void> setReceipt({
+    String? noReceipt,
+    String? startTime,
+    String? endTime,
+    String? plateNumber,
+    String? duration,
+    String? location,
+    String? type,
+  }) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(keyNoReceipt, noReceipt!);
+    await prefs.setString(keyStartTime, startTime!);
+    await prefs.setString(keyEndTime, endTime!);
+    await prefs.setString(keyPlateNumber, plateNumber!);
+    await prefs.setString(keyDuration, duration!);
+    await prefs.setString(keyReceiptLocation, location!);
+    await prefs.setString(keyType, type!);
+  }
+
+  static Future<Map<String, dynamic>?> getReceipt() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Retrieve all the details from SharedPreferences
+    String? noReceipt = prefs.getString(keyNoReceipt);
+    String? startTime = prefs.getString(keyStartTime);
+    String? endTime = prefs.getString(keyEndTime);
+    String? plateNumber = prefs.getString(keyPlateNumber);
+    String? duration = prefs.getString(keyDuration);
+    String? location = prefs.getString(keyReceiptLocation);
+    String? type = prefs.getString(keyType);
+
+    // Return the details as a map
+    return {
+      'noReceipt': noReceipt,
+      'startTime': startTime,
+      'endTime': endTime,
+      'plateNumber': plateNumber,
+      'duration': duration,
+      'location': location,
+      'type': type,
+    };
+  }
 }

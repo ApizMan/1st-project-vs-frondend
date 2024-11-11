@@ -1,6 +1,8 @@
 // Base URL
 // ignore_for_file: constant_identifier_names
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 // const String baseUrl =
@@ -99,6 +101,13 @@ const String orderTerminalIdKey = 'orderTerminalIdKey';
 const String toWhatsappNoKey = 'toWhatsappNoKey';
 const String keyLanguage = 'language';
 const String emailResetPasswordKey = 'emailResetPasswordKey';
+const String keyNoReceipt = 'keyNoReceipt';
+const String keyStartTime = 'keyStartTime';
+const String keyEndTime = 'keyEndTime';
+const String keyPlateNumber = 'keyPlateNumber';
+const String keyDuration = 'keyDuration';
+const String keyReceiptLocation = 'keyReceiptLocation';
+const String keyType = 'keyType';
 
 class GlobalDeclaration {
   static String globalDuration = '';
@@ -118,6 +127,20 @@ class DialogType {
   static const int danger = 2;
   static const int warning = 3;
   static const int success = 4;
+}
+
+String generateReceiptNumber() {
+  final random = Random();
+  final receiptNumber = 100000 +
+      random.nextInt(900000); // Generates a number between 100000 and 999999
+  return "P$receiptNumber";
+}
+
+String generateMonthlyPassReceiptNumber() {
+  final random = Random();
+  final receiptNumber = 100000 +
+      random.nextInt(900000); // Generates a number between 100000 and 999999
+  return "MP$receiptNumber";
 }
 
 // Success

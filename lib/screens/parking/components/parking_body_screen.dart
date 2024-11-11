@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
@@ -38,6 +39,12 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   String? selectedCarPlate;
   StoreParkingFormBloc? formBloc;
 
+  final List<String> imgList = [
+    kuantanLogo,
+    terengganuLogo,
+    machangLogo,
+  ];
+
   final List<String> imgName = [
     'PBT Kuantan',
     'PBT Kuala Terengganu',
@@ -49,6 +56,20 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     'Terengganu',
     'Kelantan',
   ];
+
+  // Helper method to get the color based on index
+  int getColorForIndex(int index) {
+    switch (index) {
+      case 0:
+        return kPrimaryColor.value;
+      case 1:
+        return kOrange.value;
+      case 2:
+        return kYellow.value;
+      default:
+        return Colors.transparent.value; // Default color or handle error
+    }
+  }
 
   @override
   void initState() {
@@ -261,17 +282,49 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       ),
                       itemBuilder: (context, value) {
                         return FieldItem(
-                          onTap: () {
+                          onTap: () async {
                             if (value == imgName[0]) {
                               formBloc!.location
                                   .updateInitialValue(imgState[0]);
+
+                              // Only handle the tapped item
+                              await SharedPreferencesHelper.saveLocationDetail(
+                                location: imgName[0],
+                                state: imgState[0],
+                                logo: imgList[0],
+                                color: getColorForIndex(0),
+                              );
                             } else if (value == imgName[1]) {
                               formBloc!.location
                                   .updateInitialValue(imgState[1]);
+
+                              // Only handle the tapped item
+                              await SharedPreferencesHelper.saveLocationDetail(
+                                location: imgName[1],
+                                state: imgState[1],
+                                logo: imgList[1],
+                                color: getColorForIndex(1),
+                              );
                             } else {
                               formBloc!.location
                                   .updateInitialValue(imgState[2]);
+
+                              // Only handle the tapped item
+                              await SharedPreferencesHelper.saveLocationDetail(
+                                location: imgName[2],
+                                state: imgState[2],
+                                logo: imgList[2],
+                                color: getColorForIndex(2),
+                              );
                             }
+
+                            setState(() {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRoute.homeScreen,
+                                (route) => false,
+                              );
+                            });
                           },
                           child: Padding(
                             padding:
@@ -307,14 +360,43 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                     ),
                     itemBuilder: (context, value) {
                       return FieldItem(
-                        onTap: () {
+                        onTap: () async {
                           if (value == imgState[0]) {
                             formBloc!.pbt.updateInitialValue(imgName[0]);
+                            // Only handle the tapped item
+                            await SharedPreferencesHelper.saveLocationDetail(
+                              location: imgName[0],
+                              state: imgState[0],
+                              logo: imgList[0],
+                              color: getColorForIndex(0),
+                            );
                           } else if (value == imgState[1]) {
                             formBloc!.pbt.updateInitialValue(imgName[1]);
+                            // Only handle the tapped item
+                            await SharedPreferencesHelper.saveLocationDetail(
+                              location: imgName[1],
+                              state: imgState[1],
+                              logo: imgList[1],
+                              color: getColorForIndex(1),
+                            );
                           } else {
                             formBloc!.pbt.updateInitialValue(imgName[2]);
+                            // Only handle the tapped item
+                            await SharedPreferencesHelper.saveLocationDetail(
+                              location: imgName[2],
+                              state: imgState[2],
+                              logo: imgList[2],
+                              color: getColorForIndex(2),
+                            );
                           }
+
+                          setState(() {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppRoute.homeScreen,
+                              (route) => false,
+                            );
+                          });
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),

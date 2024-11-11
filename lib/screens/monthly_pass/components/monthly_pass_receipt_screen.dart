@@ -1,19 +1,23 @@
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:project/routes/route_manager.dart';
 import 'package:project/theme.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
+import 'package:project/widget/loading_dialog.dart';
 import 'package:project/widget/primary_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MonthlyPassReceiptScreen extends StatefulWidget {
   const MonthlyPassReceiptScreen({
@@ -26,22 +30,19 @@ class MonthlyPassReceiptScreen extends StatefulWidget {
 }
 
 class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
-  String _currentDate = ''; // Initialize variable for date
-  String _currentTime = '';
   final GlobalKey _printKey = GlobalKey(); // Key to capture the part to print
+
+  late Future<Map<dynamic, dynamic>> _receiptFuture;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
+    _receiptFuture = analyzeReceipt();
   }
 
-  void updateDateTime() {
-    setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm a').format(DateTime.now());
-    });
+  Future<Map<dynamic, dynamic>> analyzeReceipt() async {
+    // Await for the receipt data to be fetched
+    return await SharedPreferencesHelper.getReceipt() ?? {};
   }
 
   Future<void> _printScreen() async {
@@ -74,9 +75,7 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
 
     Map<String, dynamic> details =
         arguments['locationDetail'] as Map<String, dynamic>;
-    String? parkingCar = arguments['selectedCarPlate'] as String?;
     double? amount = arguments['amount'] as double?;
-    String? duration = arguments['duration'] as String?;
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -133,148 +132,317 @@ class _MonthlyPassReceiptScreenState extends State<MonthlyPassReceiptScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: RepaintBoundary(
-          key: _printKey,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                    child: Column(
-                  children: [
-                    const Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                      size: 30,
-                    ),
-                    const SizedBox(width: 15),
-                    Text(
-                      '${AppLocalizations.of(context)!.successful}!',
-                      style: textStyleNormal(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
+      body: FutureBuilder<Map<dynamic, dynamic>>(
+        future: _receiptFuture,
+        builder: (context, snapshot) {
+          // If the data is still loading, show a loading indicator
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          // If there was an error while fetching the data
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          // If the data is fetched successfully
+          if (snapshot.hasData) {
+            Map receipt = snapshot.data!;
+
+            return SingleChildScrollView(
+              child: RepaintBoundary(
+                key: _printKey,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 50, left: 20, right: 20, bottom: 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Column(
+                          children: [
+                            const Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                              size: 30,
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              '${AppLocalizations.of(context)!.successful}!',
+                              style: textStyleNormal(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.date,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        _currentDate,
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.receiptNo,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['noReceipt'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.time,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        _currentTime,
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.startTime,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['startTime'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.location,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        details['location'],
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.endTime,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['endTime'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.plateNumber,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        parkingCar!,
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.duration,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['duration'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.duration,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        duration!,
-                        style: textStyleNormal(),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.plateNumber,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['plateNumber'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.total,
-                      style: textStyleNormal(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 50),
-                    Expanded(
-                      child: Text(
-                        amount!.toStringAsFixed(2),
-                        style:
-                            textStyleNormal(fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.right, // Align text to the right
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.location,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['location'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.thankYou,
-                    style: GoogleFonts.dmSans(
-                      fontSize: 20,
-                    ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.description,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              receipt['type'] ?? '',
+                              style: textStyleNormal(),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.total,
+                            style: textStyleNormal(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 50),
+                          Expanded(
+                            child: Text(
+                              amount!.toStringAsFixed(2),
+                              style:
+                                  textStyleNormal(fontWeight: FontWeight.bold),
+                              textAlign:
+                                  TextAlign.right, // Align text to the right
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.thankYou,
+                          style: GoogleFonts.dmSans(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Image(
+                                  width: 100,
+                                  image: AssetImage(logo),
+                                ),
+                                spaceVertical(height: 20),
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .contactMonthlyPass,
+                                        style: textStyleNormal(color: kGrey),
+                                      ),
+                                      TextSpan(
+                                        text: '03-4162 8672',
+                                        style: textStyleNormal(color: kBgInfo),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            const phoneNumber =
+                                                'tel:0341628672';
+                                            if (await canLaunchUrl(
+                                                Uri.parse(phoneNumber))) {
+                                              await launchUrl(
+                                                  Uri.parse(phoneNumber));
+                                            } else {
+                                              throw 'Could not launch $phoneNumber';
+                                            }
+                                          },
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .emailMonthlyPass,
+                                        style: textStyleNormal(color: kGrey),
+                                      ),
+                                      TextSpan(
+                                        text: Get.locale!.languageCode == 'en'
+                                            ? '\ninfo@vista-summerose.com.my'
+                                            : 'info@vista-summerose.com.my',
+                                        style: textStyleNormal(color: kBgInfo),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            final email = Uri.parse(
+                                                'mailto:info@vista-summerose.com.my');
+                                            if (await canLaunchUrl(email)) {
+                                              await launchUrl(email,
+                                                  mode: LaunchMode
+                                                      .externalApplication);
+                                            } else {
+                                              throw 'Could not launch $email';
+                                            }
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            height: 250,
+                            width: 2,
+                            decoration: const BoxDecoration(color: kGrey),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image(
+                                  width: 50,
+                                  image: AssetImage(details['logo']),
+                                ),
+                                spaceVertical(height: 20),
+                                Text(
+                                  AppLocalizations.of(context)!.actTitle,
+                                  style: textStyleNormal(
+                                    color: kGrey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.actDesc,
+                                  style: textStyleNormal(
+                                    color: kGrey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
+            );
+          }
+
+          // In case data is not available
+          return const LoadingDialog();
+        },
       ),
     );
   }

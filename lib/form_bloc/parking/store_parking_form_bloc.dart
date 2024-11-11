@@ -16,6 +16,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
 
   final TextFieldBloc amount;
   final TextFieldBloc expiredAt;
+  final TextFieldBloc noReceipt;
 
   StoreParkingFormBloc({
     required this.platModel,
@@ -40,7 +41,8 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
           items: ['Kelantan', 'Terengganu', 'Pahang'],
         ),
         amount = TextFieldBloc(),
-        expiredAt = TextFieldBloc() {
+        expiredAt = TextFieldBloc(),
+        noReceipt = TextFieldBloc() {
     pbt.updateInitialValue(details['location'] ?? '');
     location.updateInitialValue(details['state'] ?? '');
     addFieldBlocs(
@@ -80,6 +82,7 @@ class StoreParkingFormBloc extends FormBloc<String, String> {
             'pbt': pbt.value,
             'location': location.value,
             'expiredAt': expiredAt.value,
+            'noReceipt': noReceipt.value,
           }),
         );
 

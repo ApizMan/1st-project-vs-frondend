@@ -1,11 +1,16 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
@@ -14,6 +19,7 @@ import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:project/widget/primary_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReloadReceiptScreen extends StatefulWidget {
   const ReloadReceiptScreen({
@@ -26,11 +32,13 @@ class ReloadReceiptScreen extends StatefulWidget {
 
 class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
   String _currentDate = ''; // Initialize variable for date
+  String _currentTime = '';
   final GlobalKey _printKey = GlobalKey(); // Key to capture the part to print
 
   @override
   void initState() {
     super.initState();
+    analyzeTime();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
   }
 
@@ -39,6 +47,10 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
       _currentDate =
           DateTime.now().toString().split(' ')[0]; // Get current date
     });
+  }
+
+  Future<void> analyzeTime() async {
+    _currentTime = (await SharedPreferencesHelper.getStartTime())!;
   }
 
   Future<void> _printScreen() async {
@@ -181,6 +193,23 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                 Row(
                   children: [
                     Text(
+                      AppLocalizations.of(context)!.time,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        _currentTime,
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
                       AppLocalizations.of(context)!.email,
                       style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
@@ -222,8 +251,7 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                     Expanded(
                       child: Text(
                         amount.toStringAsFixed(2),
-                        style:
-                            textStyleNormal(fontWeight: FontWeight.bold),
+                        style: textStyleNormal(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -236,6 +264,70 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
                     style: GoogleFonts.dmSans(
                       fontSize: 20,
                     ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Image(
+                        width: 100,
+                        image: AssetImage(logo),
+                      ),
+                      spaceVertical(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    AppLocalizations.of(context)!.contactReload,
+                                style: textStyleNormal(color: kGrey),
+                              ),
+                              TextSpan(
+                                text: '03-4162 8672',
+                                style: textStyleNormal(color: kBgInfo),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    const phoneNumber = 'tel:0341628672';
+                                    if (await canLaunchUrl(
+                                        Uri.parse(phoneNumber))) {
+                                      await launchUrl(Uri.parse(phoneNumber));
+                                    } else {
+                                      throw 'Could not launch $phoneNumber';
+                                    }
+                                  },
+                              ),
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.emailReload,
+                                style: textStyleNormal(color: kGrey),
+                              ),
+                              TextSpan(
+                                text: Get.locale!.languageCode == 'en'
+                                    ? '\ninfo@vista-summerose.com.my'
+                                    : 'info@vista-summerose.com.my',
+                                style: textStyleNormal(color: kBgInfo),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    final email = Uri.parse(
+                                        'mailto:info@vista-summerose.com.my');
+                                    if (await canLaunchUrl(email)) {
+                                      await launchUrl(email,
+                                          mode: LaunchMode.externalApplication);
+                                    } else {
+                                      throw 'Could not launch $email';
+                                    }
+                                  },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

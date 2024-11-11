@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:project/component/generate_qr.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
@@ -19,6 +19,7 @@ class ReloadPaymentScreen extends StatefulWidget {
 
 class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
   String _currentDate = ''; // Initialize variable for date
+  String _currentTime = '';
   // ignore: unused_field
   String? _qrCodeUrl;
   String? shortcutLink;
@@ -33,6 +34,7 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
     setState(() {
       _currentDate =
           DateTime.now().toString().split(' ')[0]; // Get current date
+      _currentTime = DateFormat('h:mm:ss a').format(DateTime.now());
     });
   }
 
@@ -64,8 +66,19 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
       floatingActionButton: PrimaryButton(
         borderRadius: 10.0,
         buttonWidth: 0.8,
-        onPressed: () {
+        onPressed: () async {
+          await SharedPreferencesHelper.setTime(
+              startTime: _currentTime, endTime: '');
           formBloc.submit();
+          // Navigator.pushNamed(
+          //   context,
+          //   AppRoute.reloadReceiptScreen,
+          //   arguments: {
+          //     'locationDetail': details,
+          //     'userModel': userModel,
+          //     'amount': double.parse("40"),
+          //   },
+          // );
         },
         label: Text(
           AppLocalizations.of(context)!.pay,
@@ -106,6 +119,23 @@ class _ReloadPaymentScreenState extends State<ReloadPaymentScreen> {
                   Expanded(
                     child: Text(
                       _currentDate,
+                      style: GoogleFonts.firaCode(),
+                      textAlign: TextAlign.right, // Align text to the right
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.time,
+                    style: GoogleFonts.firaCode(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(width: 50),
+                  Expanded(
+                    child: Text(
+                      _currentTime,
                       style: GoogleFonts.firaCode(),
                       textAlign: TextAlign.right, // Align text to the right
                     ),

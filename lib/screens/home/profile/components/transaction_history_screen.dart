@@ -182,7 +182,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                       child: ListTile(
                         title: Text(
                           _walletModel.status == 'SUCCESS'
-                              ? '${AppLocalizations.of(context)!.compoundStatus}: ${_walletModel.status}'
+                              ? '${AppLocalizations.of(context)!.parkingStatus}: ${_walletModel.status}'
                               : '${AppLocalizations.of(context)!.statusTopUpWallet}: ${_walletModel.status!.toUpperCase()}',
                           style: textStyleNormal(fontWeight: FontWeight.bold),
                         ),

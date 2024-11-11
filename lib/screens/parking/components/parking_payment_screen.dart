@@ -219,16 +219,30 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
                       // Get current date and time
                       DateTime now = DateTime.now();
 
+                      final receiptNo = generateReceiptNumber();
+
                       if (expiredDuration != '') {
                         // Add duration to current time
                         DateTime newTime = now
                             .add(parseDuration(duration))
                             .add(parseDuration(currentDuration));
 
+                        SharedPreferencesHelper.setReceipt(
+                          noReceipt: receiptNo,
+                          startTime: DateFormat('hh:mm:ss a')
+                              .format(now.add(parseDuration(currentDuration))),
+                          endTime: DateFormat('hh:mm:ss a').format(newTime),
+                          duration: duration,
+                          location: formBloc.pbt.value,
+                          plateNumber: parkingCar.split('-')[0],
+                          type: AppLocalizations.of(context)!.parking,
+                        );
+
                         // Format the new time as an ISO 8601 timestamp
                         String formattedTimestamp =
                             newTime.toUtc().toIso8601String();
 
+                        formBloc.noReceipt.updateValue(receiptNo);
                         formBloc.expiredAt.updateValue(formattedTimestamp);
 
                         SharedPreferencesHelper.setParkingExpired(
@@ -239,10 +253,21 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
                         // Add duration to current time
                         DateTime newTime = now.add(parseDuration(duration));
 
+                        SharedPreferencesHelper.setReceipt(
+                          noReceipt: receiptNo,
+                          startTime: _currentTime,
+                          endTime: DateFormat('hh:mm:ss a').format(newTime),
+                          duration: duration,
+                          location: formBloc.pbt.value,
+                          plateNumber: parkingCar.split('-')[0],
+                          type: AppLocalizations.of(context)!.parking,
+                        );
+
                         // Format the new time as an ISO 8601 timestamp
                         String formattedTimestamp =
                             newTime.toUtc().toIso8601String();
 
+                        formBloc.noReceipt.updateValue(receiptNo);
                         formBloc.expiredAt.updateValue(formattedTimestamp);
 
                         SharedPreferencesHelper.setParkingExpired(

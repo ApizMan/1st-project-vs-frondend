@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
 import 'package:project/routes/route_manager.dart';
@@ -14,6 +17,7 @@ import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReceiptScreen extends StatefulWidget {
   const ReceiptScreen({super.key});
@@ -25,11 +29,18 @@ class ReceiptScreen extends StatefulWidget {
 class _ReceiptScreenState extends State<ReceiptScreen> {
   String _currentDate = ''; // Initialize variable for date
   final GlobalKey _printKey = GlobalKey(); // Key to capture the part to print
+  late Map<dynamic, dynamic>? receipt;
 
   @override
   void initState() {
+    receipt = {};
     super.initState();
+    analyzeReceipt();
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
+  }
+
+  Future<void> analyzeReceipt() async {
+    receipt = await SharedPreferencesHelper.getReceipt();
   }
 
   void updateDateTime() {
@@ -81,7 +92,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           AppLocalizations.of(context)!.receipt,
           style: textStyleNormal(
             fontSize: 26,
-            color: kWhite,
+            color: details['color'] == 4294961979 ? kBlack : kWhite,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -101,7 +112,8 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
         child: RepaintBoundary(
           key: _printKey,
           child: Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+            padding: const EdgeInsets.only(
+                top: 50, left: 20, right: 20, bottom: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -124,6 +136,24 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                   ],
                 )),
                 const SizedBox(height: 20),
+                Row(
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      AppLocalizations.of(context)!.receiptNo,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['noReceipt'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     const SizedBox(height: 20),
@@ -162,6 +192,91 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 Row(
                   children: [
                     Text(
+                      AppLocalizations.of(context)!.startTime,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['startTime'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.endTime,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['endTime'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.duration,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['duration'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.plateNumber,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['plateNumber'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.location,
+                      style: textStyleNormal(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 50),
+                    Expanded(
+                      child: Text(
+                        receipt?['location'] ?? '',
+                        style: textStyleNormal(),
+                        textAlign: TextAlign.right, // Align text to the right
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
                       AppLocalizations.of(context)!.email,
                       style: textStyleNormal(fontWeight: FontWeight.bold),
                     ),
@@ -185,7 +300,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        AppLocalizations.of(context)!.parking,
+                        receipt?['type'] ?? '',
                         style: textStyleNormal(),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
@@ -203,8 +318,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                     Expanded(
                       child: Text(
                         'RM ${amount.toStringAsFixed(2)}',
-                        style:
-                            textStyleNormal(fontWeight: FontWeight.bold),
+                        style: textStyleNormal(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right
                       ),
                     ),
@@ -218,6 +332,105 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                       fontSize: 20,
                     ),
                   ),
+                ),
+                const SizedBox(height: 40),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Image(
+                            width: 100,
+                            image: AssetImage(logo),
+                          ),
+                          spaceVertical(height: 20),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: AppLocalizations.of(context)!
+                                      .contactParking,
+                                  style: textStyleNormal(color: kGrey),
+                                ),
+                                TextSpan(
+                                  text: '03-4162 8672',
+                                  style: textStyleNormal(color: kBgInfo),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      const phoneNumber = 'tel:0341628672';
+                                      if (await canLaunchUrl(
+                                          Uri.parse(phoneNumber))) {
+                                        await launchUrl(Uri.parse(phoneNumber));
+                                      } else {
+                                        throw 'Could not launch $phoneNumber';
+                                      }
+                                    },
+                                ),
+                                TextSpan(
+                                  text: AppLocalizations.of(context)!
+                                      .emailParking,
+                                  style: textStyleNormal(color: kGrey),
+                                ),
+                                TextSpan(
+                                  text: Get.locale!.languageCode == 'en'
+                                      ? '\ninfo@vista-summerose.com.my'
+                                      : 'info@vista-summerose.com.my',
+                                  style: textStyleNormal(color: kBgInfo),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      final email = Uri.parse(
+                                          'mailto:info@vista-summerose.com.my');
+                                      if (await canLaunchUrl(email)) {
+                                        await launchUrl(email,
+                                            mode:
+                                                LaunchMode.externalApplication);
+                                      } else {
+                                        throw 'Could not launch $email';
+                                      }
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                      height: 250,
+                      width: 2,
+                      decoration: const BoxDecoration(color: kGrey),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image(
+                            width: 50,
+                            image: AssetImage(details['logo']),
+                          ),
+                          spaceVertical(height: 20),
+                          Text(
+                            AppLocalizations.of(context)!.actTitle,
+                            style: textStyleNormal(
+                              color: kGrey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.actDesc,
+                            style: textStyleNormal(
+                              color: kGrey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

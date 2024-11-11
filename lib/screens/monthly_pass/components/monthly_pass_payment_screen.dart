@@ -75,6 +75,54 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
           borderRadius: 10.0,
           buttonWidth: 0.8,
           onPressed: () async {
+            final receiptNo = generateMonthlyPassReceiptNumber();
+
+            // Get the current date and time
+            final DateTime currentDateTime = DateTime.now();
+            final String currentDate =
+                DateFormat('yyyy-MM-dd').format(currentDateTime);
+            final String currentTime =
+                DateFormat('HH:mm:ss').format(currentDateTime);
+
+            // Adjust end time based on the duration
+            DateTime? endDateTime;
+
+            switch (duration) {
+              case '1 month':
+              case '1 bulan':
+                endDateTime =
+                    currentDateTime.add(Duration(days: 30)); // Approx 1 month
+                break;
+              case '3 months':
+              case '3 bulan':
+                endDateTime =
+                    currentDateTime.add(Duration(days: 90)); // Approx 6 months
+                break;
+              case '12 months':
+              case '12 bulan':
+                endDateTime = currentDateTime
+                    .add(Duration(days: 365)); // Approx 12 months
+                break;
+              default:
+                // Handle other durations or error cases
+                endDateTime =
+                    currentDateTime; // Default to current date if duration is unknown
+            }
+
+            final String endTime;
+            endTime = DateFormat('yyyy-MM-dd').format(endDateTime);
+
+            // Save the receipt in SharedPreferences
+            await SharedPreferencesHelper.setReceipt(
+              noReceipt: receiptNo,
+              startTime: '$currentDate $currentTime',
+              endTime: '$endTime $currentTime',
+              duration: duration,
+              location: details['location'],
+              plateNumber: parkingCar,
+              type: AppLocalizations.of(context)!.monthlyPass,
+            );
+
             formBloc.submit();
 
             model!.duration = duration;

@@ -7,7 +7,7 @@
   "transaction": "Transaction",
   "amount": "Amount",
   "date": "Date",
-  "compoundStatus": "Compound Status",
+  "parkingStatus": "Pay Parking Status",
   "profile": "Profile",
   "logout": "Logout",
   "logoutDesc": "Are you sure you want to logout",
@@ -149,5 +149,15 @@
   "close": "Close",
   "edit": "Edit",
   "update": "Update",
-  "setAsMain": "Set As Main"
+  "setAsMain": "Set As Main",
+  "contactReload": "If the reload problem, please contact CityCarPark helpline at ",
+  "emailReload": "\nor email to our customer service ",
+  "contactParking": "If the pay parking problem, please contact CityCarPark helpline at ",
+  "emailParking": "\nor email to our customer service ",
+  "contactMonthlyPass": "If the pay monthly pass problem, please contact CityCarPark helpline at ",
+  "emailMonthlyPass": "\nor email to our customer service ",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "actTitle": "Road Transport Act 1987",
+  "actDesc": "Road Transport Order \n(Provision Regarding Parking)"
 }

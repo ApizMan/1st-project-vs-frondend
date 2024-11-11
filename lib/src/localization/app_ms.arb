@@ -7,7 +7,7 @@
   "transaction": "Transaksi",
   "amount": "Jumlah",
   "date": "Tarikh",
-  "compoundStatus": "Status Kompaun",
+  "parkingStatus": "Status Pembayaran Tempat Kereta",
   "profile": "Profil",
   "logout": "Log Keluar",
   "logoutDesc": "Adakah anda pasti mahu log keluar",
@@ -149,5 +149,15 @@
   "close": "Tutup",
   "edit": "Ubah",
   "update": "Kemas kini",
-  "setAsMain": "Tetapkan sebagai Utama"
+  "setAsMain": "Tetapkan sebagai Utama",
+  "contactReload": "Jika masalah tambah nilai, sila hubungi talian bantuan CityCarPark di ",
+  "emailReload": "\natau e-mel kepada perkhidmatan pelanggan kami ",
+  "contactParking": "Jika masalah pembayaran tempat kereta, sila hubungi talian bantuan CityCarPark di ",
+  "emailparking": "\natau e-mel kepada perkhidmatan pelanggan kami ",
+  "contactMonthlyPass": "Jika masalah pembayaran pass bulanan, sila hubungi talian bantuan CityCarPark di ",
+  "emailMonthlyPass": "\natau e-mel kepada perkhidmatan pelanggan kami ",
+  "startTime": "Masa Bermula",
+  "endTime": "Masa Akhir",
+  "actTitle": "Akta Pengangkutan Jalan 1987",
+  "actDesc": "Perintah Pengangkutan Jalan \n(Peruntukan Mengenai Tempat Letak Kereta)"
 }

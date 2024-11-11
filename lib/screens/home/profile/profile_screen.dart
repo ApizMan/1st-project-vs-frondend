@@ -156,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   AppLocalizations.of(context)!.profile,
                   style: textStyleNormal(
                     fontSize: 26,
-                    color: kWhite,
+                    color: details['color'] == 4294961979 ? kBlack : kWhite,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -215,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       '${userModel!.firstName} ${userModel.secondName}',
                       style: GoogleFonts.dmSans(
                         fontWeight: FontWeight.bold,
-                        color: kWhite,
+                        color: details['color'] == 4294961979 ? kBlack : kWhite,
                         fontSize: 15,
                       ),
                     ),
