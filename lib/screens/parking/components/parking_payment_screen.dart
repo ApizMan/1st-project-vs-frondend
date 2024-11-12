@@ -244,11 +244,6 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
 
                         formBloc.noReceipt.updateValue(receiptNo);
                         formBloc.expiredAt.updateValue(formattedTimestamp);
-
-                        SharedPreferencesHelper.setParkingExpired(
-                          duration: formattedTimestamp,
-                          isStart: true,
-                        );
                       } else {
                         // Add duration to current time
                         DateTime newTime = now.add(parseDuration(duration));
@@ -269,11 +264,6 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
 
                         formBloc.noReceipt.updateValue(receiptNo);
                         formBloc.expiredAt.updateValue(formattedTimestamp);
-
-                        SharedPreferencesHelper.setParkingExpired(
-                          duration: formattedTimestamp,
-                          isStart: true,
-                        );
 
                         SharedPreferencesHelper.setParkingDuration(
                             duration: duration);
