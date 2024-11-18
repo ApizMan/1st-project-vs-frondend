@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/theme.dart';
@@ -48,9 +49,9 @@ class _CountdownScreenState extends State<CountdownScreen> {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  void startCountdown() {
+  void startCountdown() async {
     _timer?.cancel(); // Cancel any existing timer
-    DateTime now = DateTime.now();
+    DateTime now = await NTP.now();
 
     // Calculate the difference between expiredAt and the current time
     remainingTime = widget.expiredAt.difference(now);
