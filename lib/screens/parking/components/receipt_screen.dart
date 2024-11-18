@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
@@ -43,10 +44,10 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     receipt = await SharedPreferencesHelper.getReceipt();
   }
 
-  void updateDateTime() {
+  void updateDateTime() async {
+    DateTime liveTime = await NTP.now();
     setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
+      _currentDate = liveTime.toString().split(' ')[0]; // Get current date
     });
   }
 

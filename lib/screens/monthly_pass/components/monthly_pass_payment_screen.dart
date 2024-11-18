@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -31,11 +32,11 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
   }
 
-  void updateDateTime() {
+  void updateDateTime() async {
+    DateTime currentTime = await NTP.now();
     setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm:ss a').format(DateTime.now());
+      _currentDate = currentTime.toString().split(' ')[0]; // Get current date
+      _currentTime = DateFormat('h:mm:ss a').format(currentTime);
     });
   }
 
@@ -78,7 +79,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
             final receiptNo = generateMonthlyPassReceiptNumber();
 
             // Get the current date and time
-            final DateTime currentDateTime = DateTime.now();
+            final DateTime currentDateTime = await NTP.now();
             final String currentDate =
                 DateFormat('yyyy-MM-dd').format(currentDateTime);
             final String currentTime =

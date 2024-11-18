@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/component/webview.dart';
 import 'package:project/constant.dart';
@@ -44,7 +45,6 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
   late DateTime _focusedDay;
   String selectedLocation = 'Kuantan';
   int _selectedMonth = 1;
-  final DateTime _dateTime = DateTime.now();
   MonthlyPassFormBloc? formBloc;
   late double amountReload;
   late MonthlyPassModel monthlyPassModel;
@@ -54,12 +54,17 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
 
   @override
   void initState() {
+    _focusedDay = DateTime.now();
     super.initState();
-    _focusedDay = DateTime.now(); // Initialize _focusedDay with current date
+    getLiveTime();
     getReloadAmount();
     monthlyPassModel = MonthlyPassModel();
     promotionModel = PromotionMonthlyPassModel();
     _receiptFuture = analyzeReceipt();
+  }
+
+  Future<void> getLiveTime() async {
+    _focusedDay = await NTP.now();
   }
 
   Future<void> getReloadAmount() async {
@@ -94,13 +99,6 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
     'Terengganu',
     'Kelantan',
   ];
-
-  String calculateEndDate() {
-    // Calculate end date based on the selected duration from the slider
-    int selectedDuration = _selectedMonth.toInt();
-    DateTime endDate = _dateTime.add(Duration(days: selectedDuration * 30));
-    return endDate.toString().split(" ")[0];
-  }
 
   String getDurationLabel(int months) {
     if (months == 1.0) {

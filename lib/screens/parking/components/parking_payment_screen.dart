@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -33,11 +34,11 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
     analyzeParkingExpired();
   }
 
-  void updateDateTime() {
+  void updateDateTime() async {
+    DateTime liveTime = await NTP.now();
     setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm:ss a').format(DateTime.now());
+      _currentDate = liveTime.toString().split(' ')[0]; // Get current date
+      _currentTime = DateFormat('h:mm:ss a').format(liveTime);
     });
   }
 
@@ -213,11 +214,11 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               Center(
                 child: PrimaryButton(
                   onPressed: () {
-                    setState(() {
+                    setState(() async {
                       formBloc.amount.updateValue(amount.toStringAsFixed(2));
 
                       // Get current date and time
-                      DateTime now = DateTime.now();
+                      DateTime now = await NTP.now();
 
                       final receiptNo = generateReceiptNumber();
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
@@ -34,7 +35,7 @@ class ParkingBodyScreen extends StatefulWidget {
 class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   double _value = 0.65;
   int _remainingTime = 3600;
-  late DateTime _focusedDay;
+  DateTime _focusedDay = DateTime.now();
   List<PlateNumberModel> carPlates = [];
   String? selectedCarPlate;
   StoreParkingFormBloc? formBloc;
@@ -74,9 +75,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
   @override
   void initState() {
     super.initState();
-
-    _focusedDay = DateTime.now();
-
+    getTime();
     // Check if carPlates list is not empty
     try {
       // Check if carPlates list is not empty
@@ -94,6 +93,10 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     } catch (e) {
       e.toString();
     }
+  }
+
+  Future<void> getTime() async {
+    _focusedDay = await NTP.now();
   }
 
   @override

@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:ntp/ntp.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/constant.dart';
@@ -36,11 +37,11 @@ class _SummonsReceiptScreenState extends State<SummonsReceiptScreen> {
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
   }
 
-  void updateDateTime() {
+  void updateDateTime() async {
+    DateTime liveTime = await NTP.now();
     setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm a').format(DateTime.now());
+      _currentDate = liveTime.toString().split(' ')[0]; // Get current date
+      _currentTime = DateFormat('h:mm a').format(liveTime);
     });
   }
 

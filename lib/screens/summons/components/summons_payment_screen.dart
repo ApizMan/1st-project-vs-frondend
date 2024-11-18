@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:ntp/ntp.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/component/webview.dart';
 //import 'package:project/component/generate_qr.dart';
@@ -28,6 +29,17 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
   String? _qrCodeUrl;
   String? shortcutLink;
   CompoundFormBloc? formBloc;
+  DateTime? currentTime;
+
+  @override
+  void initState() {
+    super.initState();
+    getLiveTime();
+  }
+
+  void getLiveTime() async {
+    currentTime = await NTP.now();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +95,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                   if (response['SFM']['Constant'] ==
                       'SFM_EXECUTE_PAYMENT_SUCCESS') {
                     String formattedDate =
-                        DateFormat('yyyy-MM-dd').format(DateTime.now());
+                        DateFormat('yyyy-MM-dd').format(currentTime!);
                     for (var i = 0; i < selectedSummons.length; i++) {
                       final response = await CompoundResources.pay(
                         prefix: '/compound/payCompound',
@@ -111,7 +123,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                       );
 
                       if (response['data']['responseMessage'] == 'SUCCESS') {
-                        DateTime now = DateTime.now();
+                        DateTime now = await NTP.now();
                         String isoTimestamp = now.toUtc().toIso8601String();
 
                         final response = await CompoundResources.store(
@@ -232,7 +244,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
 
                       if (response['order_status'] == 'paid') {
                         String formattedDate =
-                            DateFormat('yyyy-MM-dd').format(DateTime.now());
+                            DateFormat('yyyy-MM-dd').format(currentTime!);
                         for (var i = 0; i < selectedSummons.length; i++) {
                           final response = await CompoundResources.pay(
                             prefix: '/compound/payCompound',
@@ -264,7 +276,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
 
                           if (response['data']['responseMessage'] ==
                               'SUCCESS') {
-                            DateTime now = DateTime.now();
+                            DateTime now = await NTP.now();
                             String isoTimestamp = now.toUtc().toIso8601String();
 
                             final response = await CompoundResources.store(

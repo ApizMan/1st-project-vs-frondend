@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ntp/ntp.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:project/app/helpers/shared_preferences.dart';
@@ -42,10 +43,10 @@ class _ReloadReceiptScreenState extends State<ReloadReceiptScreen> {
     Timer.periodic(const Duration(seconds: 1), (Timer t) => updateDateTime());
   }
 
-  void updateDateTime() {
+  void updateDateTime() async {
+    DateTime liveTime = await NTP.now();
     setState(() {
-      _currentDate =
-          DateTime.now().toString().split(' ')[0]; // Get current date
+      _currentDate = liveTime.toString().split(' ')[0]; // Get current date
     });
   }
 
