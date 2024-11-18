@@ -8,6 +8,7 @@ import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // For date formatting
 import 'package:location/location.dart';
+import 'package:ntp/ntp.dart';
 import 'package:permission_handler/permission_handler.dart' as permission;
 import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
@@ -42,11 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
   late final List<PromotionMonthlyPassModel> promotionMonthlyPassModel;
   List<NotificationModel> notificationList = []; // List to store models
 
-  DateTime? expiredAt = DateTime.now();
+  DateTime? expiredAt;
+
+  DateTime? currentTime;
 
   @override
   void initState() {
     super.initState();
+    getCurrentTime();
     analyzeLocation();
     getLocation();
     analyzeParkingExpired();
@@ -55,6 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
     promotionMonthlyPassModel = [];
     _getPromotionMonthlyPass();
     _getNotification();
+  }
+
+  Future<void> getCurrentTime() async {
+    currentTime = await NTP.now();
   }
 
   Future<void> _getNotification() async {
@@ -111,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> analyzeParkingExpired() async {
     durationParking = await SharedPreferencesHelper.getParkingExpired();
+    expiredAt = await NTP.now();
 
     setState(() {
       expiredAt = DateTime.parse(durationParking);
@@ -123,6 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
         await ProfileResources.getProfile(prefix: '/auth/user-profile');
 
     if (data != null && mounted) {
+      DateTime liveTime = await NTP.now();
+
       setState(() {
         userModel.id = data['id'];
         userModel.email = data['email'];
@@ -153,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
               .toList();
         }
 
-        lastUpdated = DateFormat('d MMMM y HH:mm').format(DateTime.now());
+        lastUpdated = DateFormat('d MMMM y HH:mm').format(liveTime);
       });
     }
   }
@@ -258,6 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: CountdownScreen(
                                     details: details,
                                     expiredAt: expiredAt!,
+                                    currentTime: currentTime!,
                                     // expiredAt: DateTime.now().add(Duration(
                                     //   seconds: 0,
                                     // )),
@@ -392,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _topWidget(
       BuildContext context, UserModel userModel, DateTime expiredAt) {
     return Container(
-      height: expiredAt.isAfter(DateTime.now())
+      height: expiredAt.isAfter(currentTime!)
           ? MediaQuery.of(context).size.height * 0.37
           : MediaQuery.of(context).size.height * 0.45,
       decoration: BoxDecoration(

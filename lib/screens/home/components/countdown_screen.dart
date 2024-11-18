@@ -12,8 +12,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CountdownScreen extends StatefulWidget {
   final DateTime expiredAt;
   final Map<String, dynamic> details;
-  const CountdownScreen(
-      {super.key, required this.details, required this.expiredAt});
+  final DateTime currentTime;
+  const CountdownScreen({
+    super.key,
+    required this.details,
+    required this.expiredAt,
+    required this.currentTime,
+  });
 
   @override
   State<CountdownScreen> createState() => _CountdownScreenState();
@@ -106,7 +111,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: widget.expiredAt.isAfter(DateTime.now()) ? true : false,
+      visible: widget.expiredAt.isAfter(widget.currentTime) ? true : false,
       child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.46,
