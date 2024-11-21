@@ -35,11 +35,18 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
   }
 
   void updateDateTime() async {
-    DateTime liveTime = await NTP.now();
-    setState(() {
-      _currentDate = liveTime.toString().split(' ')[0]; // Get current date
-      _currentTime = DateFormat('h:mm:ss a').format(liveTime);
-    });
+    try {
+      DateTime liveTime = await NTP.now(timeout: const Duration(seconds: 5));
+      setState(() {
+        _currentDate = liveTime.toString().split(' ')[0]; // Get current date
+        _currentTime = DateFormat('h:mm a').format(liveTime);
+      });
+    } catch (e) {
+      // Fallback to local time in case of an error
+      DateTime fallbackTime = DateTime.now();
+      _currentDate = fallbackTime.toString().split(' ')[0]; // Get current date
+      _currentTime = DateFormat('h:mm a').format(fallbackTime);
+    }
   }
 
   Future<void> analyzeParkingExpired() async {
@@ -213,12 +220,12 @@ class _ParkingPaymentScreenState extends State<ParkingPaymentScreen> {
               const SizedBox(height: 100),
               Center(
                 child: PrimaryButton(
-                  onPressed: () {
-                    setState(() async {
-                      formBloc.amount.updateValue(amount.toStringAsFixed(2));
+                  onPressed: () async {
+                    // Get current date and time
+                    DateTime now = await NTP.now();
 
-                      // Get current date and time
-                      DateTime now = await NTP.now();
+                    setState(() {
+                      formBloc.amount.updateValue(amount.toStringAsFixed(2));
 
                       final receiptNo = generateReceiptNumber();
 

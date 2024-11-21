@@ -111,7 +111,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: widget.expiredAt.isAfter(widget.currentTime) ? true : false,
+      visible: remainingTime > Duration.zero ? true : false,
       child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.46,

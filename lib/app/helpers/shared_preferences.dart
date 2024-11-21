@@ -189,9 +189,9 @@ class SharedPreferencesHelper {
 
   static Future<bool> getParkingExpiredStatus() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? duration = prefs.getBool(isStartKey);
+    bool? isStart = prefs.getBool(isStartKey);
 
-    return duration ?? false;
+    return isStart ?? false;
   }
 
   static Future<void> setTime({String? startTime, String? endTime}) async {
