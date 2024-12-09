@@ -131,6 +131,8 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
               type: AppLocalizations.of(context)!.monthlyPass,
             );
 
+            formBloc.paymentMethod.updateValue("QR");
+
             formBloc.submit();
 
             model!.duration = duration;
@@ -294,53 +296,53 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                   thickness: 1.0,
                 ),
                 const SizedBox(height: 15),
-                SizedBox(
-                  height: 150,
-                  child: RadioButtonGroupFieldBlocBuilder<String>(
-                    padding: EdgeInsets.zero,
-                    canTapItemTile: true,
-                    groupStyle: const FlexGroupStyle(
-                      direction: Axis.horizontal,
-                    ),
-                    selectFieldBloc: formBloc.paymentMethod,
-                    decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.paymentMethod,
-                      labelStyle: textStyleNormal(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    itemBuilder: (context, item) {
-                      bool isSelected = formBloc.paymentMethod.value == item;
-                      return FieldItem(
-                        child: GestureDetector(
-                          onTap: () => formBloc.paymentMethod.updateValue(item),
-                          child: Container(
-                            width: item == 'QR' ? 80 : 120,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: isSelected
-                                  ? Colors.blue.withOpacity(0.2)
-                                  : Colors.transparent,
-                              border: isSelected
-                                  ? Border.all(color: Colors.blue, width: 2)
-                                  : null,
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  item == 'QR'
-                                      ? 'assets/images/duitnow.png'
-                                      : 'assets/images/fpx.png',
-                                ),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 15),
+                // SizedBox(
+                //   height: 150,
+                //   child: RadioButtonGroupFieldBlocBuilder<String>(
+                //     padding: EdgeInsets.zero,
+                //     canTapItemTile: true,
+                //     groupStyle: const FlexGroupStyle(
+                //       direction: Axis.horizontal,
+                //     ),
+                //     selectFieldBloc: formBloc.paymentMethod,
+                //     decoration: InputDecoration(
+                //       labelText: AppLocalizations.of(context)!.paymentMethod,
+                //       labelStyle: textStyleNormal(
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 18,
+                //       ),
+                //     ),
+                //     itemBuilder: (context, item) {
+                //       bool isSelected = formBloc.paymentMethod.value == item;
+                //       return FieldItem(
+                //         child: GestureDetector(
+                //           onTap: () => formBloc.paymentMethod.updateValue(item),
+                //           child: Container(
+                //             width: item == 'QR' ? 80 : 120,
+                //             height: 80,
+                //             decoration: BoxDecoration(
+                //               color: isSelected
+                //                   ? Colors.blue.withOpacity(0.2)
+                //                   : Colors.transparent,
+                //               border: isSelected
+                //                   ? Border.all(color: Colors.blue, width: 2)
+                //                   : null,
+                //               image: DecorationImage(
+                //                 image: AssetImage(
+                //                   item == 'QR'
+                //                       ? 'assets/images/duitnow.png'
+                //                       : 'assets/images/fpx.png',
+                //                 ),
+                //                 fit: BoxFit.contain,
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
+                // const SizedBox(height: 15),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

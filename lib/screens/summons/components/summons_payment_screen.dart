@@ -73,8 +73,11 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        WebViewPage(url: state.successResponse!),
+                    builder: (context) => WebViewPage(
+                      title: "FPX",
+                      url: state.successResponse!,
+                      details: details,
+                    ),
                   ),
                 ).then((value) async {
                   final order = await SharedPreferencesHelper.getOrderDetails();
@@ -211,13 +214,23 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                   }
                 });
               } else {
-                Navigator.pushNamed(
+                // Navigator.pushNamed(
+                //   context,
+                //   AppRoute.reloadQRScreen,
+                //   arguments: {
+                //     'locationDetail': details,
+                //     'qrCodeUrl': state.successResponse!,
+                //   },
+                // )
+                Navigator.push(
                   context,
-                  AppRoute.reloadQRScreen,
-                  arguments: {
-                    'locationDetail': details,
-                    'qrCodeUrl': state.successResponse!,
-                  },
+                  MaterialPageRoute(
+                    builder: (context) => WebViewPage(
+                      title: "QR Code",
+                      url: state.successResponse!,
+                      details: details,
+                    ),
+                  ),
                 ).then((value) async {
                   final order = await SharedPreferencesHelper.getOrderDetails();
 
@@ -389,6 +402,7 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
               borderRadius: 10.0,
               buttonWidth: 0.8,
               onPressed: () {
+                formBloc!.paymentMethod.updateValue("QR");
                 formBloc!.submit();
               },
               label: Text(
@@ -613,56 +627,56 @@ class _ReloadPaymentScreenState extends State<SummonsPaymentScreen> {
                       thickness: 1.0,
                     ),
                     const SizedBox(height: 15),
-                    SizedBox(
-                      height: 150,
-                      child: RadioButtonGroupFieldBlocBuilder<String>(
-                        padding: EdgeInsets.zero,
-                        canTapItemTile: true,
-                        groupStyle: const FlexGroupStyle(
-                          direction: Axis.horizontal,
-                        ),
-                        selectFieldBloc: formBloc!.paymentMethod,
-                        decoration: InputDecoration(
-                          labelText:
-                              AppLocalizations.of(context)!.paymentMethod,
-                          labelStyle: textStyleNormal(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        itemBuilder: (context, item) {
-                          bool isSelected =
-                              formBloc!.paymentMethod.value == item;
-                          return FieldItem(
-                            child: GestureDetector(
-                              onTap: () =>
-                                  formBloc!.paymentMethod.updateValue(item),
-                              child: Container(
-                                width: item == 'QR' ? 80 : 120,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? Colors.blue.withOpacity(0.2)
-                                      : Colors.transparent,
-                                  border: isSelected
-                                      ? Border.all(color: Colors.blue, width: 2)
-                                      : null,
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      item == 'QR'
-                                          ? 'assets/images/duitnow.png'
-                                          : 'assets/images/fpx.png',
-                                    ),
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 15),
+                    // SizedBox(
+                    //   height: 150,
+                    //   child: RadioButtonGroupFieldBlocBuilder<String>(
+                    //     padding: EdgeInsets.zero,
+                    //     canTapItemTile: true,
+                    //     groupStyle: const FlexGroupStyle(
+                    //       direction: Axis.horizontal,
+                    //     ),
+                    //     selectFieldBloc: formBloc!.paymentMethod,
+                    //     decoration: InputDecoration(
+                    //       labelText:
+                    //           AppLocalizations.of(context)!.paymentMethod,
+                    //       labelStyle: textStyleNormal(
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 18,
+                    //       ),
+                    //     ),
+                    //     itemBuilder: (context, item) {
+                    //       bool isSelected =
+                    //           formBloc!.paymentMethod.value == item;
+                    //       return FieldItem(
+                    //         child: GestureDetector(
+                    //           onTap: () =>
+                    //               formBloc!.paymentMethod.updateValue(item),
+                    //           child: Container(
+                    //             width: item == 'QR' ? 80 : 120,
+                    //             height: 80,
+                    //             decoration: BoxDecoration(
+                    //               color: isSelected
+                    //                   ? Colors.blue.withOpacity(0.2)
+                    //                   : Colors.transparent,
+                    //               border: isSelected
+                    //                   ? Border.all(color: Colors.blue, width: 2)
+                    //                   : null,
+                    //               image: DecorationImage(
+                    //                 image: AssetImage(
+                    //                   item == 'QR'
+                    //                       ? 'assets/images/duitnow.png'
+                    //                       : 'assets/images/fpx.png',
+                    //                 ),
+                    //                 fit: BoxFit.contain,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 15),
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

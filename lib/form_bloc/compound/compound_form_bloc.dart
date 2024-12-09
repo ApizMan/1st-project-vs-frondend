@@ -45,7 +45,11 @@ class CompoundFormBloc extends FormBloc<String, String> {
       final response = await ReloadResources.reloadMoneyPageypay(
         prefix: '/payment/generate-qr',
         body: jsonEncode({
+          // 'order_output': "image",
+          'order_output': "online",
           'order_amount': double.parse(amount.value),
+          // 'validity_qr': "10",
+          'validity_qr': "3",
           'store_id': 'Compound', //description
           'terminal_id': details['location'], //email
           'shift_id': model.idNumber, //city
@@ -68,7 +72,10 @@ class CompoundFormBloc extends FormBloc<String, String> {
           status: 'paid',
         );
 
-        emitSuccess(successResponse: response['data']['content']['qr']);
+        emitSuccess(
+          // successResponse: response['data']['content']['qr'],
+          successResponse: response['data']['content']['iframe_url'],
+        );
       }
     } else {
       final response = await ReloadResources.reloadMoneyFPX(

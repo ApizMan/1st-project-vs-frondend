@@ -169,8 +169,11 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                WebViewPage(url: state.successResponse!),
+                            builder: (context) => WebViewPage(
+                              title: "FPX",
+                              url: state.successResponse!,
+                              details: widget.details,
+                            ),
                           ),
                         ).then((value) async {
                           final order =
@@ -269,13 +272,23 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                           }
                         });
                       } else {
-                        Navigator.pushNamed(
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   AppRoute.reloadQRScreen,
+                        //   arguments: {
+                        //     'locationDetail': widget.details,
+                        //     'qrCodeUrl': state.successResponse!,
+                        //   },
+                        // )
+                        Navigator.push(
                           context,
-                          AppRoute.reloadQRScreen,
-                          arguments: {
-                            'locationDetail': widget.details,
-                            'qrCodeUrl': state.successResponse!,
-                          },
+                          MaterialPageRoute(
+                            builder: (context) => WebViewPage(
+                              title: "QR Code",
+                              url: state.successResponse!,
+                              details: widget.details,
+                            ),
+                          ),
                         ).then((value) async {
                           final order =
                               await SharedPreferencesHelper.getOrderDetails();

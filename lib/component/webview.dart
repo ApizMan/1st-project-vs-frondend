@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:project/constant.dart';
+import 'package:project/theme.dart';
 import 'package:project/widget/custom_dialog.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WebViewPage extends StatefulWidget {
+  final String title;
+  final Map<String, dynamic> details;
   final String url;
 
-  const WebViewPage({super.key, required this.url});
+  const WebViewPage({
+    super.key,
+    required this.title,
+    required this.url,
+    required this.details,
+  });
 
   @override
   State<WebViewPage> createState() => _WebViewPageState();
@@ -43,6 +52,21 @@ class _WebViewPageState extends State<WebViewPage> {
         return Future.value(false);
       },
       child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 100,
+          foregroundColor:
+              widget.details['color'] == 4294961979 ? kBlack : kWhite,
+          backgroundColor: Color(widget.details['color']),
+          centerTitle: true,
+          title: Text(
+            widget.title,
+            style: textStyleNormal(
+              fontSize: 26,
+              color: widget.details['color'] == 4294961979 ? kBlack : kWhite,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         body: WebViewWidget(controller: controller),
       ),
     );

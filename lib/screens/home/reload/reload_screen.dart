@@ -73,8 +73,11 @@ class _ReloadScreenState extends State<ReloadScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          WebViewPage(url: state.successResponse!),
+                      builder: (context) => WebViewPage(
+                        title: "FPX",
+                        url: state.successResponse!,
+                        details: details,
+                      ),
                     ),
                   ).then((value) async {
                     final order =
@@ -160,13 +163,23 @@ class _ReloadScreenState extends State<ReloadScreen> {
                     }
                   });
                 } else {
-                  Navigator.pushNamed(
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   AppRoute.reloadQRScreen,
+                  //   arguments: {
+                  //     'locationDetail': details,
+                  //     'qrCodeUrl': state.successResponse!,
+                  //   },
+                  // )
+                  Navigator.push(
                     context,
-                    AppRoute.reloadQRScreen,
-                    arguments: {
-                      'locationDetail': details,
-                      'qrCodeUrl': state.successResponse!,
-                    },
+                    MaterialPageRoute(
+                      builder: (context) => WebViewPage(
+                        title: "QR Code",
+                        url: state.successResponse!,
+                        details: details,
+                      ),
+                    ),
                   ).then((value) async {
                     final order =
                         await SharedPreferencesHelper.getOrderDetails();
