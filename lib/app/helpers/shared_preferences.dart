@@ -256,4 +256,16 @@ class SharedPreferencesHelper {
       'type': type,
     };
   }
+
+  static Future<void> setPegeypayToken({String? token}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(keyPegeypayToken, token!);
+  }
+
+  static Future<String?> getPegeyPayToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString(keyPegeypayToken);
+
+    return token;
+  }
 }

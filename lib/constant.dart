@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 //     'http://60.54.235.142:3000'; /* IP Address on Oneplus -> Win Laptop */
 
 const String baseUrl = 'http://220.158.208.216:3000'; /* IP Address Server */
+const String pegeypayQRurl =
+    'https://pegepay.com/api/npd-wa/order-create/custom-validity';
 
 // Countdown
 Duration countDownDuration = const Duration();
@@ -108,6 +110,7 @@ const String keyPlateNumber = 'keyPlateNumber';
 const String keyDuration = 'keyDuration';
 const String keyReceiptLocation = 'keyReceiptLocation';
 const String keyType = 'keyType';
+const String keyPegeypayToken = 'keyPegeypayToken';
 
 class GlobalDeclaration {
   static String globalDuration = '';

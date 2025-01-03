@@ -58,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _initData = _getUserDetails();
     promotionMonthlyPassModel = [];
     _getPromotionMonthlyPass();
+    _getPegeypayToken();
     _getNotification();
   }
 
@@ -547,5 +548,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _getPegeypayToken() async {
+    final response =
+        await PegeypayResources.getToken(prefix: '/payment/public/token');
+
+    if (response != null && mounted) {
+      if (response['status'] == 200) {
+        await SharedPreferencesHelper.setPegeypayToken(
+            token: response['accessToken']);
+      }
+    }
   }
 }

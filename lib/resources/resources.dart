@@ -9,3 +9,4 @@ export 'monthly_pass/monthly_pass_resources.dart';
 export 'language_resources.dart';
 export 'promotions/promotions_resources.dart';
 export 'notifications_resources.dart';
+export 'pegeypay_resources.dart';

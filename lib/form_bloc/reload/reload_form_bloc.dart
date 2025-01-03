@@ -6,7 +6,7 @@ import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/app/helpers/validators.dart';
 import 'package:project/constant.dart';
 import 'package:project/models/models.dart';
-import 'package:project/resources/reload/reload_resources.dart';
+import 'package:project/resources/resources.dart';
 
 class ReloadFormBloc extends FormBloc<String, String> {
   final UserModel model;
@@ -53,20 +53,7 @@ class ReloadFormBloc extends FormBloc<String, String> {
 
     if (token.value.isNotEmpty || other.value.isNotEmpty) {
       if (paymentMethod.value == 'QR') {
-        final response = await ReloadResources.reloadMoneyPageypay(
-          prefix: '/payment/generate-qr',
-          body: jsonEncode({
-            // 'order_output': "image",
-            'order_output': "online",
-            'order_amount': double.parse(amount.value),
-            // 'validity_qr': "10",
-            'validity_qr': "3",
-            'store_id': 'Token', //description
-            'terminal_id': details['location'], //email
-            'shift_id': model.idNumber, //city
-            'to_whatsapp_no': model.phoneNumber,
-          }),
-        );
+        final response = await getQR();
 
         GlobalState.paymentMethod = 'QR';
 
@@ -74,7 +61,18 @@ class ReloadFormBloc extends FormBloc<String, String> {
             amount: double.parse(amount.value));
 
         if (response['error'] != null) {
-          emitFailure(failureResponse: response['error'].toString());
+          // emitFailure(failureResponse: response['error'].toString());
+          final response = await PegeypayResources.refreshToken(
+            prefix: '/payment/public/refresh-token',
+          );
+
+          await SharedPreferencesHelper.setPegeypayToken(
+            token: response['access_token'],
+          );
+
+          await getQR();
+
+          await onSubmitting();
         } else {
           await SharedPreferencesHelper.setOrderDetails(
             orderNo: response['order']['order_no'],
@@ -130,5 +128,23 @@ class ReloadFormBloc extends FormBloc<String, String> {
         return;
       }
     }
+  }
+
+  Future<Map<String, dynamic>> getQR() async {
+    final response = await PegeypayResources.generateQR(
+      prefix: '/payment/generate-qr',
+      body: jsonEncode({
+        'order_output': "online",
+        'order_amount': double.parse(amount.value),
+        'validity_qr': "10",
+        'store_id': 'Token', // description
+        'terminal_id': details['location'], // email
+        'shift_id': model.idNumber, // city
+        'to_whatsapp_no': model.phoneNumber,
+      }),
+    );
+
+    // Ensure response is properly typed as Map<String, dynamic>
+    return response;
   }
 }

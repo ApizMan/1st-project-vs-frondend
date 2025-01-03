@@ -78,14 +78,20 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
 
   Map<String, List<int>> pricesPerMonth = {
     'Kuantan': [1, 3, 12],
-    'Machang': [1, 3, 6, 12],
-    'Kuala Terengganu': [1, 3, 6, 12]
+    'Machang': [1, 2, 3],
+    'Kuala Terengganu': [1, 2, 3]
   };
 
   Map<String, Map<int, double>> prices = {
     'Kuantan': {1: 79.50, 3: 207.00, 12: 667.80},
-    'Machang': {1: 60.00, 3: 180.00, 6: 360.00, 12: 720},
-    'Kuala Terengganu': {1: 100, 3: 300, 6: 600, 12: 1200},
+    'Machang': {1: 60.00, 2: 120.00, 3: 180.00},
+    'Kuala Terengganu': {1: 100, 2: 200, 3: 300},
+  };
+
+  Map<String, Map<int, double>> pricesSST = {
+    'Kuantan': {1: 0.00, 3: 0.00, 12: 0.00},
+    'Machang': {1: 3.60, 2: 7.20, 3: 10.80},
+    'Kuala Terengganu': {1: 0.00, 2: 0.00, 3: 0.00},
   };
 
   final List<String> imgName = [
@@ -115,6 +121,20 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
     if (pricesPerMonth.containsKey(selectedLocation)) {
       // Check if _selectedMonth is a valid key in the selectedLocation
       double? price = prices[selectedLocation]?[_selectedMonth];
+
+      // If price is not null, return it, otherwise return a default value
+      return price ?? 0.0;
+    } else {
+      // Handle the case where selectedLocation is not a valid key
+      return 0.0;
+    }
+  }
+
+  double calculatePriceSST() {
+    // Check if selectedLocation is a valid key in pricesPerMonth
+    if (pricesPerMonth.containsKey(selectedLocation)) {
+      // Check if _selectedMonth is a valid key in the selectedLocation
+      double? price = pricesSST[selectedLocation]?[_selectedMonth];
 
       // If price is not null, return it, otherwise return a default value
       return price ?? 0.0;
@@ -531,15 +551,13 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                               decoration: InputDecoration(
                                 label: const Text('PBT'),
                                 border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black12,
-                                  ),
+                                  borderSide:
+                                      const BorderSide(color: Colors.black12),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black12,
-                                  ),
+                                  borderSide:
+                                      const BorderSide(color: Colors.black12),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 filled: true,
@@ -553,16 +571,25 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
 
                                 return FieldItem(
                                   onTap: () {
-                                    if (pbtValue.name == imgName[0]) {
-                                      formBloc!.location
-                                          .updateInitialValue(imgState[0]);
-                                    } else if (pbtValue.name == imgName[1]) {
-                                      formBloc!.location
-                                          .updateInitialValue(imgState[1]);
-                                    } else {
-                                      formBloc!.location
-                                          .updateInitialValue(imgState[2]);
-                                    }
+                                    setState(() {
+                                      if (pbtValue.name == imgName[0]) {
+                                        selectedLocation = 'Kuantan';
+                                      } else if (pbtValue.name == imgName[1]) {
+                                        selectedLocation = 'Kuala Terengganu';
+                                      } else if (pbtValue.name == imgName[2]) {
+                                        selectedLocation = 'Machang';
+                                      }
+
+                                      // Update slider range and selected month
+                                      List<int> availableMonths =
+                                          pricesPerMonth[selectedLocation]!;
+                                      _selectedMonth = availableMonths.first;
+                                      totalPrice = calculatePrice();
+                                    });
+
+                                    formBloc!.location.updateInitialValue(
+                                      imgState[imgName.indexOf(pbtValue.name!)],
+                                    );
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -577,21 +604,19 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                           padding: const EdgeInsets.symmetric(horizontal: 30.0),
                           child: DropdownFieldBlocBuilder<String?>(
                             showEmptyItem: false,
-                            selectFieldBloc:
-                                formBloc!.location, // Bind to PBT field bloc
+                            selectFieldBloc: formBloc!
+                                .location, // Bind to location field bloc
                             decoration: InputDecoration(
                               label:
                                   Text(AppLocalizations.of(context)!.location),
                               border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black12,
-                                ),
+                                borderSide:
+                                    const BorderSide(color: Colors.black12),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black12,
-                                ),
+                                borderSide:
+                                    const BorderSide(color: Colors.black12),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               filled: true,
@@ -600,16 +625,28 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             itemBuilder: (context, value) {
                               return FieldItem(
                                 onTap: () {
-                                  if (value == imgState[0]) {
-                                    formBloc!.pbt
-                                        .updateInitialValue(imgName[0]);
-                                  } else if (value == imgState[1]) {
-                                    formBloc!.pbt
-                                        .updateInitialValue(imgName[1]);
-                                  } else {
-                                    formBloc!.pbt
-                                        .updateInitialValue(imgName[2]);
-                                  }
+                                  setState(() {
+                                    // Update the pbt based on the selected location
+                                    if (value == imgState[0]) {
+                                      formBloc!.pbt
+                                          .updateInitialValue(imgName[0]);
+                                      selectedLocation = 'Kuantan';
+                                    } else if (value == imgState[1]) {
+                                      formBloc!.pbt
+                                          .updateInitialValue(imgName[1]);
+                                      selectedLocation = 'Kuala Terengganu';
+                                    } else if (value == imgState[2]) {
+                                      formBloc!.pbt
+                                          .updateInitialValue(imgName[2]);
+                                      selectedLocation = 'Machang';
+                                    }
+
+                                    // Update slider range and selected month
+                                    List<int> availableMonths =
+                                        pricesPerMonth[selectedLocation]!;
+                                    _selectedMonth = availableMonths.first;
+                                    totalPrice = calculatePrice();
+                                  });
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -809,20 +846,34 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                                         fontStyle: FontStyle.italic,
                                       ),
                                     ),
-                                  Text(
-                                    'RM ${calculatePrice().toStringAsFixed(2)}',
-                                    style: textStyleNormal(
-                                      color: formBloc!.promotion.value != null
-                                          ? kGrey
-                                          : const Color.fromARGB(
-                                              255, 31, 36, 132),
-                                      fontSize: 32,
-                                      decorationColor: kPrimaryColor,
-                                      decoration:
-                                          formBloc!.promotion.value != null
-                                              ? TextDecoration.lineThrough
-                                              : TextDecoration.none,
-                                    ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'RM ${calculatePrice().toStringAsFixed(2)}',
+                                        style: textStyleNormal(
+                                          color:
+                                              formBloc!.promotion.value != null
+                                                  ? kGrey
+                                                  : const Color.fromARGB(
+                                                      255, 31, 36, 132),
+                                          fontSize: 32,
+                                          decorationColor: kPrimaryColor,
+                                          decoration:
+                                              formBloc!.promotion.value != null
+                                                  ? TextDecoration.lineThrough
+                                                  : TextDecoration.none,
+                                        ),
+                                      ),
+                                      if (selectedLocation == 'Machang')
+                                        Text(
+                                          'SST: RM ${calculatePriceSST().toStringAsFixed(2)}',
+                                          style: textStyleNormal(
+                                            color: kRed,
+                                            fontSize: 16,
+                                            fontStyle: FontStyle.italic,
+                                          ),
+                                        ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -850,14 +901,14 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                             children: <Widget>[
                               Slider(
                                 min: 0,
-                                max: availableMonths.length - 1,
+                                max: (availableMonths.length - 1).toDouble(),
                                 divisions: availableMonths.length - 1,
                                 value: availableMonths
                                     .indexOf(_selectedMonth)
                                     .toDouble(),
                                 onChanged: (double value) {
                                   setState(() {
-                                    // Update the selected month
+                                    // Update the selected month based on the slider's value
                                     _selectedMonth =
                                         availableMonths[value.toInt()];
 
@@ -912,12 +963,11 @@ class _MonthlyPassBodyState extends State<MonthlyPassBody> {
                                 'formBloc': formBloc,
                                 'monthlyPassModel': monthlyPassModel,
                                 'promotionModel': promotionModel,
+                                'selectedLocation': selectedLocation,
+                                'sstPrice':
+                                    calculatePriceSST().toStringAsFixed(2),
                               },
                             );
-                            formBloc!.amount.updateValue(
-                                formBloc!.promotion.value != null
-                                    ? totalPrice.toStringAsFixed(2)
-                                    : calculatePrice().toStringAsFixed(2));
                           },
                           label: Text(
                             AppLocalizations.of(context)!.confirm,

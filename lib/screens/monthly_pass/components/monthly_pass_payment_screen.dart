@@ -25,6 +25,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
   //final double _value = 40.0;
   String _currentDate = '';
   String _currentTime = '';
+  double totalAmount = 0.0;
 
   @override
   void initState() {
@@ -62,6 +63,9 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
         arguments['monthlyPassModel'] as MonthlyPassModel?;
     PromotionMonthlyPassModel? promotionModel =
         arguments['promotionModel'] as PromotionMonthlyPassModel?;
+    double? sstPrice = double.parse(arguments['sstPrice']);
+
+    totalAmount = amount + sstPrice;
 
     return Scaffold(
         appBar: AppBar(
@@ -133,17 +137,19 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
 
             formBloc.paymentMethod.updateValue("QR");
 
+            formBloc.amount.updateValue(totalAmount.toStringAsFixed(2));
+
             formBloc.submit();
 
             model!.duration = duration;
-            model.amount = amount.toString();
+            model.amount = totalAmount.toString();
             model.location = formBloc.location.value;
             model.pbt = formBloc.pbt.value;
             model.plateNumber = parkingCar;
             model.promotionId = promotionModel!.id;
 
             await SharedPreferencesHelper.setReloadAmount(
-              amount: amount,
+              amount: totalAmount,
               carPlate: parkingCar!,
               monthlyDuration: duration!,
             );
@@ -271,7 +277,7 @@ class _MonthlyPassPaymentScreenState extends State<MonthlyPassPaymentScreen> {
                     const SizedBox(width: 50),
                     Expanded(
                       child: Text(
-                        'RM ${amount.toStringAsFixed(2)}',
+                        'RM ${totalAmount.toStringAsFixed(2)}',
                         style:
                             GoogleFonts.firaCode(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right, // Align text to the right

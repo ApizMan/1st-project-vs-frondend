@@ -8,14 +8,17 @@ TextStyle textStyleNormal({
   FontWeight fontWeight = FontWeight.normal,
   TextDecoration decoration = TextDecoration.none,
   Color decorationColor = kBlack,
+  FontStyle fontStyle = FontStyle.normal,
 }) {
   return TextStyle(
-      color: color,
-      fontSize: fontSize,
-      fontFamily: "Poppins",
-      fontWeight: fontWeight,
-      decoration: decoration,
-      decorationColor: decorationColor);
+    color: color,
+    fontSize: fontSize,
+    fontFamily: "Poppins",
+    fontWeight: fontWeight,
+    decoration: decoration,
+    decorationColor: decorationColor,
+    fontStyle: fontStyle,
+  );
 }
 
 SizedBox spaceVertical({double height = 10}) {
