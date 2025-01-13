@@ -3,7 +3,6 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ntp/ntp.dart';
-import 'package:project/app/helpers/shared_preferences.dart';
 import 'package:project/constant.dart';
 import 'package:project/form_bloc/form_bloc.dart';
 import 'package:project/models/models.dart';
@@ -33,12 +32,49 @@ class ParkingBodyScreen extends StatefulWidget {
 }
 
 class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
-  double _value = 0.65;
-  int _remainingTime = 3600;
   DateTime _focusedDay = DateTime.now();
   List<PlateNumberModel> carPlates = [];
   String? selectedCarPlate;
   StoreParkingFormBloc? formBloc;
+  String selectedLocation = 'Kuantan';
+  double _selectedHour = 1;
+  double totalPrice = 0.0;
+
+  Map<String, List<double>> pricesPerHour = {
+    'Kuantan': [1, 2, 3, 4, 5, 6, 24],
+    'Machang': [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Kuala Terengganu': [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  };
+
+  Map<String, Map<double, double>> prices = {
+    'Kuantan': {1: 0.65, 2: 1.30, 3: 1.95, 4: 2.60, 5: 3.25, 6: 4.55, 24: 4.80},
+    'Machang': {
+      0.5: 0.30,
+      1: 0.60,
+      2: 1.20,
+      3: 1.80,
+      4: 2.40,
+      5: 3.00,
+      6: 3.60,
+      7: 4.20,
+      8: 4.80,
+      9: 5.40,
+      10: 6.00
+    },
+    'Kuala Terengganu': {
+      0.5: 0.40,
+      1: 0.80,
+      2: 1.60,
+      3: 2.40,
+      4: 3.20,
+      5: 4.00,
+      6: 4.80,
+      7: 5.60,
+      8: 6.40,
+      9: 7.20,
+      10: 8.00
+    },
+  };
 
   final List<String> imgList = [
     kuantanLogo,
@@ -72,6 +108,16 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     }
   }
 
+  String getDurationLabel(double hours) {
+    if (hours == 1.0) {
+      String hour = Get.locale!.languageCode == 'en' ? 'hour' : 'jam';
+      return '1 $hour';
+    } else {
+      String hour = Get.locale!.languageCode == 'en' ? 'hours' : 'jam';
+      return '${hours.toInt()} $hour';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -99,8 +145,23 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
     _focusedDay = await NTP.now();
   }
 
+  double calculatePrice() {
+    // Check if selectedLocation is a valid key in pricesPerMonth
+    if (pricesPerHour.containsKey(selectedLocation)) {
+      // Check if _selectedMonth is a valid key in the selectedLocation
+      double? price = prices[selectedLocation]?[_selectedHour];
+
+      // If price is not null, return it, otherwise return a default value
+      return price ?? 0.0;
+    } else {
+      // Handle the case where selectedLocation is not a valid key
+      return 0.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<double> availableHours = pricesPerHour[selectedLocation]!;
     return SingleChildScrollView(
       child: BlocProvider(
         create: (context) => StoreParkingFormBloc(
@@ -122,7 +183,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                   arguments: {
                     'userModel': widget.userModel,
                     'locationDetail': widget.details,
-                    'amount': _value.toStringAsFixed(2),
+                    'amount': calculatePrice().toStringAsFixed(2),
                   });
 
               ScaffoldMessenger.of(context).showSnackBar(
@@ -269,70 +330,48 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       decoration: InputDecoration(
                         label: const Text('PBT'),
                         border: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.black12,
-                          ),
+                          borderSide: const BorderSide(color: Colors.black12),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.black12,
-                          ),
+                          borderSide: const BorderSide(color: Colors.black12),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         filled: true,
                         fillColor: Colors.white.withOpacity(0.8),
                       ),
                       itemBuilder: (context, value) {
+                        final pbtValue = widget.pbtModel.firstWhere(
+                          (pbt) => pbt.name == value,
+                          orElse: () => widget.pbtModel.first,
+                        );
+
                         return FieldItem(
-                          onTap: () async {
-                            if (value == imgName[0]) {
-                              formBloc!.location
-                                  .updateInitialValue(imgState[0]);
-
-                              // Only handle the tapped item
-                              await SharedPreferencesHelper.saveLocationDetail(
-                                location: imgName[0],
-                                state: imgState[0],
-                                logo: imgList[0],
-                                color: getColorForIndex(0),
-                              );
-                            } else if (value == imgName[1]) {
-                              formBloc!.location
-                                  .updateInitialValue(imgState[1]);
-
-                              // Only handle the tapped item
-                              await SharedPreferencesHelper.saveLocationDetail(
-                                location: imgName[1],
-                                state: imgState[1],
-                                logo: imgList[1],
-                                color: getColorForIndex(1),
-                              );
-                            } else {
-                              formBloc!.location
-                                  .updateInitialValue(imgState[2]);
-
-                              // Only handle the tapped item
-                              await SharedPreferencesHelper.saveLocationDetail(
-                                location: imgName[2],
-                                state: imgState[2],
-                                logo: imgList[2],
-                                color: getColorForIndex(2),
-                              );
-                            }
-
+                          onTap: () {
                             setState(() {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoute.homeScreen,
-                                (route) => false,
-                              );
+                              if (pbtValue.name == imgName[0]) {
+                                selectedLocation = 'Kuantan';
+                              } else if (pbtValue.name == imgName[1]) {
+                                selectedLocation = 'Kuala Terengganu';
+                              } else if (pbtValue.name == imgName[2]) {
+                                selectedLocation = 'Machang';
+                              }
+
+                              // Update slider range and selected month
+                              List<double> availableMonths =
+                                  pricesPerHour[selectedLocation]!;
+                              _selectedHour = availableMonths.first;
+                              totalPrice = calculatePrice();
                             });
+
+                            formBloc!.location.updateInitialValue(
+                              imgState[imgName.indexOf(pbtValue.name!)],
+                            );
                           },
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Text(value!),
+                            child: Text(pbtValue.name!),
                           ),
                         );
                       },
@@ -343,19 +382,15 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                   child: DropdownFieldBlocBuilder<String?>(
                     showEmptyItem: false,
                     selectFieldBloc:
-                        formBloc!.location, // Bind to PBT field bloc
+                        formBloc!.location, // Bind to location field bloc
                     decoration: InputDecoration(
                       label: Text(AppLocalizations.of(context)!.location),
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
+                        borderSide: const BorderSide(color: Colors.black12),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black12,
-                        ),
+                        borderSide: const BorderSide(color: Colors.black12),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       filled: true,
@@ -363,42 +398,25 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                     ),
                     itemBuilder: (context, value) {
                       return FieldItem(
-                        onTap: () async {
-                          if (value == imgState[0]) {
-                            formBloc!.pbt.updateInitialValue(imgName[0]);
-                            // Only handle the tapped item
-                            await SharedPreferencesHelper.saveLocationDetail(
-                              location: imgName[0],
-                              state: imgState[0],
-                              logo: imgList[0],
-                              color: getColorForIndex(0),
-                            );
-                          } else if (value == imgState[1]) {
-                            formBloc!.pbt.updateInitialValue(imgName[1]);
-                            // Only handle the tapped item
-                            await SharedPreferencesHelper.saveLocationDetail(
-                              location: imgName[1],
-                              state: imgState[1],
-                              logo: imgList[1],
-                              color: getColorForIndex(1),
-                            );
-                          } else {
-                            formBloc!.pbt.updateInitialValue(imgName[2]);
-                            // Only handle the tapped item
-                            await SharedPreferencesHelper.saveLocationDetail(
-                              location: imgName[2],
-                              state: imgState[2],
-                              logo: imgList[2],
-                              color: getColorForIndex(2),
-                            );
-                          }
-
+                        onTap: () {
                           setState(() {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              AppRoute.homeScreen,
-                              (route) => false,
-                            );
+                            // Update the pbt based on the selected location
+                            if (value == imgState[0]) {
+                              formBloc!.pbt.updateInitialValue(imgName[0]);
+                              selectedLocation = 'Kuantan';
+                            } else if (value == imgState[1]) {
+                              formBloc!.pbt.updateInitialValue(imgName[1]);
+                              selectedLocation = 'Kuala Terengganu';
+                            } else if (value == imgState[2]) {
+                              formBloc!.pbt.updateInitialValue(imgName[2]);
+                              selectedLocation = 'Machang';
+                            }
+
+                            // Update slider range and selected month
+                            List<double> availableMonths =
+                                pricesPerHour[selectedLocation]!;
+                            _selectedHour = availableMonths.first;
+                            totalPrice = calculatePrice();
                           });
                         },
                         child: Padding(
@@ -426,7 +444,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                                 ),
                               ),
                               Text(
-                                _formatDuration(_remainingTime),
+                                _formatDuration((_selectedHour * 3600).toInt()),
                                 style: GoogleFonts.secularOne(
                                   fontSize: 30,
                                   color: const Color.fromARGB(255, 12, 59, 97),
@@ -441,7 +459,7 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                                 ),
                               ),
                               Text(
-                                'RM ${_value.toStringAsFixed(2)}',
+                                'RM ${calculatePrice().toStringAsFixed(2)}',
                                 style: GoogleFonts.secularOne(
                                   fontSize: 30,
                                   color: const Color.fromARGB(255, 19, 3, 108),
@@ -468,24 +486,22 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                                 child: Column(
                                   children: <Widget>[
                                     Slider(
-                                        min: 0.65,
-                                        max: 4.8,
-                                        divisions: 6,
-                                        label:
-                                            '${(((_value - 0.65) / (4.80 - 0.65) * 5) + 1).round()} hour',
-                                        value: _value,
-                                        onChanged: (double value) {
-                                          setState(() {
-                                            _value =
-                                                (value / 0.65).round() * 0.65;
-                                            _remainingTime = ((_value - 0.65) /
-                                                            (4.80 - 0.65) *
-                                                            5 +
-                                                        1)
-                                                    .round() *
-                                                3600;
-                                          });
-                                        }),
+                                      min: 0,
+                                      max: (availableHours.length - 1)
+                                          .toDouble(),
+                                      divisions: availableHours.length - 1,
+                                      value: availableHours
+                                          .indexOf(_selectedHour)
+                                          .toDouble(),
+                                      onChanged: (double value) {
+                                        setState(() {
+                                          // Update the selected month based on the slider's value
+                                          _selectedHour =
+                                              availableHours[value.toInt()];
+                                        });
+                                      },
+                                      label: getDurationLabel(_selectedHour),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -503,8 +519,9 @@ class _ParkingBodyScreenState extends State<ParkingBodyScreen> {
                       arguments: {
                         'userModel': widget.userModel,
                         'selectedCarPlate': formBloc?.carPlateNumber.value!,
-                        'duration': _formatDuration(_remainingTime),
-                        'amount': _value.toStringAsFixed(2),
+                        'duration':
+                            _formatDuration((_selectedHour * 3600).toInt()),
+                        'amount': calculatePrice().toStringAsFixed(2),
                         'locationDetail': widget.details,
                         'formBloc': formBloc,
                       },

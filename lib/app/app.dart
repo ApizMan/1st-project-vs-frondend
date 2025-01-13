@@ -21,7 +21,7 @@ class CityCarPark extends StatelessWidget {
     ]);
 
     // Ensure a non-null locale
-    String languageCode = defaultLanguage ?? 'ms';
+    String languageCode = defaultLanguage ?? 'en';
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
