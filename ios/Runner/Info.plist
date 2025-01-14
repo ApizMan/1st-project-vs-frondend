@@ -27,11 +27,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Want to display location on map, and track it.</string>
+	<string>You need to provide location access to detect the meter around you.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Want to display location on map, and track it.</string>
+	<string>You need to provide location access to detect the meter around you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Want to display location on map, and track it.</string>
+	<string>You need to provide location access to detect the meter around you.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app requires permission to save images to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

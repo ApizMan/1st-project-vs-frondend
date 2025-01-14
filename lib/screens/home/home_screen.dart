@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: Icons.location_on,
         dialogType: 2,
         description:
-            'Our GPS detect you in Kuantan specifically in Jalan Woh Ah Jang. Please confirm if this is accurate or inaccurate.',
+            'This app needs access to your location to function. Do you want to enable it?',
         btnOkText: 'Yes',
         btnOkOnPress: () async {
           permissionGranted = await locationController.requestPermission();
