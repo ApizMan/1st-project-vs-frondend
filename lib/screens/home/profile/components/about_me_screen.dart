@@ -57,25 +57,30 @@ Future<void> displayAboutMe(BuildContext context, UserModel userModel) {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.idNumber,
-                      style: textStyleNormal(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
+                  if (userModel.idNumber!.isNotEmpty)
+                    Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.idNumber,
+                            style: textStyleNormal(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Center(
+                          child: Text(
+                            userModel.idNumber!,
+                            style: textStyleNormal(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  Center(
-                    child: Text(
-                      userModel.idNumber!,
-                      style: textStyleNormal(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
                   Center(
                     child: Text(
                       Localizations.of(context, AppLocalizations).phoneNumber,
@@ -100,6 +105,15 @@ Future<void> displayAboutMe(BuildContext context, UserModel userModel) {
                       AppLocalizations.of(context)!.email,
                       style: textStyleNormal(
                         fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Center(
+                    child: Text(
+                      userModel.email!,
+                      style: textStyleNormal(
                         fontSize: 15,
                       ),
                     ),

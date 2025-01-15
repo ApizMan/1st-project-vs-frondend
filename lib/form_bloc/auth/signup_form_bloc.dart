@@ -30,11 +30,7 @@ class SignUpFormBloc extends FormBloc<String, String> {
     ],
   );
 
-  final idNumber = TextFieldBloc(
-    validators: [
-      InputValidator.required,
-    ],
-  );
+  final idNumber = TextFieldBloc();
 
   final phoneNumber = TextFieldBloc(
     validators: [

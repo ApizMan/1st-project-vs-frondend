@@ -11,8 +11,8 @@
   "profile": "Profile",
   "logout": "Logout",
   "logoutDesc": "Are you sure you want to logout",
-  "yes": "Ya",
-  "no": "Tidak",
+  "yes": "Yes",
+  "no": "No",
   "aboutMe": "About Me",
   "emailPassword": "E-Mail & Password",
   "listOfVehicle": "List of Vehicle",
@@ -159,5 +159,10 @@
   "startTime": "Start Time",
   "endTime": "End Time",
   "actTitle": "Road Transport Act 1987",
-  "actDesc": "Road Transport Order \n(Provision Regarding Parking)"
+  "actDesc": "Road Transport Order \n(Provision Regarding Parking)",
+  "deleteAccount": "Delete Account",
+  "delete": "Delete",
+  "deleteDesc": "Are you sure you want to delete your account? This action cannot be undone.",
+  "typeDelete": "Type 'DELETE' to confirm",
+  "successDelete": "Account successfully deleted"
 }

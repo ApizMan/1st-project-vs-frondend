@@ -139,6 +139,20 @@ class AuthResources {
     return json.decode(response.body);
   }
 
+  static Future deleteAccount({
+    required String prefix,
+  }) async {
+    final token = await AuthResources.getToken();
+    var response = await http.delete(
+      Uri.parse('$baseUrl$prefix'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    return json.decode(response.body);
+  }
+
   // Share Preferences
   static Future<String?> getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

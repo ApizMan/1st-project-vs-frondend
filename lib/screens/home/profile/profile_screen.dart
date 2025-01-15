@@ -12,6 +12,7 @@ import 'package:project/screens/home/profile/components/help_center_screen.dart'
 import 'package:project/screens/home/profile/components/vehicle_list_screen.dart';
 import 'package:project/theme.dart';
 import 'package:project/widget/custom_dialog.dart';
+import 'package:project/widget/primary_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -37,6 +38,8 @@ List<String> complaintTypes = [
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late final List<PBTModel> pbtModel;
+  final TextEditingController _controller = TextEditingController();
+  bool _isConfirmEnabled = false;
 
   List<Icon> profileListIcon = [
     const Icon(Icons.person),
@@ -54,6 +57,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     pbtModel = [];
     _getPBT();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   Future<void> _getPBT() async {
@@ -114,6 +123,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await prefs.remove(keyToken);
     Navigator.pushNamedAndRemoveUntil(
         context, AppRoute.loginScreen, (context) => false);
+  }
+
+  void _validateInput(String input) {
+    setState(() {
+      if (input.trim().toUpperCase() !=
+              AppLocalizations.of(context)!.delete.toUpperCase() ||
+          input.isEmpty) {
+        _isConfirmEnabled = false;
+      } else {
+        _isConfirmEnabled = true;
+      }
+    });
   }
 
   @override
@@ -229,64 +250,158 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 50, left: 10, right: 10),
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: profileList.length,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      leading: profileListIcon[index],
-                      title: Text(
-                        profileList[index],
-                        style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold,
+          child: Column(
+            children: [
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: profileList.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          leading: profileListIcon[index],
+                          title: Text(
+                            profileList[index],
+                            style: GoogleFonts.dmSans(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          trailing:
+                              const Icon(Icons.keyboard_arrow_right_sharp),
+                          // selected: true,
+                          onTap: () {
+                            if (index == 0) {
+                              displayAboutMe(context, userModel);
+                            } else if (index == 1) {
+                              displayEmailPassword(context, userModel, details);
+                            } else if (index == 2) {
+                              vehicleList(context, userModel);
+                            } else if (index == 3) {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoute.transactionHistoryScreen,
+                                arguments: {
+                                  'locationDetail': details,
+                                },
+                              );
+                            } else if (index == 4) {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoute.settingsScreen,
+                                arguments: {
+                                  'locationDetail': details,
+                                },
+                              );
+                            } else if (index == 5) {
+                              Share.share(
+                                  'Hey, check out this app! https://play.google.com/store/apps/details?id=com.example.project');
+                            } else if (index == 6) {
+                              helpCenter(context, pbtModel);
+                            }
+                          },
                         ),
-                      ),
-                      trailing: const Icon(Icons.keyboard_arrow_right_sharp),
-                      // selected: true,
-                      onTap: () {
-                        if (index == 0) {
-                          displayAboutMe(context, userModel);
-                        } else if (index == 1) {
-                          displayEmailPassword(context, userModel, details);
-                        } else if (index == 2) {
-                          vehicleList(context, userModel);
-                        } else if (index == 3) {
-                          Navigator.pushNamed(
-                            context,
-                            AppRoute.transactionHistoryScreen,
-                            arguments: {
-                              'locationDetail': details,
-                            },
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Divider(
+                            color: kBlack,
+                            thickness: 0.2,
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+              PrimaryButton(
+                color: kRed,
+                label: Text(
+                  AppLocalizations.of(context)!.deleteAccount,
+                  style: textStyleNormal(
+                      color: kWhite, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  CustomDialog.show(
+                    context,
+                    dialogType: DialogType.danger,
+                    title: AppLocalizations.of(context)!.deleteAccount,
+                    description: AppLocalizations.of(context)!.deleteDesc,
+                    center: Column(
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.typeDelete,
+                          style: textStyleNormal(
+                            fontSize: 12,
+                            color: kRed,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        spaceVertical(height: 10.0),
+                        TextField(
+                          controller: _controller,
+                          onChanged: _validateInput,
+                          decoration: InputDecoration(
+                            hintText:
+                                '${AppLocalizations.of(context)!.enter} ${AppLocalizations.of(context)!.delete.toUpperCase()}',
+                            hintStyle: const TextStyle(
+                              color: Colors.black26,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                    btnOkOnPress: () async {
+                      if (_isConfirmEnabled) {
+                        // Perform the delete action here
+                        Navigator.pop(context);
+
+                        final response = await AuthResources.deleteAccount(
+                          prefix: '/auth/delete/${userModel.id}',
+                        );
+
+                        if (response['status'] == 'success') {
+                          await logout();
+                          // Optionally show confirmation message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  AppLocalizations.of(context)!.successDelete),
+                            ),
                           );
-                        } else if (index == 4) {
-                          Navigator.pushNamed(
-                            context,
-                            AppRoute.settingsScreen,
-                            arguments: {
-                              'locationDetail': details,
-                            },
+                        } else {
+                          // Optionally show confirmation message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(response['message'])),
                           );
-                        } else if (index == 5) {
-                          Share.share(
-                              'Hey, check out this app! https://play.google.com/store/apps/details?id=com.example.project');
-                        } else if (index == 6) {
-                          helpCenter(context, pbtModel);
                         }
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Divider(
-                        color: kBlack,
-                        thickness: 0.2,
-                      ),
-                    ),
-                  ],
-                );
-              }),
+                      } else {
+                        return null;
+                      }
+                    },
+                    btnOkText: AppLocalizations.of(context)!.yes,
+                    btnCancelOnPress: () {
+                      _isConfirmEnabled = false;
+                      _controller.clear();
+                      Navigator.pop(context);
+                    },
+                    btnCancelText: AppLocalizations.of(context)!.no,
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -11,8 +11,8 @@
   "profile": "Profil",
   "logout": "Log Keluar",
   "logoutDesc": "Adakah anda pasti mahu log keluar",
-  "yes": "Yes",
-  "no": "No",
+  "yes": "Ya",
+  "no": "Tidak",
   "aboutMe": "Tentang Saya",
   "emailPassword": "E-Mel & Kata Laluan",
   "listOfVehicle": "Senarai Kenderaan",
@@ -159,5 +159,10 @@
   "startTime": "Masa Bermula",
   "endTime": "Masa Akhir",
   "actTitle": "Akta Pengangkutan Jalan 1987",
-  "actDesc": "Perintah Pengangkutan Jalan \n(Peruntukan Mengenai Tempat Letak Kereta)"
+  "actDesc": "Perintah Pengangkutan Jalan \n(Peruntukan Mengenai Tempat Letak Kereta)",
+  "deleteAccount": "Padam Akaun",
+  "delete": "Padam",
+  "deleteDesc": "Adakah anda pasti mahu memadam akaun anda? Tindakan ini tidak boleh dibuat semula.",
+  "typeDelete": "Taip 'PADAM' untuk mengesahkan",
+  "successDelete": "Akaun berjaya dipadam"
 }

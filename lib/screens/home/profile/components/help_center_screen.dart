@@ -187,7 +187,7 @@ Future<void> helpCenter(BuildContext context, List<PBTModel> pbtModel) async {
                               PrimaryButton(
                                 buttonWidth: 0.4,
                                 label: Text(
-                                  AppLocalizations.of(context)!.update,
+                                  AppLocalizations.of(context)!.submit,
                                   style: textStyleNormal(color: kWhite),
                                 ),
                                 borderRadius: 20.0,
