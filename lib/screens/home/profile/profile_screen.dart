@@ -312,6 +312,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   }),
               PrimaryButton(
+                borderRadius: 10.0,
+                buttonWidth: 0.9,
                 color: kRed,
                 label: Text(
                   AppLocalizations.of(context)!.deleteAccount,

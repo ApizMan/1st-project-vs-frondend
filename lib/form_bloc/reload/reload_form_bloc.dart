@@ -131,10 +131,14 @@ class ReloadFormBloc extends FormBloc<String, String> {
   }
 
   Future<Map<String, dynamic>> getQR() async {
+    String serialNumber =
+        generateSerialNumber(); // Generate random serial number
+
     final response = await PegeypayResources.generateQR(
       prefix: '/payment/generate-qr',
       body: jsonEncode({
         'order_output': "online",
+        'order_number': 'CCPR-$serialNumber',
         'order_amount': double.parse(amount.value),
         'validity_qr': "10",
         'store_id': 'Token', // description

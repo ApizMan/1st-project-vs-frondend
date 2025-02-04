@@ -161,3 +161,10 @@ const kTextWarning = Color.fromRGBO(255, 251, 235, 1.0);
 // Info
 const kBgInfo = kPrimaryColor;
 const kTextInfo = Color.fromRGBO(236, 253, 245, 1.0);
+
+String generateSerialNumber({int length = 8}) {
+  const String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  final Random random = Random();
+  return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+      .join();
+}
