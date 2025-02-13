@@ -110,7 +110,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
       }
     } else {
       final response = await ReloadResources.reloadMoneyFPX(
-        prefix: '/paymentfpx/recordBill-token/',
+        prefix: '/paymentfpx/recordBill-seasonpass/',
         body: jsonEncode({
           'NetAmount': double.parse(amount.value),
         }),

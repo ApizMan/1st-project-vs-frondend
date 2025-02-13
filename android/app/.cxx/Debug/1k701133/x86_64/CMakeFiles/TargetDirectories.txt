@@ -1,0 +1,2 @@
+/Users/a1990/Documents/1st-project-vs-frondend/android/app/.cxx/Debug/1k701133/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/a1990/Documents/1st-project-vs-frondend/android/app/.cxx/Debug/1k701133/x86_64/CMakeFiles/edit_cache.dir
