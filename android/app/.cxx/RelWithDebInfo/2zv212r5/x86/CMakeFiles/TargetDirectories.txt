@@ -1,0 +1,2 @@
+/Users/a1990/Documents/1st-project-vs-frondend/android/app/.cxx/RelWithDebInfo/2zv212r5/x86/CMakeFiles/rebuild_cache.dir
+/Users/a1990/Documents/1st-project-vs-frondend/android/app/.cxx/RelWithDebInfo/2zv212r5/x86/CMakeFiles/edit_cache.dir
