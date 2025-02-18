@@ -76,27 +76,29 @@ class CompoundFormBloc extends FormBloc<String, String> {
         );
       }
     } else {
-      final response = await ReloadResources.reloadMoneyFPX(
-        prefix: '/paymentfpx/recordBill-compound/',
-        body: jsonEncode({
-          'NetAmount': double.parse(amount.value),
-        }),
-      );
+      final response = await getFPX();
 
       GlobalState.paymentMethod = 'FPX';
 
-      await SharedPreferencesHelper.setOrderDetails(
-        orderNo: response['BillId'].toString(),
-        amount: amount.value.toString(),
-        storeId: "Compound",
-        shiftId: model.email!,
-        terminalId: response['BatchName'].toString(),
-        status: "paid",
-      );
-
       if (response['error'] != null) {
-        emitFailure(failureResponse: response['error'].toString());
+        // emitFailure(failureResponse: response['error'].toString());
+        await PegeypayResources.refreshToken(
+          prefix: '/paymentfpx/public',
+        );
+
+        await getFPX();
+
+        await onSubmitting();
       } else {
+        await SharedPreferencesHelper.setOrderDetails(
+          orderNo: response['BillId'].toString(),
+          amount: amount.value.toString(),
+          storeId: "Compound",
+          shiftId: model.email!,
+          terminalId: response['BatchName'].toString(),
+          status: "paid",
+        );
+
         emitSuccess(successResponse: response['ShortcutLink']);
       }
     }
@@ -117,6 +119,18 @@ class CompoundFormBloc extends FormBloc<String, String> {
         'terminal_id': details['location'], // email
         'shift_id': model.idNumber, // city
         'to_whatsapp_no': model.phoneNumber,
+      }),
+    );
+
+    // Ensure response is properly typed as Map<String, dynamic>
+    return response;
+  }
+
+  Future<Map<String, dynamic>> getFPX() async {
+    final response = await ReloadResources.reloadMoneyFPX(
+      prefix: '/paymentfpx/recordBill-token/',
+      body: jsonEncode({
+        'NetAmount': double.parse(amount.value),
       }),
     );
 
