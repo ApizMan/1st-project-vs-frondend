@@ -128,7 +128,7 @@ class CompoundFormBloc extends FormBloc<String, String> {
 
   Future<Map<String, dynamic>> getFPX() async {
     final response = await ReloadResources.reloadMoneyFPX(
-      prefix: '/paymentfpx/recordBill-token/',
+      prefix: '/paymentfpx/recordBill-compound/',
       body: jsonEncode({
         'NetAmount': double.parse(amount.value),
       }),

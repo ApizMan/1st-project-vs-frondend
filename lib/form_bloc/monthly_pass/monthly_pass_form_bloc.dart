@@ -161,7 +161,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
 
   Future<Map<String, dynamic>> getFPX() async {
     final response = await ReloadResources.reloadMoneyFPX(
-      prefix: '/paymentfpx/recordBill-token/',
+      prefix: '/paymentfpx/recordBill-seasonpass/',
       body: jsonEncode({
         'NetAmount': double.parse(amount.value),
       }),
