@@ -113,7 +113,7 @@ class MonthlyPassFormBloc extends FormBloc<String, String> {
 
       GlobalState.paymentMethod = 'FPX';
 
-      if (response['error'] != null) {
+      if (response['SFM']['Constant'] == "SFM_GENERAL_ERROR") {
         // emitFailure(failureResponse: response['error'].toString());
         await PegeypayResources.refreshToken(
           prefix: '/paymentfpx/public',
